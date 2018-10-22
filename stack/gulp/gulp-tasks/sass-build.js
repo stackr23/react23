@@ -10,7 +10,7 @@ import appConfig    from '../../../config/appConfig'
 
 const {
     globs: {scss: {src, dist, watch}}
-} = appConfig
+} = require('config').default
 
 const sassBuild = (src, dist) =>
     gulp.src(src)

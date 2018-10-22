@@ -3,8 +3,6 @@
 import path         from 'path'
 import fs           from 'fs'
 import gulp         from 'gulp'
-// import gulpTaskListing from 'gulp-task-list'
-import config from 'config'
 
 // GET TASK FILES
 const taskFiles = fs.readdirSync('./stack/gulp/gulp-tasks/')
@@ -17,11 +15,6 @@ const taskFiles = fs.readdirSync('./stack/gulp/gulp-tasks/')
 // IMPORT TASK FILES
 taskFiles.forEach(taskFile => {
     require('./gulp-tasks/' + taskFile)
-})
-
-
-gulp.task('test:config', done => {
-    console.dir(config)
 })
 
 gulp.task('default', done => {
@@ -38,10 +31,7 @@ gulp.task('default', done => {
     }
 
     gulp.series(
-        'clean',
-        gulp.parallel(
-            ...gulpSequence
-        )
+        'clean', gulp.parallel(...gulpSequence)
     )
 
     done()
