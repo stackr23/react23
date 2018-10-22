@@ -1,3 +1,10 @@
+const yargs = require('yargs')
+    .option('sass_style', {
+        alias:      's',
+        default:    'compressed'
+    })
+    .argv
+
 export default (function (config) {
     const rootRel   = process.cwd() + '/'
 
@@ -20,6 +27,9 @@ export default (function (config) {
                 },
                 dist:   paths.dist + 'css/'
             }
+        },
+        sass: {
+            style: yargs.sass_style
         }
     }, config) // assign process.env.APP_CONFIG to defaults
 
