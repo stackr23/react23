@@ -3,8 +3,6 @@
 import gulp      from 'gulp'
 import del       from 'del'
 
-import appConfig from '../../../config/appConfig'
-
-const {globs: {clean}} = appConfig
+const {globs: {clean}} = require('config').default
 
 gulp.task('clean', () => del(clean))
