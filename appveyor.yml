@@ -1,7 +1,7 @@
 version: 1.0.{build}
 
 image: Ubuntu1804
-stack: node 9.6
+stack: node 9
 
 platform: x86
 
