@@ -2,7 +2,8 @@
 > perfect react stack to wrap your app
 
 [![Build Status](https://travis-ci.com/stackr23/react23.svg?branch=master)](https://travis-ci.com/stackr23/react23)
-[![Maintenance][maintenance-img]][maintenance-url]  
+[![Maintenance][maintenance-img]][maintenance-url]
+[![Greenkeeper badge](https://badges.greenkeeper.io/stackr23/react23.svg)](https://greenkeeper.io/)  
 
 [![PRs Welcome][pr-welcome]](http://makeapullrequest.com)
 [![Open Source Love png2](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/) 
