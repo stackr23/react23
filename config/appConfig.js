@@ -1,4 +1,5 @@
 import paths from './paths'
+
 const yargs = require('yargs')
     .option('sass_style', {
         alias:      's',
@@ -7,13 +8,16 @@ const yargs = require('yargs')
     .option('production')
     .argv
 
-export default (function (config) {
+export default (function (APP_CONFIG) {
     const rootRel   = process.cwd() + '/'
 
+    let NODE_ENV    = process.env.NODE_ENV === 'production' || yargs.production
+        ? 'production' : 'development'
+
     config      = Object.assign({
-        NODE_ENV:             process.env.NODE_ENV,
-        isDevelopment:        process.env.NODE_ENV || 'development',
-        isProduction:         process.env.NODE_ENV === 'production' || yargs.production,
+        NODE_ENV:             NODE_ENV,
+        isDevelopment:        NODE_ENV || 'development',
+        isProduction:         NODE_ENV === 'production',
         debug:                process.env.APP_DEBUG || true,
         ports: {
               portFE:         7000,
@@ -40,5 +44,5 @@ export default (function (config) {
         }
     }, config) // assign process.env.APP_CONFIG to defaults
 
-    return config
+    return Object.assign(config, APP_CONFIG)
 })(process.env.APP_CONFIG || {})
