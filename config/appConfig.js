@@ -14,7 +14,7 @@ export default (function (APP_CONFIG) {
     let NODE_ENV    = process.env.NODE_ENV === 'production' || yargs.production
         ? 'production' : 'development'
 
-    config      = Object.assign({
+    const config    = {
         NODE_ENV:             NODE_ENV,
         isDevelopment:        NODE_ENV || 'development',
         isProduction:         NODE_ENV === 'production',
@@ -42,7 +42,7 @@ export default (function (APP_CONFIG) {
         sass: {
             style: yargs.sass_style
         }
-    }, config) // assign process.env.APP_CONFIG to defaults
+    }
 
     return Object.assign(config, APP_CONFIG)
 })(process.env.APP_CONFIG || {})
