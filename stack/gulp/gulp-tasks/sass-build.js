@@ -12,6 +12,8 @@ const {
     globs: {scss: {src, dist, watch}}
 } = require('config').default
 
+
+console.log('config', require('config').default)
 const sassBuild = (src, dist) =>
     gulp.src(src)
         .pipe(gulpSass({

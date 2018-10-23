@@ -24,10 +24,10 @@ export default (function (config) {
                 '!**/.gitkeep', 'stack/__test__/**/*', 'build/**/*'
             ],
             scss:   {
-                watch:      paths.scss + '/**/*.scss',
-                scss:    {
-                    main:   paths.scss + '/full.scss',
-                    mqs:    paths.scss + '/mqs/*.scss'
+                watch:      paths.sass + '/**/*.scss',
+                src:    {
+                    main:   paths.sass + '/full.scss',
+                    mqs:    paths.sass + '/mqs/*.scss'
                 },
                 dist:   paths.dist + '/css/'
             }
