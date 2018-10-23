@@ -13,6 +13,5 @@ export default function getStaticIndexHtml({js, css}) {
         <div id="app"></div>
         <script type="text/javascript" src="./${js}"></script>
     </body>
-</html>
-`
+</html>`
 }

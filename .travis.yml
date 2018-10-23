@@ -8,7 +8,9 @@ branches:
   - development
   - /^greenkeeper/.*$/
 
-install: npm install
+install:
+    - npm install -g gulp-cli
+    - npm install
 
 script:
 - npm run test

@@ -28,7 +28,7 @@ gulp.task('sass:build-mqs', () => sassBuild(src.mqs, dist.mqs || dist))
 
 gulp.task('sass:build-main', () => sassBuild(src.main, dist.main || dist))
 
-gulp.task('sass:watch', () => gulp.watch(watch, ['sass:build-main']))
+gulp.task('sass:watch', () => gulp.watch(watch, gulp.series('sass-build')))
 
 gulp.task('sass-build', gulp.series('sass:build-main'))
 

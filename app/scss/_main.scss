@@ -6,7 +6,7 @@ body {
 		color: blue;
 	}
 	@include mq('desktop') {
-		color: red;
+		color: green;
 	}
 }
 

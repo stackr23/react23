@@ -190,19 +190,19 @@ export default _isDevelopment => {
 
                 plugins.push(
                     new webpack.LoaderOptionsPlugin({minimize: true}),
-                    new ExtractTextPlugin({
-                        filename:   'app-[hash].css',
-                        disable:    false,
-                        allChunks:  true
-                    }),
-                    new webpack.optimize.OccurrenceOrderPlugin(),
-                    new webpack.optimize.UglifyJsPlugin({
-                        sourceMap: true,
-                        compress: {
-                            screw_ie8:  true, // eslint-disable-line camelcase
-                            warnings:   false // Because uglify reports irrelevant warnings.
-                        }
-                    })
+                    // new ExtractTextPlugin({
+                    //     filename:   'app-[hash].css',
+                    //     disable:    false,
+                    //     allChunks:  true
+                    // }),
+                    // new webpack.optimize.OccurrenceOrderPlugin(),
+                    // new webpack.optimize.UglifyJsPlugin({
+                    //     sourceMap: true,
+                    //     compress: {
+                    //         screw_ie8:  true, // eslint-disable-line camelcase
+                    //         warnings:   false // Because uglify reports irrelevant warnings.
+                    //     }
+                    // })
                 )
             }
 

@@ -8,7 +8,7 @@
 
 @include mq('mobile') {
 	body::after {
-		content: 'Testmodule in MOBILE MQ';
+		content: 'Testmodule in MOBILE MQ!';
 	}
 }
 
