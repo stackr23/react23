@@ -1,6 +1,4 @@
-// import compression from 'compression'
 // import device from 'express-device'
-// import tailoredMiddleware from '../lib/tailoredMiddleware';
 import express from 'express'
 // import favicon from 'serve-favicon';
 import render from './render'
@@ -13,10 +11,6 @@ app.get('/test/testTimeout', (req, res, next) => {
     }, 10000)
 })
 
-
-
-// app.use(tailoredMiddleware());
-// app.use(compression())
 
 // app.use(favicon('assets/img/favicon.ico'));
 
@@ -34,7 +28,8 @@ app.get('/test/testTimeout', (req, res, next) => {
 // app.use(device.capture());
 //
 
-app.use('/build', express.static('build', {maxAge: '200d'}))
+// TBD: enable css
+// app.use('/build', express.static('build', {maxAge: '200d'}))
 
 // app.use('/test', function(req, res, next) {
 //     res.send('HALLO!')

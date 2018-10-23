@@ -67,27 +67,6 @@ const renderPageAsync = async ({url}) => {
 
     const styleSrc  = `/build/${appCssFilename}`
 
-    // refactor: use StaticRouter?
-    //
-    // as suggested by react router examples
-    // https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/guides/server-rendering.md
-    // renders fine... but is absolutely static and doesn't react to anything
-    //
-    // workaround: take the Apps main wrapper as renderTarget for FE-rendering
-    // => renders static on server... and when ready, render on client
-    //
-    // but that results in a react warning on client:
-    /*
-        warning.js:36 Warning: React attempted to reuse markup in a container but the checksum was invalid.
-        This generally means that you are using server rendering and the markup generated on the server was not what the client was expecting.
-        React injected new markup to compensate which works but you have lost many of the benefits of server rendering.
-        Instead, figure out why the markup being generated is different on the client or server:
-         (client) <div style="height:50
-         (server) <header data-reactid=
-    */
-
-    // +++ also will try "https://www.npmjs.com/package/react-router-server"
-
     // return renderToString(
     //     <StaticRouter location={url} context={context} >
     //         <div>

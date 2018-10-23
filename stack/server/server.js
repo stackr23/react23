@@ -1,15 +1,11 @@
 import express         from 'express'
 import frontend        from './frontend'
-// import api             from './api'
-// import errorHandler from './lib/errorHandler';
 
-const {ports: {portFE}} = require('config').default
 const app               = express()
+const {ports: {portFE}} = require('config').default
 
 // app.use('/api', api)
 
-// TBD: refactor and use errorHandler
-// app.use(errorHandler);
 app.use(frontend)
 
 app.listen(portFE, () => {

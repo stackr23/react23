@@ -32,7 +32,7 @@ export default (function (config) {
                     main:   paths.sass + '/full.scss',
                     mqs:    paths.sass + '/mqs/*.scss'
                 },
-                dist:   paths.dist + '/css/'
+                dist:   paths.build + '/'
             }
         },
         sass: {
