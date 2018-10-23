@@ -4,6 +4,7 @@ const yargs = require('yargs')
         alias:      's',
         default:    'compressed'
     })
+    .option('production')
     .argv
 
 export default (function (config) {
@@ -12,6 +13,8 @@ export default (function (config) {
     config      = Object.assign({
         NODE_ENV:             process.env.NODE_ENV,
         isDevelopment:        process.env.NODE_ENV || 'development',
+        isProduction:         process.env.NODE_ENV === 'production' || yargs.production,
+        debug:                process.env.APP_DEBUG || true,
         ports: {
               portFE:         7000,
               portHMR:        7070,

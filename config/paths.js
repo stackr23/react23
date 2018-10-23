@@ -4,7 +4,7 @@ const rootDir       = path.join(__dirname, '..')
 const paths = {
     ROOT:           rootDir,
     stack:          path.normalize(path.join(rootDir, 'stack')),
-    // server:         path.normalize(path.join(rootDir, 'stack', 'server')),
+    server:         path.normalize(path.join(rootDir, 'stack', 'server')),
     // testServer:     path.normalize(path.join(rootDir, 'stack', 'server', 'test')),
     // api:            path.normalize(path.join(rootDir, 'stack', 'server', 'api')),
     // fixtures:       path.normalize(path.join(rootDir, 'stack', 'server', 'api', 'fixtures')),
