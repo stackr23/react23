@@ -19,30 +19,10 @@ taskFiles.forEach(taskFile => {
     require('./gulp-tasks/' + taskFile)
 })
 
-// gulp.task('default', done => {
-//     const gulpSequence = [
-//         'clean',
-//         'sass-build',
-//         'sass:watch'
-//     ]
-
-//     // if (userArgs.style !== 'compact') {
-//     // gulpSequence.push('sass:uglify')
-//     // }
-
-//     return gulp.series(
-//         'clean',
-//         () => {
-
-//             done()
-//         }
-//     )
-// })
-
 gulp.task('default',
     gulp.series(
         'clean', gulp.parallel(
-            gulp.series('sass-build', 'sass:watch'), // serie will be removed later
+            // gulp.series('sass-build', 'sass:watch'), // serie will be removed later
             gulp.series('webpack', 'server:frontend')
         )
     )

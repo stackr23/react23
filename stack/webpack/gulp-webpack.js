@@ -6,14 +6,12 @@ import startWebpackDevServer    from './devServer/start'
 
 const {isProduction} = require('config').default
 
-const compileWebpack = (() => {
-    if (isProduction) {
-        console.log('compileWebpack in production not set yet!')
-        return makeWebpackBuild
+const compileWebpackWrapper = (done =>
+    function compileWebpack(done) {
+        return isProduction
+            ? makeWebpackBuild(done)
+            : startWebpackDevServer(done)
     }
-    else {
-        return startWebpackDevServer
-    }
-})()
+)()
 
-gulp.task('webpack', gulp.series(compileWebpack))
+gulp.task('webpack', gulp.series(compileWebpackWrapper))
