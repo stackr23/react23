@@ -20,7 +20,6 @@ taskFiles.forEach(taskFile => {
 gulp.task('default', done => {
     gulp.series()
     const gulpSequence = [
-        'user-arguments', // required
         'clean',
         'sass-build',
         'sass:watch'
