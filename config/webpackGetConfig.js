@@ -5,10 +5,10 @@ import path              from 'path'
 import ip                from 'ip'
 // webpack/build plugins
 
-// import autoprefixer      from 'autoprefixer' // remove gulp sass!?
+import autoprefixer      from 'autoprefixer'
 
 // import ExtractTextPlugin from 'extract-text-webpack-plugin'
-// import cssMqPacker       from 'css-mqpacker'
+import cssMqPacker       from 'css-mqpacker'
 // import nib               from 'nib'
 // import doubleu23Stylus   from 'doubleu23-stylus'
 
@@ -158,8 +158,8 @@ export default _isDevelopment => {
                     hotPort:    portHMR,
                     sourceMap:  true,
                     postcss:    () => [
-                        // autoprefixer({browsers: 'last 2 version'}),
-                        // cssMqPacker()
+                        autoprefixer({browsers: ['last 2 versions', 'Safari > 6', 'iOS >= 7', 'ie >= 8']}),
+                        cssMqPacker()
                     ]
                 }),
                 new webpack.DefinePlugin({
