@@ -19,9 +19,18 @@
     * [ ] /app/components
         - MD loader
         - bit.rc loader
+* [x] gulp
+        [ ] add BrowserSync support!?  
+        prio low, because we use HMR of webpack  
+        browserSync only needed for tests usage (mirror clicks and scrolls, ...)
 * [x] frontend server
     * [ ] server side rendering
     * [ ] use /app/index.html as template
     * [ ] prefetch data
     * [ ] api route
         * [ ] fixtures (depends on store)
+* [ ] tests
+    * [ ] add mocha
+        * [ ] write unit tests
+    * [ ] add karma
+        * [ ] write integration tests
