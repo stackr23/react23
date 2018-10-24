@@ -14,12 +14,13 @@ app.get('/test/testTimeout', (req, res, next) => {
 
 // app.use(favicon('assets/img/favicon.ico'));
 
-// // Serve the static assets. We can cache them as they include hashes.
-// // express.static is relative to the directory where you launch your node process
-// app.use('/assets/img', express.static('assets/img', {maxAge: '200d'}));
-// // fonts - cached
-// app.use('/assets/fonts', express.static('assets/fonts', {maxAge: '200d'}));
-// app.use('/_assets', express.static('build', {maxAge: '200d'}));
+// serve static assets. We can cache them as they include hashes.
+// express.static is relative to your node process (gulp runs in project root)
+app.use('/assets', express.static('app/assets', {maxAge: '200d'}));
+// app.use('/assets/fonts', express.static('app/assets/fonts', {maxAge: '200d'}));
+
+// TBD: CSS and production server
+// app.use('/build', express.static('build', {maxAge: '200d'}));
 
 // // Intl.
 // app.use('/node_modules/intl/dist', express.static('node_modules/intl/dist'));
@@ -28,10 +29,9 @@ app.get('/test/testTimeout', (req, res, next) => {
 // app.use(device.capture());
 //
 
-// TBD: enable css
-// app.use('/build', express.static('build', {maxAge: '200d'}))
-
-// app.use('/test', function(req, res, next) {
+// implement your own routes here
+//
+// app.use('/myRoute', (req, res, next) => {
 //     res.send('HALLO!')
 // })
 

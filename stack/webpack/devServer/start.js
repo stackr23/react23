@@ -31,8 +31,9 @@ export default function startDevServer(callback) {
     })
 
     webpackDevInstance.waitUntilValid(() => {
+        console.log('[/webpack/devServer/start.js] webpackDevInstance.waitUntilValid')
         if (typeof callback === 'function') {
-            callback()
+            callback() // should contain done
         }
     })
 }

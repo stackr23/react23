@@ -1,21 +1,19 @@
 'use strict'
-
-import webpack           from 'webpack'
+// utils
 import path              from 'path'
 import ip                from 'ip'
-// webpack/build plugins
-
-// import autoprefixer      from 'autoprefixer' // remove gulp sass!?
-
+// WEBPACK related
+import webpack           from 'webpack'
+// STYLE related
+import autoprefixer      from 'autoprefixer'
+import cssMqPacker       from 'css-mqpacker'
 // import ExtractTextPlugin from 'extract-text-webpack-plugin'
-// import cssMqPacker       from 'css-mqpacker'
 // import nib               from 'nib'
 // import doubleu23Stylus   from 'doubleu23-stylus'
 
 let {
-    isDevelopment, NODE_ENV,
-    paths,
-    ports: {portHMR}
+    isDebug, isProduction, isDevelopment, NODE_ENV, verbose,
+    paths, ports: {portHMR}
 } = require('config').default
 
 const serverIp = ip.address()
@@ -31,19 +29,20 @@ export default _isDevelopment => {
             sourceMap:  true,
             compress:   isDevelopment,
             use:        [
-            /*nib(), doubleu23Stylus({
-                envVars:    {
-                    // refactor: build object on top and
-                    // find a way to re-use it in webpack.DefinePlugin
-                    NODE_ENV:       process.env.NODE_ENV,
-                    BUILD_STATIC:   process.env.BUILD_STATIC,
-                    DEBUG:          process.env.DEBUG
-                },
-                mediaQueries:       {
-                    'custom':       'only screen and (min-width: 1300px)'
-                },
-                envPrefix:          '$ENV__'
-            })*/
+                // nib(),
+                // doubleu23Stylus({
+                //     envVars:    {
+                //         // refactor: build object on top and
+                //         // find a way to re-use it in webpack.DefinePlugin
+                //         NODE_ENV:       process.env.NODE_ENV,
+                //         BUILD_STATIC:   process.env.BUILD_STATIC,
+                //         DEBUG:          process.env.DEBUG
+                //     },
+                //     mediaQueries:       {
+                //         'custom':       'only screen and (min-width: 1300px)'
+                //     },
+                //     envPrefix:          '$ENV__'
+                // })
             ]
         }
     }
@@ -66,19 +65,22 @@ export default _isDevelopment => {
         output: isDevelopment ? {
             path:               paths.build,
             filename:           '[name].js',
-            sourceMapFilename:  '[name].js.map.sourceMapFilename',
+            sourceMapFilename:  '[name].js.map',
             chunkFilename:      '[name]-[chunkhash].js',
             publicPath:         `http://${serverIp}:${portHMR}/build/`
         } : {
             path: paths.build,
             filename: '[name]-[hash].js',
-            // ??? sourceMapFilename: '[name]-[hash].js',
+            // production env needs sourcemaps just in edge cases
+            // ??? sourceMapFilename: '[name]-[hash].map.js',
             chunkFilename: '[name]-[chunkhash].js'
         },
+        stats: verbose ? 'verbose' : isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',
         module: {
             rules: [
                 // URL LOADER
-                // (different limits for different fileTypes)
+                // different limits for different fileTypes
+                // refactor: rethink if necessary
                 {
                     loader: 'url-loader',
                     test: /\.(gif|jpg|png|svg)(\?.*)?$/,
@@ -97,7 +99,7 @@ export default _isDevelopment => {
                     exclude:  /\.(styl|dir)$/,
                     options: { limit: 100000 }
                 },
-                // BABEL
+                // BABEL LOADER
                 {
                     loader: 'babel-loader',
                     test: /\.js$/,
@@ -110,6 +112,7 @@ export default _isDevelopment => {
                         // presets and plugins defined in .babelrc
                         env: {
                             production: {
+                                // plugins/presets loaded from .babelrc
                                 // plugins: ['transform-react-constant-elements']
                             }
                         }
@@ -140,7 +143,6 @@ export default _isDevelopment => {
                 //         // })
                 // }
             ]
-            // .concat(stylesLoaders)
         },
         externals: {
             'jsdom':    'window',
@@ -158,8 +160,8 @@ export default _isDevelopment => {
                     hotPort:    portHMR,
                     sourceMap:  true,
                     postcss:    () => [
-                        // autoprefixer({browsers: 'last 2 version'}),
-                        // cssMqPacker()
+                        autoprefixer({browsers: ['last 2 versions', 'Safari > 6', 'iOS >= 7', 'ie >= 8']}),
+                        cssMqPacker()
                     ]
                 }),
                 new webpack.DefinePlugin({
@@ -182,27 +184,27 @@ export default _isDevelopment => {
                 )
             }
             else {
-                // if (!process.env.CONTINUOUS_INTEGRATION) {
-                //     // enable scope hoisting
-                //     // https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
-                //     plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
-                // }
+                if (!process.env.CONTINUOUS_INTEGRATION) {
+                    // enable scope hoisting
+                    // https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
+                    plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
+                }
 
                 plugins.push(
                     new webpack.LoaderOptionsPlugin({minimize: true}),
-                    new ExtractTextPlugin({
-                        filename:   'app-[hash].css',
-                        disable:    false,
-                        allChunks:  true
-                    }),
-                    new webpack.optimize.OccurrenceOrderPlugin(),
-                    new webpack.optimize.UglifyJsPlugin({
-                        sourceMap: true,
-                        compress: {
-                            screw_ie8:  true, // eslint-disable-line camelcase
-                            warnings:   false // Because uglify reports irrelevant warnings.
-                        }
-                    })
+                    // new ExtractTextPlugin({
+                    //     filename:   'app-[hash].css',
+                    //     disable:    false,
+                    //     allChunks:  true
+                    // }),
+                    // new webpack.optimize.OccurrenceOrderPlugin(),
+                    // new webpack.optimize.UglifyJsPlugin({
+                    //     sourceMap: true,
+                    //     compress: {
+                    //         screw_ie8:  true, // eslint-disable-line camelcase
+                    //         warnings:   false // Because uglify reports irrelevant warnings.
+                    //     }
+                    // })
                 )
             }
 
@@ -218,9 +220,7 @@ export default _isDevelopment => {
             return plugins
         })(),
         performance: {
-            // hints: false
-            // TODO: Reenable it once Webpack 2 will complete dead code removing.
-            hints: process.env.NODE_ENV === 'development' ? 'warning' : false
+            hints: (!isProduction || isDebug) ? 'warning' : false
         },
         resolve: {
             extensions:         ['.js', '.babel', '.styl'],
@@ -231,11 +231,10 @@ export default _isDevelopment => {
     // Webpack Dev Server - Header Settings
     //
     // not needed here, because we handle the dev-server per 'webpack-dev-middleware'
-    // so we set the headers in /webpack/devServer/start.js
-    // anyway...
-    // we also define it here,
-    // so you can use the compiled config for a 'webpack-dev-server' based implementation
-    if (_isDevelopment) {
+    // and set the headers in /stack/weboack/devServer/start.js
+    //
+    // for compatibility, we keep this code in config too
+    if (isDevelopment) {
         const devServer = {
             headers: {'Access-Control-Allow-Origin': '*'}
         }
