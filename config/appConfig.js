@@ -5,25 +5,39 @@ const yargs = require('yargs')
         alias:      's',
         default:    'compressed'
     })
-    .option('production')
+    .option('production', {
+        alias:      'p',
+        default:    false
+    })
+    .option('debug', {
+        alias:      'd',
+        default:    process.env.NODE_ENV !== 'production' ? true : false
+    })
+    .option('verbose', {
+        alias:      'v',
+        default:    false
+    })
     .argv
 
 export default (function (APP_CONFIG) {
     const rootRel   = process.cwd() + '/'
 
-    let NODE_ENV    = process.env.NODE_ENV === 'production' || yargs.production
+    const NODE_ENV          = process.env.NODE_ENV === 'production' || yargs.production === true
         ? 'production' : 'development'
 
+    const isProduction      = NODE_ENV === 'production'
+    const isDevelopment     = NODE_ENV !== 'production'
+
     const config    = {
-        NODE_ENV:             NODE_ENV,
-        isDevelopment:        NODE_ENV || 'development',
-        isProduction:         NODE_ENV === 'production',
-        debug:                process.env.APP_DEBUG || true,
+        NODE_ENV:           NODE_ENV,
+        isDevelopment:      NODE_ENV || 'development',
+        isProduction:       NODE_ENV === 'production',
+        debug:              process.env.APP_DEBUG || yargs.debug || isDevelopment || false,
         ports: {
-              portFE:         7000,
-              portHMR:        7070,
-              portBSProxy:    7001,
-              portBSUI:       3000
+              portFE:       7000,
+              portHMR:      7070,
+              portBSProxy:  7001,
+              portBSUI:     3000
         },
         paths,
         globs: {
