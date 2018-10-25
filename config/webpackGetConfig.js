@@ -172,10 +172,10 @@ export default _isDevelopment => {
                         // DEBUG:          JSON.stringify(process.env.DEBUG === 'true'),
                         IS_BROWSER:     true
                     }
-                })
-                // new webpack.ProvidePlugin({
-                //     'Promise': 'bluebird'
-                // }) // not needed in babel7 ???
+                }),
+                new webpack.ProvidePlugin({
+                    'Promise': 'bluebird'
+                }) // not needed in babel7 ???
             ]
             if (isDevelopment) {
                 plugins.push(

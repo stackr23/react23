@@ -2,13 +2,37 @@ import ReactDOM from 'react-dom'
 import React from 'react'
 import Component from 'react-pure-render/component'
 
+import Header from './components/Header'
+
 if (module.hot) module.hot.accept()
 if (!global._babelPolyfill) require('@babel/polyfill')
 
-class Root extends Component {
+class Root extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            cowsay: ''
+        }
+    }
+
+    async componentDidMount() {
+        const {say} = await import(/* webpackChunkName: "cowsay" */ 'cowsay')
+        this.setState({
+            cowsay: say({text: 'perfect react stack to wrap your app'})
+        })
+    }
 
     render() {
-        return <h1>REACT23</h1>
+
+        return (
+            <React.Fragment>
+                <Header headline="react23" subline="" />
+                <div id="content">
+                    <pre>{this.state.cowsay}</pre>
+                </div>
+            </React.Fragment>
+        )
     }
 
 }
@@ -19,4 +43,3 @@ ReactDOM.render(
     <Root />,
     document.getElementById('app')
 )
-// }

@@ -30,6 +30,7 @@
     * [ ] api route
         * [ ] fixtures (depends on store)
 * [ ] tests
+    * [ ] fix eslint (+IDE) integration
     * [ ] add mocha
         * [ ] write unit tests
     * [ ] add karma

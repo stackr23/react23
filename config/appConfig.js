@@ -19,6 +19,23 @@ const yargs = require('yargs')
     })
     .argv
 
+// TBD: take "backpack" s approach on absolute paths
+//
+// Make sure any symlinks in the project folder are resolved:
+// https://github.com/facebookincubator/create-react-app/issues/637
+// const appDirectory = fs.realpathSync(process.cwd());
+
+// function resolveApp(relativePath) {
+//   return path.resolve(appDirectory, relativePath);
+// }
+
+// const paths = {
+//   appSrc: resolveApp('src'),
+//   appBuild: resolveApp('build'),
+//   appIndexJs: resolveApp('src/index.js'),
+//   appNodeModules: resolveApp('node_modules'),
+// };
+
 export default (function (APP_CONFIG) {
     const rootRel   = process.cwd() + '/'
 
