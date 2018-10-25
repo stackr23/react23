@@ -16,3 +16,20 @@
 [maintenance-img]: https://img.shields.io/badge/Maintained%3F-yes-green.svg
 [maintenance-url]: https://GitHub.com/Doubleu23/tailored-react-env/graphs/commit-activity
 [pr-welcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+
+# usage
+
+```
+git clone v1.2.0 https://github.com/stackr23/react23 --depth 1
+cd react23
+npm install
+npm start 
+```
+
+## __npm scripts:__  
+__start__ - starts webpack devServer
+__build__ - builds webpack (production)
+__lint__ - runs eslint
+__test__ - runs gulp 'test'-task
+
+
