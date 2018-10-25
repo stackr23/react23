@@ -51,10 +51,10 @@ export default (function (APP_CONFIG) {
         isProduction:       NODE_ENV === 'production',
         debug:              process.env.APP_DEBUG || yargs.debug || isDevelopment || false,
         ports: {
-              portFE:       7000,
-              portHMR:      7070,
-              portBSProxy:  7001,
-              portBSUI:     3000
+            portFE:       7000,
+            portHMR:      7070,
+            portBSProxy:  7001,
+            portBSUI:     3000
         },
         paths,
         globs: {

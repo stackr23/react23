@@ -1,30 +1,31 @@
-import ReactDOM from 'react-dom'
-import React from 'react'
-import Component from 'react-pure-render/component'
+import React        from 'react'
+import ReactDOM     from 'react-dom'
+import Component    from 'react-pure-render/component'
 
-import Header from './components/Header'
+import Header       from './components/Header'
+
+// TBD: inject isBrowser per webpack
+// const {isBrowser}   = require('config').default
 
 if (module.hot) module.hot.accept()
 if (!global._babelPolyfill) require('@babel/polyfill')
 
-class Root extends React.Component {
-
-    constructor(props) {
+class Root extends Component {
+    constructor (props) {
         super(props)
-        this.state = {
-            cowsay: ''
-        }
+        this.state = {cowsay: ''}
     }
 
-    async componentDidMount() {
+    async componentDidMount () {
         const {say} = await import(/* webpackChunkName: "cowsay" */ 'cowsay')
+        this.say    = say
+
         this.setState({
-            cowsay: say({text: 'perfect react stack to wrap your app'})
+            cowsay: this.say({text: 'perfect react stack to wrap your app'})
         })
     }
 
-    render() {
-
+    render () {
         return (
             <React.Fragment>
                 <Header headline="react23" subline="" />
@@ -34,12 +35,11 @@ class Root extends React.Component {
             </React.Fragment>
         )
     }
-
 }
-console.log('[/app/js]')
 
-// if (process.env.IS_BROWSER) {
+// if (isBrowser) {
 ReactDOM.render(
     <Root />,
     document.getElementById('app')
 )
+// }
