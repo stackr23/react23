@@ -15,5 +15,6 @@ install:
     - npm install
 
 script:
+# - npm run lint # add task after cleanup
 - npm run test
 - npm run build
