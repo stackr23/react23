@@ -1,6 +1,6 @@
 // TBD: create templateBase (like @sss)
 // +++ use templateBase HERE and in server/frontend/render.js
-export default function getStaticIndexHtml({js, css}) {
+export default function getStaticIndexHtml ({js, css}) {
     return `<!DOCTYPE html>
 <html>
     <head>

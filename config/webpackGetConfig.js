@@ -1,51 +1,52 @@
 'use strict'
 // utils
-import path              from 'path'
-import ip                from 'ip'
+import path             from 'path'
+import ip               from 'ip'
 // WEBPACK related
-import webpack           from 'webpack'
+import webpack          from 'webpack'
 // STYLE related
-import autoprefixer      from 'autoprefixer'
-import cssMqPacker       from 'css-mqpacker'
+import autoprefixer     from 'autoprefixer'
+import cssMqPacker      from 'css-mqpacker'
 // import ExtractTextPlugin from 'extract-text-webpack-plugin'
 // import nib               from 'nib'
 // import doubleu23Stylus   from 'doubleu23-stylus'
+const config            = require('config').default
 
 let {
     isDebug, isProduction, isDevelopment, NODE_ENV, verbose,
     paths, ports: {portHMR}
-} = require('config').default
+} = config
 
 const serverIp = ip.address()
 
 export default _isDevelopment => {
-    const isDevelopment = _isDevelopment != null
+    isDevelopment = _isDevelopment != null
         ? _isDevelopment
         : isDevelopment
 
-    const stylusLoaderDefinition = {
-        loader: 'stylus-loader',
-        options: {
-            sourceMap:  true,
-            compress:   isDevelopment,
-            use:        [
-                // nib(),
-                // doubleu23Stylus({
-                //     envVars:    {
-                //         // refactor: build object on top and
-                //         // find a way to re-use it in webpack.DefinePlugin
-                //         NODE_ENV:       process.env.NODE_ENV,
-                //         BUILD_STATIC:   process.env.BUILD_STATIC,
-                //         DEBUG:          process.env.DEBUG
-                //     },
-                //     mediaQueries:       {
-                //         'custom':       'only screen and (min-width: 1300px)'
-                //     },
-                //     envPrefix:          '$ENV__'
-                // })
-            ]
-        }
-    }
+    // const stylusLoaderDefinition = {
+    //     loader: 'stylus-loader',
+    //     options: {
+    //         sourceMap:  true,
+    //         compress:   isDevelopment,
+    //         use:        [
+    //             nib(),
+    //             doubleu23Stylus({
+    //                 envVars:    {
+    //                     // refactor: build object on top and
+    //                     // find a way to re-use it in webpack.DefinePlugin
+    //                     NODE_ENV:       process.env.NODE_ENV,
+    //                     BUILD_STATIC:   process.env.BUILD_STATIC,
+    //                     DEBUG:          process.env.DEBUG
+    //                 },
+    //                 mediaQueries:       {
+    //                     'custom':       'only screen and (min-width: 1300px)'
+    //                 },
+    //                 envPrefix:          '$ENV__'
+    //             })
+    //         ]
+    //     }
+    // }
 
     const webpackConfig = {
         mode:       NODE_ENV || isDevelopment ? 'development' : 'production',
@@ -55,12 +56,12 @@ export default _isDevelopment => {
             ? 'inline-source-map'
             : 'cheap-module-source-map',
         entry: {
-            app: isDevelopment ? [
-                `webpack-hot-middleware/client?path=http://${serverIp}:${portHMR}/__webpack_hmr`,
-                path.join(paths.src, 'index.js')
-            ] : [
-                path.join(paths.src, 'index.js')
-            ]
+            app: isDevelopment
+                ? [
+                    `webpack-hot-middleware/client?path=http://${serverIp}:${portHMR}/__webpack_hmr`,
+                    path.join(paths.src, 'index.js')
+                ]
+                : [path.join(paths.src, 'index.js')]
         },
         output: isDevelopment ? {
             path:               paths.build,
@@ -85,19 +86,19 @@ export default _isDevelopment => {
                     loader: 'url-loader',
                     test: /\.(gif|jpg|png|svg)(\?.*)?$/,
                     exclude:  /\.(styl|dir)$/,
-                    options: { limit: 10000 }
+                    options: {limit: 10000}
                 },
                 {
                     loader: 'url-loader',
                     test: /favicon\.ico$/,
                     exclude:  /\.(styl|dir)$/,
-                    options: { limit: 1 }
+                    options: {limit: 1}
                 },
                 {
                     loader: 'url-loader',
                     test: /\.(ttf|eot|woff|woff2)(\?.*)?$/,
                     exclude:  /\.(styl|dir)$/,
-                    options: { limit: 100000 }
+                    options: {limit: 100000}
                 },
                 // BABEL LOADER
                 {
@@ -110,14 +111,10 @@ export default _isDevelopment => {
                         babelrc: true,
                         cacheDirectory: false,
                         // presets and plugins defined in .babelrc
-                        env: {
-                            production: {
-                                // plugins/presets loaded from .babelrc
-                                // plugins: ['transform-react-constant-elements']
-                            }
-                        }
+                        // enable env config if needed
+                        env: {production: {}}
                     }
-                },
+                }
                 // SOURCEMAPS
                 // refactor: show source instead of compiled
                 // not needed (only handles extern sourcemaps (in module packages))
@@ -160,14 +157,16 @@ export default _isDevelopment => {
                     hotPort:    portHMR,
                     sourceMap:  true,
                     postcss:    () => [
-                        autoprefixer({browsers: ['last 2 versions', 'Safari > 6', 'iOS >= 7', 'ie >= 8']}),
+                        autoprefixer({browsers: [
+                            'last 2 versions', 'Safari > 6', 'iOS >= 7', 'ie >= 8'
+                        ]}),
                         cssMqPacker()
                     ]
                 }),
                 new webpack.DefinePlugin({
                     'process.env': {
-                        NODE_ENV:       JSON.stringify(isDevelopment ? 'development' : 'production'),
-                        // CONFIG:         JSON.stringify(config),
+                        NODE_ENV:       JSON.stringify(NODE_ENV),
+                        APP_CONFIG:     JSON.stringify(config),
                         // BUILD_STATIC:   JSON.stringify(process.env.BUILD_STATIC === 'true'),
                         // DEBUG:          JSON.stringify(process.env.DEBUG === 'true'),
                         IS_BROWSER:     true
@@ -182,8 +181,7 @@ export default _isDevelopment => {
                     new webpack.HotModuleReplacementPlugin(),
                     new webpack.NoEmitOnErrorsPlugin()
                 )
-            }
-            else {
+            } else {
                 if (!process.env.CONTINUOUS_INTEGRATION) {
                     // enable scope hoisting
                     // https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
@@ -191,7 +189,7 @@ export default _isDevelopment => {
                 }
 
                 plugins.push(
-                    new webpack.LoaderOptionsPlugin({minimize: true}),
+                    new webpack.LoaderOptionsPlugin({minimize: true})
                     // new ExtractTextPlugin({
                     //     filename:   'app-[hash].css',
                     //     disable:    false,

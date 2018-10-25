@@ -33,10 +33,9 @@ const {
 
 const serverIp  = ip.address()
 
-export default async function render(req, res, next) {
+export default async function render (req, res, next) {
     const html = await renderPageAsync({url: req.url})
     res.send(html)
-    return
 }
 
 // TBD: fetchComponentDataAsync

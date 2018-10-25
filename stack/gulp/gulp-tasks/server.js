@@ -1,12 +1,9 @@
 import gulp         from 'gulp'
-import gulpNodemon  from 'gulp-nodemon'
-
+// import gulpNodemon  from 'gulp-nodemon'
 import {spawn} from 'child_process'
 
-const {
-    paths,
-    isDevelopment
-} = require('config').default
+
+const {paths} = require('config').default
 
 const closeFn = done => data => {
     console.log('production server stopped!')

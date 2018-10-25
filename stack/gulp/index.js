@@ -4,8 +4,6 @@ import path         from 'path'
 import fs           from 'fs'
 import gulp         from 'gulp'
 
-import clean        from './gulp-tasks/clean'
-
 // GET TASK FILES
 const taskFiles = fs.readdirSync('./stack/gulp/gulp-tasks/')
     .filter(name =>

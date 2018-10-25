@@ -2,7 +2,7 @@ import PluginError      from 'plugin-error'
 import webpack          from 'webpack'
 import webpackGetConfig from '../../config/webpackGetConfig.js'
 
-export default function makeBuild(callback) {
+export default function makeBuild (callback) {
     // (false) = force production!
     const config = webpackGetConfig(false)
 

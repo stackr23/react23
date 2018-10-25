@@ -1,25 +1,29 @@
-import React from 'react'
-import Component from 'react-pure-render/component'
+import React                from 'react'
+import PropTypes            from 'prop-types'
+import Component            from 'react-pure-render/component'
 
-class Header extends React.Component {
+class Header extends Component {
+    static propTypes = {
+        headline:   PropTypes.text.required,
+        subline:    PropTypes.text
+    }
 
-    render() {
+    render () {
         const {headline, subline} = this.props
 
         return (
             <React.Fragment>
                 <h1 id="header">
                     {headline}
-                    {subline && <span><br />{subline}</span>}
+                    {subline &&
+                    <span style="font-size: 0.5rem;">
+                        <br />
+                        {subline}
+                    </span>}
                 </h1>
             </React.Fragment>
         )
     }
-
-}
-
-Header.defaultProps = {
-    subline: 'test subline'
 }
 
 export default Header

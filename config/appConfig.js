@@ -11,7 +11,7 @@ const yargs = require('yargs')
     })
     .option('debug', {
         alias:      'd',
-        default:    process.env.NODE_ENV !== 'production' ? true : false
+        default:    process.env.NODE_ENV !== 'production'
     })
     .option('verbose', {
         alias:      'v',
@@ -37,19 +37,18 @@ const yargs = require('yargs')
 // };
 
 export default (function (APP_CONFIG) {
-    const rootRel   = process.cwd() + '/'
+    // const rootRel        = path.resolve(process.cwd() + '/')
 
     const NODE_ENV          = process.env.NODE_ENV === 'production' || yargs.production === true
         ? 'production' : 'development'
 
     const isProduction      = NODE_ENV === 'production'
-    const isDevelopment     = NODE_ENV !== 'production'
 
     const config    = {
         NODE_ENV:           NODE_ENV,
-        isDevelopment:      NODE_ENV || 'development',
-        isProduction:       NODE_ENV === 'production',
-        debug:              process.env.APP_DEBUG || yargs.debug || isDevelopment || false,
+        isDevelopment:      !isProduction,
+        isProduction:       isProduction,
+        debug:              process.env.APP_DEBUG || yargs.debug || !isProduction || false,
         ports: {
             portFE:       7000,
             portHMR:      7070,

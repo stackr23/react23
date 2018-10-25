@@ -11,8 +11,8 @@ const timeout = (ms = 5000, promise) =>
         }, ms)
 
         promise
-            // .catch block is defined in "axiosWrapped" to limitate side-effects
-            //
+            // TBD catch
+            // .catch() // other errors
             // Promise resolved before timeout - keep going...
             .then(resolve, reject)
     }))

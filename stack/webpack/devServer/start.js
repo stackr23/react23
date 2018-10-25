@@ -9,7 +9,7 @@ const {
     ports: {portHMR}
 } = require('config').default
 
-export default function startDevServer(callback) {
+export default function startDevServer (callback) {
     const app                = express()
 
     const webpackConfig      = webpackGetConfig(true)

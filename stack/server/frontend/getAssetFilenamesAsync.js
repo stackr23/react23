@@ -27,8 +27,7 @@ const getAssetFilenamesAsync = async forceReadDir => {
             js:     buildDirFiles.find(filename => APP_JS_PATTERN.test(filename)),
             css:    buildDirFiles.find(filename => APP_CSS_PATTERN.test(filename))
         }
-    }
-    catch (err) {
+    } catch (err) {
         if (debug) {
             console.log('[getAssetFilenamesAsync->catch]', err)
         }

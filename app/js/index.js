@@ -19,16 +19,23 @@ class Root extends Component {
     async componentDidMount () {
         const {say} = await import(/* webpackChunkName: "cowsay" */ 'cowsay')
         this.say    = say
+        setTimeout(this.fillContent.bind(this), 500)
+    }
 
+    fillContent () {
         this.setState({
-            cowsay: this.say({text: 'perfect react stack to wrap your app'})
+            cowsay: this.say({
+                text:   '\nperfect react stack to wrap your web app\n\n',
+                tongue: 'U',
+                eyes:   'oO'
+            })
         })
     }
 
     render () {
         return (
             <React.Fragment>
-                <Header headline="react23" subline="" />
+                <Header headline="react23" subline="free react for free people" />
                 <div id="content">
                     <pre>{this.state.cowsay}</pre>
                 </div>

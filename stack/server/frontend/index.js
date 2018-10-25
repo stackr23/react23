@@ -1,9 +1,9 @@
 // import device from 'express-device'
-import express from 'express'
-// import favicon from 'serve-favicon';
-import render from './render'
+import express  from 'express'
+// import favicon from 'serve-favicon'
+import render   from './render'
 
-const app = express()
+const app       = express()
 
 app.get('/test/testTimeout', (req, res, next) => {
     setTimeout(() => {
@@ -12,21 +12,21 @@ app.get('/test/testTimeout', (req, res, next) => {
 })
 
 
-// app.use(favicon('assets/img/favicon.ico'));
+// app.use(favicon('assets/img/favicon.ico'))
 
 // serve static assets. We can cache them as they include hashes.
 // express.static is relative to your node process (gulp runs in project root)
-app.use('/assets', express.static('app/assets', {maxAge: '200d'}));
-// app.use('/assets/fonts', express.static('app/assets/fonts', {maxAge: '200d'}));
+app.use('/assets', express.static('app/assets', {maxAge: '200d'}))
+// app.use('/assets/fonts', express.static('app/assets/fonts', {maxAge: '200d'}))
 
 // TBD: CSS and production server
-// app.use('/build', express.static('build', {maxAge: '200d'}));
+// app.use('/build', express.static('build', {maxAge: '200d'}))
 
 // // Intl.
-// app.use('/node_modules/intl/dist', express.static('node_modules/intl/dist'));
-// app.use('/node_modules/intl/locale-data', express.static('node_modules/intl/locale-data'));
+// app.use('/node_modules/intl/dist', express.static('node_modules/intl/dist'))
+// app.use('/node_modules/intl/locale-data', express.static('node_modules/intl/locale-data'))
 
-// app.use(device.capture());
+// app.use(device.capture())
 //
 
 // implement your own routes here
@@ -34,7 +34,6 @@ app.use('/assets', express.static('app/assets', {maxAge: '200d'}));
 // app.use('/myRoute', (req, res, next) => {
 //     res.send('HALLO!')
 // })
-
 
 app.get('*', render)
 
