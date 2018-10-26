@@ -27,13 +27,15 @@ npm start
 
 ## npm scripts  
 __start__ - starts webpack devServer  
-__build__ - builds webpack (production)  
+__build__ - starts webpack in production mode  
+__build-static__ - static build (production)  
 __lint__ - runs eslint  
 __test__ - runs gulp 'test'-task  
 
 ## gulp tasks
 __test__ - TBD  
-__webpack__ - builds webpack depending on your NODE_ENV (-p for production)  
 __clean__ - cleans the defined blob - __default:__ /build and /test  
+__build__ - builds webpack depending on your NODE_ENV (-p for production)  
+__build-static__ - build + copy of /app/index.html to /build
 __build-sass__ - builds sass files, _deprecated_ through babel style-loaders  
 __server:frontend__ - starts the express server and renders index.html on /  

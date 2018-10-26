@@ -71,7 +71,7 @@ export default _isDevelopment => {
             publicPath:         `http://${serverIp}:${portHMR}/build/`
         } : {
             path: paths.build,
-            filename: '[name]-[hash].js',
+            filename: 'app.js', // '[name]-[hash].js'
             // production env needs sourcemaps just in edge cases
             // ??? sourceMapFilename: '[name]-[hash].map.js',
             chunkFilename: '[name]-[chunkhash].js'

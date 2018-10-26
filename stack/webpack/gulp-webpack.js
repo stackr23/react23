@@ -5,14 +5,18 @@ import gulp                     from 'gulp'
 import makeWebpackBuild         from './makeBuild'
 import startWebpackDevServer    from './devServer/start'
 
+import buildStaticSeries        from '../gulp/gulp-tasks/build-static'
+
 const {isProduction} = require('config').default
 
-const compileWebpackWrapper = (done =>
-    function compileWebpack (done) {
+const compileWebpack = (done =>
+    function compileWebpackWrapper (done) {
         return isProduction
             ? makeWebpackBuild(done)
             : startWebpackDevServer(done)
     }
 )()
 
-gulp.task('webpack', gulp.series(compileWebpackWrapper))
+gulp.task('build', gulp.series(compileWebpack))
+
+gulp.task('build-static', buildStaticSeries)

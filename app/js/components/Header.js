@@ -4,8 +4,8 @@ import Component            from 'react-pure-render/component'
 
 class Header extends Component {
     static propTypes = {
-        headline:   PropTypes.text.required,
-        subline:    PropTypes.text
+        headline:   PropTypes.string.required,
+        subline:    PropTypes.string
     }
 
     render () {
@@ -16,7 +16,7 @@ class Header extends Component {
                 <h1 id="header">
                     {headline}
                     {subline &&
-                    <span style="font-size: 0.5rem;">
+                    <span style={{fontSize: '0.4em'}}>
                         <br />
                         {subline}
                     </span>}
