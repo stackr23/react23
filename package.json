@@ -7,8 +7,7 @@
     "lint": "eslint .",
     "test": "gulp test",
     "start": "gulp",
-    "build": "gulp build --production",
-    "build-static": "gulp build-static --production",
+    "build": "gulp build-static --production",
     "build-sass": "gulp sass-build"
   },
   "repository": {
