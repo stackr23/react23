@@ -19,6 +19,7 @@ class Root extends Component {
     async componentDidMount () {
         const {say} = await import(/* webpackChunkName: "cowsay" */ 'cowsay')
         this.say    = say
+
         setTimeout(this.fillContent.bind(this), 500)
     }
 
