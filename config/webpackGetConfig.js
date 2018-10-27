@@ -48,9 +48,8 @@ export default _isDevelopment => {
             publicPath:         `http://${serverIp}:${portHMR}/build/`
         } : {
             path: paths.build,
-            filename: 'app.js', // '[name]-[hash].js'
-            // production env needs sourcemaps just in edge cases
-            // ??? sourceMapFilename: '[name]-[hash].map.js',
+            filename: 'app.js', // TBD: '[name]-[hash].js'
+            sourceMapFilename: '[name]-[hash].map.js',
             chunkFilename: '[name]-[chunkhash].js'
         },
         stats: verbose ? 'verbose' : isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',
@@ -67,7 +66,7 @@ export default _isDevelopment => {
                         retainLines: true,
                         sourceMap: true,
                         babelrc: true,
-                        cacheDirectory: false,
+                        cacheDirectory: paths.build,
                         // presets and plugins defined in .babelrc
                         // enable env config if needed
                         env: {production: {}}
@@ -75,13 +74,26 @@ export default _isDevelopment => {
                 }
             ]
         },
-        externals: {
-            'jsdom':    'window',
-            'cheerio':  'window',
-            'react/addons': true,
-            'react/lib/ExecutionEnvironment': true,
-            'react/lib/ReactContext': true,
-            'fs': {}
+        // TBD: refactor externals
+        // externals: {
+        //     'jsdom':    'window',
+        //     // 'cheerio':  'window',
+        //     'react/addons': true,
+        //     'react/lib/ExecutionEnvironment': true,
+        //     'react/lib/ReactContext': true,
+        //     'fs': {}
+        // },
+        optimization: {
+            minimize: true
+            // minimizer: [
+            //     new webpack.optimize.UglifyJsPlugin({
+            //         sourceMap: true,
+            //         compress: {
+            //             screw_ie8:  true, // eslint-disable-line camelcase
+            //             warnings:   false // Because uglify reports irrelevant warnings.
+            //         }
+            //     })
+            // ]
         },
         plugins: (() => {
             const plugins = [
@@ -116,25 +128,17 @@ export default _isDevelopment => {
                     new webpack.NoEmitOnErrorsPlugin()
                 )
             } else {
-                if (!process.env.CONTINUOUS_INTEGRATION) {
-                    // enable scope hoisting
-                    // https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
-                    plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
-                }
+                // if (!process.env.CONTINUOUS_INTEGRATION) {
+                //     // enable scope hoisting
+                //     // https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
+                //     plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
+                // }
 
                 plugins.push(
-                    // new webpack.LoaderOptionsPlugin({minimize: true}),
                     new ExtractTextPlugin({
                         filename:   'app.css'
                     })
                     // new webpack.optimize.OccurrenceOrderPlugin(),
-                    // new webpack.optimize.UglifyJsPlugin({
-                    //     sourceMap: true,
-                    //     compress: {
-                    //         screw_ie8:  true, // eslint-disable-line camelcase
-                    //         warnings:   false // Because uglify reports irrelevant warnings.
-                    //     }
-                    // })
                 )
             }
 
