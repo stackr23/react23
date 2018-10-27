@@ -128,17 +128,11 @@ export default _isDevelopment => {
                     new webpack.NoEmitOnErrorsPlugin()
                 )
             } else {
-                // if (!process.env.CONTINUOUS_INTEGRATION) {
-                //     // enable scope hoisting
-                //     // https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
-                //     plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
-                // }
-
                 plugins.push(
                     new ExtractTextPlugin({
                         filename:   'app.css'
-                    })
-                    // new webpack.optimize.OccurrenceOrderPlugin(),
+                    }),
+                    new webpack.optimize.OccurrenceOrderPlugin()
                 )
             }
 
@@ -154,11 +148,11 @@ export default _isDevelopment => {
             return plugins
         })(),
         performance: {
-            hints: (!isProduction || isDebug) ? 'warning' : false
+            hints: !isProduction ? 'warning' : false
         },
         resolve: {
-            extensions:         ['.js', '.babel', '.styl'],
-            modules:            [paths.nodeModules]
+            extensions:     ['.js', '.babel', '.styl'],
+            modules:        [paths.nodeModules]
         }
     }
 

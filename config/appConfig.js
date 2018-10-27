@@ -11,7 +11,7 @@ const yargs = require('yargs')
     })
     .option('debug', {
         alias:      'd',
-        default:    process.env.NODE_ENV !== 'production'
+        default:    false
     })
     .option('verbose', {
         alias:      'v',
@@ -27,9 +27,9 @@ export default (function (APP_CONFIG) {
 
     const config    = {
         NODE_ENV:           NODE_ENV,
-        isDevelopment:      !isProduction,
         isProduction:       isProduction,
-        debug:              process.env.APP_DEBUG || yargs.debug || !isProduction || false,
+        isDevelopment:      !isProduction,
+        isDebug:            process.env.APP_DEBUG || yargs.debug,
         ports: {
             portFE:       7000,
             portHMR:      7070,

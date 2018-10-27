@@ -3,6 +3,15 @@
 import path         from 'path'
 import fs           from 'fs'
 import gulp         from 'gulp'
+import {debugInfo}  from '../utils/myChalk'
+
+const config        = require('config').default
+const {isDebug}     = config
+
+if (isDebug) {
+    debugInfo('[/stack/gulp/] appConfig:')
+    console.dir(config)
+}
 
 // GET TASK FILES
 const taskFiles = fs.readdirSync('./stack/gulp/gulp-tasks/')
