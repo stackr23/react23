@@ -21,7 +21,7 @@ gulp.task('default',
     gulp.series(
         'clean', gulp.parallel(
             // gulp.series('sass-build', 'sass:watch'), // serie will be removed later
-            gulp.series('build', 'server:frontend')
+            gulp.series('webpack', 'server:frontend')
         )
     )
 )

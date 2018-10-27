@@ -1,9 +1,9 @@
 import paths from './paths'
 
 const yargs = require('yargs')
-    .option('sass_style', {
+    .option('cssStyle', {
         alias:      's',
-        default:    'compressed'
+        default:    'stylus'
     })
     .option('production', {
         alias:      'p',
@@ -19,26 +19,7 @@ const yargs = require('yargs')
     })
     .argv
 
-// TBD: take "backpack" s approach on absolute paths
-//
-// Make sure any symlinks in the project folder are resolved:
-// https://github.com/facebookincubator/create-react-app/issues/637
-// const appDirectory = fs.realpathSync(process.cwd());
-
-// function resolveApp(relativePath) {
-//   return path.resolve(appDirectory, relativePath);
-// }
-
-// const paths = {
-//   appSrc: resolveApp('src'),
-//   appBuild: resolveApp('build'),
-//   appIndexJs: resolveApp('src/index.js'),
-//   appNodeModules: resolveApp('node_modules'),
-// };
-
 export default (function (APP_CONFIG) {
-    // const rootRel        = path.resolve(process.cwd() + '/')
-
     const NODE_ENV          = process.env.NODE_ENV === 'production' || yargs.production === true
         ? 'production' : 'development'
 
@@ -69,9 +50,7 @@ export default (function (APP_CONFIG) {
                 dist:   paths.build + '/'
             }
         },
-        sass: {
-            style: yargs.sass_style
-        }
+        cssStyle:   yargs.cssStyle
     }
 
     return Object.assign(config, APP_CONFIG)

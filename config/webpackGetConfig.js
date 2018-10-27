@@ -1,15 +1,16 @@
 'use strict'
 // utils
-import path             from 'path'
-import ip               from 'ip'
+import path                 from 'path'
+import ip                   from 'ip'
 // WEBPACK related
-import webpack          from 'webpack'
+import webpack              from 'webpack'
+import ExtractTextPlugin    from 'extract-text-webpack-plugin'
+import urlLoaders           from './webpack/urlLoaders'
 // STYLE related
-import autoprefixer     from 'autoprefixer'
-import cssMqPacker      from 'css-mqpacker'
-// import ExtractTextPlugin from 'extract-text-webpack-plugin'
-// import nib               from 'nib'
-// import doubleu23Stylus   from 'doubleu23-stylus'
+import autoprefixer         from 'autoprefixer'
+import cssMqPacker          from 'css-mqpacker'
+import styleLoader          from './webpack/styleLoader'
+
 const config            = require('config').default
 
 let {
@@ -23,30 +24,6 @@ export default _isDevelopment => {
     isDevelopment = _isDevelopment != null
         ? _isDevelopment
         : isDevelopment
-
-    // const stylusLoaderDefinition = {
-    //     loader: 'stylus-loader',
-    //     options: {
-    //         sourceMap:  true,
-    //         compress:   isDevelopment,
-    //         use:        [
-    //             nib(),
-    //             doubleu23Stylus({
-    //                 envVars:    {
-    //                     // refactor: build object on top and
-    //                     // find a way to re-use it in webpack.DefinePlugin
-    //                     NODE_ENV:       process.env.NODE_ENV,
-    //                     BUILD_STATIC:   process.env.BUILD_STATIC,
-    //                     DEBUG:          process.env.DEBUG
-    //                 },
-    //                 mediaQueries:       {
-    //                     'custom':       'only screen and (min-width: 1300px)'
-    //                 },
-    //                 envPrefix:          '$ENV__'
-    //             })
-    //         ]
-    //     }
-    // }
 
     const webpackConfig = {
         mode:       NODE_ENV || isDevelopment ? 'development' : 'production',
@@ -79,27 +56,8 @@ export default _isDevelopment => {
         stats: verbose ? 'verbose' : isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',
         module: {
             rules: [
-                // URL LOADER
-                // different limits for different fileTypes
-                // refactor: rethink if necessary
-                {
-                    loader: 'url-loader',
-                    test: /\.(gif|jpg|png|svg)(\?.*)?$/,
-                    exclude:  /\.(styl|dir)$/,
-                    options: {limit: 10000}
-                },
-                {
-                    loader: 'url-loader',
-                    test: /favicon\.ico$/,
-                    exclude:  /\.(styl|dir)$/,
-                    options: {limit: 1}
-                },
-                {
-                    loader: 'url-loader',
-                    test: /\.(ttf|eot|woff|woff2)(\?.*)?$/,
-                    exclude:  /\.(styl|dir)$/,
-                    options: {limit: 100000}
-                },
+                ...urlLoaders,
+                styleLoader,
                 // BABEL LOADER
                 {
                     loader: 'babel-loader',
@@ -115,30 +73,6 @@ export default _isDevelopment => {
                         env: {production: {}}
                     }
                 }
-                // SOURCEMAPS
-                // refactor: show source instead of compiled
-                // not needed (only handles extern sourcemaps (in module packages))
-                // {
-                //     test:       /\.js$/,
-                //     use:        ['source-map-loader'],
-                //     enforce:    'pre'
-                // },
-                // STYLUS
-                // {
-                //     test: /\.(styl|less)$/,
-                //     use: isDevelopment ? [
-                //         {loader: 'style-loader',   options: {sourceMap: true}},
-                //         {loader: 'css-loader',     options: {sourceMap: true}},
-                //         {loader: 'postcss-loader', options: {sourceMap: true}},
-                //         stylusLoaderDefinition
-                //     ]
-                //     // for production (https://github.com/webpack-contrib/extract-text-webpack-plugin)
-                //     : []
-                //         // : ExtractTextPlugin.extract({
-                //         //     fallback: 'style-loader',
-                //         //     use: ['css-loader', 'postcss-loader', stylusLoaderDefinition]
-                //         // })
-                // }
             ]
         },
         externals: {
@@ -165,16 +99,15 @@ export default _isDevelopment => {
                 }),
                 new webpack.DefinePlugin({
                     'process.env': {
+                        IS_BROWSER:     true,
                         NODE_ENV:       JSON.stringify(NODE_ENV),
-                        APP_CONFIG:     JSON.stringify(config),
+                        APP_CONFIG:     JSON.stringify(config)
                         // BUILD_STATIC:   JSON.stringify(process.env.BUILD_STATIC === 'true'),
-                        // DEBUG:          JSON.stringify(process.env.DEBUG === 'true'),
-                        IS_BROWSER:     true
                     }
-                }),
-                new webpack.ProvidePlugin({
-                    'Promise': 'bluebird'
-                }) // not needed in babel7 ???
+                })
+                // new webpack.ProvidePlugin({
+                //     'Promise': 'bluebird'
+                // }) // not needed in babel7 ???
             ]
             if (isDevelopment) {
                 plugins.push(
@@ -182,19 +115,11 @@ export default _isDevelopment => {
                     new webpack.NoEmitOnErrorsPlugin()
                 )
             } else {
-                if (!process.env.CONTINUOUS_INTEGRATION) {
-                    // enable scope hoisting
-                    // https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
-                    plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
-                }
-
                 plugins.push(
-                    new webpack.LoaderOptionsPlugin({minimize: true})
-                    // new ExtractTextPlugin({
-                    //     filename:   'app-[hash].css',
-                    //     disable:    false,
-                    //     allChunks:  true
-                    // }),
+                    // new webpack.LoaderOptionsPlugin({minimize: true}),
+                    new ExtractTextPlugin({
+                        filename:   'app.css'
+                    })
                     // new webpack.optimize.OccurrenceOrderPlugin(),
                     // new webpack.optimize.UglifyJsPlugin({
                     //     sourceMap: true,
@@ -204,6 +129,12 @@ export default _isDevelopment => {
                     //     }
                     // })
                 )
+
+                if (!process.env.CONTINUOUS_INTEGRATION) {
+                    // enable scope hoisting
+                    // https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
+                    plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
+                }
             }
 
             // handled by config.devtool + config.output.sourceMapFilename
