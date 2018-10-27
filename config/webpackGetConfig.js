@@ -4,6 +4,8 @@ import path             from 'path'
 import ip               from 'ip'
 // WEBPACK related
 import webpack          from 'webpack'
+import urlLoaders       from './webpack/urlLoaders'
+import styleLoader      from './webpack/styleLoader'
 // STYLE related
 import autoprefixer     from 'autoprefixer'
 import cssMqPacker      from 'css-mqpacker'
@@ -23,30 +25,6 @@ export default _isDevelopment => {
     isDevelopment = _isDevelopment != null
         ? _isDevelopment
         : isDevelopment
-
-    // const stylusLoaderDefinition = {
-    //     loader: 'stylus-loader',
-    //     options: {
-    //         sourceMap:  true,
-    //         compress:   isDevelopment,
-    //         use:        [
-    //             nib(),
-    //             doubleu23Stylus({
-    //                 envVars:    {
-    //                     // refactor: build object on top and
-    //                     // find a way to re-use it in webpack.DefinePlugin
-    //                     NODE_ENV:       process.env.NODE_ENV,
-    //                     BUILD_STATIC:   process.env.BUILD_STATIC,
-    //                     DEBUG:          process.env.DEBUG
-    //                 },
-    //                 mediaQueries:       {
-    //                     'custom':       'only screen and (min-width: 1300px)'
-    //                 },
-    //                 envPrefix:          '$ENV__'
-    //             })
-    //         ]
-    //     }
-    // }
 
     const webpackConfig = {
         mode:       NODE_ENV || isDevelopment ? 'development' : 'production',
@@ -79,27 +57,8 @@ export default _isDevelopment => {
         stats: verbose ? 'verbose' : isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',
         module: {
             rules: [
-                // URL LOADER
-                // different limits for different fileTypes
-                // refactor: rethink if necessary
-                {
-                    loader: 'url-loader',
-                    test: /\.(gif|jpg|png|svg)(\?.*)?$/,
-                    exclude:  /\.(styl|dir)$/,
-                    options: {limit: 10000}
-                },
-                {
-                    loader: 'url-loader',
-                    test: /favicon\.ico$/,
-                    exclude:  /\.(styl|dir)$/,
-                    options: {limit: 1}
-                },
-                {
-                    loader: 'url-loader',
-                    test: /\.(ttf|eot|woff|woff2)(\?.*)?$/,
-                    exclude:  /\.(styl|dir)$/,
-                    options: {limit: 100000}
-                },
+                ...urlLoaders,
+                styleLoader,
                 // BABEL LOADER
                 {
                     loader: 'babel-loader',
@@ -115,30 +74,6 @@ export default _isDevelopment => {
                         env: {production: {}}
                     }
                 }
-                // SOURCEMAPS
-                // refactor: show source instead of compiled
-                // not needed (only handles extern sourcemaps (in module packages))
-                // {
-                //     test:       /\.js$/,
-                //     use:        ['source-map-loader'],
-                //     enforce:    'pre'
-                // },
-                // STYLUS
-                // {
-                //     test: /\.(styl|less)$/,
-                //     use: isDevelopment ? [
-                //         {loader: 'style-loader',   options: {sourceMap: true}},
-                //         {loader: 'css-loader',     options: {sourceMap: true}},
-                //         {loader: 'postcss-loader', options: {sourceMap: true}},
-                //         stylusLoaderDefinition
-                //     ]
-                //     // for production (https://github.com/webpack-contrib/extract-text-webpack-plugin)
-                //     : []
-                //         // : ExtractTextPlugin.extract({
-                //         //     fallback: 'style-loader',
-                //         //     use: ['css-loader', 'postcss-loader', stylusLoaderDefinition]
-                //         // })
-                // }
             ]
         },
         externals: {

@@ -1,9 +1,9 @@
 import paths from './paths'
 
 const yargs = require('yargs')
-    .option('sass_style', {
+    .option('cssStyle', {
         alias:      's',
-        default:    'compressed'
+        default:    'stylus'
     })
     .option('production', {
         alias:      'p',
@@ -69,9 +69,7 @@ export default (function (APP_CONFIG) {
                 dist:   paths.build + '/'
             }
         },
-        sass: {
-            style: yargs.sass_style
-        }
+        cssStyle:   yargs.cssStyle
     }
 
     return Object.assign(config, APP_CONFIG)
