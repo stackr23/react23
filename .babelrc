@@ -1,5 +1,5 @@
 {
-  "presets": ["@babel/env", "@babel/react"],
+  "presets": ["@babel/react23", "@babel/react"],
   "plugins": [
     "@babel/plugin-transform-runtime",
     "@babel/plugin-proposal-class-properties",
