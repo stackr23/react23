@@ -1,6 +1,6 @@
 import path from 'path'
 
-const rootDir       = path.join(__dirname, '..')
+const rootDir       = path.resolve(path.join(__dirname, '..'))
 const paths = {
     ROOT:           rootDir,
     stack:          path.normalize(path.join(rootDir, 'stack')),

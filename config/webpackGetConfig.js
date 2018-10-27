@@ -1,17 +1,16 @@
 'use strict'
 // utils
-import path             from 'path'
-import ip               from 'ip'
+import path                 from 'path'
+import ip                   from 'ip'
 // WEBPACK related
-import webpack          from 'webpack'
-import urlLoaders       from './webpack/urlLoaders'
-import styleLoader      from './webpack/styleLoader'
+import webpack              from 'webpack'
+import ExtractTextPlugin    from 'extract-text-webpack-plugin'
+import urlLoaders           from './webpack/urlLoaders'
 // STYLE related
-import autoprefixer     from 'autoprefixer'
-import cssMqPacker      from 'css-mqpacker'
-// import ExtractTextPlugin from 'extract-text-webpack-plugin'
-// import nib               from 'nib'
-// import doubleu23Stylus   from 'doubleu23-stylus'
+import autoprefixer         from 'autoprefixer'
+import cssMqPacker          from 'css-mqpacker'
+import styleLoader          from './webpack/styleLoader'
+
 const config            = require('config').default
 
 let {
@@ -97,19 +96,19 @@ export default _isDevelopment => {
                         ]}),
                         cssMqPacker()
                     ]
-                }),
-                new webpack.DefinePlugin({
-                    'process.env': {
-                        NODE_ENV:       JSON.stringify(NODE_ENV),
-                        APP_CONFIG:     JSON.stringify(config),
-                        // BUILD_STATIC:   JSON.stringify(process.env.BUILD_STATIC === 'true'),
-                        // DEBUG:          JSON.stringify(process.env.DEBUG === 'true'),
-                        IS_BROWSER:     true
-                    }
-                }),
-                new webpack.ProvidePlugin({
-                    'Promise': 'bluebird'
-                }) // not needed in babel7 ???
+                })
+                // new webpack.DefinePlugin({
+                //     'process.env': {
+                //         NODE_ENV:       JSON.stringify(NODE_ENV),
+                //         APP_CONFIG:     JSON.stringify(config),
+                //         // BUILD_STATIC:   JSON.stringify(process.env.BUILD_STATIC === 'true'),
+                //         // DEBUG:          JSON.stringify(process.env.DEBUG === 'true'),
+                //         IS_BROWSER:     true
+                //     }
+                // })
+                // new webpack.ProvidePlugin({
+                //     'Promise': 'bluebird'
+                // }) // not needed in babel7 ???
             ]
             if (isDevelopment) {
                 plugins.push(
@@ -124,12 +123,10 @@ export default _isDevelopment => {
                 }
 
                 plugins.push(
-                    new webpack.LoaderOptionsPlugin({minimize: true})
-                    // new ExtractTextPlugin({
-                    //     filename:   'app-[hash].css',
-                    //     disable:    false,
-                    //     allChunks:  true
-                    // }),
+                    // new webpack.LoaderOptionsPlugin({minimize: true}),
+                    new ExtractTextPlugin({
+                        filename:   'app.css'
+                    })
                     // new webpack.optimize.OccurrenceOrderPlugin(),
                     // new webpack.optimize.UglifyJsPlugin({
                     //     sourceMap: true,
