@@ -11,7 +11,7 @@ const copyIndex = done => {
 
     fs.writeFile(join(buildPath, 'index.html'), indexHtml, 'utf-8')
 
-    return indexHtml
+    done()
 }
 
 export default copyIndex

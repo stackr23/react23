@@ -16,7 +16,7 @@ const getBuildFilenames = () => {
     }
 
     try {
-        const buildDirFiles = fs.readdirSync(paths.build)
+        const buildDirFiles     = fs.readdirSync(paths.build)
 
         return {
             appJS:     buildDirFiles.find(filename => APP_JS_PATTERN.test(filename)),
@@ -29,4 +29,13 @@ const getBuildFilenames = () => {
     }
 }
 
-export default getBuildFilenames
+let buildFilenamesCached
+const getBuildFilenamesCached = () => {
+    if (buildFilenamesCached != null) {
+        return buildFilenamesCached
+    }
+
+    return getBuildFilenames()
+}
+
+export default getBuildFilenamesCached
