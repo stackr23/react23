@@ -29,3 +29,4 @@ dist/js/**/*
 __test__/* # tbd refine after structure is set
 build/*
 !build/
+build/
