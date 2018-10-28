@@ -1,6 +1,6 @@
 import fs                       from 'fs'
 import {join}                   from 'path'
-import getBuildFilenames        from './helper/getBuildFilenames'
+import getBuildFilenames        from './getBuildFilenames'
 import {debugMsg}               from './myLogger'
 
 

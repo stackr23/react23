@@ -1,5 +1,5 @@
 import fs           from 'fs'
-import {debugMsg}   from '../myLogger'
+import {debugMsg}   from './myLogger'
 
 const {
     isProduction, paths
