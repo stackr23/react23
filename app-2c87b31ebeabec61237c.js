@@ -1280,5 +1280,5 @@ object-assign
 /*!*******************************!*\
   !*** multi ./app/js/index.js ***!
   \*******************************/
-/*! no static exports found */function(e,t,n){e.exports=n(/*! C:\xampp\htdocs\projects\stackr23\app\js\index.js */"./app/js/index.js")}});
+/*! no static exports found */function(e,t,n){e.exports=n(/*! C:\xampp\htdocs\projects\react23\app\js\index.js */"./app/js/index.js")}});
 //# sourceMappingURL=app-2c87b31ebeabec61237c.map.js
