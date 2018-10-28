@@ -1,4 +1,6 @@
-import chalk from 'chalk'
+import chalk    from 'chalk'
+
+const {isDebug} = require('config').default
 
 // no arrow function -> preserve context!
 const chalkExt = function (parts, ...substitutions) {
@@ -20,8 +22,11 @@ const chalkExt = function (parts, ...substitutions) {
     return chalk(chalkParts)
 }
 
-// TBD: /stack/utils/logger - with log lvls via NODE_ENV
-export const errorMsg   = str => console.log(chalkExt`\n{bgRed {bold [Error]} ${str}}\n`)
-export const debugInfo  = str => console.log(chalkExt`\n{bgYellow {bold [DEBUG]} ${str}}\n`)
+export const errorMsg = (str, ...args) =>
+    console.log(chalkExt`\n{bgRed {bold ERROR:} ${str}}\n`, ...args)
 
-export default chalkExt
+export const debugMsg = (str, ...args) => {
+    if (isDebug) {
+        console.log(chalkExt`\n{bgYellow {bold DEBUG:} ${str}}\n`, ...args)
+    }
+}

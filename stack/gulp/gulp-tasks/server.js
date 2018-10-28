@@ -12,7 +12,9 @@ const closeFn = done => data => {
 }
 
 const startFrontendServer = done => {
-    const runner = spawn('node', [paths.server], {
+    // because this will be a sub-process but loads the same config,
+    // dont forget to pass argv's for appConfigs yargs parser
+    const runner = spawn('node', [paths.server, ...process.argv], {
         cwd: process.cwd(),
         env: process.env
     })

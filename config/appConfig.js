@@ -1,4 +1,4 @@
-import paths from './paths'
+import paths        from './paths'
 
 const yargs = require('yargs')
     .option('cssStyle', {
@@ -25,16 +25,16 @@ export default (function (APP_CONFIG) {
 
     const isProduction      = NODE_ENV === 'production'
 
-    const config    = {
+    const config    = Object.assign({
         NODE_ENV:           NODE_ENV,
         isProduction:       isProduction,
         isDevelopment:      !isProduction,
         isDebug:            process.env.APP_DEBUG || yargs.debug,
         ports: {
-            portFE:       7000,
-            portHMR:      7070,
-            portBSProxy:  7001,
-            portBSUI:     3000
+            portFE:         7000,
+            portHMR:        7070,
+            portBSProxy:    7001,
+            portBSUI:       3000
         },
         paths,
         globs: {
@@ -47,11 +47,12 @@ export default (function (APP_CONFIG) {
                     main:   paths.sass + '/full.scss',
                     mqs:    paths.sass + '/mqs/*.scss'
                 },
-                dist:   paths.build + '/'
+                dist:       paths.build + '/'
             }
         },
-        cssStyle:   yargs.cssStyle
-    }
+        cssStyle:           yargs.cssStyle
+    }, APP_CONFIG)
 
-    return Object.assign(config, APP_CONFIG)
+
+    return config
 })(process.env.APP_CONFIG || {})

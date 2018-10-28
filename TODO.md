@@ -4,9 +4,9 @@
     * [approve performance](https://www.codementor.io/drewpowers/high-performance-webpack-config-for-front-end-delivery-90sqic1qa#3-dynamic-imports-for-lazy-loaded-modules)
     (done: 1. and 2.)
     * [x] enable sourcemaps
-    * [ ] sass/stylus support
+    * [x] sass/stylus support
         * [ ] sourcemaps
-        * [ ] extract text plugin for production
+        * [x] extract text plugin for production
         * [ ] add libs
             * [ ] MUI
             * [ ] grid-system?
@@ -20,11 +20,8 @@
         - MD loader
         - bit.rc loader
 * [x] gulp
-        [ ] add BrowserSync support!?  
-        prio low, because we use HMR of webpack  
-        browserSync only needed for tests usage (mirror clicks and scrolls, ...)
 * [x] frontend server
-    * [ ] server side rendering
+    * [ ] xserver side rendering
     * [x] use /app/index.html as template
     * [ ] prefetch data
     * [ ] api route

@@ -13,7 +13,7 @@
 // for changing default, go to /config/appConfig.js (yarg definitions)
 //
 import ExtractTextPlugin        from 'extract-text-webpack-plugin'
-import {errorMsg}               from '../../stack/utils/myChalk.js'
+import {errorMsg}               from '../../stack/utils/myLogger'
 
 const {isDevelopment, cssStyle} = require('config').default
 

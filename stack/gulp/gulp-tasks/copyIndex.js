@@ -1,21 +1,17 @@
-import fs       from 'fs'
-import {join}   from 'path'
+import fs                   from 'fs'
+import {join}               from 'path'
 
-const {paths: {app: appPath, build: buildPath}} = require('config').default
+import getBuiltIndex        from '../../utils/getBuiltIndex'
+
+
+const {paths: {build: buildPath}} = require('config').default
 
 const copyIndex = done => {
-    let indexHtml   = fs.readFileSync(join(appPath, 'index.html'), 'utf8')
-    console.log(indexHtml)
-
-    // indexHtml    = indexHtml
-    //     .replace('buildJS', '<appScriptSrc>')
-    //     .replace('buildCSS', '<appStyleSrc>')
+    const indexHtml   = getBuiltIndex()
 
     fs.writeFile(join(buildPath, 'index.html'), indexHtml, 'utf-8')
 
-    if (typeof done === 'function') {
-        done()
-    }
+    return indexHtml
 }
 
 export default copyIndex

@@ -42,15 +42,15 @@ export default _isDevelopment => {
         },
         output: isDevelopment ? {
             path:               paths.build,
-            filename:           '[name].js',
-            sourceMapFilename:  '[name].js.map',
-            chunkFilename:      '[name]-[chunkhash].js',
+            filename:           'app.js',
+            sourceMapFilename:  'app.js.map',
+            chunkFilename:      'app-[chunkhash].js',
             publicPath:         `http://${serverIp}:${portHMR}/build/`
         } : {
             path: paths.build,
-            filename: 'app.js', // TBD: '[name]-[hash].js'
-            sourceMapFilename: '[name]-[hash].map.js',
-            chunkFilename: '[name]-[chunkhash].js'
+            filename: 'app-[hash].js', // TBD: 'app-[hash].js'
+            sourceMapFilename: 'app-[hash].map.js',
+            chunkFilename: 'app-[chunkhash].js'
         },
         stats: verbose ? 'verbose' : isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',
         module: {
@@ -66,7 +66,7 @@ export default _isDevelopment => {
                         retainLines: true,
                         sourceMap: true,
                         babelrc: true,
-                        cacheDirectory: paths.build,
+                        cacheDirectory: path.join(paths.build, 'cache', 'babel-loader'),
                         // presets and plugins defined in .babelrc
                         // enable env config if needed
                         env: {production: {}}
@@ -130,7 +130,7 @@ export default _isDevelopment => {
             } else {
                 plugins.push(
                     new ExtractTextPlugin({
-                        filename:   'app.css'
+                        filename:   'app-[hash].css'
                     }),
                     new webpack.optimize.OccurrenceOrderPlugin()
                 )
@@ -139,10 +139,10 @@ export default _isDevelopment => {
             // handled by config.devtool + config.output.sourceMapFilename
             //
             // plugins.push(new webpack.SourceMapDevToolPlugin({
-            //     // filename: '[name].js.SourceMapDevToolPlugin.map'
+            //     // filename: 'app.js.SourceMapDevToolPlugin.map'
             //     filename: isDevelopment
-            //         ? '[name].js.map'
-            //         : '[name]-[chunk].js.map'
+            //         ? 'app.js.map'
+            //         : 'app-[chunk].js.map'
             // }))
 
             return plugins

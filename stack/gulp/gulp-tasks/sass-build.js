@@ -2,7 +2,7 @@ import gulp         from 'gulp'
 import gulpSass     from 'gulp-sass'
 // import runSequence  from 'run-sequence'
 // import gulpRename   from 'gulp-rename'
-import {errorMsg}   from '../../utils/myChalk'
+import {errorMsg}   from '../../utils/myLogger'
 
 
 const {

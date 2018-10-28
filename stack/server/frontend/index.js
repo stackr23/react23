@@ -20,7 +20,7 @@ app.use('/assets', express.static('app/assets', {maxAge: '200d'}))
 // app.use('/assets/fonts', express.static('app/assets/fonts', {maxAge: '200d'}))
 
 // TBD: CSS and production server
-// app.use('/build', express.static('build', {maxAge: '200d'}))
+app.use('/build', express.static('build', {maxAge: '200d'}))
 
 // // Intl.
 // app.use('/node_modules/intl/dist', express.static('node_modules/intl/dist'))

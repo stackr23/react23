@@ -14,9 +14,8 @@ import ip                               from 'ip'
 // refactor                            : use bluebird as polyfill on entrypoint(s)
 // import Promise                          from 'bluebird'
 // APP FILES
-// import getAppAssetFilenamesAsync        from './getAssetPaths'
-import getAssetFilenamesAsync           from './getAssetFilenamesAsync'
-import appConfig                        from '../../../config/appConfig.js'
+import getBuiltIndex                    from '../../utils/getBuiltIndex'
+import getBuildFileNames                from '../../utils/helper/getBuildFileNames'
 
 // import initialState                     from '../../../app/js/stores/initialState.js'
 // import store                            from '../../../app/js/stores/index.js'
@@ -27,14 +26,14 @@ import appConfig                        from '../../../config/appConfig.js'
 // import { Provider }                     from 'mobx-react'
 
 const {
-    isDevelopment,
+    isDevelopment, isProduction,
     ports: {portHMR}
-} = appConfig
+} = require('config').default
 
-const serverIp  = ip.address()
+const serverIp = ip.address()
 
-export default async function render (req, res, next) {
-    const html = await renderPageAsync({url: req.url})
+export default function render (req, res, next) {
+    const html = renderPage({url: req.url})
     res.send(html)
 }
 
@@ -57,39 +56,53 @@ export default async function render (req, res, next) {
 //     // })
 //     return  Promise.resolve()
 // }
+// const {appJS, appCSS} = getBuildFileNames()
+// const indexHtml = getBuiltIndex({appCSS, appJS})
+// const body      = /<body>(.+)<\/body>/.exec(indexHtml)
+// console.log('indexHtml', indexHtml)
+// console.log('parsedBody', body)
 
-const renderPageAsync = async ({url}) => {
-    const {js: appJsFilename, css: appCssFilename} = await getAssetFilenamesAsync()
-    const scriptSrc = isDevelopment
-        ? `http://${serverIp}:${portHMR}/build/app.js`
-        : `/build/${appJsFilename}`
+const renderPage = () => {
+    let appJS, appCSS // set per NODE_ENV
+    const {appJS: appJsFilename, appCSS: appCssFilename} = getBuildFileNames()
 
-    const styleSrc  = `/build/${appCssFilename}`
+    if (isProduction) {
+        appJS   = `/build/${appJsFilename}`
+        appCSS  = `build/${appCssFilename}`
+    } else {
+        appJS = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
+        // TBD: prevent getBuiltIndex() CSS tag if no src is given
+    }
 
+    const indexHtml = getBuiltIndex({appCSS, appJS})
+
+    return '<!DOCTYPE html>\n' + indexHtml
     // return renderToString(
     //     <StaticRouter location={url} context={context} >
     //         <div>
     //             <Root />
-    //             <script type="text/javascript" src={scriptSrc} />
+    //             <script type="text/javascript" src={appJS} />
     //         </div>
     //     </StaticRouter>
     // )
 
-    return '<!DOCTYPE html>' + renderToStaticMarkup(
-        <html>
-            <head />
-            <body>
-                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-                <div id="app" />
-                <script type="text/javascript" src={scriptSrc} />
-                {// in dev, styles are handled by style-loader
-                    // which directly injects them into the DOM
-                    !isDevelopment &&
-                    <link rel="stylesheet" href={styleSrc} name="appStyle" />}
-            </body>
-        </html>
-    )
+    // return '<!DOCTYPE html>' + renderToStaticMarkup(
+    //     <html>
+    //         <head />
+    //         <body>
+    //             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    //             <div id="app" />
+    //             <script type="text/javascript" src={appJS} />
+    //             {// in dev, styles are handled by style-loader
+    //                 // which directly injects them into the DOM
+    //                 !isDevelopment &&
+    //                 <link rel="stylesheet" href={styleSrc} name="appStyle" />}
+    //         </body>
+    //     </html>
+    // )
 }
+
+renderPage()
 
 // function renderPage() {
 //  return '<!DOCTYPE html>' + ReactDOMServer.renderToStaticMarkup(

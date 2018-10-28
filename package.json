@@ -5,7 +5,7 @@
   "main": "Gulpfile.babel.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "gulp test",
+    "test": "gulp test --debug",
     "start": "gulp",
     "build": "gulp build-static --production",
     "build-sass": "gulp sass-build"

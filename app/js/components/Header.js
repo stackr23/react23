@@ -4,7 +4,7 @@ import Component            from 'react-pure-render/component'
 
 class Header extends Component {
     static propTypes = {
-        headline:   PropTypes.string.required,
+        headline:   PropTypes.string.isRequired,
         subline:    PropTypes.string
     }
 
