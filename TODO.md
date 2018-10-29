@@ -1,7 +1,15 @@
 # TODO
 
+* [ ] react23-CLI
+    - [x] babel-preset-react23
+        - [ ] fix, publish install
+    - [ ] npm package react23
+        - [ ] setup dir structure to imitate package
+        - [ ] let user override default \[App.js, server.js\]
+        - [ ] let user modify webpackconfig (process.env.APP_CONFIG)  
+        - [ ] publish stack as package
 * babel-preset-react23
-    - decide for polyfill (tranform runtime/polyfill)
+    - decide for polyfill (tranform runtime/polyfill)  
     - remove unnessecary core-js plugins in production build
 * webpack (tweak config)
     * [approve performance](https://www.codementor.io/drewpowers/high-performance-webpack-config-for-front-end-delivery-90sqic1qa#3-dynamic-imports-for-lazy-loaded-modules)
