@@ -4,9 +4,9 @@
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
 - [usage](#usage)
-    - [npm scripts](#npm-scripts)
+  - [npm scripts](#npm-scripts)
 - [setup](#setup)
-    - [gh-pages](#gh-pages)
+  - [gh-pages](#gh-pages)
 
 <!-- /MarkdownTOC -->
 

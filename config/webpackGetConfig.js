@@ -108,16 +108,17 @@ export default _isDevelopment => {
                         ]}),
                         cssMqPacker()
                     ]
+
+                }),
+                new webpack.DefinePlugin({
+                    'process.env': {
+                        IS_BROWSER:     true,
+                        NODE_ENV:       JSON.stringify(NODE_ENV),
+                        APP_CONFIG:     JSON.stringify(config)
+                        // BUILD_STATIC:   JSON.stringify(process.env.BUILD_STATIC === 'true'),
+                    }
                 })
-                // new webpack.DefinePlugin({
-                //     'process.env': {
-                //         NODE_ENV:       JSON.stringify(NODE_ENV),
-                //         APP_CONFIG:     JSON.stringify(config),
-                //         // BUILD_STATIC:   JSON.stringify(process.env.BUILD_STATIC === 'true'),
-                //         // DEBUG:          JSON.stringify(process.env.DEBUG === 'true'),
-                //         IS_BROWSER:     true
-                //     }
-                // })
+
                 // new webpack.ProvidePlugin({
                 //     'Promise': 'bluebird'
                 // }) // not needed in babel7 ???
@@ -129,11 +130,25 @@ export default _isDevelopment => {
                 )
             } else {
                 plugins.push(
+                    // new webpack.LoaderOptionsPlugin({minimize: true}),
                     new ExtractTextPlugin({
                         filename:   'app-[hash].css'
-                    }),
-                    new webpack.optimize.OccurrenceOrderPlugin()
+                    })
+                    // new webpack.optimize.OccurrenceOrderPlugin(),
+                    // new webpack.optimize.UglifyJsPlugin({
+                    //     sourceMap: true,
+                    //     compress: {
+                    //         screw_ie8:  true, // eslint-disable-line camelcase
+                    //         warnings:   false // Because uglify reports irrelevant warnings.
+                    //     }
+                    // })
                 )
+
+                if (!process.env.CONTINUOUS_INTEGRATION) {
+                    // enable scope hoisting
+                    // https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
+                    plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
+                }
             }
 
             // handled by config.devtool + config.output.sourceMapFilename

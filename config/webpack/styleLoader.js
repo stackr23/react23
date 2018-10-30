@@ -34,7 +34,21 @@ const stylusLoader = {
     options: {
         sourceMap:  true,
         compress:   isDevelopment,
-        use:        [/* nib() */] // activate nib or doubleu23-stylus
+        use:        [
+            // doubleu23Stylus({
+            //     envVars:    {
+            //         // refactor: build object on top and
+            //         // find a way to re-use it in webpack.DefinePlugin
+            //         NODE_ENV:       process.env.NODE_ENV,
+            //         BUILD_STATIC:   process.env.BUILD_STATIC,
+            //         DEBUG:          process.env.DEBUG
+            //     },
+            //     mediaQueries:       {
+            //         'custom':       'only screen and (min-width: 1300px)'
+            //     },
+            //     envPrefix:          '$ENV__'
+            // })
+        ]
     }
 }
 
