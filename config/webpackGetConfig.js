@@ -108,7 +108,7 @@ export default _isDevelopment => {
                         ]}),
                         cssMqPacker()
                     ]
-<<<<<<< HEAD
+
                 }),
                 new webpack.DefinePlugin({
                     'process.env': {
@@ -118,18 +118,7 @@ export default _isDevelopment => {
                         // BUILD_STATIC:   JSON.stringify(process.env.BUILD_STATIC === 'true'),
                     }
                 })
-=======
-                })
-                // new webpack.DefinePlugin({
-                //     'process.env': {
-                //         NODE_ENV:       JSON.stringify(NODE_ENV),
-                //         APP_CONFIG:     JSON.stringify(config),
-                //         // BUILD_STATIC:   JSON.stringify(process.env.BUILD_STATIC === 'true'),
-                //         // DEBUG:          JSON.stringify(process.env.DEBUG === 'true'),
-                //         IS_BROWSER:     true
-                //     }
-                // })
->>>>>>> development
+
                 // new webpack.ProvidePlugin({
                 //     'Promise': 'bluebird'
                 // }) // not needed in babel7 ???
@@ -141,10 +130,9 @@ export default _isDevelopment => {
                 )
             } else {
                 plugins.push(
-<<<<<<< HEAD
                     // new webpack.LoaderOptionsPlugin({minimize: true}),
                     new ExtractTextPlugin({
-                        filename:   'app.css'
+                        filename:   'app-[hash].css'
                     })
                     // new webpack.optimize.OccurrenceOrderPlugin(),
                     // new webpack.optimize.UglifyJsPlugin({
@@ -154,12 +142,6 @@ export default _isDevelopment => {
                     //         warnings:   false // Because uglify reports irrelevant warnings.
                     //     }
                     // })
-=======
-                    new ExtractTextPlugin({
-                        filename:   'app-[hash].css'
-                    }),
-                    new webpack.optimize.OccurrenceOrderPlugin()
->>>>>>> development
                 )
 
                 if (!process.env.CONTINUOUS_INTEGRATION) {

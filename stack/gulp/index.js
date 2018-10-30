@@ -17,18 +17,11 @@ taskFileNames.forEach(fileName => {
     require('./gulp-tasks/' + fileName)
 })
 
-<<<<<<< HEAD
 gulp.task('default',
     gulp.series(
         'clean', gulp.parallel(
             // gulp.series('sass-build', 'sass:watch'), // serie will be removed later
             gulp.series('webpack', 'server:frontend')
         )
-=======
-gulp.task('default', gulp.series(
-    'clean', gulp.parallel(
-        // gulp.series('sass-build', 'sass:watch'), // serie will be removed later
-        gulp.series('webpack', 'server:frontend')
->>>>>>> development
     )
-))
+)
