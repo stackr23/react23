@@ -13,7 +13,12 @@
 // for changing default, go to /config/appConfig.js (yarg definitions)
 //
 import ExtractTextPlugin        from 'extract-text-webpack-plugin'
+<<<<<<< HEAD
+
+import {errorMsg}               from '../../stack/utils/myChalk.js'
+=======
 import {errorMsg}               from '../../stack/utils/myLogger'
+>>>>>>> development
 
 const {isDevelopment, cssStyle} = require('config').default
 
@@ -24,6 +29,10 @@ const preLoaders                = [
     {loader: 'postcss-loader', options: {sourceMap: true}}
 ]
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> development
 //    _____________  ____    __  _______
 //   / ___/_  __/\ \/ / /   / / / / ___/
 //   \__ \ / /    \  / /   / / / /\__ \
@@ -34,7 +43,25 @@ const stylusLoader = {
     options: {
         sourceMap:  true,
         compress:   isDevelopment,
+<<<<<<< HEAD
+        use:        [
+            // doubleu23Stylus({
+            //     envVars:    {
+            //         // refactor: build object on top and
+            //         // find a way to re-use it in webpack.DefinePlugin
+            //         NODE_ENV:       process.env.NODE_ENV,
+            //         BUILD_STATIC:   process.env.BUILD_STATIC,
+            //         DEBUG:          process.env.DEBUG
+            //     },
+            //     mediaQueries:       {
+            //         'custom':       'only screen and (min-width: 1300px)'
+            //     },
+            //     envPrefix:          '$ENV__'
+            // })
+        ]
+=======
         use:        [/* nib() */] // activate nib or doubleu23-stylus
+>>>>>>> development
     }
 }
 

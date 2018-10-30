@@ -50,9 +50,14 @@ export default (function (APP_CONFIG) {
                 dist:       paths.build + '/'
             }
         },
+<<<<<<< HEAD
+        cssStyle:   yargs.cssStyle
+    }
+=======
         cssStyle:           yargs.cssStyle
     }, APP_CONFIG)
 
+>>>>>>> development
 
     return config
 })(process.env.APP_CONFIG || {})
