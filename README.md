@@ -51,4 +51,4 @@ __'gh-pages' is now checked out at 'react23/build'__
 3. make a fresh build - `npm run build`  
 4. checkout gh-pages - `cd build`  
 5. add, commit and build fresh build  
-- `git add . -A && git commit -m ":cat: Deploy to gh-pages" && git push origin gh-pages`  
+  `git add . -A && git commit -m ":cat: Deploy to gh-pages" && git push origin gh-pages`  
