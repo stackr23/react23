@@ -11,7 +11,6 @@
 
 <!-- /MarkdownTOC -->
 
-
 [![Build Status](https://travis-ci.com/stackr23/react23.svg?branch=master)](https://travis-ci.com/stackr23/react23)
 [![devDependencies Status](https://david-dm.org/stackr23/react23/dev-status.svg)](https://david-dm.org/stackr23/react23?type=dev)
 [![Greenkeeper badge](https://badges.greenkeeper.io/stackr23/react23.svg)](https://greenkeeper.io/)
@@ -72,11 +71,9 @@ npm start
 1. delete build dirs content - `rm -rf build/*`  
 2. set /build as branch gh-pages - `git worktree add dist gh-pages`
 
-> __=> you successfully set up the /build dir as worktree.__  
-
 __'gh-pages' is now checked out at 'react23/build'__
 
 3. make a fresh build - `npm run build`  
 4. checkout gh-pages - `cd build`  
 5. add, commit and build fresh build  
-- `git add . -A && git commit -m ":cat: Deploy to gh-pages" && git push origin gh-pages`  
+  `git add . -A && git commit -m ":cat: Deploy to gh-pages" && git push origin gh-pages`  
