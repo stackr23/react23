@@ -3,9 +3,10 @@
 
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
+- [features](#features)
 - [usage](#usage)
     - [npm scripts](#npm-scripts)
-- [setup](#setup)
+- [advanced setup](#advanced-setup)
     - [gh-pages](#gh-pages)
 
 <!-- /MarkdownTOC -->
@@ -27,6 +28,22 @@
 [maintenance-url]: https://GitHub.com/Doubleu23/tailored-react-env/graphs/commit-activity
 [pr-welcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 
+<a id="features"></a>
+# features
+* [x] ES7 via Babel@^7
+* [x] [Gulp](https://gulpjs.com/)
+* [x] [React](https://reactjs.org/)
+* [ ] observable based store with [mobx](https://mobx.js.org/)
+    * [ ] mobx-router
+* [x] Webpack
+    * [x] stylus loader
+        * [x] stylus23 plugin
+    * [ ] sass/scss loader
+* [x] Express Server
+* [x] eslint
+* [ ] karma/mocha
+* [ ] mongoDB + knex  swagger integration
+
 <a id="usage"></a>
 # usage
 ```
@@ -45,9 +62,8 @@ npm start
 | __`npm run lint`__    | runs eslint                           |
 | __`npm run test`__    | runs gulp 'test'-task                 | 
 
-
-<a id="setup"></a>
-# setup
+<a id="advanced-setup"></a>
+# advanced setup
 
 <a id="gh-pages"></a>
 ## gh-pages

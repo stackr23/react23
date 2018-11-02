@@ -15,7 +15,7 @@ import ip                               from 'ip'
 // import Promise                          from 'bluebird'
 // APP FILES
 import getBuiltIndex                    from '../../utils/getBuiltIndex'
-import getBuildFileNames                from '../../utils/helper/getBuildFileNames'
+import getBuildFileNames                from '../../utils/getBuildFileNames'
 
 // import initialState                     from '../../../app/js/stores/initialState.js'
 // import store                            from '../../../app/js/stores/index.js'
