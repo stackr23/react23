@@ -50,9 +50,8 @@ export default (function (APP_CONFIG) {
                 dist:       paths.build + '/'
             }
         },
-        cssStyle:           yargs.cssStyle
+        cssStyle:   yargs.cssStyle
     }, APP_CONFIG)
-
 
     return config
 })(process.env.APP_CONFIG || {})

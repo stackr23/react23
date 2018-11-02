@@ -4,6 +4,8 @@ import Component    from 'react-pure-render/component'
 
 import Header       from './components/Header'
 
+import './index.styl'
+
 // TBD: inject isBrowser per webpack
 // const {isBrowser}   = require('config').default
 

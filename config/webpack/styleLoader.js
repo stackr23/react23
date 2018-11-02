@@ -15,7 +15,13 @@
 import ExtractTextPlugin        from 'extract-text-webpack-plugin'
 import {errorMsg}               from '../../stack/utils/myLogger'
 
-const {isDevelopment, cssStyle} = require('config').default
+import stylus23                 from 'stylus23'
+
+
+const {
+    isDevelopment, NODE_ENV,
+    cssStyle
+} = require('config').default
 
 const styleLoaders              = {}
 const preLoaders                = [
@@ -34,7 +40,9 @@ const stylusLoader = {
     options: {
         sourceMap:  true,
         compress:   isDevelopment,
-        use:        [/* nib() */] // activate nib or doubleu23-stylus
+        use:        [stylus23({
+            envVars: {NODE_ENV: NODE_ENV}
+        })]
     }
 }
 
