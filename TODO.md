@@ -2,7 +2,9 @@
 
 * [ ] react23-CLI
     - [x] babel-preset-react23
-        - [ ] fix, publish install
+        - [?] fix, publish install  
+        Error: Plugin/Preset files are not allowed to export objects, only functions.  
+        Plugin/Preset did not return an object.
     - [ ] npm package react23
         - [ ] setup dir structure to imitate package
         - [ ] let user override default \[App.js, server.js\]
@@ -23,7 +25,7 @@
             * [ ] grid-system?
             * doubleu23-stylus/scss.boilerplate
     * [ ] stores
-        * [ ] add mobx
+        * [x] add mobx
     * [ ] routing
         * [ ] add mobx-router and define routes
         * [ ] add "loadable"/async components support for route based code-split
@@ -32,7 +34,7 @@
         - bit.rc loader
 * [x] gulp
 * [x] frontend server
-    * [ ] xserver side rendering
+    * [x] xserver side rendering
     * [x] use /app/index.html as template
         * [ ] optional - use webpack hash in dev mode  
         not needed because of HMR we need no build-hash

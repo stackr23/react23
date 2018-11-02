@@ -15,7 +15,13 @@
 import ExtractTextPlugin        from 'extract-text-webpack-plugin'
 import {errorMsg}               from '../../stack/utils/myLogger'
 
-const {isDevelopment, cssStyle} = require('config').default
+import stylus23                 from 'stylus23'
+
+
+const {
+    isDevelopment, NODE_ENV,
+    cssStyle
+} = require('config').default
 
 const styleLoaders              = {}
 const preLoaders                = [
@@ -34,21 +40,9 @@ const stylusLoader = {
     options: {
         sourceMap:  true,
         compress:   isDevelopment,
-        use:        [
-            // doubleu23Stylus({
-            //     envVars:    {
-            //         // refactor: build object on top and
-            //         // find a way to re-use it in webpack.DefinePlugin
-            //         NODE_ENV:       process.env.NODE_ENV,
-            //         BUILD_STATIC:   process.env.BUILD_STATIC,
-            //         DEBUG:          process.env.DEBUG
-            //     },
-            //     mediaQueries:       {
-            //         'custom':       'only screen and (min-width: 1300px)'
-            //     },
-            //     envPrefix:          '$ENV__'
-            // })
-        ]
+        use:        [stylus23({
+            envVars: {NODE_ENV: NODE_ENV}
+        })]
     }
 }
 
