@@ -1,5 +1,0 @@
-@mixin mq($name: 'all') {
-	@if( $mq == $name ) {
-		@content;
-	}
-}
