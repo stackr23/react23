@@ -2,6 +2,8 @@ import React                from 'react'
 import PropTypes            from 'prop-types'
 import Component            from 'react-pure-render/component'
 
+// import AppBar               from '@material-ui/components/AppBar'
+
 class Header extends Component {
     static propTypes = {
         headline:   PropTypes.string.isRequired,
@@ -13,6 +15,9 @@ class Header extends Component {
 
         return (
             <React.Fragment>
+{/*                <AppBar
+                    className="appBar"
+                />*/}
                 <h1 id="header">
                     {headline}
                     {subline &&

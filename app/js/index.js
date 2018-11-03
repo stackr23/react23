@@ -1,8 +1,12 @@
-import React        from 'react'
-import ReactDOM     from 'react-dom'
-import Component    from 'react-pure-render/component'
+import React                from 'react'
+import ReactDOM             from 'react-dom'
+import Component            from 'react-pure-render/component'
 
-import Header       from './components/Header'
+import {MuiThemeProvider}   from '@material-ui/core/styles'
+import appTheme             from '../style/mui/theme'
+
+import './index.styl'
+import Header from './components/Header'
 
 import './index.styl'
 
@@ -37,12 +41,14 @@ class Root extends Component {
 
     render () {
         return (
-            <React.Fragment>
-                <Header headline="react23" subline="free react for free people" />
-                <div id="content">
-                    <pre>{this.state.cowsay}</pre>
-                </div>
-            </React.Fragment>
+            <MuiThemeProvider theme={appTheme}>
+                <React.Fragment>
+                    <Header headline="react23" subline="free react for free people" />
+                    <div id="content">
+                        <pre>{this.state.cowsay}</pre>
+                    </div>
+                </React.Fragment>
+            </MuiThemeProvider>
         )
     }
 }
