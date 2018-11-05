@@ -8,6 +8,7 @@
 # NPM
 node_modules/
 npm-debug.log
+package-lock.json
 
 # Wordpress
 wordpress/wp-config.php
