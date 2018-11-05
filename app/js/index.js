@@ -60,7 +60,7 @@ class Root extends Component {
     }
 }
 
-// if (isBrowser) {
+// if (isBrowser) { cache buster
 ReactDOM.render(
     <Root />,
     document.getElementById('app')
