@@ -2152,4 +2152,4 @@ object-assign
   \*******************************/
 /*! no static exports found */
 /*! ModuleConcatenation bailout: Module is not an ECMAScript module */function(e,t,n){e.exports=n(/*! C:\xampp\htdocs\projects\react23\app\js\index.js */"./app/js/index.js")}});
-//# sourceMappingURL=app-2499f18069c57a002ed5.map.js
+//# sourceMappingURL=app-b38361459a26835f9252.map.js
