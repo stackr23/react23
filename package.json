@@ -69,7 +69,7 @@
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.1",
     "ip": "^1.1.5",
-    "node-sass": "^4.9.3",
+    "node-sass": "^4.10.0",
     "plugin-error": "^1.0.1",
     "postcss-loader": "^3.0.0",
     "prop-types": "^15.6.2",

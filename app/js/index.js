@@ -3,12 +3,10 @@ import ReactDOM             from 'react-dom'
 import Component            from 'react-pure-render/component'
 
 import {MuiThemeProvider}   from '@material-ui/core/styles'
-import appTheme             from '../style/mui/theme'
+import appTheme             from '../style/mui/appTheme'
 
 import './index.styl'
 import Header from './components/Header'
-
-import './index.styl'
 
 // TBD: inject isBrowser per webpack
 // const {isBrowser}   = require('config').default
