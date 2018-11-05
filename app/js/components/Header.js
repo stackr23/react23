@@ -4,6 +4,8 @@ import Component            from 'react-pure-render/component'
 
 import AppBar               from '@material-ui/core/AppBar'
 
+import './Header.styl'
+
 class Header extends Component {
     static propTypes = {
         headline:   PropTypes.string.isRequired,
@@ -14,19 +16,9 @@ class Header extends Component {
         const {headline, subline} = this.props
 
         return (
-            <React.Fragment>
-                <AppBar position="static" color="default">
-                    <h1>React2</h1>
-                </AppBar>
-                <h1 id="header">
-                    {headline}
-                    {subline &&
-                    <span style={{fontSize: '0.4em'}}>
-                        <br />
-                        {subline}
-                    </span>}
-                </h1>
-            </React.Fragment>
+            <AppBar position="sticky" color="primary" style={{marginBottom: '3rem'}}>
+                <h1>{headline}<span>- {subline}</span></h1>
+            </AppBar>
         )
     }
 }
