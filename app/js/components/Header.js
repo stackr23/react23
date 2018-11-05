@@ -2,7 +2,7 @@ import React                from 'react'
 import PropTypes            from 'prop-types'
 import Component            from 'react-pure-render/component'
 
-import AppBar               from '@material-ui/core/AppBar';
+import AppBar               from '@material-ui/core/AppBar'
 
 class Header extends Component {
     static propTypes = {
