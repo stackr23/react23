@@ -5,14 +5,21 @@ import Component            from 'react-pure-render/component'
 import {MuiThemeProvider}   from '@material-ui/core/styles'
 import appTheme             from '../style/mui/appTheme'
 
+import {Provider}           from 'mobx-react'
+import mobxAutorun          from '../stores/autorun'
+
+import stores               from '../stores'
+
+import Header               from './components/Header'
 import './index.styl'
-import Header from './components/Header'
 
 // TBD: inject isBrowser per webpack
 // const {isBrowser}   = require('config').default
 
 if (module.hot) module.hot.accept()
 if (!global._babelPolyfill) require('@babel/polyfill')
+
+mobxAutorun(stores)
 
 class Root extends Component {
     constructor (props) {
@@ -40,12 +47,14 @@ class Root extends Component {
     render () {
         return (
             <MuiThemeProvider theme={appTheme}>
-                <React.Fragment>
-                    <Header headline="react23" subline="free react for free people" />
-                    <div id="content">
-                        <pre>{this.state.cowsay}</pre>
-                    </div>
-                </React.Fragment>
+                <Provider {...stores}>
+                    <React.Fragment>
+                        <Header headline="react23" subline="free react for free people" />
+                        <div id="content">
+                            <pre>{this.state.cowsay}</pre>
+                        </div>
+                    </React.Fragment>
+                </Provider>
             </MuiThemeProvider>
         )
     }
