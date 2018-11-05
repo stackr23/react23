@@ -2,7 +2,7 @@ import React                from 'react'
 import PropTypes            from 'prop-types'
 import Component            from 'react-pure-render/component'
 
-// import AppBar               from '@material-ui/components/AppBar'
+import AppBar               from '@material-ui/core/AppBar';
 
 class Header extends Component {
     static propTypes = {
@@ -15,9 +15,9 @@ class Header extends Component {
 
         return (
             <React.Fragment>
-{/*                <AppBar
-                    className="appBar"
-                />*/}
+                <AppBar position="static" color="default">
+                    <h1>React2</h1>
+                </AppBar>
                 <h1 id="header">
                     {headline}
                     {subline &&
