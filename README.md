@@ -21,7 +21,7 @@
 * [x] ES7 via Babel@^7
 * [x] [Gulp](https://gulpjs.com/)
 * [x] [React](https://reactjs.org/)
-* [ ] observable based store with [mobx](https://mobx.js.org/)
+* [x] [MobX](https://mobx.js.org/) observable stores
     * [ ] mobx-router
 * [x] Webpack
     * [x] stylus loader
