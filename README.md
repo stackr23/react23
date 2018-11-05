@@ -53,12 +53,12 @@ npm start
 ## gh-pages
 > this are the steps to set /build as branch gh-pages
 
-1. delete build dirs content - `rm -rf build/*`  
-2. set /build as branch gh-pages - `git worktree add dist gh-pages`
+1. delete build dirs content - `rm build/ -rf`  
+2. set /build as branch gh-pages - `git worktree add build gh-pages`
 
 __'gh-pages' is now checked out at 'react23/build'__
 
 3. make a fresh build - `npm run build`  
 4. checkout gh-pages - `cd build`  
 5. add, commit and build fresh build  
-  `git add . -A && git commit -m ":cat: Deploy to gh-pages" && git push origin gh-pages`  
+  `git add . -A && git commit -m ":rocket: Deploy to gh-pages" && git push origin gh-pages`  

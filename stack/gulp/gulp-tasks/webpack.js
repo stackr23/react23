@@ -15,4 +15,4 @@ gulp.task('webpack', gulp.series(
         : startWebpackDevServer
 ))
 
-gulp.task('build-static', gulp.series('webpack', copyIndex))
+gulp.task('build-static', gulp.series('clean', 'webpack', copyIndex))
