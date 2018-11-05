@@ -1,0 +1,34 @@
+.cf {
+  zoom: 1;
+}
+.cf:after,
+.cf:before {
+  content: "";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+.border-box {
+  box-sizing: border-box;
+}
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 14px;
+}
+@media only screen and (min-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}header {
+  padding: 0 1rem;
+}
+h1 span {
+  font-size: 0.6em;
+}
+/*# sourceMappingURL=app-2499f18069c57a002ed5.map.js*/
