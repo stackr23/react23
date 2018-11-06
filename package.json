@@ -9,7 +9,7 @@
     "start": "gulp",
     "build": "gulp build-static --production",
     "build-sass": "gulp sass-build",
-    "deploy_gh_pages": "./stack/scripts/deploy_gh_pages.sh"
+    "script": "bash ./stack/scripts/run_script.sh"
   },
   "repository": {
     "type": "git",

@@ -41,6 +41,9 @@
     * [ ] prefetch data
     * [ ] api route
         * [ ] fixtures (depends on store)
+* [ ] server
+    * [ ] /api + DB integration
+    * [ ] /test + data mocking 
 * [ ] tests
     * [x] fix eslint (+IDE) integration
     * [ ] add mocha
