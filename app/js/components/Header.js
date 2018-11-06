@@ -8,6 +8,8 @@ import AppBar               from '@material-ui/core/AppBar'
 
 import './Header.styl'
 
+import style                from './testCssObjects.csso'
+
 @inject('viewStore')
 @observer
 class Header extends Component {
@@ -21,7 +23,7 @@ class Header extends Component {
         const {headline, subline, viewStore} = this.props
 
         return (
-            <AppBar position="sticky" color="primary" style={{marginBottom: '3rem'}}>
+            <AppBar position="sticky" color="primary" style={style.header}>
                 <h1>{headline}<span>- {subline}</span></h1>
             </AppBar>
         )

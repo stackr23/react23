@@ -9,7 +9,8 @@ import urlLoaders           from './webpack/urlLoaders'
 // STYLE related
 import autoprefixer         from 'autoprefixer'
 import cssMqPacker          from 'css-mqpacker'
-import styleLoader          from './webpack/styleLoader'
+import styleLoader,
+{cssObjectsLoader}          from './webpack/styleLoader'
 
 const config            = require('config').default
 
@@ -57,6 +58,7 @@ export default _isDevelopment => {
             rules: [
                 ...urlLoaders,
                 styleLoader,
+                cssObjectsLoader,
                 // BABEL LOADER
                 {
                     loader: 'babel-loader',
