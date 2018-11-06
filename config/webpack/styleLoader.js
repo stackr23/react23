@@ -56,6 +56,17 @@ styleLoaders.stylus = {
         })
 }
 
+//    ________________       ____  ____      _________________________
+//   / ____/ ___/ ___/      / __ \/ __ )    / / ____/ ____/_  __/ ___/
+//  / /    \__ \\__ \______/ / / / __  |_  / / __/ / /     / /  \__ \
+// / /___ ___/ /__/ /_____/ /_/ / /_/ / /_/ / /___/ /___  / /  ___/ /
+// \____//____/____/      \____/_____/\____/_____/\____/ /_/  /____/
+
+styleLoaders.cssObjects = {
+    test:   /\.(csso)$/,
+    use:    ['cssobjects-loader', 'stylus-loader']
+}
+
 //     ________  ____    __       ____  _________________   ____________________  _   __
 //    / ____/ / / / /   / /      / __ \/ ____/ ____/  _/ | / /  _/_  __/  _/ __ \/ | / /
 //   / /_  / / / / /   / /      / / / / __/ / /_   / //  |/ // /  / /  / // / / /  |/ /
@@ -68,4 +79,5 @@ styleLoaders[${cssStyle}] not defined yet.
 Go to /config/webpack/styleLoaders.js and add it.
 `)
 
+export const cssObjectsLoader = styleLoaders.cssObjects
 export default customStyleLoader
