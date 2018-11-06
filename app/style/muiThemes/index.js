@@ -6,11 +6,14 @@
 //
 'use strict'
 
-import {createMuiTheme} from '@material-ui/core/styles'
+import {createMuiTheme}     from '@material-ui/core/styles'
+import defaultTheme         from './default'
+import _react23             from './react23.csso'
 
-export default createMuiTheme({
-    palette: {
-        primary:    {main: '#1A237E'},
-        secondary:  {main: '#FFB300'}
-    }
-})
+export default createMuiTheme(Object.assign({}, {
+    defaultTheme
+}))
+
+export const react23 = createMuiTheme(Object.assign({}, {
+    _react23
+}))

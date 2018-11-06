@@ -3,7 +3,7 @@ import ReactDOM             from 'react-dom'
 import Component            from 'react-pure-render/component'
 
 import {MuiThemeProvider}   from '@material-ui/core/styles'
-import appTheme             from '../style/mui/appTheme'
+import {react23}            from '../style/muiThemes'
 
 import {Provider}           from 'mobx-react'
 import mobxAutorun          from '../stores/autorun'
@@ -46,7 +46,7 @@ class Root extends Component {
 
     render () {
         return (
-            <MuiThemeProvider theme={appTheme}>
+            <MuiThemeProvider theme={react23}>
                 <Provider {...stores}>
                     <React.Fragment>
                         <Header headline="react23" subline="free react for free people" />

@@ -1,0 +1,7 @@
+@import '../react23'
+
+#palette
+    primary
+        main $mui__palette_primary
+    secondary
+        main $mui__palette_secondary
