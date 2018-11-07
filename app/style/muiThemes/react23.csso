@@ -1,7 +1,12 @@
 @import '../react23'
 
-#palette
+.palette
     primary
-        main $mui__palette_primary
+        main $color__palette_primary
     secondary
-        main $mui__palette_secondary
+        main $color__palette_secondary
+
+.overrides
+    .MuiButton
+        .root
+            color white

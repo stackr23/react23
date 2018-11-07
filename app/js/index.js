@@ -25,6 +25,8 @@ class Root extends Component {
     constructor (props) {
         super(props)
         this.state = {cowsay: ''}
+
+        console.log('muiTheme', react23)
     }
 
     async componentDidMount () {
