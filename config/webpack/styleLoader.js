@@ -64,7 +64,7 @@ styleLoaders.stylus = {
 
 styleLoaders.cssObjects = {
     test:   /\.(csso)$/,
-    use:    ['cssobjects-loader', 'stylus-loader']
+    use:    ['@stackr23/styleobjects-loader', 'stylus-loader']
 }
 
 //     ________  ____    __       ____  _________________   ____________________  _   __

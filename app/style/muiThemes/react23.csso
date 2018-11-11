@@ -1,10 +1,10 @@
-@import '../react23'
+@import '../setup'
 
 .palette
     primary
-        main $color__palette_primary
+        main $palette_primary
     secondary
-        main $color__palette_secondary
+        main $palette_secondary
 
 .overrides
     .MuiButton
