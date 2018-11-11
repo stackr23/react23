@@ -45,3 +45,28 @@ npm start
 | __`gh-pages/init`__   | initiate /build as git-worktree   |
 | __`gh-pages/deploy`__ | deploy to gh-pages                |
 
+## styling
+
+### pre-processors
+the __default pre-processor is__ [stylus](http://stylus-lang.com/)  
+_you can add custom loaders in `/config/webpack/styleLoader.js`_
+
+the __UI is based on__ [material-ui](https://github.com/mui-org/material-ui)  
+
+### styleobjects
+to keep styling in its space and use stylus vars globally, we use [@stackr23/styleobjects-loader](https://github.com/stackr23/styleobjects-loader) to "sync" material-ui with stylus  
+imported files with __targeted extension `.csso`__ will be __transformed from stylus to js-objects__ via [@stackr23/styleobjects](https://github.com/stackr23/styleobjects)
+
+### themes
+The custom theme is created in `/app/style/muiThemes/react23.csso`,  
+which uses the global stylus vars of `/app/style/setup.styl`
+
+### layout
+the layout is defined in `/app/style/layout.styl` and is focused on global styles of the page like #body, #wrapper and #content
+
+### modular style
+component specific styles are defined directly in their directory - fe: `/app/components/Header.styl`  
+and are loaded via [@stackr23/style-loader](https://github.com/stackr23/style-loader) mixed with defined pre-processors  
+> __in devevlopment__, the styles are __injected__ directly __via style tags__ per HMR  
+> __in production__, they are extracted via `ExtractTextPlugin` and __bundled in `/build/app-[hash].css`__  
+> __both environments__ use `cssMqPacker` and `autoprefixer`
