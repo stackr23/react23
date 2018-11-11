@@ -18,9 +18,5 @@ console.log('_react23', _react23)
 console.log('_react23', _react23['palette__primary'].main)
 
 export const react23 = createMuiTheme(Object.assign({}, {
-    // workaround until stylobjects injects subclasses
-    palette: {
-        primary:    {main: _react23['palette__primary'].main},
-        secondary:  {main: _react23['palette__secondary'].main}
-    }
+    _react23
 }))
