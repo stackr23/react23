@@ -12,7 +12,7 @@ import style                from './testCssObjects.csso'
 
 @inject('viewStore')
 @observer
-class Header extends Component {
+class Header extends React.Component {
     static propTypes = {
         viewStore:  PropTypes.object.isRequired,
         headline:   PropTypes.string.isRequired,
@@ -22,10 +22,10 @@ class Header extends Component {
     render () {
         const {headline, subline, viewStore} = this.props
 
-        console.log('style', style)
+        console.log('[header->REnder]', viewStore.theme)
 
         return (
-            <AppBar position="sticky" color="primary" style={style.header}>
+            <AppBar position="sticky" color="secondary" style={style.header}>
                 <h1>{headline}<span>- {subline}</span></h1>
             </AppBar>
         )

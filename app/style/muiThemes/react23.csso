@@ -1,9 +1,9 @@
 @import '../setup'
 
 .palette
-    primary
+    .primary
         main $palette_primary
-    secondary
+    .secondary
         main $palette_secondary
 
 .overrides

@@ -19,11 +19,12 @@
     * [x] enable sourcemaps
     * [x] sass/stylus support
         * [ ] sourcemaps
+        * [x] @stackr23/styleobjects-loader 
         * [x] extract text plugin for production
         * [ ] add libs
             * [ ] MUI
             * [ ] grid-system?
-            * doubleu23-stylus/scss.boilerplate
+            * [ ] doubleu23-stylus/scss.boilerplate
     * [ ] stores
         * [x] add mobx
     * [ ] routing
