@@ -66,8 +66,7 @@ body {
     font-size: 16px;
   }
 }
-.wrapper,
-.page {
+.wrapper {
   padding: 0 3rem;
   transition: padding 1s ease-out;
 }header {
