@@ -1,5 +1,4 @@
 import React                from 'react'
-import Component            from 'react-pure-render/component'
 import PropTypes            from 'prop-types'
 
 import {observer, inject}   from 'mobx-react'
@@ -18,7 +17,7 @@ const themes = {
 
 @inject('viewStore')
 @observer
-class App extends Component {
+class App extends React.Component {
     static propTypes = {
         viewStore:  PropTypes.object.isRequired
     }
@@ -36,7 +35,6 @@ class App extends Component {
         this.say    = say
 
         setTimeout(this.fillContent.bind(this), 500)
-        window.setState = this.setState.bind(this)
     }
 
     fillContent () {

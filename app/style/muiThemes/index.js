@@ -10,13 +10,6 @@ import {createMuiTheme}     from '@material-ui/core/styles'
 import defaultTheme         from './default'
 import _react23             from './react23.csso'
 
-export default createMuiTheme(Object.assign({}, {
-    defaultTheme
-}))
+export default createMuiTheme(Object.assign({}, defaultTheme))
 
-console.log('_react23', _react23)
-console.log('_react23', _react23['palette__primary'].main)
-
-export const react23 = createMuiTheme(Object.assign({}, {
-    _react23
-}))
+export const react23 = createMuiTheme(Object.assign({}, _react23))
