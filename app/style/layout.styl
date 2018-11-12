@@ -1,4 +1,6 @@
+// import setup before stylus23!
 @import './setup.styl'
+@import 'stylus23'
 @import './lib/fonts'
 
 body
@@ -7,6 +9,10 @@ body
     width 100%
     margin 0
     padding 0
+    // rem base
+    font-size 14px
+    +MQ('m')
+        font-size 16px
 
 .wrapper
   padding 0 $layout__wrapper_padding

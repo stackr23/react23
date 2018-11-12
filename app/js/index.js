@@ -1,6 +1,6 @@
 import React                from 'react'
 import ReactDOM             from 'react-dom'
-
+// refactor: ? shove Provider into App.js?
 import {Provider}           from 'mobx-react'
 import mobxAutorun          from '../stores/autorun'
 import stores               from '../stores'

@@ -67,9 +67,10 @@ export default _isDevelopment => {
                     test: /\.js$/,
                     exclude:  /(node_modules|bower_components|styles)/,
                     options: {
-                        retainLines: true,
-                        sourceMap: true,
-                        babelrc: true,
+                        minified:       isProduction,
+                        retainLines:    true,
+                        sourceMap:      true,
+                        babelrc:        true,
                         cacheDirectory: path.join(paths.build, 'cache', 'babel-loader'),
                         // presets and plugins defined in .babelrc
                         // enable env config if needed

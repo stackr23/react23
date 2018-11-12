@@ -20,7 +20,7 @@ class Header extends React.Component {
         const {headline, subline} = this.props
 
         return (
-            <AppBar position="sticky" color="secondary" style={style.header} className="wrapper">
+            <AppBar position="sticky" color="primary" style={style.header} className="wrapper">
                 <h1>{headline}<span>{subline}</span></h1>
             </AppBar>
         )
