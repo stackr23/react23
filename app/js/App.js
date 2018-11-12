@@ -1,5 +1,4 @@
 import React                from 'react'
-import Component            from 'react-pure-render/component'
 import PropTypes            from 'prop-types'
 
 import {observer, inject}   from 'mobx-react'
@@ -41,7 +40,13 @@ class App extends React.Component {
     fillContent () {
         this.setState({
             cowsay: this.say({
-                text:   '\nperfect react stack to wrap your web app\n\n',
+                text:   `
+    I'm a MOOdule!
+    A splitted code chunk,
+    that is loaded asynchron
+    via Webpacks dynamic import feature!
+
+`,
                 tongue: 'U',
                 eyes:   'oO'
             })
@@ -53,18 +58,15 @@ class App extends React.Component {
         const theme             = themes[viewStore.theme]
         const isDefaultTheme    = viewStore.theme === 'default23'
 
-        console.log('[App->render] viewStore.theme', viewStore.theme)
-        console.log('[App->render] palette.primary', themes[viewStore.theme].palette.primary.main)
-        console.log('[App->render] palette.secondary', themes[viewStore.theme].palette.secondary.main)
-
         return (
             <MuiThemeProvider theme={theme}>
                 <React.Fragment>
-                    <Header headline="react23" subline="free react for free people" />
-                    <div id="content">
+                    <Header headline="React23" subline="the perfect react stack to wrap your web app" />
+                    <div id="content" className="wrapper">
+                        <b>active theme:</b>{viewStore.theme}<br />
+                        <Switch onChange={e => viewStore.switchTheme()} checked={!isDefaultTheme} /> toggle Theme
                         <pre>{this.state.cowsay}</pre>
                     </div>
-                    <Switch onChange={e => viewStore.switchTheme()} checked={!isDefaultTheme} /> toggle Theme
                 </React.Fragment>
             </MuiThemeProvider>
         )

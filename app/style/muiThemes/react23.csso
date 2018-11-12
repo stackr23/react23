@@ -1,5 +1,8 @@
 @import '../setup'
 
+.typography
+    useNextVariants true
+
 .palette
     .primary
         main $palette_primary

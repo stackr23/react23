@@ -32,7 +32,9 @@ export default _isDevelopment => {
         cache:      !isDevelopment,
         devtool:    process.env.CONTINUOUS_INTEGRATION
             ? 'inline-source-map'
-            : 'cheap-module-source-map',
+            : isDevelopment
+                ? 'cheap-module-eval-source-map'
+                : 'hidden-source-map',
         entry: {
             app: isDevelopment
                 ? [
@@ -71,7 +73,10 @@ export default _isDevelopment => {
                         cacheDirectory: path.join(paths.build, 'cache', 'babel-loader'),
                         // presets and plugins defined in .babelrc
                         // enable env config if needed
-                        env: {production: {}}
+                        env: {production: {
+                            // use webpack optimization.minimize
+                            // '@babel/preset-minify'
+                        }}
                     }
                 }
             ]
@@ -86,16 +91,22 @@ export default _isDevelopment => {
         //     'fs': {}
         // },
         optimization: {
-            minimize: true
-            // minimizer: [
-            //     new webpack.optimize.UglifyJsPlugin({
-            //         sourceMap: true,
-            //         compress: {
-            //             screw_ie8:  true, // eslint-disable-line camelcase
-            //             warnings:   false // Because uglify reports irrelevant warnings.
-            //         }
-            //     })
-            // ]
+            // minimize: isProduction
+            // minimize: (() => {
+            //     if (isProduction) {
+            //         return [
+            //             new webpack.optimize.UglifyJsPlugin({
+            //                 sourceMap: true,
+            //                 compress: {
+            //                     screw_ie8:  true, // eslint-disable-line camelcase
+            //                     warnings:   false // Because uglify reports irrelevant warnings.
+            //                 }
+            //             })
+            //         ]
+            //     } else {
+            //         return []
+            //     }
+            // })()
         },
         plugins: (() => {
             const plugins = [
