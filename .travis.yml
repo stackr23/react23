@@ -28,6 +28,6 @@ script:
 
 deploy:
   provider: script
-  script: bash stack/scripts/deploy.sh
+  script: bash stack/scripts/gh-pages/deploy.sh
   on:
     branch: master
