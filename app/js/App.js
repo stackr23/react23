@@ -39,7 +39,9 @@ class App extends React.Component {
             <Provider {...stores}>
                 <Router history={history}>
                     <React.Fragment>
-                        {routes.map((route, i) => <LayoutWithChild key={i} {...route} />)}
+                        {routes.map((route, i) =>
+                            <LayoutWithChild key={i} {...route} />
+                        )}
                     </React.Fragment>
                 </Router>
             </Provider>

@@ -8,6 +8,8 @@ import default23, {react23} from '../style/muiThemes'
 
 import {Link}               from 'react-router-dom'
 
+import ConfirmationDialog   from './layout/ConfirmationDialog'
+
 import Header               from './components/Header'
 import '../style/layout.styl'
 
@@ -30,14 +32,17 @@ class Layout extends React.Component {
         return (
             <MuiThemeProvider theme={theme}>
                 <React.Fragment>
-                    <Header headline="React23" subline="the perfect react stack to wrap your web app" />
-                    <nav id="nav" className="wrapper" style={{
-                        marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid #ccc'
-                    }}>
-                        <Link to={'/'}>Home</Link>&nbsp;|&nbsp;
-                        <Link to={'/test'}>TestPage</Link>
-                    </nav>
-                    {this.props.children}
+                    <div id="main">
+                        <Header headline="React23" subline="the perfect react stack to wrap your web app" />
+                        <nav id="nav" className="wrapper" style={{
+                            marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid #ccc'
+                        }}>
+                            <Link to={'/'}>Home</Link>&nbsp;|&nbsp;
+                            <Link to={'/test'}>TestPage</Link>
+                        </nav>
+                        {this.props.children}
+                    </div>
+                    <ConfirmationDialog />
                 </React.Fragment>
             </MuiThemeProvider>
         )
