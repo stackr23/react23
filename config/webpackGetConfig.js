@@ -12,7 +12,7 @@ import cssMqPacker          from 'css-mqpacker'
 import styleLoader,
 {cssObjectsLoader}          from './webpack/styleLoader'
 
-const config            = require('config').default
+const config                = require('config').default
 
 let {
     isDebug, isProduction, isDevelopment, NODE_ENV, verbose,
@@ -34,7 +34,7 @@ export default _isDevelopment => {
             ? 'inline-source-map'
             : !isProduction
                 ? 'cheap-module-eval-source-map'
-                : 'hidden-source-map',
+                : 'source-map',
         entry: {
             app: isDevelopment
                 ? [
@@ -52,7 +52,7 @@ export default _isDevelopment => {
         } : {
             path: paths.build,
             filename: 'app-[hash].js', // TBD: 'app-[hash].js'
-            sourceMapFilename: 'app-[hash].map.js',
+            sourceMapFilename: 'app-[hash].map',
             chunkFilename: 'app-[chunkhash].js'
         },
         stats: verbose ? 'verbose' : isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',
@@ -92,7 +92,7 @@ export default _isDevelopment => {
         //     'fs': {}
         // },
         optimization: {
-            // minimize: isProduction
+            minimize: isProduction
             // minimize: (() => {
             //     if (isProduction) {
             //         return [
@@ -112,7 +112,7 @@ export default _isDevelopment => {
         plugins: (() => {
             const plugins = [
                 new webpack.LoaderOptionsPlugin({
-                    minimize:   !isDevelopment,
+                    minimize:   isProduction,
                     debug:      isDevelopment,
                     hotPort:    portHMR,
                     sourceMap:  true,
@@ -128,7 +128,8 @@ export default _isDevelopment => {
                     'process.env': {
                         IS_BROWSER:     true,
                         NODE_ENV:       JSON.stringify(NODE_ENV),
-                        APP_CONFIG:     JSON.stringify(config)
+                        APP_CONFIG:     JSON.stringify(config),
+                        GH_PAGES:       JSON.stringify(process.env.GH_PAGES)
                         // BUILD_STATIC:   JSON.stringify(process.env.BUILD_STATIC === 'true'),
                     }
                 })
@@ -137,7 +138,7 @@ export default _isDevelopment => {
                 //     'Promise': 'bluebird'
                 // }) // not needed in babel7 ???
             ]
-            if (isDevelopment) {
+            if (!isProduction) {
                 plugins.push(
                     new webpack.HotModuleReplacementPlugin(),
                     new webpack.NoEmitOnErrorsPlugin()
@@ -161,7 +162,7 @@ export default _isDevelopment => {
                 if (!process.env.CONTINUOUS_INTEGRATION) {
                     // enable scope hoisting
                     // https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
-                    plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
+                    // plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
                 }
             }
 

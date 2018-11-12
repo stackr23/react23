@@ -1,6 +1,6 @@
 {
   "name": "react23",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "perfect stack for your app in react",
   "main": "Gulpfile.babel.js",
   "scripts": {

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-(npm run build && \
+(GH_PAGES=true npm run build && \
 cd build && \
 git add --all && \
 git commit -m ":rocket: deploy build to gh-pages" && \

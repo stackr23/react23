@@ -13,7 +13,13 @@ import createRoutes         from '../routes/index'
 
 mobxAutorun(stores)
 
-const browserHistory        = createBrowserHistory()
+console.log('process.env.GH_PAGES', process.env.GH_PAGES)
+
+const browserHistory        = createBrowserHistory({
+    basename: process.env.GH_PAGES
+        ? '/react23'
+        : ''
+})
 const history               = syncHistoryWithStore(browserHistory, stores.router)
 
 const routes                = createRoutes(stores)

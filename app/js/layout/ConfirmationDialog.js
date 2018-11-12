@@ -75,6 +75,7 @@ class ConfirmationDialog extends React.Component {
         // always schow confirm button!
         const actions = [
             <Button // CONFIRM
+                key="confirm"
                 variant="contained"
                 color="primary"
                 onClick={this.getAction()}
@@ -87,6 +88,7 @@ class ConfirmationDialog extends React.Component {
             // add CANCEL button (if action != cancel)
             actions.push( // .unshift(
                 <Button
+                    key="cancel"
                     variant="contained"
                     color="secondary"
                     hoverColor="#999"
