@@ -8,7 +8,7 @@ import stores               from '../stores'
 import App                  from './App.js'
 
 // TBD: inject isBrowser per webpack
-// const {isBrowser}   = require('config').default
+// const {isBrowser} = require('config').default
 
 if (module.hot) module.hot.accept()
 if (!global._babelPolyfill) require('@babel/polyfill')
@@ -26,9 +26,9 @@ class Root extends React.Component {
     }
 }
 
-// if (isBrowser) { cache buster
-ReactDOM.render(
-    <Root />,
-    document.getElementById('app')
-)
-// }
+if (process.env.IS_BROWSER) {
+    ReactDOM.render(
+        <Root />,
+        document.getElementById('app')
+    )
+}
