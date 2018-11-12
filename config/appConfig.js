@@ -1,4 +1,20 @@
-import paths        from './paths'
+//    __  __                  _____      __  __  _
+//   / / / /_______  _____   / ___/___  / /_/ /_(_)___  ____ ______
+//  / / / / ___/ _ \/ ___/   \__ \/ _ \/ __/ __/ / __ \/ __ `/ ___/
+// / /_/ (__  )  __/ /      ___/ /  __/ /_/ /_/ / / / / /_/ (__  )
+// \____/____/\___/_/      /____/\___/\__/\__/_/_/ /_/\__, /____/
+//                                                   /____/
+//
+// change settings accoriding to your local environment
+
+const localhostRoot     = '/projects/react23/build/'
+
+//     ____                  __ ___  _____
+//    / __ \___  ____ ______/ /|__ \|__  /
+//   / /_/ / _ \/ __ `/ ___/ __/_/ / /_ <
+//  / _, _/  __/ /_/ / /__/ /_/ __/___/ /
+// /_/ |_|\___/\__,_/\___/\__/____/____/
+//
 
 const yargs = require('yargs')
     .option('cssStyle', {
@@ -19,6 +35,8 @@ const yargs = require('yargs')
     })
     .argv
 
+const paths     = require('./paths').default
+
 export default (function (APP_CONFIG) {
     const NODE_ENV          = process.env.NODE_ENV === 'production' || yargs.production === true
         ? 'production' : 'development'
@@ -37,6 +55,10 @@ export default (function (APP_CONFIG) {
             portBSUI:       3000
         },
         paths,
+        browserRoot:        process.env.GH_PAGES ? '/react23'
+            : process.env.APP_BUILD_STATIC
+                ? '' // '/projects/stackr23/build/' // TBD: refactor, read from ENV?
+                : localhostRoot,
         globs: {
             clean:  [
                 '!**/.gitkeep', 'stack/__test__/**/*', 'build/**/*'

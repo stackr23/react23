@@ -33,9 +33,10 @@ class Layout extends React.Component {
     }
 
     render () {
-        const {viewStore}   = this.props
+        const {viewStore, router}   = this.props
         const theme         = themes[viewStore.theme]
 
+        console.log('router', router)
 
         return (
             <MuiThemeProvider theme={theme}>

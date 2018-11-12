@@ -11,18 +11,15 @@ import stores               from '../stores'
 import Layout               from './Layout'
 import createRoutes         from '../routes/index'
 
+const {browserRoot}         = process.env.APP_CONFIG
+
 mobxAutorun(stores)
 
 console.log('process.env.GH_PAGES', process.env.GH_PAGES)
 
-const browserHistory        = createBrowserHistory({
-    basename: process.env.GH_PAGES
-        ? '/react23'
-        : ''
-})
-const history               = syncHistoryWithStore(browserHistory, stores.router)
-
-const routes                = createRoutes(stores)
+const browserHistory    = createBrowserHistory({basename: browserRoot})
+const history           = syncHistoryWithStore(browserHistory, stores.router)
+const routes            = createRoutes(stores)
 
 const LayoutWithChild = route => {
     const {component: Component, ...routeProps} = route

@@ -15,4 +15,8 @@ gulp.task('webpack', gulp.series(
         : startWebpackDevServer
 ))
 
-gulp.task('build-static', gulp.series('clean', 'webpack', copyIndex))
+gulp.task('build-static', (() => {
+    process.env.APP_BUILD_STATIC = true
+
+    return gulp.series('clean', 'webpack', copyIndex)
+})())
