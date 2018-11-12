@@ -40,7 +40,13 @@ class App extends React.Component {
     fillContent () {
         this.setState({
             cowsay: this.say({
-                text:   '\nperfect react stack to wrap your web app\n\n',
+                text:   `
+    I'm a MOOdule!
+    An splitted code chunk,
+    that is loaded asynchron
+    via Webpacks dynamic import feature!
+
+`,
                 tongue: 'U',
                 eyes:   'oO'
             })
@@ -55,11 +61,11 @@ class App extends React.Component {
         return (
             <MuiThemeProvider theme={theme}>
                 <React.Fragment>
-                    <Header headline="react23" subline="free react for free people" />
-                    <div id="content">
+                    <Header headline="React23" subline="the perfect react stack to wrap your web app" />
+                    <div id="content" className="wrapper">
+                        <Switch onChange={e => viewStore.switchTheme()} checked={!isDefaultTheme} /> toggle Theme
                         <pre>{this.state.cowsay}</pre>
                     </div>
-                    <Switch onChange={e => viewStore.switchTheme()} checked={!isDefaultTheme} /> toggle Theme
                 </React.Fragment>
             </MuiThemeProvider>
         )
