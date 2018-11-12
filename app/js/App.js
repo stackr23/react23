@@ -42,7 +42,7 @@ class App extends React.Component {
             cowsay: this.say({
                 text:   `
     I'm a MOOdule!
-    An splitted code chunk,
+    A splitted code chunk,
     that is loaded asynchron
     via Webpacks dynamic import feature!
 
