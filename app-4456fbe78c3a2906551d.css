@@ -59,18 +59,16 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-}
-.wrapper {
-  padding: 0 2rem;
-  transition: padding 300ms ease-in;
-}
-body {
   font-size: 14px;
 }
 @media only screen and (min-width: 768px) {
   body {
     font-size: 16px;
   }
+}
+.wrapper {
+  padding: 0 3rem;
+  transition: padding 1s ease-out;
 }header {
   padding: 0 1rem;
 }
@@ -81,4 +79,6 @@ h1 span {
   display: block;
   color: #fff;
   font-size: 0.6em;
+}#ThemeSwitch .Switch > :not(.checked) {
+  color: #ffb300;
 }

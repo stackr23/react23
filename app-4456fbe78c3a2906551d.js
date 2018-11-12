@@ -201,7 +201,7 @@
 
 /***/ "./app/js/App.js":
 /*!***********************************!*\
-  !*** ./app/js/App.js + 3 modules ***!
+  !*** ./app/js/App.js + 7 modules ***!
   \***********************************/
 /*! exports provided: default */
 /*! ModuleConcatenation bailout: Cannot concat with ./node_modules/@babel/runtime/helpers/asyncToGenerator.js (<- Module is not an ECMAScript module) */
@@ -222,14 +222,6 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
-var regenerator = __webpack_require__("./node_modules/@babel/runtime/regenerator/index.js");
-var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/asyncToGenerator.js
-var asyncToGenerator = __webpack_require__("./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
-var asyncToGenerator_default = /*#__PURE__*/__webpack_require__.n(asyncToGenerator);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/classCallCheck.js
 var classCallCheck = __webpack_require__("./node_modules/@babel/runtime/helpers/classCallCheck.js");
@@ -268,11 +260,11 @@ var styles = __webpack_require__("./node_modules/@material-ui/core/styles/index.
 // CONCATENATED MODULE: ./app/style/muiThemes/default.js
 // TBD: extend mui theme "react23/default"
 /* harmony default export */ var muiThemes_default = ({
-  palette: {
-    // primary: {main: '#333'}
-  },
-  typography: {
-    useNextVariants: true } });
+palette:{
+// primary: {main: '#333'}
+},
+typography:{
+useNextVariants:true}});
 // EXTERNAL MODULE: ./app/style/muiThemes/react23.csso
 var react23 = __webpack_require__("./app/style/muiThemes/react23.csso");
 var react23_default = /*#__PURE__*/__webpack_require__.n(react23);
@@ -290,13 +282,132 @@ var react23_default = /*#__PURE__*/__webpack_require__.n(react23);
 
 
 
-/* harmony default export */ var muiThemes = (Object(styles["createMuiTheme"])(Object.assign({}, muiThemes_default)));
+/* harmony default export */ var muiThemes = (Object(styles["createMuiTheme"])(Object.assign({},muiThemes_default)));
 
-var muiThemes_react23 = Object(styles["createMuiTheme"])(Object.assign({}, react23_default.a));
+var muiThemes_react23=Object(styles["createMuiTheme"])(Object.assign({},react23_default.a));
 // EXTERNAL MODULE: ./node_modules/@material-ui/core/Switch/index.js
 var Switch = __webpack_require__("./node_modules/@material-ui/core/Switch/index.js");
 var Switch_default = /*#__PURE__*/__webpack_require__.n(Switch);
 
+// EXTERNAL MODULE: ./app/js/components/ThemeSwitch/ThemeSwitch.styl
+var ThemeSwitch_ThemeSwitch = __webpack_require__("./app/js/components/ThemeSwitch/ThemeSwitch.styl");
+
+// CONCATENATED MODULE: ./app/js/components/ThemeSwitch/ThemeSwitch.js
+var _dec,_class,_class2,_temp;
+
+
+
+
+var ThemeSwitch_ref=/*#__PURE__*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+react_default.a.createElement("b",null,"active theme: ");var _ref2=/*#__PURE__*/react_default.a.createElement("br",null);var ThemeSwitch_ThemeSwitch_ThemeSwitch=(_dec=Object(index_module["inject"])("viewStore"),_dec(_class=Object(index_module["observer"])(_class=(_temp=_class2=/*#__PURE__*/function(_React$Component){inherits_default()(ThemeSwitch,_React$Component);function ThemeSwitch(){classCallCheck_default()(this,ThemeSwitch);return possibleConstructorReturn_default()(this,getPrototypeOf_default()(ThemeSwitch).apply(this,arguments))}createClass_default()(ThemeSwitch,[{key:"render",value:function render(){var viewStore=this.props.viewStore;// TBD: read default theme from appConfig
+var isDefaultTheme=viewStore.theme==="default23";return react_default.a.createElement("div",{id:"ThemeSwitch",className:"component"},ThemeSwitch_ref,viewStore.theme,_ref2,react_default.a.createElement(Switch_default.a,{
+onChange:function onChange(e){return viewStore.switchTheme()},checked:!isDefaultTheme,
+classes:{
+root:"Switch",
+checked:"checked"}})," toggle Theme");
+
+
+
+
+}}]);return ThemeSwitch}(react_default.a.Component),_class2.propTypes={viewStore:prop_types_default.a.object.isRequired// TBD: add mobx-router to pass /page component to Layout
+},_temp))||_class)||_class);
+
+/* harmony default export */ var components_ThemeSwitch_ThemeSwitch = (ThemeSwitch_ThemeSwitch_ThemeSwitch);
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
+var regenerator = __webpack_require__("./node_modules/@babel/runtime/regenerator/index.js");
+var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/asyncToGenerator.js
+var asyncToGenerator = __webpack_require__("./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
+var asyncToGenerator_default = /*#__PURE__*/__webpack_require__.n(asyncToGenerator);
+
+// CONCATENATED MODULE: ./app/js/components/CowSay.js
+var
+
+CowSay_CowSay=/*#__PURE__*/function(_React$Component){inherits_default()(CowSay,_React$Component);
+function CowSay(props){var _this;classCallCheck_default()(this,CowSay);
+_this=possibleConstructorReturn_default()(this,getPrototypeOf_default()(CowSay).call(this,props));
+_this.state={
+theme:"default23",
+cowsay:""};return _this;
+
+}createClass_default()(CowSay,[{key:"componentDidMount",value:function(){var _componentDidMount=asyncToGenerator_default()(/*#__PURE__*/regenerator_default.a.mark(function _callee(){var _ref,say;return regenerator_default.a.wrap(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:_context.next=2;return(
+
+
+__webpack_require__.e(/*! import() | cowsay */ "vendors~cowsay").then(__webpack_require__.t.bind(null, /*! cowsay */ "./node_modules/cowsay/build/cowsay.umd.js", 7)));case 2:_ref=_context.sent;say=_ref.say;
+this.say=say;
+this.fillContent();case 6:case"end":return _context.stop();}}},_callee,this)}));return function componentDidMount(){return _componentDidMount.apply(this,arguments)}}()},{key:"fillContent",value:function fillContent()
+
+
+{
+this.setState({
+cowsay:this.say({
+text:"\n    I'm a MOOdule!\n    A splitted code chunk,\n    that is loaded asynchron\n    via Webpacks dynamic import feature!\n\n",
+
+
+
+
+
+
+tongue:"U",
+eyes:"oO"})});
+
+
+}},{key:"render",value:function render()
+
+{
+return(
+react_default.a.createElement("div",{id:"CowSay",className:"component"},
+react_default.a.createElement("pre",null,this.state.cowsay)));
+
+
+}}]);return CowSay}(react_default.a.Component);
+
+
+/* harmony default export */ var components_CowSay = (CowSay_CowSay);
+// CONCATENATED MODULE: ./app/js/pages/Home.js
+var Home_dec,Home_class,Home_class2,Home_temp;
+
+
+
+
+var Home_ref=/*#__PURE__*/
+
+
+
+
+
+
+
+
+
+
+
+react_default.a.createElement("div",{id:"home",className:"page"},
+react_default.a.createElement(components_ThemeSwitch_ThemeSwitch,null),
+react_default.a.createElement(components_CowSay,null));var Home_Home=(Home_dec=Object(index_module["inject"])("viewStore"),Home_dec(Home_class=Object(index_module["observer"])(Home_class=(Home_temp=Home_class2=/*#__PURE__*/function(_React$Component){inherits_default()(Home,_React$Component);function Home(){classCallCheck_default()(this,Home);return possibleConstructorReturn_default()(this,getPrototypeOf_default()(Home).apply(this,arguments))}createClass_default()(Home,[{key:"render",value:function render(){return Home_ref;
+
+
+}}]);return Home}(react_default.a.Component),Home_class2.propTypes={viewStore:prop_types_default.a.object.isRequired// TBD: add mobx-router to pass /page component to Layout
+},Home_temp))||Home_class)||Home_class);
+
+/* harmony default export */ var pages_Home = (Home_Home);
 // EXTERNAL MODULE: ./node_modules/@material-ui/core/AppBar/index.js
 var AppBar = __webpack_require__("./node_modules/@material-ui/core/AppBar/index.js");
 var AppBar_default = /*#__PURE__*/__webpack_require__.n(AppBar);
@@ -309,7 +420,7 @@ var testCssObjects = __webpack_require__("./app/js/components/testCssObjects.css
 var testCssObjects_default = /*#__PURE__*/__webpack_require__.n(testCssObjects);
 
 // CONCATENATED MODULE: ./app/js/components/Header.js
-var _dec, _class, _class2, _temp;
+var Header_dec,Header_class,Header_class2,Header_temp;
 
 
 
@@ -320,102 +431,80 @@ var
 
 
 
-Header_Header = (_dec = Object(index_module["inject"])('viewStore'), _dec(_class = Object(index_module["observer"])(_class = (_temp = _class2 = /*#__PURE__*/function (_React$Component) {inherits_default()(Header, _React$Component);function Header() {classCallCheck_default()(this, Header);return possibleConstructorReturn_default()(this, getPrototypeOf_default()(Header).apply(this, arguments));}createClass_default()(Header, [{ key: "render", value: function render()
+Header_Header=(Header_dec=Object(index_module["inject"])("viewStore"),Header_dec(Header_class=Object(index_module["observer"])(Header_class=(Header_temp=Header_class2=/*#__PURE__*/function(_React$Component){inherits_default()(Header,_React$Component);function Header(){classCallCheck_default()(this,Header);return possibleConstructorReturn_default()(this,getPrototypeOf_default()(Header).apply(this,arguments))}createClass_default()(Header,[{key:"render",value:function render()
 
 
 
 
 
 
-    {var _this$props =
-      this.props,headline = _this$props.headline,subline = _this$props.subline;
+{var _this$props=
+this.props,headline=_this$props.headline,subline=_this$props.subline;
 
-      return (
-        react_default.a.createElement(AppBar_default.a, { position: "sticky", color: "secondary", style: testCssObjects_default.a.header, className: "wrapper" },
-        react_default.a.createElement("h1", null, headline, react_default.a.createElement("span", null, subline))));
+return(
+react_default.a.createElement(AppBar_default.a,{position:"sticky",color:"primary",style:testCssObjects_default.a.header,className:"wrapper"},
+react_default.a.createElement("h1",null,headline,react_default.a.createElement("span",null,subline))));
 
 
-    } }]);return Header;}(react_default.a.Component), _class2.propTypes = { viewStore: prop_types_default.a.object.isRequired, headline: prop_types_default.a.string.isRequired, subline: prop_types_default.a.string }, _temp)) || _class) || _class);
+}}]);return Header}(react_default.a.Component),Header_class2.propTypes={viewStore:prop_types_default.a.object.isRequired,headline:prop_types_default.a.string.isRequired,subline:prop_types_default.a.string},Header_temp))||Header_class)||Header_class);
 
 
 /* harmony default export */ var js_components_Header = (Header_Header);
-// EXTERNAL MODULE: ./app/js/index.styl
-var js = __webpack_require__("./app/js/index.styl");
+// EXTERNAL MODULE: ./app/style/layout.styl
+var layout = __webpack_require__("./app/style/layout.styl");
 
+// CONCATENATED MODULE: ./app/js/Layout.js
+var Layout_dec,Layout_class,Layout_class2,Layout_temp;
+
+
+
+
+
+
+
+
+
+
+
+
+var themes={
+default23:muiThemes,react23:muiThemes_react23};var Layout_ref=/*#__PURE__*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+react_default.a.createElement(js_components_Header,{headline:"React23",subline:"the perfect react stack to wrap your web app"});var Layout_ref2=/*#__PURE__*/
+
+
+react_default.a.createElement(pages_Home,null);var Layout_Layout=(Layout_dec=Object(index_module["inject"])("viewStore"),Layout_dec(Layout_class=Object(index_module["observer"])(Layout_class=(Layout_temp=Layout_class2=/*#__PURE__*/function(_React$Component){inherits_default()(Layout,_React$Component);function Layout(){classCallCheck_default()(this,Layout);return possibleConstructorReturn_default()(this,getPrototypeOf_default()(Layout).apply(this,arguments))}createClass_default()(Layout,[{key:"render",value:function render(){var viewStore=this.props.viewStore;var theme=themes[viewStore.theme];return react_default.a.createElement(styles["MuiThemeProvider"],{theme:theme},react_default.a.createElement(react_default.a.Fragment,null,Layout_ref,react_default.a.createElement("div",{id:"content",className:"wrapper"},Layout_ref2)));
+
+
+
+
+}}]);return Layout}(react_default.a.Component),Layout_class2.propTypes={viewStore:prop_types_default.a.object.isRequired},Layout_temp))||Layout_class)||Layout_class);
+
+
+/* harmony default export */ var js_Layout = (Layout_Layout);
 // CONCATENATED MODULE: ./app/js/App.js
-var App_dec, App_class, App_class2, App_temp;
 
+var App_ref=/*#__PURE__*/
 
 
 
 
-
-
-
-
-
-
-
-var themes = {
-  default23: muiThemes, react23: muiThemes_react23 };var _ref2 = /*#__PURE__*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-react_default.a.createElement(js_components_Header, { headline: "React23", subline: "the perfect react stack to wrap your web app" });var _ref3 = /*#__PURE__*/
-
-react_default.a.createElement("b", null, "active theme: ");var _ref4 = /*#__PURE__*/react_default.a.createElement("br", null);var App_App = (App_dec = Object(index_module["inject"])('viewStore'), App_dec(App_class = Object(index_module["observer"])(App_class = (App_temp = App_class2 = /*#__PURE__*/function (_React$Component) {inherits_default()(App, _React$Component);function App(props) {var _this;classCallCheck_default()(this, App);_this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(App).call(this, props));_this.state = { theme: 'default23', cowsay: '' };return _this;}createClass_default()(App, [{ key: "componentDidMount", value: function () {var _componentDidMount = asyncToGenerator_default()( /*#__PURE__*/regenerator_default.a.mark(function _callee() {var _ref, say;return regenerator_default.a.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return __webpack_require__.e(/*! import() | cowsay */ "vendors~cowsay").then(__webpack_require__.t.bind(null, /*! cowsay */ "./node_modules/cowsay/build/cowsay.umd.js", 7));case 2:_ref = _context.sent;say = _ref.say;this.say = say;setTimeout(this.fillContent.bind(this), 500);case 6:case "end":return _context.stop();}}}, _callee, this);}));return function componentDidMount() {return _componentDidMount.apply(this, arguments);};}() }, { key: "fillContent", value: function fillContent() {this.setState({ cowsay: this.say({ text: "\n    I'm a MOOdule!\n    A splitted code chunk,\n    that is loaded asynchron\n    via Webpacks dynamic import feature!\n\n", tongue: 'U', eyes: 'oO' }) });} }, { key: "render", value: function render() {var viewStore = this.props.viewStore;var theme = themes[viewStore.theme];var isDefaultTheme = viewStore.theme === 'default23';return react_default.a.createElement(styles["MuiThemeProvider"], { theme: theme }, react_default.a.createElement(react_default.a.Fragment, null, _ref2, react_default.a.createElement("div", { id: "content", className: "wrapper" }, _ref3, viewStore.theme, _ref4,
-      react_default.a.createElement(Switch_default.a, { onChange: function onChange(e) {return viewStore.switchTheme();}, checked: !isDefaultTheme }), " toggle Theme",
-      react_default.a.createElement("pre", null, this.state.cowsay))));
-
-
-
-
-    } }]);return App;}(react_default.a.Component), App_class2.propTypes = { viewStore: prop_types_default.a.object.isRequired }, App_temp)) || App_class) || App_class);
+react_default.a.createElement(js_Layout,null);var App_App=/*#__PURE__*/function(_React$Component){inherits_default()(App,_React$Component);function App(){classCallCheck_default()(this,App);return possibleConstructorReturn_default()(this,getPrototypeOf_default()(App).apply(this,arguments))}createClass_default()(App,[{key:"render",// TBD: add mobx-router to pass /page component to Layout
+value:function render(){return App_ref}}]);return App}(react_default.a.Component);
 
 
 /* harmony default export */ var js_App = __webpack_exports__["default"] = (App_App);
@@ -426,6 +515,18 @@ react_default.a.createElement("b", null, "active theme: ");var _ref4 = /*#__PURE
 /*!***************************************!*\
   !*** ./app/js/components/Header.styl ***!
   \***************************************/
+/*! no static exports found */
+/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./app/js/components/ThemeSwitch/ThemeSwitch.styl":
+/*!********************************************************!*\
+  !*** ./app/js/components/ThemeSwitch/ThemeSwitch.styl ***!
+  \********************************************************/
 /*! no static exports found */
 /*! ModuleConcatenation bailout: Module is not an ECMAScript module */
 /***/ (function(module, exports) {
@@ -476,48 +577,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _App_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./App.js */ "./app/js/App.js");
 
 
+// refactor: ? shove Provider into App.js?
 
 
 
 
 
 
+if(false){}
+if(!global._babelPolyfill)__webpack_require__(/*! @babel/polyfill */ "./node_modules/@babel/polyfill/lib/index.js");
 
-if (false) {}
-if (!global._babelPolyfill) __webpack_require__(/*! @babel/polyfill */ "./node_modules/@babel/polyfill/lib/index.js");
-
-Object(_stores_autorun__WEBPACK_IMPORTED_MODULE_8__["default"])(_stores__WEBPACK_IMPORTED_MODULE_9__["default"]);var _ref = /*#__PURE__*/
-
+Object(_stores_autorun__WEBPACK_IMPORTED_MODULE_8__["default"])(_stores__WEBPACK_IMPORTED_MODULE_9__["default"]);var _ref=/*#__PURE__*/
 
 
 
 
 
-react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_App_js__WEBPACK_IMPORTED_MODULE_10__["default"], null);var Root = /*#__PURE__*/function (_React$Component) {_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(Root, _React$Component);function Root() {_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Root);return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(Root).apply(this, arguments));}_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Root, [{ key: "render", value: function render() {return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(mobx_react__WEBPACK_IMPORTED_MODULE_7__["Provider"], _stores__WEBPACK_IMPORTED_MODULE_9__["default"], _ref);
+react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_App_js__WEBPACK_IMPORTED_MODULE_10__["default"],null);var Root=/*#__PURE__*/function(_React$Component){_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(Root,_React$Component);function Root(){_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this,Root);return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(Root).apply(this,arguments))}_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Root,[{key:"render",value:function render(){return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(mobx_react__WEBPACK_IMPORTED_MODULE_7__["Provider"],_stores__WEBPACK_IMPORTED_MODULE_9__["default"],_ref);
 
 
-    } }]);return Root;}(react__WEBPACK_IMPORTED_MODULE_5___default.a.Component);
+}}]);return Root}(react__WEBPACK_IMPORTED_MODULE_5___default.a.Component);
 
 
-if (true) {
-  react_dom__WEBPACK_IMPORTED_MODULE_6___default.a.render(
-  react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(Root, null),
-  document.getElementById('app'));
+if(true){
+react_dom__WEBPACK_IMPORTED_MODULE_6___default.a.render(
+react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(Root,null),
+document.getElementById("app"));
 
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./app/js/index.styl":
-/*!***************************!*\
-  !*** ./app/js/index.styl ***!
-  \***************************/
-/*! no static exports found */
-/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -526,26 +614,29 @@ if (true) {
   !*** ./app/stores/autorun.js ***!
   \*******************************/
 /*! exports provided: default */
-/*! ModuleConcatenation bailout: Module uses injected variables (global) */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mobx */ "./node_modules/mobx/lib/mobx.module.js");
+/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mobx */ "./node_modules/mobx/lib/mobx.module.js");
+var
 
+isProduction={"NODE_ENV":"production","isProduction":true,"isDevelopment":false,"isDebug":false,"ports":{"portFE":7000,"portHMR":7070,"portBSProxy":7001,"portBSUI":3000},"paths":{"ROOT":"C:\\xampp\\htdocs\\projects\\react23","stack":"C:\\xampp\\htdocs\\projects\\react23\\stack","server":"C:\\xampp\\htdocs\\projects\\react23\\stack\\server","app":"C:\\xampp\\htdocs\\projects\\react23\\app","src":"C:\\xampp\\htdocs\\projects\\react23\\app\\js","configs":"C:\\xampp\\htdocs\\projects\\react23\\config","build":"C:\\xampp\\htdocs\\projects\\react23\\build","sass":"C:\\xampp\\htdocs\\projects\\react23\\app\\scss","tests":"C:\\xampp\\htdocs\\projects\\react23\\__tests__","coverage":"C:\\xampp\\htdocs\\projects\\react23\\__coverage__","nodeModules":"C:\\xampp\\htdocs\\projects\\react23\\node_modules"},"globs":{"clean":["!**/.gitkeep","stack/__test__/**/*","build/**/*"],"scss":{"watch":"C:\\xampp\\htdocs\\projects\\react23\\app\\scss/**/*.scss","src":{"main":"C:\\xampp\\htdocs\\projects\\react23\\app\\scss/full.scss","mqs":"C:\\xampp\\htdocs\\projects\\react23\\app\\scss/mqs/*.scss"},"dist":"C:\\xampp\\htdocs\\projects\\react23\\build/"}},"cssStyle":"stylus"}.isProduction;
 
-/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {var viewStore = _ref.viewStore;
-  // Update document title whenever it changes
-  Object(mobx__WEBPACK_IMPORTED_MODULE_0__["autorun"])(function () {
-    if (viewStore) {
-      console.log('mobx autoRun -> viewStore', viewStore);
-      if (global.IS_BROWSER) {
-        window.viewStore = viewStore;
-      }
-    }
-  });
+/* harmony default export */ __webpack_exports__["default"] = (function(stores){
+Object(mobx__WEBPACK_IMPORTED_MODULE_0__["autorun"])(function(){
+if(stores){
+// dev helper - expose stores to window
+if(!isProduction&&true){
+window.stores=stores;
+// TBD: add chalk-like color output
+console.log(
+"[React23] stores exposed to window. (NODE_ENV !== 'production')\n"+
+"\uD83C\uDF89 You can now use \"stores.storeName\" in your browser console!");
+}
+}
 });
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+});
 
 /***/ }),
 
@@ -582,75 +673,75 @@ var mobx_module = __webpack_require__("./node_modules/mobx/lib/mobx.module.js");
 
 
 
-var confirmationDialogDefaults = {
-  closeOnAction: true,
-  // refactor: name it "isOpen" (bool state var)
-  open: false,
-  action: null,
-  title: 'Are you sure?',
-  content: 'Do you REALLY want to do that?',
-  canCancel: true,
-  buttonLabels: {
-    cancel: null,
-    confirm: null } };var
+var confirmationDialogDefaults={
+closeOnAction:true,
+// refactor: name it "isOpen" (bool state var)
+open:false,
+action:null,
+title:"Are you sure?",
+content:"Do you REALLY want to do that?",
+canCancel:true,
+buttonLabels:{
+cancel:null,
+confirm:null}};var
 
 
 
-ViewStore_ViewStore = /*#__PURE__*/function () {
-  function ViewStore() {var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};classCallCheck_default()(this, ViewStore);
-    Object(mobx_module["extendObservable"])(this, {
-      status: 'inactive',
-      error: false,
-      _confirmationDialog: objectSpread_default()({}, confirmationDialogDefaults),
-      sideBar: {
-        isOpen: false },
+ViewStore_ViewStore=/*#__PURE__*/function(){
+function ViewStore(){var state=arguments.length>0&&arguments[0]!==undefined?arguments[0]:{};classCallCheck_default()(this,ViewStore);
+Object(mobx_module["extendObservable"])(this,{
+status:"inactive",
+error:false,
+_confirmationDialog:objectSpread_default()({},confirmationDialogDefaults),
+sideBar:{
+isOpen:false},
 
-      navBar: {
-        isOpen: true },
+navBar:{
+isOpen:true},
 
-      theme: 'react23' },
-    state);
+theme:"react23"},
+state);
 
-    if ( true && Object({"IS_BROWSER":true,"NODE_ENV":"production","APP_CONFIG":{"NODE_ENV":"production","isProduction":true,"isDevelopment":false,"isDebug":false,"ports":{"portFE":7000,"portHMR":7070,"portBSProxy":7001,"portBSUI":3000},"paths":{"ROOT":"C:\\xampp\\htdocs\\projects\\react23","stack":"C:\\xampp\\htdocs\\projects\\react23\\stack","server":"C:\\xampp\\htdocs\\projects\\react23\\stack\\server","app":"C:\\xampp\\htdocs\\projects\\react23\\app","src":"C:\\xampp\\htdocs\\projects\\react23\\app\\js","configs":"C:\\xampp\\htdocs\\projects\\react23\\config","build":"C:\\xampp\\htdocs\\projects\\react23\\build","sass":"C:\\xampp\\htdocs\\projects\\react23\\app\\scss","tests":"C:\\xampp\\htdocs\\projects\\react23\\__tests__","coverage":"C:\\xampp\\htdocs\\projects\\react23\\__coverage__","nodeModules":"C:\\xampp\\htdocs\\projects\\react23\\node_modules"},"globs":{"clean":["!**/.gitkeep","stack/__test__/**/*","build/**/*"],"scss":{"watch":"C:\\xampp\\htdocs\\projects\\react23\\app\\scss/**/*.scss","src":{"main":"C:\\xampp\\htdocs\\projects\\react23\\app\\scss/full.scss","mqs":"C:\\xampp\\htdocs\\projects\\react23\\app\\scss/mqs/*.scss"},"dist":"C:\\xampp\\htdocs\\projects\\react23\\build/"}},"cssStyle":"stylus"}}).DEBUG) {
-      window.ViewStore = this;
-    }
-  }createClass_default()(ViewStore, [{ key: "switchTheme", value: function switchTheme()
+if( true&&Object({"IS_BROWSER":true,"NODE_ENV":"production","APP_CONFIG":{"NODE_ENV":"production","isProduction":true,"isDevelopment":false,"isDebug":false,"ports":{"portFE":7000,"portHMR":7070,"portBSProxy":7001,"portBSUI":3000},"paths":{"ROOT":"C:\\xampp\\htdocs\\projects\\react23","stack":"C:\\xampp\\htdocs\\projects\\react23\\stack","server":"C:\\xampp\\htdocs\\projects\\react23\\stack\\server","app":"C:\\xampp\\htdocs\\projects\\react23\\app","src":"C:\\xampp\\htdocs\\projects\\react23\\app\\js","configs":"C:\\xampp\\htdocs\\projects\\react23\\config","build":"C:\\xampp\\htdocs\\projects\\react23\\build","sass":"C:\\xampp\\htdocs\\projects\\react23\\app\\scss","tests":"C:\\xampp\\htdocs\\projects\\react23\\__tests__","coverage":"C:\\xampp\\htdocs\\projects\\react23\\__coverage__","nodeModules":"C:\\xampp\\htdocs\\projects\\react23\\node_modules"},"globs":{"clean":["!**/.gitkeep","stack/__test__/**/*","build/**/*"],"scss":{"watch":"C:\\xampp\\htdocs\\projects\\react23\\app\\scss/**/*.scss","src":{"main":"C:\\xampp\\htdocs\\projects\\react23\\app\\scss/full.scss","mqs":"C:\\xampp\\htdocs\\projects\\react23\\app\\scss/mqs/*.scss"},"dist":"C:\\xampp\\htdocs\\projects\\react23\\build/"}},"cssStyle":"stylus"}}).DEBUG){
+window.ViewStore=this;
+}
+}createClass_default()(ViewStore,[{key:"switchTheme",value:function switchTheme()
 
-    {var theme = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default23';
-      this.theme = this.theme === 'default23' ?
-      'react23' :
-      'default23';
-    } }, { key: "confirmationDialog", set: function set(
+{var theme=arguments.length>0&&arguments[0]!==undefined?arguments[0]:"default23";
+this.theme=this.theme==="default23"?
+"react23":
+"default23";
+}},{key:"confirmationDialog",set:function set(
 
-    confirmationDialog) {
-      // extend given option with defaults
-      confirmationDialog = Object.assign(confirmationDialogDefaults, confirmationDialog);
+confirmationDialog){
+// extend given option with defaults
+confirmationDialog=Object.assign(confirmationDialogDefaults,confirmationDialog);
 
-      // then extend the observable
-      Object(mobx_module["extendObservable"])(this._confirmationDialog, confirmationDialog);
-    }, get: function get()
+// then extend the observable
+Object(mobx_module["extendObservable"])(this._confirmationDialog,confirmationDialog);
+},get:function get()
 
-    {
-      return this._confirmationDialog;
-    } }]);return ViewStore;}();
+{
+return this._confirmationDialog;
+}}]);return ViewStore}();
 // CONCATENATED MODULE: ./app/stores/ViewStore/index.js
 
 /* harmony default export */ var stores_ViewStore = (ViewStore_ViewStore);
 // CONCATENATED MODULE: ./app/stores/initialState.js
-var getInitialState = function getInitialState() {
-  var clientState =  true
-  // refactor: localStorage engine + engineKey in appConfig
-  ? localStorage.getItem('testLocalStorage')
-  // refactor: what to do on serverSide?
-  : undefined;
+var getInitialState=function getInitialState(){
+var clientState= true
+// refactor: localStorage engine + engineKey in appConfig
+?localStorage.getItem("testLocalStorage")
+// refactor: what to do on serverSide?
+:undefined;
 
-  // TBD: initial state!
-  var initialState = {
-    'initVar1': 'foo',
-    'initVar2': 'bar' };
+// TBD: initial state!
+var initialState={
+"initVar1":"foo",
+"initVar2":"bar"};
 
 
-  return Object.assign({}, initialState, clientState);
+return Object.assign({},initialState,clientState);
 };
 
 /* harmony default export */ var initialState = (getInitialState());
@@ -662,16 +753,28 @@ var getInitialState = function getInitialState() {
 
 
 
-var stores_computeStore = function computeStore() {var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return {
-    // messages:   new MessageStore(state.messages).messages,
-    // items:      new ItemsStore(state.items),
-    viewStore: new stores_ViewStore(state.view) };
+var stores_computeStore=function computeStore(){var state=arguments.length>0&&arguments[0]!==undefined?arguments[0]:{};
+return{
+// messages:   new MessageStore(state.messages).messages,
+// items:      new ItemsStore(state.items),
+viewStore:new stores_ViewStore(state.view)};
 
 };
 
 // Initialize Stores with initialState
 /* harmony default export */ var stores = __webpack_exports__["default"] = (stores_computeStore(initialState));
+
+/***/ }),
+
+/***/ "./app/style/layout.styl":
+/*!*******************************!*\
+  !*** ./app/style/layout.styl ***!
+  \*******************************/
+/*! no static exports found */
+/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -683,7 +786,7 @@ var stores_computeStore = function computeStore() {var state = arguments.length 
 /*! ModuleConcatenation bailout: Module is not an ECMAScript module */
 /***/ (function(module, exports) {
 
-module.exports =  {"typography":{"useNextVariants":"true"},"palette":{"primary":{"main":"#1a237e"},"secondary":{"main":"#ffb300"}},"overrides":{"MuiButton":{"root":{"color":"#fff"}}}}
+module.exports =  {"typography":{"useNextVariants":"true"},"palette":{"primary":{"main":"#ffb300"},"secondary":{"main":"#1a237e"}},"overrides":{"MuiButton":{"root":{"color":"#fff"}}}}
 
 /***/ }),
 
