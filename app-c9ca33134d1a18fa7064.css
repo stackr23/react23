@@ -60,6 +60,10 @@ body {
   margin: 0;
   padding: 0;
 }
+.wrapper {
+  padding: 0 2rem;
+  transition: padding 300ms ease-in;
+}
 body {
   font-size: 14px;
 }
@@ -70,7 +74,12 @@ body {
 }header {
   padding: 0 1rem;
 }
+h1 {
+  color: #333;
+}
 h1 span {
+  display: block;
+  color: #fff;
   font-size: 0.6em;
 }
-/*# sourceMappingURL=app-604becc21ac8bf186edd.map.js*/
+/*# sourceMappingURL=app-c9ca33134d1a18fa7064.map.js*/
