@@ -3,7 +3,11 @@ import PropTypes            from 'prop-types'
 import {observer, inject}   from 'mobx-react'
 
 import Switch               from '@material-ui/core/Switch'
-import './ThemeSwitch.styl'
+
+let style   = {}
+if (process.env.IS_BROWSER) {
+    require('./ThemeSwitch.styl')
+}
 
 @inject('viewStore')
 @observer

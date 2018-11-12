@@ -6,6 +6,11 @@ import {debugMsg}   from '../utils/myLogger'
 
 const config        = require('config').default
 
+// refactor: shove into ? config ?
+if (typeof process.env.APP_CONFIG !== 'object') {
+    process.env.APP_CONFIG = config
+}
+
 // log appConfig
 debugMsg('{bold [/stack/gulp/]} appConfig: ', config)
 

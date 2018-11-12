@@ -11,8 +11,8 @@ const confirmationDialogDefaults = {
     content:        'Do you REALLY want to do that?',
     canCancel:      true,
     buttonLabels:       {
-        cancel:     null,
-        confirm:    null
+        cancel:     'cancel',
+        confirm:    'confirm'
     }
 }
 
