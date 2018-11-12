@@ -1,8 +1,6 @@
 import React                from 'react'
 import createBrowserHistory from 'history/createBrowserHistory'
-import {
-    Router, Route, Link
-}                           from 'react-router-dom'
+import {Router, Route}      from 'react-router-dom'
 import {
     syncHistoryWithStore
 }                           from 'mobx-react-router'
@@ -11,35 +9,24 @@ import mobxAutorun          from '../stores/autorun'
 import stores               from '../stores'
 
 import Layout               from './Layout'
-import Home                 from './pages/Home'
-import TestPage             from './pages/TestPage'
+import createRoutes         from '../routes/index'
 
 mobxAutorun(stores)
 
 const browserHistory        = createBrowserHistory()
 const history               = syncHistoryWithStore(browserHistory, stores.router)
 
-const routes = [
-    {
-        path:       '/',
-        exact:      true,
-        component:  Home
-    },
-    {
-        path:       '/test',
-        exact:      true,
-        component:  TestPage
-    }
-]
+const routes                = createRoutes(stores)
 
-const RouteWithSubRoutes = route => {
+const LayoutWithChild = route => {
+    const {component: Component, ...routeProps} = route
+
     return (
         <Route
-            path={route.path}
-            exact={route.exact}
-            render={props => (
-                <Layout {...props} routes={route.routes}>
-                    <route.component />
+            {...routeProps}
+            render={routerProps => (
+                <Layout {...routerProps} >
+                    <Component />
                 </Layout>
             )}
         />
@@ -52,7 +39,7 @@ class App extends React.Component {
             <Provider {...stores}>
                 <Router history={history}>
                     <React.Fragment>
-                        {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+                        {routes.map((route, i) => <LayoutWithChild key={i} {...route} />)}
                     </React.Fragment>
                 </Router>
             </Provider>

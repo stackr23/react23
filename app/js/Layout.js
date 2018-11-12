@@ -19,28 +19,25 @@ const themes = {
 @observer
 class Layout extends React.Component {
     static propTypes = {
-        children:           PropTypes.array.isRequired,
+        children:           PropTypes.object.isRequired,
         router:             PropTypes.object.isRequired,
         viewStore:          PropTypes.object.isRequired
     }
     render () {
-        const {viewStore, router}   = this.props
+        const {viewStore}   = this.props
         const theme         = themes[viewStore.theme]
-
-        console.log('routerstore', router)
-        console.log('children', this.props.children)
 
         return (
             <MuiThemeProvider theme={theme}>
                 <React.Fragment>
                     <Header headline="React23" subline="the perfect react stack to wrap your web app" />
-                    <nav id="nav" className="wrapper" style={{marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid #ccc'}}>
+                    <nav id="nav" className="wrapper" style={{
+                        marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid #ccc'
+                    }}>
                         <Link to={'/'}>Home</Link>&nbsp;|&nbsp;
                         <Link to={'/test'}>TestPage</Link>
                     </nav>
-                    <div id="content" className="wrapper">
-                        {this.props.children}
-                    </div>
+                    {this.props.children}
                 </React.Fragment>
             </MuiThemeProvider>
         )

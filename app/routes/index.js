@@ -1,33 +1,32 @@
-// main route trees
-const routes = {
-    path: '/',
+'use strict'
 
-    // Keep in mind, routes are evaluated in order
-    children: [
+import Pages            from '../js/pages/'
+
+export const createRoutes = store => {
+    // TBD: loginCheck
+    // // const requireAuth = (nextState, _replaceState) => {
+    //     const {user: userStore} = store
+    //     if (userStore.ready && !userStore.isLoggedin) {
+    //         // replaceState(WOHINGENAU?)
+    //     }
+    // }
+
+    // TBD: use isomporphicRoutes.js
+    const routes          = [
         {
-            path: '/',
-            load: () => import(/* webpackChunkName: 'home' */ './Home')
+            path:       '/',
+            exact:      true,
+            component:  Pages.Home
+            // onEnter: requireAuth
         },
         {
-            path: '/test',
-            load: () => import(/* webpackChunkName: 'testPage' */ './TestPage')
+            path:       '/test',
+            exact:      true,
+            component:  Pages.TestPage
         }
-        // {
-        //     path: '(.*)',
-        //     load: () => import( webpackChunkName: 'not-found'  './not-found')
-        // }
-    ],
+    ]
 
-    async action ({next}) {
-    // Execute each child route until one of them return the result
-        const route = await next()
-
-        // Provide default values for title, description etc.
-        route.title = `${route.title || 'Untitled Page'} - www.reactstarterkit.com`
-        route.description = route.description || ''
-
-        return route
-    }
+    return routes
 }
 
-export default routes
+export default createRoutes
