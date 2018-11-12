@@ -17,6 +17,7 @@ import ip                               from 'ip'
 import getBuiltIndex                    from '../../utils/getBuiltIndex'
 import getBuildFileNames                from '../../utils/getBuildFileNames'
 
+// import { StaticRouter } from 'react-router'
 // import initialState                     from '../../../app/js/stores/initialState.js'
 // import store                            from '../../../app/js/stores/index.js'
 
@@ -26,14 +27,14 @@ import getBuildFileNames                from '../../utils/getBuildFileNames'
 // import { Provider }                     from 'mobx-react'
 
 const {
-    isDevelopment, isProduction,
+    isProduction,
     ports: {portHMR}
 } = require('config').default
 
 const serverIp = ip.address()
 
 export default function render (req, res, next) {
-    const html = renderPage({url: req.url})
+    const html = renderPage({path: req.url})
     res.send(html)
 }
 
@@ -62,29 +63,32 @@ export default function render (req, res, next) {
 // console.log('indexHtml', indexHtml)
 // console.log('parsedBody', body)
 
-const renderPage = () => {
+const renderPage = ({path}) => {
     let appJS, appCSS // set per NODE_ENV
     const {appJS: appJsFilename, appCSS: appCssFilename} = getBuildFileNames()
 
     if (isProduction) {
+        // TBD: npm run start --production
         appJS   = `/build/${appJsFilename}`
         appCSS  = `build/${appCssFilename}`
     } else {
-        appJS = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
         // TBD: prevent getBuiltIndex() CSS tag if no src is given
+        appJS = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
     }
 
     const indexHtml = getBuiltIndex({appCSS, appJS})
-
-    return '<!DOCTYPE html>\n' + indexHtml
-    // return renderToString(
-    //     <StaticRouter location={url} context={context} >
-    //         <div>
-    //             <Root />
-    //             <script type="text/javascript" src={appJS} />
-    //         </div>
+    // const appHtml   = renderToStaticMarkup(
+    //     <StaticRouter location={path}>
+    //         {/* <App /> */}
+    //         <h3>server render {path}</h3>
     //     </StaticRouter>
     // )
+
+    return '<!DOCTYPE html><!-- ' + path + '-->\n' + indexHtml
+
+    // router.dispatch({ ...req, context }).then((component, state) => {
+    //     res.status(state.statusCode).send(indexHtml)
+    // }).catch(next)
 
     // return '<!DOCTYPE html>' + renderToStaticMarkup(
     //     <html>
@@ -102,16 +106,3 @@ const renderPage = () => {
     // )
 }
 
-renderPage()
-
-// function renderPage() {
-//  return '<!DOCTYPE html>' + ReactDOMServer.renderToStaticMarkup(
-//    <Html
-//      appCssFilename={appCssFilename}
-//      bodyHtml={`<div id="app">${appHtml}</div>${scriptHtml}`}
-//      googleAnalyticsId={appConfig.googleAnalyticsId}
-//      helmet={Helmet.rewind()}
-//      isProduction={appConfig.isProduction}
-//    />
-//  )
-// }
