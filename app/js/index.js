@@ -12,7 +12,6 @@ if (!global._babelPolyfill) require('@babel/polyfill')
 
 mobxAutorun(stores)
 
-
 class Root extends React.Component {
     render () {
         return (
