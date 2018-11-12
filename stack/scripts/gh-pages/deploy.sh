@@ -1,6 +1,7 @@
 #!/bin/bash
 
-(cd build && \
+(npm run build && \
+cd build && \
 git add --all && \
 git commit -m ":rocket: deploy build to gh-pages" && \
 git push origin gh-pages) || \
