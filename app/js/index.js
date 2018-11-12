@@ -7,9 +7,6 @@ import stores               from '../stores'
 
 import App                  from './App.js'
 
-// TBD: inject isBrowser per webpack
-// const {isBrowser} = require('config').default
-
 if (module.hot) module.hot.accept()
 if (!global._babelPolyfill) require('@babel/polyfill')
 

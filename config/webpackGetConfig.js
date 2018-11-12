@@ -32,7 +32,7 @@ export default _isDevelopment => {
         cache:      !isDevelopment,
         devtool:    process.env.CONTINUOUS_INTEGRATION
             ? 'inline-source-map'
-            : 'cheap-module-source-map',
+            : 'cheap-module-eval-source-map',
         entry: {
             app: isDevelopment
                 ? [
