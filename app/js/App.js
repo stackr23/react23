@@ -18,7 +18,7 @@ const themes = {
 
 @inject('viewStore')
 @observer
-class App extends Component {
+class App extends React.Component {
     static propTypes = {
         viewStore:  PropTypes.object.isRequired
     }
@@ -36,7 +36,6 @@ class App extends Component {
         this.say    = say
 
         setTimeout(this.fillContent.bind(this), 500)
-        window.setState = this.setState.bind(this)
     }
 
     fillContent () {
@@ -53,6 +52,9 @@ class App extends Component {
         const {viewStore}       = this.props
         const theme             = themes[viewStore.theme]
         const isDefaultTheme    = viewStore.theme === 'default23'
+
+        console.log('[App->render] themes', themes)
+        console.log('[App->render] viewStore.theme', viewStore.theme)
 
         return (
             <MuiThemeProvider theme={theme}>

@@ -1,6 +1,6 @@
 {
   "name": "react23",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "perfect stack for your app in react",
   "main": "Gulpfile.babel.js",
   "scripts": {
@@ -45,8 +45,7 @@
     "@babel/register": "^7.0.0",
     "@babel/runtime": "^7.1.2",
     "@material-ui/core": "^3.4.0",
-    "@stackr23/styleobjects": "^1.4.0",
-    "@stackr23/styleobjects-loader": "^0.7.0",
+    "@stackr23/styleobjects-loader": "^0.8.1",
     "autoprefixer": "^9.3.1",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",

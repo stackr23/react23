@@ -14,9 +14,6 @@ export default createMuiTheme(Object.assign({}, {
     defaultTheme
 }))
 
-console.log('_react23', _react23)
-console.log('_react23', _react23['palette__primary'].main)
-
 export const react23 = createMuiTheme(Object.assign({}, {
     _react23
 }))
