@@ -13,6 +13,7 @@ before_install:
 
 install:
     - npm install
+    - chmod 755 ./stack/scripts/ -R
 
 script:
 - npm run script gh-pages/init
