@@ -17,9 +17,7 @@ class Header extends React.Component {
     }
 
     render () {
-        const {headline, subline, viewStore} = this.props
-
-        console.log('[header->REnder]', viewStore.theme)
+        const {headline, subline} = this.props
 
         return (
             <AppBar position="sticky" color="secondary" style={style.header} className="wrapper">

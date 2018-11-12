@@ -63,6 +63,7 @@ class App extends React.Component {
                 <React.Fragment>
                     <Header headline="React23" subline="the perfect react stack to wrap your web app" />
                     <div id="content" className="wrapper">
+                        <b>active theme:</b>{viewStore.theme}<br />
                         <Switch onChange={e => viewStore.switchTheme()} checked={!isDefaultTheme} /> toggle Theme
                         <pre>{this.state.cowsay}</pre>
                     </div>
