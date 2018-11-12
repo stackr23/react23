@@ -86,7 +86,7 @@ export default _isDevelopment => {
         //     'fs': {}
         // },
         optimization: {
-            minimize: true
+            minimize: isProduction
             // minimizer: [
             //     new webpack.optimize.UglifyJsPlugin({
             //         sourceMap: true,
