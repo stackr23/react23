@@ -1,5 +1,6 @@
 # react23
-> perfect react stack to wrap your web app
+> perfect react stack to wrap your web app  
+> __demo:__ https://stackr23.github.io/react23/  
 
 [![Build Status](https://travis-ci.com/stackr23/react23.svg?branch=master)](https://travis-ci.com/stackr23/react23)
 [![devDependencies Status](https://david-dm.org/stackr23/react23/dev-status.svg)](https://david-dm.org/stackr23/react23?type=dev)

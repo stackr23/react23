@@ -53,8 +53,9 @@ class App extends React.Component {
         const theme             = themes[viewStore.theme]
         const isDefaultTheme    = viewStore.theme === 'default23'
 
-        console.log('[App->render] themes', themes)
         console.log('[App->render] viewStore.theme', viewStore.theme)
+        console.log('[App->render] palette.primary', themes[viewStore.theme].palette.primary.main)
+        console.log('[App->render] palette.secondary', themes[viewStore.theme].palette.secondary.main)
 
         return (
             <MuiThemeProvider theme={theme}>
