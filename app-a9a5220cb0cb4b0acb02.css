@@ -66,10 +66,13 @@ body {
     font-size: 16px;
   }
 }
+#app {
+  opacity: 1;
+  transition: opacity 300ms ease-out;
+}
 .wrapper,
 .page {
   padding: 0 3rem;
-  transition: padding 1s ease-out;
 }header {
   padding: 0 1rem;
 }
@@ -83,4 +86,4 @@ h1 span {
 }#ThemeSwitch .Switch > :not(.checked) {
   color: #ffb300;
 }
-/*# sourceMappingURL=app-0b220da1fab7beeb05b0.map*/
+/*# sourceMappingURL=app-a9a5220cb0cb4b0acb02.js.map*/
