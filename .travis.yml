@@ -8,26 +8,24 @@ branches:
   - development
   - /^greenkeeper/.*$/
 
-stages:
-  - name: deploy
-    # require the branch name to be master (note for PRs this is the base branch name)
-    if: branch = master
-
 before_install:
     - npm install -g gulp-cli
 
-install:
-    - npm install
-    - chmod 755 ./stack/scripts/ -R
+install: npm install
 
 script:
-- npm run script gh-pages/init
 - npm run lint
 - npm run test
 - npm run build
 
+before_deploy:
+    - 'curl -u doubleu23:62d6f361604121c33670e9987a742f1821331c51 https://api.github.com/user'
+
 deploy:
-  provider: script
-  script: bash stack/scripts/gh-pages/deploy.sh
-  on:
-    branch: master
+    on:
+        branch: master
+    provider: pages
+    local-dir: build
+    skip-cleanup: true
+    github-token: 62d6f361604121c33670e9987a742f1821331c51
+    keep-history: true
