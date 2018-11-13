@@ -58,7 +58,7 @@ export default (function (APP_CONFIG) {
         browserRoot:        process.env.GH_PAGES ? '/react23/'
         // TBD: refactor: for BUILD_STATIC
         // BUILD_STATIC set AFTER load of config -> shove into App.js?
-            : staticLocalhostRoot || '/',
+            : isProduction ? '/' : staticLocalhostRoot,
         globs: {
             clean:  [
                 '!**/.gitkeep', 'stack/__test__/**/*', 'build/**/*'

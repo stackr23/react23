@@ -30,10 +30,6 @@ export default class ViewStore {
             },
             theme:  'react23Theme'
         }, state)
-
-        if (process.env.IS_BROWSER && process.env.DEBUG) {
-            window.ViewStore = this
-        }
     }
 
     switchTheme (theme = 'react23Theme') {

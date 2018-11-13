@@ -4,7 +4,7 @@ import PropTypes                from 'prop-types'
 import {observer, inject}       from 'mobx-react'
 
 import {MuiThemeProvider}       from '@material-ui/core/styles'
-import themes                   from '../style/muiThemes'
+import * as themes                   from '../style/muiThemes/index'
 
 import {Link}                   from 'react-router-dom'
 import ConfirmationDialog       from './layout/ConfirmationDialog'

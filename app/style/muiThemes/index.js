@@ -7,10 +7,14 @@
 'use strict'
 
 import {createMuiTheme}     from '@material-ui/core/styles'
-import react23Theme         from './react23'
-import muiTheme             from './default'
+import _react23Theme        from './react23'
+import _muiTheme            from './default'
 
 
-export const muiTheme       = createMuiTheme(muiTheme)
+export const muiTheme       = createMuiTheme(_muiTheme)
 
-export const react23Theme   = createMuiTheme(react23Theme)
+export const react23Theme   = createMuiTheme(_react23Theme)
+
+export default {
+    muiTheme, react23Theme
+}
