@@ -38,8 +38,11 @@ const preLoaders                = [
 const stylusLoader = {
     loader: 'stylus-loader',
     options: {
+        stylus: {
+            preferPathResolver: 'webpack'
+        },
         sourceMap:  true,
-        compress:   isDevelopment,
+        compress:   !isDevelopment,
         use:        [stylus23({
             envVars: {NODE_ENV: NODE_ENV}
         })]

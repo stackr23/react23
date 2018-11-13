@@ -60,10 +60,9 @@ class ConfirmationDialog extends React.Component {
     }
 
     render () {
-        console.log(this.props.viewStore.confirmationDialog)
         let {
             viewStore:       {confirmationDialog: {
-                canCancel, open, title, content, action: originalAction,
+                canCancel, open, title, content, // action: originalAction,
                 // refactor: buttonLabels
                 buttonLabels: {
                     confirm:    labelConfirm,

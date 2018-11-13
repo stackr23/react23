@@ -33,8 +33,9 @@ export default _isDevelopment => {
         devtool:    process.env.CONTINUOUS_INTEGRATION
             ? 'inline-source-map'
             : !isProduction
-                ? 'cheap-module-eval-source-map'
-                : 'source-map',
+                // 'eval-source-map' for dev - if you have performance troubles
+                ? 'inline-source-map'
+                : 'cheap-source-map',
         entry: {
             app: isDevelopment
                 ? [
@@ -71,7 +72,7 @@ export default _isDevelopment => {
                         retainLines:    true,
                         sourceMap:      true,
                         babelrc:        true,
-                        cacheDirectory: path.join(paths.build, 'cache', 'babel-loader'),
+                        // cacheDirectory: path.join(paths.build, 'cache', 'babel-loader'),
                         // presets and plugins defined in .babelrc
                         // enable env config if needed
                         env: {production: {
@@ -92,7 +93,7 @@ export default _isDevelopment => {
         //     'fs': {}
         // },
         optimization: {
-            minimize: isProduction
+            // minimize: false
             // minimize: (() => {
             //     if (isProduction) {
             //         return [
@@ -112,7 +113,7 @@ export default _isDevelopment => {
         plugins: (() => {
             const plugins = [
                 new webpack.LoaderOptionsPlugin({
-                    minimize:   isProduction,
+                    minimize:   false,
                     debug:      isDevelopment,
                     hotPort:    portHMR,
                     sourceMap:  true,
@@ -147,7 +148,8 @@ export default _isDevelopment => {
                 plugins.push(
                     // new webpack.LoaderOptionsPlugin({minimize: true}),
                     new ExtractTextPlugin({
-                        filename:   'app-[hash].css'
+                        filename:   'app-[hash].css',
+                        allChunks:  true
                     })
                     // new webpack.optimize.OccurrenceOrderPlugin(),
                     // new webpack.optimize.UglifyJsPlugin({
