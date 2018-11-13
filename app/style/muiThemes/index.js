@@ -1,18 +1,23 @@
-//     ___    ____  ____      ________  __________  _________
-//    /   |  / __ \/ __ \    /_  __/ / / / ____/  |/  / ____/
-//   / /| | / /_/ / /_/ /_____/ / / /_/ / __/ / /|_/ / __/
-//  / ___ |/ ____/ ____/_____/ / / __  / /___/ /  / / /___
-// /_/  |_/_/   /_/         /_/ /_/ /_/_____/_/  /_/_____/
-//
 'use strict'
+//     ___    ____  ____     ________  __________  ______________
+//    /   |  / __ \/ __ \   /_  __/ / / / ____/  |/  / ____/ ___/
+//   / /| | / /_/ / /_/ /    / / / /_/ / __/ / /|_/ / __/  \__ \
+//  / ___ |/ ____/ ____/    / / / __  / /___/ /  / / /___ ___/ /
+// /_/  |_/_/   /_/        /_/ /_/ /_/_____/_/  /_/_____//____/
+//
+//  add themes or customize react23Theme
+//
 
 import {createMuiTheme}     from '@material-ui/core/styles'
 import _react23Theme        from './react23'
 import _muiTheme            from './default'
 
-
+// default muiTheme without modifications
 export const muiTheme       = createMuiTheme(_muiTheme)
 
+// TBD: add muiTheme.dark
+
+// custom theme according to setup.styl
 export const react23Theme   = createMuiTheme(_react23Theme)
 
 export default {
