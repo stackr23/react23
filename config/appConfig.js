@@ -55,7 +55,7 @@ export default (function (APP_CONFIG) {
             portBSUI:       3000
         },
         paths,
-        browserRoot:        process.env.GH_PAGES ? '/react23'
+        browserRoot:        process.env.GH_PAGES ? '/react23/'
             : process.env.APP_BUILD_STATIC
                 ? '' // '/projects/stackr23/build/' // TBD: refactor, read from ENV?
                 : localhostRoot,

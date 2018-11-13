@@ -15,7 +15,7 @@ const {browserRoot}         = process.env.APP_CONFIG
 
 mobxAutorun(stores)
 
-console.log('process.env.GH_PAGES', process.env.GH_PAGES)
+console.log('process.env.APP_CONFIG', process.env.APP_CONFIG)
 
 const browserHistory    = createBrowserHistory({basename: browserRoot})
 const history           = syncHistoryWithStore(browserHistory, stores.router)
