@@ -31,7 +31,7 @@ const {
 const routes            = createRoutes(stores)
 const serverIp          = ip.address()
 
-function render (req, res, next) {
+const render = (req, res, next) => {
     const {appHtml, ssrCSS} = renderPage({path: req.url, stores})
 
     let appJS, appCSS // set per NODE_ENV
