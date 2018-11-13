@@ -52,7 +52,7 @@ export default _isDevelopment => {
         } : {
             path: paths.build,
             filename: 'app-[hash].js', // TBD: 'app-[hash].js'
-            sourceMapFilename: 'app-[hash].map',
+            sourceMapFilename: 'app-[hash].js.map',
             chunkFilename: 'app-[chunkhash].js'
         },
         stats: verbose ? 'verbose' : isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',

@@ -7,7 +7,6 @@ import {MuiThemeProvider}   from '@material-ui/core/styles'
 import default23, {react23} from '../style/muiThemes'
 
 import {Link}               from 'react-router-dom'
-
 import ConfirmationDialog   from './layout/ConfirmationDialog'
 
 import Header               from './components/Header'
@@ -37,12 +36,15 @@ class Layout extends React.Component {
 
     render () {
         const {viewStore, router}   = this.props
-        const theme         = themes[viewStore.theme]
+        const theme                 = themes[viewStore.theme]
 
-        console.log('router', router)
+        let sheetsManager = {}
+        if (!process.env.IS_BROWSER) {
+            sheetsManager = {sheetsManager: new Map()}
+        }
 
         return (
-            <MuiThemeProvider theme={theme}>
+            <MuiThemeProvider theme={theme} {...sheetsManager} >
                 <React.Fragment>
                     <div id="main">
                         <Header headline="React23" subline="the perfect react stack to wrap your web app" />

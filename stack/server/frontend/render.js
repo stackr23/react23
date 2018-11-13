@@ -1,13 +1,6 @@
 // REACT LIBS
 import React                            from 'react'
-import {renderToStaticMarkup}           from 'react-dom/server' // {renderToString}
-// import Html                          from './Html.react'
-// import {createMemoryHistory}            from 'history'
-
-
-// import {matchPath, match, StaticRouter} from 'react-router-dom'
-// import {matchPath, match} from 'react-router-server'
-
+import {renderToString}           from 'react-dom/server' // {renderToString}
 
 // OTHER LIBS
 import ip                               from 'ip'
@@ -15,36 +8,42 @@ import ip                               from 'ip'
 // import Promise                          from 'bluebird'
 // APP FILES
 import getBuiltIndex                    from '../../utils/getBuiltIndex.js'
-import getBuildFileNames                from '../../utils/getBuildFileNames.js'
+import getBuildFilenames                from '../../utils/getBuildFilenames.js'
 
 import {StaticRouter}                   from 'react-router'
 // import initialState                     from '../../../app/js/stores/initialState.js'
 import {Provider}                       from 'mobx-react'
 import stores                           from '../../../app/stores/index.js'
 
-// import routes                           from '../../../app/js/Routes.js'
-
+import createRoutes                     from '../../../app/routes/index.js'
 import App                              from '../../../app/js/App.js'
 import Layout                           from '../../../app/js/Layout.js'
+
+import {createGenerateClassName}        from '@material-ui/core/styles'
+import {SheetsRegistry}                 from 'jss'
+import {JssProvider}                    from 'react-jss'
 
 const {
     isProduction,
     ports: {portHMR}
 } = require('config').default
 
-const serverIp = ip.address()
+const routes            = createRoutes(stores)
+const serverIp          = ip.address()
 
-export default function render (req, res, next) {
-    const appHtml = renderPage({path: req.url, stores})
+function render (req, res, next) {
+    const {appHtml, ssrCSS} = renderPage({path: req.url, stores})
 
     let appJS, appCSS // set per NODE_ENV
-    const {appJS: appJsFilename, appCSS: appCssFilename} = getBuildFileNames()
+    const {appJS: appJsFilename, appCSS: appCssFilename} = getBuildFilenames()
 
-    if (isProduction || process.env.APP_BUILD_STATIC) {
+    if (isProduction) {
         // TBD: npm run start --production
         appJS   = `/build/${appJsFilename}`
-        appCSS  = `build/${appCssFilename}`
+        appCSS  = `/build/${appCssFilename}`
     } else {
+        // TBD: APP_BUILD_STATIC => add /build/
+
         // TBD: prevent getBuiltIndex() CSS tag if no src is given
         appJS = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
     }
@@ -52,23 +51,38 @@ export default function render (req, res, next) {
     const indexHtml = getBuiltIndex({appCSS, appJS})
 
     const html = '<!DOCTYPE html>\n' + indexHtml.replace(
-        '<div id="app"></div>', `<div id="app">${appHtml}</div>`
+        '<div id="app"></div>', `<div id="app"><style id="jss-server-side">${ssrCSS}</style>${appHtml}</div>`
     )
 
     res.send(html)
 }
 
 const renderPage = ({path, stores, context = {}}) => {
-    const appHtml   = renderToStaticMarkup(
+    // see https://github.com/mui-org/material-ui/blob/master/examples/ssr/server.js
+
+    const generateClassName = createGenerateClassName()
+    const sheetsRegistry    = new SheetsRegistry()
+
+    const appHtml           = renderToString(
         <Provider {...stores}>
             <StaticRouter location={path} context={context}>
-                <Layout  />
+                <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+                    <React.Fragment>
+                        {routes.map((route, i) =>
+                            <App.LayoutWithChild key={i} {...route} />
+                        )}
+                    </React.Fragment>
+                </JssProvider>
             </StaticRouter>
         </Provider>
     )
 
-    return appHtml
+    const ssrCSS = sheetsRegistry.toString()
+
+    return {appHtml, ssrCSS}
 }
+
+export default render
 
 // TBD: fetchComponentDataAsync
 // const fetchComponentDataAsync = async (dispatch, {components, location, params}) => { // eslint-disable-line space-before-function-paren

@@ -7,7 +7,7 @@
 //
 // change settings accoriding to your local environment
 
-const localhostRoot     = '/projects/react23/build/'
+const staticLocalhostRoot     = '/tools/react23/build'
 
 //     ____                  __ ___  _____
 //    / __ \___  ____ ______/ /|__ \|__  /
@@ -56,9 +56,9 @@ export default (function (APP_CONFIG) {
         },
         paths,
         browserRoot:        process.env.GH_PAGES ? '/react23/'
-            : process.env.APP_BUILD_STATIC
-                ? localhostRoot //  // TBD: refactor, read from ENV?
-                : '',
+        // TBD: refactor: for BUILD_STATIC
+        // BUILD_STATIC set AFTER load of config -> shove into App.js?
+            : staticLocalhostRoot || '/',
         globs: {
             clean:  [
                 '!**/.gitkeep', 'stack/__test__/**/*', 'build/**/*'

@@ -13,7 +13,27 @@ let _react23
 if (process.env.IS_BROWSER) {
     _react23    = require('./react23.csso')
 } else {
-    _react23    = {}
+    // TBD: refactor: read stylus vars in SSR!?
+    _react23    = {
+        typography: {
+            useNextVariants: true
+        },
+        palette: {
+            primary: {
+                main: '#FFB300'
+            },
+            secondary: {
+                main: '#1A237E'
+            }
+        },
+        overrides: {
+            MuiButton: {
+                root: {
+                    color: 'white'
+                }
+            }
+        }
+    }
 }
 
 export default createMuiTheme(Object.assign({}, defaultTheme))

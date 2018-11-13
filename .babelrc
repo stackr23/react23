@@ -1,5 +1,10 @@
 {
-  "presets": ["@babel/env", "@babel/react"],
+  "presets": [
+    ["@babel/env"
+        // {modules: 'amd'}
+    ],
+    "@babel/react"
+  ],
   "plugins": [
     "@babel/plugin-transform-runtime",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],

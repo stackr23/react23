@@ -18,8 +18,6 @@ const {browserRoot}         = process.env.APP_CONFIG
 
 mobxAutorun(stores)
 
-console.log('process.env.APP_CONFIG', process.env.APP_CONFIG)
-
 let _history            = process.env.IS_BROWSER
     ? createBrowserHistory({basename: browserRoot})
     : createMemoryHistory()
@@ -27,33 +25,32 @@ let _history            = process.env.IS_BROWSER
 const history           = syncHistoryWithStore(_history, stores.router)
 const routes            = createRoutes(stores)
 
-const LayoutWithChild = route => {
-    const {component: Component, ...routeProps} = route
-
-    return (
-        <Route
-            {...routeProps}
-            render={routerProps => {
-                console.log('routerProps', routerProps)
-
-                return (
-                    <Layout {...routerProps} >
-                        <Component />
-                    </Layout>
-                )
-            }}
-        />
-    )
-}
-
 class App extends React.Component {
+    static LayoutWithChild = route => {
+        const {component: Component, ...routeProps} = route
+
+        return (
+            <Route
+                {...routeProps}
+                render={routerProps => {
+                    return (
+                        <Layout {...routerProps} >
+                            <Component />
+                        </Layout>
+                    )
+                }}
+            />
+        )
+    }
+
+    // TBD: refactor: shove Provider and Router inti /index.js to Load App.js on SSR
     render () {
         return (
             <Provider {...stores}>
                 <Router history={history}>
                     <React.Fragment>
                         {routes.map((route, i) =>
-                            <LayoutWithChild key={i} {...route} />
+                            <App.LayoutWithChild key={i} {...route} />
                         )}
                     </React.Fragment>
                 </Router>
