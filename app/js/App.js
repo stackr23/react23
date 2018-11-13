@@ -1,6 +1,9 @@
-import React                from 'react'
-import createBrowserHistory from 'history/createBrowserHistory'
-import {Router, Route}      from 'react-router-dom'
+import React                    from 'react'
+import {
+    createBrowserHistory,
+    createMemoryHistory
+}                           from 'history'
+import {Router, Route}          from 'react-router-dom'
 import {
     syncHistoryWithStore
 }                           from 'mobx-react-router'
@@ -17,8 +20,11 @@ mobxAutorun(stores)
 
 console.log('process.env.APP_CONFIG', process.env.APP_CONFIG)
 
-const browserHistory    = createBrowserHistory({basename: browserRoot})
-const history           = syncHistoryWithStore(browserHistory, stores.router)
+let _history            = process.env.IS_BROWSER
+    ? createBrowserHistory({basename: browserRoot})
+    : createMemoryHistory()
+
+const history           = syncHistoryWithStore(_history, stores.router)
 const routes            = createRoutes(stores)
 
 const LayoutWithChild = route => {
@@ -27,11 +33,15 @@ const LayoutWithChild = route => {
     return (
         <Route
             {...routeProps}
-            render={routerProps => (
-                <Layout {...routerProps} >
-                    <Component />
-                </Layout>
-            )}
+            render={routerProps => {
+                console.log('routerProps', routerProps)
+
+                return (
+                    <Layout {...routerProps} >
+                        <Component />
+                    </Layout>
+                )
+            }}
         />
     )
 }

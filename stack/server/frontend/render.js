@@ -17,14 +17,15 @@ import ip                               from 'ip'
 import getBuiltIndex                    from '../../utils/getBuiltIndex'
 import getBuildFileNames                from '../../utils/getBuildFileNames'
 
-// import { StaticRouter } from 'react-router'
+import {StaticRouter}                   from 'react-router'
 // import initialState                     from '../../../app/js/stores/initialState.js'
-// import store                            from '../../../app/js/stores/index.js'
+import {Provider}                       from 'mobx-react'
+import stores                           from '../../../app/stores/index.js'
 
 // import routes                           from '../../../app/js/Routes.js'
 
 import App                              from '../../../app/js/App.js'
-// import { Provider }                     from 'mobx-react'
+import Layout                           from '../../../app/js/Layout.js'
 
 const {
     isProduction,
@@ -34,7 +35,26 @@ const {
 const serverIp = ip.address()
 
 export default function render (req, res, next) {
-    const html = renderPage({path: req.url})
+    const appHtml = renderPage({path: req.url, stores})
+
+    let appJS, appCSS // set per NODE_ENV
+    const {appJS: appJsFilename, appCSS: appCssFilename} = getBuildFileNames()
+
+    if (isProduction) {
+        // TBD: npm run start --production
+        appJS   = `/build/${appJsFilename}`
+        appCSS  = `build/${appCssFilename}`
+    } else {
+        // TBD: prevent getBuiltIndex() CSS tag if no src is given
+        appJS = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
+    }
+
+    const indexHtml = getBuiltIndex({appCSS, appJS})
+
+    const html = '<!DOCTYPE html><!-- req.url:' + req.url + '-->\n' + indexHtml.replace(
+        '<div id="app"></div>', `<div id="app">${appHtml}</div>`
+    )
+
     res.send(html)
 }
 
@@ -63,28 +83,16 @@ export default function render (req, res, next) {
 // console.log('indexHtml', indexHtml)
 // console.log('parsedBody', body)
 
-const renderPage = ({path}) => {
-    let appJS, appCSS // set per NODE_ENV
-    const {appJS: appJsFilename, appCSS: appCssFilename} = getBuildFileNames()
+const renderPage = ({path, stores, context = {}}) => {
+    const appHtml   = renderToStaticMarkup(
+        <Provider {...stores}>
+            <StaticRouter location={path} context={context}>
+                <Layout  />
+            </StaticRouter>
+        </Provider>
+    )
 
-    if (isProduction) {
-        // TBD: npm run start --production
-        appJS   = `/build/${appJsFilename}`
-        appCSS  = `build/${appCssFilename}`
-    } else {
-        // TBD: prevent getBuiltIndex() CSS tag if no src is given
-        appJS = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
-    }
-
-    const indexHtml = getBuiltIndex({appCSS, appJS})
-    // const appHtml   = renderToStaticMarkup(
-    //     <StaticRouter location={path}>
-    //         {/* <App /> */}
-    //         <h3>server render {path}</h3>
-    //     </StaticRouter>
-    // )
-
-    return '<!DOCTYPE html><!-- ' + path + '-->\n' + indexHtml
+    return appHtml
 
     // router.dispatch({ ...req, context }).then((component, state) => {
     //     res.status(state.statusCode).send(indexHtml)
