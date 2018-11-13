@@ -7,7 +7,7 @@
 //
 // change settings accoriding to your local environment
 
-const staticLocalhostRoot     = '/tools/react23/build'
+const staticLocalhostRoot     = '/'
 
 //     ____                  __ ___  _____
 //    / __ \___  ____ ______/ /|__ \|__  /

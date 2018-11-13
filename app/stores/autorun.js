@@ -1,12 +1,12 @@
 import {autorun}        from 'mobx'
 
-const {isProduction}    = process.env.APP_CONFIG
+const {isProduction, isDebug} = process.env.APP_CONFIG
 
 export default function (stores) {
     autorun(() => {
         if (stores) {
             // dev helper - expose stores to window
-            if (!isProduction && process.env.IS_BROWSER) {
+            if ((!isProduction || isDebug) && process.env.IS_BROWSER) {
                 window.stores = stores
                 // TBD: add chalk-like color output
                 console.log(
