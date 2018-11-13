@@ -67,7 +67,7 @@ body {
   }
 }
 #app {
-  opacity: 1;
+  opacity: 1 !important;
   transition: opacity 300ms ease-out;
 }
 .wrapper,
@@ -86,4 +86,4 @@ h1 span {
 }#ThemeSwitch .Switch > :not(.checked) {
   color: #ffb300;
 }
-/*# sourceMappingURL=app-a9a5220cb0cb4b0acb02.js.map*/
+/*# sourceMappingURL=app-b76c71b147df4e8b832c.js.map*/
