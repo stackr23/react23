@@ -1,0 +1,9 @@
+.palette primary {
+  main: #1a237e;
+}
+.palette secondary-test {
+  main-color: #ffb300;
+}
+.overrides .MuiButton .root {
+  color: #fff;
+}
