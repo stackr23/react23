@@ -4,7 +4,9 @@ import {observer, inject}   from 'mobx-react'
 
 import Switch               from '@material-ui/core/Switch'
 
-import './ThemeSwitch.styl'
+if (process.env.IS_BROWSER) {
+    require('./ThemeSwitch.styl')
+}
 
 @inject('viewStore')
 @observer

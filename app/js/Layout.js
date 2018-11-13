@@ -11,7 +11,10 @@ import {Link}               from 'react-router-dom'
 import ConfirmationDialog   from './layout/ConfirmationDialog'
 
 import Header               from './components/Header'
-import '../style/layout.styl'
+
+if (process.env.IS_BROWSER) {
+    require('../style/layout.styl')
+}
 
 const themes = {
     default23, react23

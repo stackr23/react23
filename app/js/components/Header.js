@@ -3,7 +3,10 @@ import PropTypes            from 'prop-types'
 import {observer, inject}   from 'mobx-react'
 
 import AppBar               from '@material-ui/core/AppBar'
-import './Header.styl'
+
+if (process.env.IS_BROWSER) {
+    require('./Header.styl')
+}
 
 @inject('viewStore')
 @observer
