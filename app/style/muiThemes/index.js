@@ -8,7 +8,13 @@
 
 import {createMuiTheme}     from '@material-ui/core/styles'
 import defaultTheme         from './default'
-import _react23             from './react23.csso'
+
+let _react23
+if (process.env.IS_BROWSER) {
+    _react23    = require('./react23.csso')
+} else {
+    _react23    = {}
+}
 
 export default createMuiTheme(Object.assign({}, defaultTheme))
 

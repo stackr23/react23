@@ -3,7 +3,6 @@ import PropTypes            from 'prop-types'
 import {observer, inject}   from 'mobx-react'
 
 import AppBar               from '@material-ui/core/AppBar'
-import style                from './testCssObjects.csso'
 import './Header.styl'
 
 @inject('viewStore')
@@ -19,7 +18,7 @@ class Header extends React.Component {
         const {headline, subline} = this.props
 
         return (
-            <AppBar position="sticky" color="primary" style={style.header} className="wrapper">
+            <AppBar position="sticky" color="primary" style={{marginBottom: '2rem'}} className="wrapper">
                 <h1>{headline}<span>{subline}</span></h1>
             </AppBar>
         )

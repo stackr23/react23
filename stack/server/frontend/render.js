@@ -23,7 +23,7 @@ import getBuildFileNames                from '../../utils/getBuildFileNames'
 
 // import routes                           from '../../../app/js/Routes.js'
 
-// import App                              from '../../../app/js/App.js'
+import App                              from '../../../app/js/App.js'
 // import { Provider }                     from 'mobx-react'
 
 const {
