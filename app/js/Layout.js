@@ -1,22 +1,18 @@
-import React                from 'react'
-import PropTypes            from 'prop-types'
+import React                    from 'react'
+import PropTypes                from 'prop-types'
 
-import {observer, inject}   from 'mobx-react'
+import {observer, inject}       from 'mobx-react'
 
-import {MuiThemeProvider}   from '@material-ui/core/styles'
-import default23, {react23} from '../style/muiThemes'
+import {MuiThemeProvider}       from '@material-ui/core/styles'
+import themes                   from '../style/muiThemes'
 
-import {Link}               from 'react-router-dom'
-import ConfirmationDialog   from './layout/ConfirmationDialog'
+import {Link}                   from 'react-router-dom'
+import ConfirmationDialog       from './layout/ConfirmationDialog'
 
-import Header               from './components/Header'
+import Header                   from './components/Header'
 
 if (process.env.IS_BROWSER) {
     require('../style/layout.styl')
-}
-
-const themes = {
-    default23, react23
 }
 
 @inject('viewStore', 'router')

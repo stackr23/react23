@@ -28,7 +28,7 @@ export default class ViewStore {
             navBar:  {
                 isOpen: true
             },
-            theme:  'react23'
+            theme:  'react23Theme'
         }, state)
 
         if (process.env.IS_BROWSER && process.env.DEBUG) {
@@ -36,10 +36,10 @@ export default class ViewStore {
         }
     }
 
-    switchTheme (theme = 'default23') {
-        this.theme = this.theme === 'default23'
-            ? 'react23'
-            : 'default23'
+    switchTheme (theme = 'react23Theme') {
+        this.theme = this.theme === 'react23Theme'
+            ? 'muiTheme'
+            : 'react23Theme'
     }
 
     set confirmationDialog (confirmationDialog) {
