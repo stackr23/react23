@@ -19,7 +19,7 @@ script:
 - npm run build
 
 before_deploy:
-    - 'curl -u doubleu23:62d6f361604121c33670e9987a742f1821331c51 https://api.github.com/user'
+    - 'curl -u doubleu23:$GITHUB_TOKEN https://api.github.com/user'
 
 deploy:
     on:
@@ -27,5 +27,5 @@ deploy:
     provider: pages
     local-dir: build
     skip-cleanup: true
-    github-token: 62d6f361604121c33670e9987a742f1821331c51
+    github-token: $GITHUB_TOKEN
     keep-history: true
