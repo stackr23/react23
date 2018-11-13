@@ -1,7 +1,6 @@
-# env settings
 language: node_js
 node_js: 9
-# travis script adaptions
+
 branches:
   only:
   - master
@@ -18,14 +17,18 @@ script:
 - npm run test
 - npm run build
 
-before_deploy:
-    - 'curl -u doubleu23:$GITHUB_TOKEN https://api.github.com/user'
+# before_deploy:
+#     - 'curl -u doubleu23:$GITHUB_TOKEN https://api.github.com/user'
 
-deploy:
-    on:
-        branch: master
-    provider: pages
-    local-dir: build
-    skip-cleanup: true
-    github-token: $GITHUB_TOKEN
-    keep-history: true
+# auth broken?
+# see
+# https://travis-ci.com/stackr23/react23/builds/91146957
+# deploy:
+#     on:
+#         branch: master
+#     provider: pages
+#     local-dir: build
+#     skip-cleanup: true
+#     github-token: $GITHUB_TOKEN
+#     keep-history: true
+
