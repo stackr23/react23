@@ -1,4 +1,4 @@
-// import device from 'express-device'
+import device from 'express-device'
 import express  from 'express'
 // import favicon from 'serve-favicon'
 import render   from './render'
@@ -26,7 +26,7 @@ app.use('/build', express.static('build', {maxAge: '200d'}))
 // app.use('/node_modules/intl/dist', express.static('node_modules/intl/dist'))
 // app.use('/node_modules/intl/locale-data', express.static('node_modules/intl/locale-data'))
 
-// app.use(device.capture())
+app.use(device.capture())
 //
 
 // implement your own routes here

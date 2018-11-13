@@ -18,6 +18,7 @@ const {browserRoot}         = process.env.APP_CONFIG
 
 mobxAutorun(stores)
 
+
 let _history            = process.env.IS_BROWSER
     ? createBrowserHistory({basename: browserRoot})
     : createMemoryHistory()

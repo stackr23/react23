@@ -35,6 +35,7 @@ const preLoaders                = [
 //   \__ \ / /    \  / /   / / / /\__ \
 //  ___/ // /     / / /___/ /_/ /___/ /
 // /____//_/     /_/_____/\____//____/
+
 const stylusLoader = {
     loader: 'stylus-loader',
     options: {
@@ -44,7 +45,12 @@ const stylusLoader = {
         sourceMap:  true,
         compress:   !isDevelopment,
         use:        [stylus23({
-            envVars: {NODE_ENV: NODE_ENV}
+            envVars: {
+                NODE_ENV: NODE_ENV
+                // TBD: inject muiTheme
+                // THEME:
+            },
+            envPrefix:  '$ENV__'
         })]
     }
 }
