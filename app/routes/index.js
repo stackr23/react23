@@ -1,8 +1,14 @@
 'use strict'
 
-import Pages            from '../js/pages/'
+import React        from 'react'
+import {Route}      from 'react-router-dom'
+import Pages        from '../js/pages/'
 
-export const createRoutes = store => {
+export const createRoutes = stores => {
+    const requireAuth = (...args) => {
+        console.log('[React23] requireAuth - ...args', args)
+    }
+
     // TBD: loginCheck
     // // const requireAuth = (nextState, _replaceState) => {
     //     const {user: userStore} = store
@@ -16,17 +22,25 @@ export const createRoutes = store => {
         {
             path:       '/',
             exact:      true,
-            Component:  Pages.Home
-            // onEnter: requireAuth
+            component:  Pages.Home,
+            onEnter:    requireAuth
         },
         {
             path:       '/test',
             exact:      true,
-            Component:  Pages.TestPage
+            component:  Pages.TestPage
         }
     ]
 
-    return routes
+    return routes.map((routeProps, i) => {
+        return (
+            <Route
+                key={i}
+                onEnter={requireAuth()}
+                {...routeProps}
+            />
+        )
+    })
 }
 
 export default createRoutes

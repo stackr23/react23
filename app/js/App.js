@@ -7,40 +7,26 @@ import stores               from '../stores'
 import Layout               from './Layout'
 import createRoutes         from '../routes/index'
 
-
-const routes    = createRoutes(stores)
+import Helmet               from 'react-helmet'
 
 class App extends React.Component {
-    static renderRoutes = () => (
-        <React.Fragment>
-            {routes.map((route, i) => <Route {...route} key={i} />)}
-        </React.Fragment>
-    );
-
-    static LayoutWithChild = route => {
-        const {Component, ...routeProps} = route
-
-        return (
-            <Route
-                {...routeProps}
-                render={routerProps => {
-                    return (
-                        <Layout {...routerProps} >
-                            <Component />
-                        </Layout>
-                    )
-                }}
-            />
-        )
-    };
+    // <React.Fragment>
+    //     {routes.map((route, i) => <Route {...route} key={i} />)}
+    // </React.Fragment>
 
     render () {
         return (
-            <React.Fragment>
-                {routes.map((route, i) =>
-                    <App.LayoutWithChild key={i} {...route} />
-                )}
-            </React.Fragment>
+            <div id="main">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>[StackR23/react]</title>
+                    <link rel="canonical" href="http://mysite.com/example" />
+                </Helmet>
+                <Layout>
+                    {// pageContent
+                        createRoutes(stores)}
+                </Layout>
+            </div>
         )
     }
 }

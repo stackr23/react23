@@ -1,6 +1,6 @@
 export default {
     typography: {
-        fontFamily: "'Federant', 'Helvetica', 'sans serif', 'Arial'",
+        // fontFamily: "'Federant', 'Helvetica', 'sans serif', 'Arial'",
         useNextVariants: true
     },
     palette: {
@@ -16,7 +16,8 @@ export default {
             root: {
                 color: '#fff'
             },
-            label: {fontSize: '3rem'}
+            label: {
+            }
         }
     }
 }
