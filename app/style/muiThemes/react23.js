@@ -16,7 +16,7 @@ export default {
             root: {
                 color: '#fff'
             },
-            label: { fontSize: '3rem' }
+            label: {fontSize: '3rem'}
         }
     }
 }
