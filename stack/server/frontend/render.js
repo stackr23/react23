@@ -27,7 +27,7 @@ const {
     ports: {portHMR}
 } = require('config').default
 
-const routes            = createRoutes(stores)
+// const routes            = createRoutes(stores)
 const serverIp          = ip.address()
 
 const render = (req, res, next) => {
@@ -49,16 +49,21 @@ const render = (req, res, next) => {
 
     const indexHtml = getBuiltIndex({appCSS, appJS})
 
-    const html = '<!DOCTYPE html>\n' + indexHtml.replace(
-        '<div id="app"></div>', `<div id="app"><style id="jss-server-side">${ssrCSS}</style>${appHtml}</div>`
-    )
+    //* hide app until layout stylesheet is loaded! */
+    const opacityStyle = !isProduction ? '<style type="text/css">#app {opacity: 0;}</style>' : ''
+
+    const html = '<!DOCTYPE html>\n' + indexHtml
+        .replace(
+            '<div id="app"></div>',
+            `<div id="app"><style id="jss-server-side">${ssrCSS}</style>${appHtml}</div>`
+        )
+        .replace('<head>', '<head>' + opacityStyle)
 
     res.send(html)
 }
 
 const renderPage = ({path, stores, context = {}}) => {
     // see https://github.com/mui-org/material-ui/blob/master/examples/ssr/server.js
-
     const generateClassName = createGenerateClassName()
     const sheetsRegistry    = new SheetsRegistry()
 
@@ -66,11 +71,7 @@ const renderPage = ({path, stores, context = {}}) => {
         <Provider {...stores}>
             <StaticRouter location={path} context={context}>
                 <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-                    <React.Fragment>
-                        {routes.map((route, i) =>
-                            <App.LayoutWithChild key={i} {...route} />
-                        )}
-                    </React.Fragment>
+                    {App.renderWrappedRoutes()}
                 </JssProvider>
             </StaticRouter>
         </Provider>
