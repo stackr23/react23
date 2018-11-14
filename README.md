@@ -18,7 +18,7 @@
 [maintenance-url]: https://GitHub.com/stackR23/react23/graphs/commit-activity
 [pr-welcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 
-## features
+## :sparkles: features
 
 :robot: __[Gulp](https://gulpjs.com/) task automation__  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;full control of script pipelines  
