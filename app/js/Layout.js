@@ -15,12 +15,12 @@ if (process.env.IS_BROWSER) {
     require('../style/layout.styl')
 }
 
-@inject('viewStore', 'router')
+@inject('viewStore'/*, 'router' */)
 @observer
 class Layout extends React.Component {
     static propTypes = {
+        router:             PropTypes.object,
         children:           PropTypes.object.isRequired,
-        router:             PropTypes.object.isRequired,
         viewStore:          PropTypes.object.isRequired
     }
 
@@ -31,8 +31,8 @@ class Layout extends React.Component {
     }
 
     render () {
-        const {viewStore, router}   = this.props
-        const theme                 = themes[viewStore.theme]
+        const {viewStore}   = this.props
+        const theme         = themes[viewStore.theme]
 
         let sheetsManager = {}
         if (!process.env.IS_BROWSER) {

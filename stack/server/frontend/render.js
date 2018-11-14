@@ -51,7 +51,7 @@ const render = (req, res, next) => {
     const indexHtml = getBuiltIndex({appCSS, appJS})
 
     //* hide app until layout stylesheet is loaded! */
-    const opacityStyle = !isProduction ? '<style type="text/css">#app {opacity: 0;}</style>' : ''
+    const opacityStyle      = '<style type="text/css">#app {opacity: 0;}</style>'
 
     const html = '<!DOCTYPE html>\n' + indexHtml
         .replace(
@@ -72,9 +72,7 @@ const renderPage = ({path, stores, context = {}}) => {
         <Provider {...stores}>
             <StaticRouter location={path} context={context}>
                 <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-                    <Layout>
-                        {App.renderWrappedRoutes()}
-                    </Layout>
+                    <App />
                 </JssProvider>
             </StaticRouter>
         </Provider>
