@@ -21,20 +21,21 @@
 ## features
 * [x] :robot: __[Gulp](https://gulpjs.com/) task automation__  
   full control of script pipelines
-* [x] __[React](https://reactjs.org/) universal app libary__  
+* [x] :recycle: __[React](https://reactjs.org/) universal app libary__  
   inclusive server side rendering
-* [x] __[MobX](https://mobx.js.org/) with mobx-router and mobx-react__  
+* [x] :card_file_box: __[MobX](https://mobx.js.org/) with mobx-router and mobx-react__  
   global stores based on observables
 * [x] :package: __[Webpack](https://webpack.js.org/) v4 features__  
   hot module reload, static build, code splitting
-* [x] :zap: __[Express Server](http://expressjs.com/)__  
-  webpack-dev in dev, express server with SSR  
-  * [ ] /api and /test server
+* [x] :zap: __[ExpressJS](http://expressjs.com/) server__  
+  webpack-dev in dev, serverside rendering on prod  
+  * [ ] /api and /test server  
+  * [ ] prefetch component data
 * [x] :rotating_light: __[EsLint](https://eslint.org/) code linting__  
   beautyful and error proof code with [standard-js](https://standardjs.com) style  
-* [ ] :white_checkmark: __[Karma](https://github.com/karma-runner/karma) and [Mocha](https://github.com/mochajs/mocha)__  
+* [ ] :white_check_mark: __[Karma](https://github.com/karma-runner/karma) and [Mocha](https://github.com/mochajs/mocha)__  
   integration and unit tests  
-* [x] __[ES7 via Babel 7](https://babeljs.io/docs/en/index.html)__  
+* [x] :alembic: __[ES7 via Babel 7](https://babeljs.io/docs/en/index.html)__  
   dynamic import, async/await, decorators (legacy), etc..  
 * [x] :rocket: __github pages deployment scripts__  
   initiate and push git worktree from /build to gh-pages
@@ -71,20 +72,24 @@ _you can add custom loaders in `/config/webpack/styleLoader.js`_
 
 the __UI is based on__ [material-ui](https://github.com/mui-org/material-ui)  
 
-### styleobjects
-to keep styling in its space and use stylus vars globally, we use [@stackr23/styleobjects-loader](https://github.com/stackr23/styleobjects-loader) to "sync" material-ui with stylus  
-imported files with __targeted extension `.csso`__ will be __transformed from stylus to js-objects__ via [@stackr23/styleobjects](https://github.com/stackr23/styleobjects)
+### styleobjects (deprecated due to SSR)
+to keep styling in its space and use stylus vars globally,  
+we use [@stackr23/styleobjects-loader](https://github.com/stackr23/styleobjects-loader) to "sync" material-ui with stylus  
+  
+imported files with __targeted extension `.csso`__,  
+will be __transformed from stylus to js-objects__ via [@stackr23/styleobjects](https://github.com/stackr23/styleobjects)
 
 ### themes
-The custom theme is created in `/app/style/muiThemes/react23.csso`,  
-which uses the global stylus vars of `/app/style/setup.styl`
+The custom theme is located in `/app/style/muiThemes/react23Theme.js`,  
+which uses the global stylus vars of `/app/style/setup.styl` (TBD: !stylus!styleobjects on SSR)
 
 ### layout
-the layout is defined in `/app/style/layout.styl` and is focused on global styles of the page like #body, #wrapper and #content
+the layout is defined in `/app/style/layout.styl`  
+and is __focused on global styles like #body, #wrapper and #content__
 
 ### modular style
 component specific styles are defined directly in their directory - fe: `/app/components/Header.styl`  
 and are loaded via [@stackr23/style-loader](https://github.com/stackr23/style-loader) mixed with defined pre-processors  
-> __in devevlopment__, the styles are __injected__ directly __via style tags__ per HMR  
-> __in production__, they are extracted via `ExtractTextPlugin` and __bundled in `/build/app-[hash].css`__  
-> __both environments__ use `cssMqPacker` and `autoprefixer`
+__in devevlopment__, the styles are __injected__ directly __via style tags__ per HMR  
+__in production__, they are extracted via `ExtractTextPlugin` and __bundled in `/build/app-[hash].css`__  
+__both environments__ use `cssMqPacker` and `autoprefixer`
