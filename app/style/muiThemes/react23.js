@@ -15,7 +15,8 @@ export default {
         MuiButton: {
             root: {
                 color: '#fff'
-            }
+            },
+            label: { fontSize: '3rem' }
         }
     }
 }

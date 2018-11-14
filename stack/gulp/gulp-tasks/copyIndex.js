@@ -8,7 +8,7 @@ const {paths: {build: buildPath}} = require('config').default
 const copyIndex = done => {
     let indexHtml   = getBuiltIndex()
 
-    fs.writeFile(join(buildPath, 'index.html'), indexHtml, 'utf-8')
+    fs.writeFile(join(buildPath, 'index.html'), '<!DOCTYPE html>\n' + indexHtml, 'utf-8')
 
     if (typeof done === 'function') {
         done()

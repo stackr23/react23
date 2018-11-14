@@ -31,7 +31,12 @@ class Header extends React.Component {
                         marginLeft: -12,
                         marginRight: 20
                     }}>
-                        <MenuIcon />
+                        <MenuIcon fontSize="large"
+                            classes={{
+                                root:           'muiIcon',
+                                fontSizeLarge:  'muiIconLarge'
+                            }}
+                        />
                     </IconButton>
                     <h1>{headline}<span>{subline}</span></h1>
                 </Toolbar>
