@@ -16,13 +16,13 @@ export const createRoutes = store => {
         {
             path:       '/',
             exact:      true,
-            component:  Pages.Home
+            Component:  Pages.Home
             // onEnter: requireAuth
         },
         {
             path:       '/test',
             exact:      true,
-            component:  Pages.TestPage
+            Component:  Pages.TestPage
         }
     ]
 

@@ -42,7 +42,7 @@ class Layout extends React.Component {
         return (
             <MuiThemeProvider theme={theme} {...sheetsManager} >
                 <React.Fragment>
-                    <div id="main" className="cacdsdsdcdfnklnmmö<fdf</pBudsfdsgsdgsfmklmnkpjm">
+                    <div id="main" className="cacdsdsdcdfnklnmBudsfdsgsdgsfmklmnkpjm">
                         <Header headline="React23" subline="the perfect react stack to wrap your web app" />
                         <nav id="nav" className="wrapper" style={{
                             marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid #ccc'

@@ -7,8 +7,7 @@ import {Router, Route}          from 'react-router-dom'
 import {
     syncHistoryWithStore
 }                           from 'mobx-react-router'
-import {Provider}           from 'mobx-react'
-import mobxAutorun          from '../stores/autorun'
+
 import stores               from '../stores'
 
 import Layout               from './Layout'
@@ -16,18 +15,16 @@ import createRoutes         from '../routes/index'
 
 const {browserRoot}         = process.env.APP_CONFIG
 
-mobxAutorun(stores)
-
-let _history            = process.env.IS_BROWSER
+let _history    = process.env.IS_BROWSER
     ? createBrowserHistory({basename: browserRoot})
     : createMemoryHistory()
 
-const history           = syncHistoryWithStore(_history, stores.router)
-const routes            = createRoutes(stores)
+const history   = syncHistoryWithStore(_history, stores.router)
+const routes    = createRoutes(stores)
 
 class App extends React.Component {
     static LayoutWithChild = route => {
-        const {component: Component, ...routeProps} = route
+        const {Component, ...routeProps} = route
 
         return (
             <Route
@@ -43,6 +40,12 @@ class App extends React.Component {
         )
     };
 
+    static renderRoutes = () => (
+        <React.Fragment>
+            {routes.map((route, i) => <Route {...route} key={i} />)}
+        </React.Fragment>
+    );
+
     static renderWrappedRoutes = () => (
         <React.Fragment>
             {routes.map((route, i) =>
@@ -51,14 +54,11 @@ class App extends React.Component {
         </React.Fragment>
     )
 
-    // TBD: refactor: shove Provider and Router inti /index.js to Load App.js on SSR
     render () {
         return (
-            <Provider {...stores}>
-                <Router history={history}>
-                    {App.renderWrappedRoutes()}
-                </Router>
-            </Provider>
+            <Router history={history}>
+                {App.renderWrappedRoutes()}
+            </Router>
         )
     }
 }

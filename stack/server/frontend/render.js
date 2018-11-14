@@ -17,6 +17,7 @@ import stores                           from '../../../app/stores/index.js'
 
 import createRoutes                     from '../../../app/routes/index.js'
 import App                              from '../../../app/js/App.js'
+import Layout                           from '../../../app/js/Layout.js'
 
 import {createGenerateClassName}        from '@material-ui/core/styles'
 import {SheetsRegistry}                 from 'jss'
@@ -71,7 +72,9 @@ const renderPage = ({path, stores, context = {}}) => {
         <Provider {...stores}>
             <StaticRouter location={path} context={context}>
                 <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-                    {App.renderWrappedRoutes()}
+                    <Layout>
+                        {App.renderWrappedRoutes()}
+                    </Layout>
                 </JssProvider>
             </StaticRouter>
         </Provider>
