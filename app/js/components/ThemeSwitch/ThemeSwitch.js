@@ -19,7 +19,7 @@ class ThemeSwitch extends React.Component {
     render () {
         const {viewStore}       = this.props
         // TBD: read default theme from appConfig
-        const isDefaultTheme    = viewStore.theme === 'default23'
+        const isDefaultTheme    = viewStore.theme === 'react23Theme'
 
         return (
             <div id="ThemeSwitch" className="component">
