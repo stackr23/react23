@@ -19,8 +19,23 @@
 [pr-welcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 
 ## features
-[Gulp](https://gulpjs.com/), [React](https://reactjs.org/), [MobX](https://mobx.js.org/), [Webpack](https://webpack.js.org/), [Express Server](http://expressjs.com/), [EsLint](https://eslint.org/),
-[Karma](https://github.com/karma-runner/karma)/[Mocha](https://github.com/mochajs/mocha), [ES7 via Babel 7](https://babeljs.io/docs/en/index.html)
+* [x] __[Gulp](https://gulpjs.com/) taskmanager__  
+  full control of task pipelines
+* [x] __[React](https://reactjs.org/) universal app libary__  
+  inclusive server side rendering
+* [x] __[MobX](https://mobx.js.org/) with mobx-router and mobx-react__  
+  global stores based on observables
+* [x] __[Webpack](https://webpack.js.org/) v4 features__  
+  hot module reload, static build, code splitting
+* [x] __[Express Server](http://expressjs.com/)__  
+  webpack-dev in dev, express server with SSR  
+  * [ ] /api and /test server
+* [x] __[EsLint](https://eslint.org/) code linting__  
+  beautyful and error proof code with [standard-js](https://standardjs.com) style  
+* [ ] __[Karma](https://github.com/karma-runner/karma) and [Mocha](https://github.com/mochajs/mocha)__  
+  integration and unit tests  
+* [x] __[ES7 via Babel 7](https://babeljs.io/docs/en/index.html)__  
+  dynamic import, async/await, decorators (legacy), etc..  
 
 ## usage
 ```
