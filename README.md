@@ -19,26 +19,34 @@
 [pr-welcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 
 ## features
-* :robot: __[Gulp](https://gulpjs.com/) task automation__  
-  full control of script pipelines
-* :recycle: __[React](https://reactjs.org/) universal app libary__  
-  inclusive server side rendering
-* :card_file_box: __[MobX](https://mobx.js.org/) with mobx-router and mobx-react__  
-  global stores based on observables
-* :package: __[Webpack](https://webpack.js.org/) v4 features__  
-  hot module reload, static build, code splitting
-* :zap: __[ExpressJS](http://expressjs.com/) server__  
-  webpack-dev in dev, serverside rendering on prod  
-  * [ ] /api and /test server  
-  * [ ] prefetch component data
-* :rotating_light: __[EsLint](https://eslint.org/) code linting__  
-  beautyful and error proof code with [standard-js](https://standardjs.com) style  
-* :white_check_mark: __TBD - [Karma](https://github.com/karma-runner/karma) and [Mocha](https://github.com/mochajs/mocha)__  
-  integration and unit tests  
-* :alembic: __[ES7 via Babel 7](https://babeljs.io/docs/en/index.html)__  
-  dynamic import, async/await, decorators (legacy), etc..  
-* :rocket: __github pages deployment scripts__  
-  initiate and push git worktree from /build to gh-pages
+:robot: __[Gulp](https://gulpjs.com/) task automation__  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;full control of script pipelines  
+
+:recycle: __[React](https://reactjs.org/) universal app libary__  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inclusive server side rendering
+ 
+:card_file_box: __[MobX](https://mobx.js.org/) with mobx-router and mobx-react__  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;global stores based on observables
+
+:package: __[Webpack](https://webpack.js.org/) v4 features__  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hot module reload, static build, code splitting
+
+:zap: __[ExpressJS](http://expressjs.com/) server__  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;webpack-dev in dev, serverside rendering on prod  
+* [ ] /api and /test server  
+* [ ] prefetch component data
+
+:rotating_light: __[EsLint](https://eslint.org/) code linting__  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;beautyful and error proof code with [standard-js](https://standardjs.com) style  
+
+:white_check_mark: __TBD - [Karma](https://github.com/karma-runner/karma) and [Mocha](https://github.com/mochajs/mocha)__  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integration and unit tests  
+
+:alembic: __[ES7 via Babel 7](https://babeljs.io/docs/en/index.html)__  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dynamic import, async/await, decorators (legacy), etc..  
+
+:rocket: __github pages deployment scripts__  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;initiate and push git worktree from /build to gh-pages
 
 ## usage  
 > until npm release, just clone the repo  
