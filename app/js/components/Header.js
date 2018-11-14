@@ -3,6 +3,10 @@ import PropTypes            from 'prop-types'
 import {observer, inject}   from 'mobx-react'
 
 import AppBar               from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton           from '@material-ui/core/IconButton'
+import MenuIcon             from '@material-ui/icons/Menu'
+import Typography from '@material-ui/core/Typography'
 
 if (process.env.IS_BROWSER) {
     require('./Header.styl')
@@ -21,8 +25,16 @@ class Header extends React.Component {
         const {headline, subline} = this.props
 
         return (
-            <AppBar position="sticky" color="primary" style={{marginBottom: '2rem'}} className="wrapper">
-                <h1>{headline}<span>{subline}</span></h1>
+            <AppBar position="static" color="primary" style={{marginBottom: '2rem'}} className="">
+                <Toolbar >
+                    <IconButton color="inherit" aria-label="Menu" style={{
+                        marginLeft: -12,
+                        marginRight: 20
+                    }}>
+                        <MenuIcon />
+                    </IconButton>
+                    <h1>{headline}<span>{subline}</span></h1>
+                </Toolbar>
             </AppBar>
         )
     }
