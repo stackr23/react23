@@ -19,32 +19,34 @@
 [pr-welcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 
 ## features
-* [x] :robot: __[Gulp](https://gulpjs.com/) task automation__  
+* :robot: __[Gulp](https://gulpjs.com/) task automation__  
   full control of script pipelines
-* [x] :recycle: __[React](https://reactjs.org/) universal app libary__  
+* :recycle: __[React](https://reactjs.org/) universal app libary__  
   inclusive server side rendering
-* [x] :card_file_box: __[MobX](https://mobx.js.org/) with mobx-router and mobx-react__  
+* :card_file_box: __[MobX](https://mobx.js.org/) with mobx-router and mobx-react__  
   global stores based on observables
-* [x] :package: __[Webpack](https://webpack.js.org/) v4 features__  
+* :package: __[Webpack](https://webpack.js.org/) v4 features__  
   hot module reload, static build, code splitting
-* [x] :zap: __[ExpressJS](http://expressjs.com/) server__  
+* :zap: __[ExpressJS](http://expressjs.com/) server__  
   webpack-dev in dev, serverside rendering on prod  
   * [ ] /api and /test server  
   * [ ] prefetch component data
-* [x] :rotating_light: __[EsLint](https://eslint.org/) code linting__  
+* :rotating_light: __[EsLint](https://eslint.org/) code linting__  
   beautyful and error proof code with [standard-js](https://standardjs.com) style  
-* [ ] :white_check_mark: __[Karma](https://github.com/karma-runner/karma) and [Mocha](https://github.com/mochajs/mocha)__  
+* :white_check_mark: __TBD - [Karma](https://github.com/karma-runner/karma) and [Mocha](https://github.com/mochajs/mocha)__  
   integration and unit tests  
-* [x] :alembic: __[ES7 via Babel 7](https://babeljs.io/docs/en/index.html)__  
+* :alembic: __[ES7 via Babel 7](https://babeljs.io/docs/en/index.html)__  
   dynamic import, async/await, decorators (legacy), etc..  
-* [x] :rocket: __github pages deployment scripts__  
+* :rocket: __github pages deployment scripts__  
   initiate and push git worktree from /build to gh-pages
 
-## usage
-```
-git clone https://github.com/stackr23/react23 --depth 1
-cd react23
-npm install
+## usage  
+> until npm release, just clone the repo  
+
+```bash
+git clone https://github.com/stackr23/react23 --depth 1  
+cd react23  
+npm install  
 npm start 
 ```
 
@@ -80,7 +82,7 @@ imported files with __targeted extension `.csso`__,
 will be __transformed from stylus to js-objects__ via [@stackr23/styleobjects](https://github.com/stackr23/styleobjects)
 
 ### themes
-The custom theme is located in `/app/style/muiThemes/react23Theme.js`,  
+the custom theme is located in `/app/style/muiThemes/react23Theme.js`,  
 which uses the global stylus vars of `/app/style/setup.styl` (TBD: !stylus!styleobjects on SSR)
 
 ### layout
