@@ -1,4 +1,4 @@
-# react23
+# React23
 > perfect react stack to wrap your web app  
 > __demo:__ https://stackr23.github.io/react23/  
 
@@ -19,23 +19,25 @@
 [pr-welcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 
 ## features
-* [x] __[Gulp](https://gulpjs.com/) taskmanager__  
-  full control of task pipelines
+* [x] :robot: __[Gulp](https://gulpjs.com/) task automation__  
+  full control of script pipelines
 * [x] __[React](https://reactjs.org/) universal app libary__  
   inclusive server side rendering
 * [x] __[MobX](https://mobx.js.org/) with mobx-router and mobx-react__  
   global stores based on observables
-* [x] __[Webpack](https://webpack.js.org/) v4 features__  
+* [x] :package: __[Webpack](https://webpack.js.org/) v4 features__  
   hot module reload, static build, code splitting
-* [x] __[Express Server](http://expressjs.com/)__  
+* [x] :zap: __[Express Server](http://expressjs.com/)__  
   webpack-dev in dev, express server with SSR  
   * [ ] /api and /test server
-* [x] __[EsLint](https://eslint.org/) code linting__  
+* [x] :rotating_light: __[EsLint](https://eslint.org/) code linting__  
   beautyful and error proof code with [standard-js](https://standardjs.com) style  
-* [ ] __[Karma](https://github.com/karma-runner/karma) and [Mocha](https://github.com/mochajs/mocha)__  
+* [ ] :white_checkmark: __[Karma](https://github.com/karma-runner/karma) and [Mocha](https://github.com/mochajs/mocha)__  
   integration and unit tests  
 * [x] __[ES7 via Babel 7](https://babeljs.io/docs/en/index.html)__  
   dynamic import, async/await, decorators (legacy), etc..  
+* [x] :rocket: __github pages deployment scripts__  
+  initiate and push git worktree from /build to gh-pages
 
 ## usage
 ```
