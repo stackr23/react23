@@ -20,28 +20,27 @@
 
 ## :sparkles: features
 
-:robot: __[Gulp](https://gulpjs.com/) task automation__  
+:robot: __[Gulp v4](https://gulpjs.com/) - task automation__  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;full control of script pipelines  
 
-:package: __[Webpack](https://webpack.js.org/) v4 features__  
+:package: __[Webpack v4](https://webpack.js.org/) - module bundler__  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hot module reload, static build, code splitting
 
-:recycle: __[React](https://reactjs.org/) universal/isomorphic app libary__  
+:recycle: __[React v16.5](https://reactjs.org/) - view-controller library__  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inclusive server side rendering
 
-:card_file_box: __[MobX](https://mobx.js.org/) with mobx-router and mobx-react__  
+:card_file_box: __[MobX v5.5](https://mobx.js.org/) - observable store injection__  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;global stores based on observables
 
-:alembic: __[ES7 via Babel 7](https://babeljs.io/docs/en/index.html)__  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dynamic import, async/await, decorators (legacy), etc.. 
+:alembic: __[Babel v7](https://babeljs.io/docs/en/index.html) - ES7 support provider__  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;async/await, static class properties, decorators (legacy), etc.. 
 
-:rotating_light: __[EsLint](https://eslint.org/) code linting__  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;beautyful and error proof code with [standard-js](https://standardjs.com) style  
-
+:rotating_light: __[EsLint v5.7](https://eslint.org/) - code linting tool__  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;beautyful and error proof code with __[standard-js](https://standardjs.com)__ style  
 :white_check_mark: __TBD - [Karma](https://github.com/karma-runner/karma) and [Mocha](https://github.com/mochajs/mocha)__  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integration and unit tests  
 
-:zap: __[ExpressJS](http://expressjs.com/) server__  
+:zap: __[ExpressJS v4](http://expressjs.com/) - node-js server_  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;webpack-dev in dev, serverside rendering on prod  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__TBD -__ /api and /test server  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__TBD -__ prefetch component data 
