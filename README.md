@@ -40,7 +40,7 @@
 :white_check_mark: __TBD - [Karma](https://github.com/karma-runner/karma) and [Mocha](https://github.com/mochajs/mocha)__  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integration and unit tests  
 
-:zap: __[ExpressJS v4](http://expressjs.com/) - node-js server_  
+:zap: __[ExpressJS v4](http://expressjs.com/) - node-js server__  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;webpack-dev in dev, serverside rendering on prod  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__TBD -__ /api and /test server  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__TBD -__ prefetch component data 
