@@ -4,7 +4,7 @@ import React        from 'react'
 import {Route}      from 'react-router-dom'
 import Pages        from '../js/pages/'
 
-export const createRoutes = stores => {
+const createRoutes = stores => {
     const requireAuth = (...args) => {
         console.log('[React23] requireAuth - ...args', args)
     }

@@ -2,6 +2,11 @@
   "root": true,
   "extends": ["stackr23/node", "plugin:react/recommended"],
   "plugins": ["react"],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    }
+  },
   "globals": {
     "module": true,
     "global": true,
@@ -11,7 +16,6 @@
     "__filename": false
   },
   "rules": {
-
     //
     // eslint-plugin-react
     //
