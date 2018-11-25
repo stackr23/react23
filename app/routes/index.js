@@ -1,10 +1,11 @@
+Warning: React version not specified in eslint-plugin-react settings. See https://github.com/yannickcr/eslint-plugin-react#configuration.
 'use strict'
 
-import React        from 'react'
-import {Route}      from 'react-router-dom'
-import Pages        from '../js/pages/'
+import React from 'react'
+import {Route} from 'react-router-dom'
+import Pages from '../js/pages/'
 
-const createRoutes = stores => {
+const createRoutes = (stores) => {
     const requireAuth = (...args) => {
         console.log('[React23] requireAuth - ...args', args)
     }
@@ -18,28 +19,22 @@ const createRoutes = stores => {
     // }
 
     // TBD: use isomporphicRoutes.js
-    const routes          = [
+    const routes = [
         {
-            path:       '/',
-            exact:      true,
-            component:  Pages.Home,
-            onEnter:    requireAuth
+            path: '/',
+            exact: true,
+            component: Pages.Home,
+            onEnter: requireAuth
         },
         {
-            path:       '/test',
-            exact:      true,
-            component:  Pages.TestPage
+            path: '/test',
+            exact: true,
+            component: Pages.TestPage
         }
     ]
 
     return routes.map((routeProps, i) => {
-        return (
-            <Route
-                key={i}
-                onEnter={requireAuth()}
-                {...routeProps}
-            />
-        )
+        return <Route key={i} onEnter={requireAuth()} {...routeProps} />
     })
 }
 

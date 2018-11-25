@@ -1,20 +1,21 @@
-import React                from 'react'
+import React from 'react'
 
-import {Route}              from 'react-router-dom'
+import {Route} from 'react-router-dom'
 
-import stores               from '../stores'
+import stores from '../stores'
 
-import Layout               from './Layout'
-import createRoutes         from '../routes/index'
+import Layout from './Layout'
+import createRoutes from '../routes/index'
 
-import Helmet               from 'react-helmet'
+import Helmet from 'react-helmet'
 
 class App extends React.Component {
     // <React.Fragment>
-    //     {routes.map((route, i) => <Route {...route} key={i} />)}
+    //     {routes.map((route, i)
+    //     => <Route {...route} key={i} />)}
     // </React.Fragment>
 
-    render () {
+    render() {
         return (
             <div id="main">
                 <Helmet>
@@ -24,7 +25,7 @@ class App extends React.Component {
                 </Helmet>
                 <Layout>
                     {// pageContent
-                        createRoutes(stores)}
+                    createRoutes(stores)}
                 </Layout>
             </div>
         )
