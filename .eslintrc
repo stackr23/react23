@@ -1,23 +1,7 @@
 {
   "root": true,
-  "extends": ["standard"],
-  "plugins": ["react", "babel", "import"],
-  "env": {
-    "browser": true,
-    "mocha": false,
-    "es6": true,
-    "node": false
-  },
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true,
-      "classes": true,
-      "modules": true
-    }
-  },
+  "extends": ["stackr23/node", "plugin:react/recommended"],
+  "plugins": ["react"],
   "globals": {
     "module": true,
     "global": true,
@@ -27,50 +11,6 @@
     "__filename": false
   },
   "rules": {
-    "indent": [2, 4],
-    "react/jsx-indent": [2, 4], // no error on lower indent size
-    "object-curly-spacing": ["error", "never"],
-    "no-multiple-empty-lines": [2, { "max": 2}],
-    "one-var": [2, {"var": "always", "let": "always", "const": "never"}],
-    //
-    // CUSTOM RULES
-    //
-    "space-before-function-paren": [2],
-    "arrow-parens": [2, "as-needed"],
-    "func-style": [2, "expression"],
-    // "prefer-arrow-callback": [1, { "allowUnboundThis": false }],
-    "no-multi-spaces": [0, { "exceptions": { "ImportDeclaration": true, "Property": true, "VariableDeclarator": true } }],
-    // eslint has problems with async/await and lints the compiles generator
-    "generator-star-spacing": [0, {"before": false, "after": false}],
-    "key-spacing": 0,
-    "no-unused-vars": 1, // because "await" is only for assignments
-    "operator-linebreak": 0, // JSX "if"s with && and ||
-    //
-    // eslint-plugin-import
-    // "import/ignore": [1, ["\.(scss|less|css|styl|stylo)$"]],
-    // "import/no-unresolved": [2, {"commonjs": true, "amd": true, "ignore": ["\\.(scss|less|css|styl|stylo)$"]}],
-    "import/namespace": 1,
-    "import/named": 2,
-    // "import/default": [1, {"ignore": ["\\.(scss|less|css|styl|stylo)$"]}],
-    "import/export": 2,
-    //
-    // ECMAScript 6
-    //
-    // These rules are only relevant to ES6 environments and are off by default.
-    //
-    "no-var": 2, // require let or const instead of var (off by default)
-    //
-    // Legacy
-    //
-    // The following rules are included for compatibility with JSHint and JSLint.
-    // While the names of the rules may not match up with the JSHint/JSLint counterpart,
-    // the functionality is the same.
-    //
-    "max-depth": [1, 3], // specify the maximum depth that blocks can be nested (off by default)
-    "max-len": [2, 255, 2], // specify the maximum length of a line in your program (off by default)
-    "max-params": [2, 7], // limits the number of parameters that can be used in the function declaration. (off by default)
-    "max-statements": 0, // specify the maximum number of statement allowed in a function (off by default)
-    "no-bitwise": 0, // disallow use of bitwise operators (off by default)
 
     //
     // eslint-plugin-react

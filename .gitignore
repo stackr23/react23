@@ -21,12 +21,4 @@ wordpress/wp-config.php
 # MISC
 .DS_Store
 
-# we do NOT commit distribution files!
-#
-# they should be built
-# per Continous Integration OR per deployment task
-# we should keep images fonts and ander stuff, already compiled # dist/
-dist/css/**/*
-dist/js/**/*
-__test__/* # tbd refine after structure is set
 build/*
