@@ -22,7 +22,7 @@ class Header extends React.Component {
     }
 
     render() {
-        const {headline, subline} = this.props
+        const {headline, subline, viewStore} = this.props
 
         return (
             <AppBar
@@ -38,6 +38,9 @@ class Header extends React.Component {
                         style={{
                             marginLeft: -12,
                             marginRight: 20
+                        }}
+                        onClick={(e) => {
+                            viewStore.toggleSidebar('sidenav', e)
                         }}
                     >
                         <MenuIcon

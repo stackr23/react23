@@ -9,6 +9,7 @@ import themes from '../style/muiThemes/index'
 import {Link} from 'react-router-dom'
 import ConfirmationDialog from './layout/ConfirmationDialog'
 
+import Sidenav from './layout/Sidenav/index.js'
 import Header from './components/Header'
 
 if (process.env.IS_BROWSER) {
@@ -25,14 +26,14 @@ class Layout extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.children == null) {
+        if (this.props.children === null) {
             // this.props.router.push('/')
         }
     }
 
     render() {
         const {
-            viewStore: {theme: themeName}
+            viewStore: {theme: themeName, sideBar, sidenav}
         } = this.props
         const theme = themes[themeName]
 
@@ -52,19 +53,22 @@ class Layout extends React.Component {
                             headline="React23"
                             subline="the perfect react stack to wrap your web app"
                         />
-                        <nav
-                            id="nav"
-                            className="wrapper"
-                            style={{
-                                marginBottom: '1rem',
-                                paddingBottom: '1rem',
-                                borderBottom: '1px solid #ccc'
-                            }}
-                        >
-                            <Link to={'/'}>Home</Link>&nbsp;|&nbsp;
-                            <Link to={'/test'}>TestPage</Link>
-                        </nav>
-                        {this.props.children}
+                        <Sidenav />
+                        <div id="content">
+                            <nav
+                                id="nav"
+                                className="wrapper"
+                                style={{
+                                    marginBottom: '1rem',
+                                    paddingBottom: '1rem',
+                                    borderBottom: '1px solid #ccc'
+                                }}
+                            >
+                                <Link to={'/'}>Home</Link>&nbsp;|&nbsp;
+                                <Link to={'/test'}>TestPage</Link>
+                            </nav>
+                            {this.props.children}
+                        </div>
                     </div>
                     <ConfirmationDialog />
                 </React.Fragment>

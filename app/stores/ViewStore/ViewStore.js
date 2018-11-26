@@ -24,16 +24,38 @@ export default class ViewStore {
                 status: 'inactive',
                 error: false,
                 _confirmationDialog: {...confirmationDialogDefaults},
-                sideBar: {
+                sidenav: {
                     isOpen: false
                 },
                 navBar: {
-                    isOpen: true
+                    isOpen: false
                 },
                 theme: 'react23Theme'
             },
             state
         )
+    }
+
+    toggleSidebar(which, e) {
+        if (typeof wich === undefined || typeof which !== 'string') {
+            // TBD - logger.debug
+            return false
+        }
+
+        let input = which.toLowerCase()
+        console.log('sidenav input', input, input.indexOf('side') > -1)
+        console.log('sidenav before', this.sidenav.isOpen)
+
+        if (input === 'side' || input === 'sidenav') {
+            this.sidenav.isOpen = !this.sidenav.isOpen
+        } else if (input.indexOf('nav') > -1) {
+            this.navBar.isOpen = !this.navBar.isOpen
+        }
+
+        console.log('sidenav after', this.sidenav.isOpen)
+
+        e.preventDefault()
+        return true
     }
 
     switchTheme(theme = 'react23Theme') {

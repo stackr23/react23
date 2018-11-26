@@ -7,5 +7,6 @@
   "globals": {},
   "rules": {
     // change rules as you wish
+    eqeqeq: 2 // TBD - allow (!= null)
   }
 }

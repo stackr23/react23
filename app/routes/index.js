@@ -4,7 +4,7 @@ import Pages from '../js/pages/'
 
 const createRoutes = (stores) => {
     const requireAuth = (...args) => {
-        console.log('[React23] requireAuth - ...args', args)
+        // console.log('[React23] requireAuth - ...args', args)
     }
 
     // TBD: loginCheck
@@ -31,7 +31,7 @@ const createRoutes = (stores) => {
     ]
 
     return routes.map((routeProps, i) => {
-        return <Route key={i} onEnter={requireAuth()} {...routeProps} />
+        return <Route key={i} {...routeProps} />
     })
 }
 
