@@ -13,12 +13,15 @@ const copyIndex = (done) => {
     fs.writeFile(
         join(buildPath, 'index.html'),
         '<!DOCTYPE html>\n' + indexHtml,
-        'utf-8'
-    )
+        'utf-8',
+        function(err) {
+            if (err) throw err
 
-    if (typeof done === 'function') {
-        done()
-    }
+            if (typeof done === 'function') {
+                done()
+            }
+        }
+    )
 }
 
 export default copyIndex
