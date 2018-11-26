@@ -1,21 +1,25 @@
-import gulp         from 'gulp'
-import gulpSass     from 'gulp-sass'
+import gulp from 'gulp'
+import gulpSass from 'gulp-sass'
 // import runSequence  from 'run-sequence'
 // import gulpRename   from 'gulp-rename'
-import {errorMsg}   from '../../utils/myLogger'
-
+import {errorMsg} from '../../utils/myLogger'
 
 const {
-    globs: {scss: {src, dist, watch}}
+    globs: {
+        scss: {src, dist, watch}
+    }
 } = require('config').default
 
 const sassBuild = (src, dist) =>
-    gulp.src(src)
-        .pipe(gulpSass({
-            outputStyle:    'compressed',
-            sourceMapEmbed: 'embed'
-            // sourceMapRoot:  './web'
-        }).on('error', e => gulpSass.logError(errorMsg(e))))
+    gulp
+        .src(src)
+        .pipe(
+            gulpSass({
+                outputStyle: 'compressed',
+                sourceMapEmbed: 'embed'
+                // sourceMapRoot:  './web'
+            }).on('error', (e) => gulpSass.logError(errorMsg(e)))
+        )
         // .pipe(gulpRename('test.css'))
         .pipe(gulp.dest(dist))
 
@@ -26,5 +30,3 @@ gulp.task('sass:build-main', () => sassBuild(src.main, dist.main || dist))
 gulp.task('sass:watch', () => gulp.watch(watch, gulp.series('sass-build')))
 
 gulp.task('sass-build', gulp.series('sass:build-main'))
-
-

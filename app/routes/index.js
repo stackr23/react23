@@ -1,6 +1,3 @@
-Warning: React version not specified in eslint-plugin-react settings. See https://github.com/yannickcr/eslint-plugin-react#configuration.
-'use strict'
-
 import React from 'react'
 import {Route} from 'react-router-dom'
 import Pages from '../js/pages/'

@@ -1,24 +1,26 @@
-import fs                       from 'fs'
-import {join}                   from 'path'
-import getBuildFilenames        from './getBuildFilenames'
-import {debugMsg}               from './myLogger'
+import fs from 'fs'
+import {join} from 'path'
+import getBuildFilenames from './getBuildFilenames'
+import {debugMsg} from './myLogger'
 
-
-const {paths: {app: appPath}}   = require('config').default
+const {
+    paths: {app: appPath}
+} = require('config').default
 
 let _indexHtml
-const getBuiltIndex = fileNames => {
+const getBuiltIndex = (fileNames) => {
     // get fileNames from args, if passed,
     // else get fileNames from readDir
-    const {appCSS, appJS}       = (
-        fileNames && fileNames.appJS
+    const {appCSS, appJS} =
+        fileNames &&
+        fileNames.appJS &&
         // prevent done-task to be destructured
-        && typeof fileNames !== 'function'
+        typeof fileNames !== 'function'
             ? fileNames
             : getBuildFilenames()
-    )
     // pseudo cache
-    _indexHtml      = _indexHtml || fs.readFileSync(join(appPath, 'index.html'), 'utf8')
+    _indexHtml =
+        _indexHtml || fs.readFileSync(join(appPath, 'index.html'), 'utf8')
 
     const indexHtml = _indexHtml
         .replace('{APP_JS}', appJS)

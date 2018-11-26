@@ -1,10 +1,10 @@
 'use strict'
 
-import fs           from 'fs'
-import gulp         from 'gulp'
-import {debugMsg}   from '../utils/myLogger'
+import fs from 'fs'
+import gulp from 'gulp'
+import {debugMsg} from '../utils/myLogger'
 
-const config        = require('config').default
+const config = require('config').default
 
 // refactor: shove into ? config ?
 if (typeof process.env.APP_CONFIG !== 'object') {
@@ -18,13 +18,15 @@ debugMsg('{bold [/stack/gulp/]} appConfig: ', config)
 const taskFileNames = fs.readdirSync('./stack/gulp/gulp-tasks/')
 
 // IMPORT TASK FILES
-taskFileNames.forEach(fileName => {
+taskFileNames.forEach((fileName) => {
     require('./gulp-tasks/' + fileName)
 })
 
-gulp.task('default',
+gulp.task(
+    'default',
     gulp.series(
-        'clean', gulp.parallel(
+        'clean',
+        gulp.parallel(
             // gulp.series('sass-build', 'sass:watch'), // serie will be removed later
             gulp.series('webpack', 'server:frontend')
         )

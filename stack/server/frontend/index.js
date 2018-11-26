@@ -1,16 +1,15 @@
 import device from 'express-device'
-import express  from 'express'
+import express from 'express'
 // import favicon from 'serve-favicon'
-import render   from './render'
+import render from './render'
 
-const app       = express()
+const app = express()
 
 app.get('/test/testTimeout', (req, res, next) => {
     setTimeout(() => {
         res.send('timeout response after 5000ms')
     }, 10000)
 })
-
 
 // app.use(favicon('assets/img/favicon.ico'))
 

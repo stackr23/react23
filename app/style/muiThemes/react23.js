@@ -16,8 +16,7 @@ export default {
             root: {
                 color: '#fff'
             },
-            label: {
-            }
+            label: {}
         }
     }
 }

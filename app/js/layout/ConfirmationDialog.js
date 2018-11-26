@@ -8,36 +8,37 @@
 
 'use strict'
 
-import React                from 'react'
-import PropTypes            from 'prop-types'
-import {observer, inject}   from 'mobx-react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import {observer, inject} from 'mobx-react'
 
-import Button               from '@material-ui/core/Button'
-import Dialog               from '@material-ui/core/Dialog'
-import DialogActions        from '@material-ui/core/DialogActions'
+import Button from '@material-ui/core/Button'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
 
 @inject('viewStore')
 @observer
 class ConfirmationDialog extends React.Component {
     // TBD: closeAction
     static propTypes = {
-        viewStore:  PropTypes.object.isRequired
-    };
+        viewStore: PropTypes.object.isRequired
+    }
 
-    constructor (props) {
+    constructor(props) {
         super(props)
 
         this.noop = () => {}
-        this.getAction                  = this.getAction.bind(this)
-        this.closeConfirmationDialog    = this.closeConfirmationDialog.bind(this)
+        this.getAction = this.getAction.bind(this)
+        this.closeConfirmationDialog = this.closeConfirmationDialog.bind(this)
     }
 
-    closeConfirmationDialog () {
+    closeConfirmationDialog() {
         this.props.viewStore.confirmationDialog.open = false
     }
 
-    getAction () {
-        const confirmationDialogOptions             = this.props.viewStore.confirmationDialog
+    getAction() {
+        const confirmationDialogOptions = this.props.viewStore
+            .confirmationDialog
         let {action, closeOnAction} = confirmationDialogOptions,
             myAction
 
@@ -46,29 +47,32 @@ class ConfirmationDialog extends React.Component {
         if (action === 'close' || action == null) {
             myAction = this.closeConfirmationDialog
         } else {
-            myAction = typeof action === 'function'
-                ? action
-                // TBD: show warning/throw error if function is not valid
-                : this.noop
+            myAction =
+                typeof action === 'function'
+                    ? action
+                    : // TBD: show warning/throw error if function is not valid
+                      this.noop
         }
 
-        return e => {
+        return (e) => {
             console.log('ConfirmationDialog->myAction called!')
             myAction(e)
             closeOnAction && this.closeConfirmationDialog()
         }
     }
 
-    render () {
+    render() {
         let {
-            viewStore:       {confirmationDialog: {
-                canCancel, open, title, content, // action: originalAction,
-                // refactor: buttonLabels
-                buttonLabels: {
-                    confirm:    labelConfirm,
-                    cancel:     labelCancel
+            viewStore: {
+                confirmationDialog: {
+                    canCancel,
+                    open,
+                    title,
+                    content, // action: originalAction,
+                    // refactor: buttonLabels
+                    buttonLabels: {confirm: labelConfirm, cancel: labelCancel}
                 }
-            }}
+            }
         } = this.props
 
         // always schow confirm button!
@@ -85,14 +89,16 @@ class ConfirmationDialog extends React.Component {
 
         if (canCancel) {
             // add CANCEL button (if action != cancel)
-            actions.push( // .unshift(
+            actions.push(
+                // .unshift(
                 <Button
                     key="cancel"
                     variant="contained"
                     color="secondary"
                     hoverColor="#999"
                     onClick={this.closeConfirmationDialog}
-                >{labelCancel != null ? labelCancel : 'cancel'}
+                >
+                    {labelCancel != null ? labelCancel : 'cancel'}
                 </Button>
             )
         }
@@ -109,11 +115,14 @@ class ConfirmationDialog extends React.Component {
                 overlayStyle={{zIndex: 999}}
                 title={title}
             >
-                <div id="ConfirmationDialog_content" style={{padding: '3rem', fontSize: '2rem'}}>
-                    {content}<br /><br />
-                    <DialogActions>
-                        {actions}
-                    </DialogActions>
+                <div
+                    id="ConfirmationDialog_content"
+                    style={{padding: '3rem', fontSize: '2rem'}}
+                >
+                    {content}
+                    <br />
+                    <br />
+                    <DialogActions>{actions}</DialogActions>
                 </div>
             </Dialog>
         )

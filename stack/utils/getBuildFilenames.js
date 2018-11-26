@@ -1,13 +1,11 @@
-import fs           from 'fs'
-import {debugMsg}   from './myLogger'
+import fs from 'fs'
+import {debugMsg} from './myLogger'
 
-const {
-    isProduction, paths
-} = require('config').default
+const {isProduction, paths} = require('config').default
 
 const getBuildFilenames = () => {
-    const APP_JS_PATTERN    = /^app-\w+\.js$/
-    const APP_CSS_PATTERN   = /^app-\w+\.css$/
+    const APP_JS_PATTERN = /^app-\w+\.js$/
+    const APP_CSS_PATTERN = /^app-\w+\.css$/
     // TBD: use app-hash from webpack-instance, for dev?
     const DEVELOPMENT_FILES = {appCSS: 'app.css', appJS: 'app.js'}
 
@@ -16,14 +14,21 @@ const getBuildFilenames = () => {
     }
 
     try {
-        const buildDirFiles     = fs.readdirSync(paths.build)
+        const buildDirFiles = fs.readdirSync(paths.build)
 
         return {
-            appJS:     buildDirFiles.find(filename => APP_JS_PATTERN.test(filename)),
-            appCSS:    buildDirFiles.find(filename => APP_CSS_PATTERN.test(filename))
+            appJS: buildDirFiles.find((filename) =>
+                APP_JS_PATTERN.test(filename)
+            ),
+            appCSS: buildDirFiles.find((filename) =>
+                APP_CSS_PATTERN.test(filename)
+            )
         }
     } catch (err) {
-        debugMsg('{bold [gulp-tasks/copyIndex]} getStaticAssetFilenames.catch]}', err)
+        debugMsg(
+            '{bold [gulp-tasks/copyIndex]} getStaticAssetFilenames.catch]}',
+            err
+        )
 
         return DEVELOPMENT_FILES
     }

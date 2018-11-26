@@ -1,27 +1,27 @@
 // REACT LIBS
-import React                            from 'react'
-import {renderToString}           from 'react-dom/server' // {renderToString}
+import React from 'react'
+import {renderToString} from 'react-dom/server' // {renderToString}
 
 // OTHER LIBS
-import ip                               from 'ip'
+import ip from 'ip'
 // refactor                            : use bluebird as polyfill on entrypoint(s)
 // import Promise                          from 'bluebird'
 // APP FILES
-import getBuiltIndex                    from '../../utils/getBuiltIndex.js'
-import getBuildFilenames                from '../../utils/getBuildFilenames.js'
+import getBuiltIndex from '../../utils/getBuiltIndex.js'
+import getBuildFilenames from '../../utils/getBuildFilenames.js'
 
-import {StaticRouter}                   from 'react-router'
+import {StaticRouter} from 'react-router'
 // import initialState                     from '../../../app/js/stores/initialState.js'
-import {Provider}                       from 'mobx-react'
-import stores                           from '../../../app/stores/index.js'
+import {Provider} from 'mobx-react'
+import stores from '../../../app/stores/index.js'
 
-import createRoutes                     from '../../../app/routes/index.js'
-import App                              from '../../../app/js/App.js'
-import Layout                           from '../../../app/js/Layout.js'
+import createRoutes from '../../../app/routes/index.js'
+import App from '../../../app/js/App.js'
+import Layout from '../../../app/js/Layout.js'
 
-import {createGenerateClassName}        from '@material-ui/core/styles'
-import {SheetsRegistry}                 from 'jss'
-import {JssProvider}                    from 'react-jss'
+import {createGenerateClassName} from '@material-ui/core/styles'
+import {SheetsRegistry} from 'jss'
+import {JssProvider} from 'react-jss'
 
 const {
     isProduction,
@@ -29,7 +29,7 @@ const {
 } = require('config').default
 
 // const routes            = createRoutes(stores)
-const serverIp          = ip.address()
+const serverIp = ip.address()
 
 const render = (req, res, next) => {
     const {appHtml, ssrCSS} = renderPage({path: req.url, stores})
@@ -39,8 +39,8 @@ const render = (req, res, next) => {
 
     if (isProduction) {
         // TBD: npm run start --production
-        appJS   = `/build/${appJsFilename}`
-        appCSS  = `/build/${appCssFilename}`
+        appJS = `/build/${appJsFilename}`
+        appCSS = `/build/${appCssFilename}`
     } else {
         // TBD: APP_BUILD_STATIC => add /build/
 
@@ -51,14 +51,16 @@ const render = (req, res, next) => {
     const indexHtml = getBuiltIndex({appCSS, appJS})
 
     //* hide app until layout stylesheet is loaded! */
-    const opacityStyle      = '<style type="text/css">#app {opacity: 0;}</style>'
+    const opacityStyle = '<style type="text/css">#app {opacity: 0;}</style>'
 
-    const html = '<!DOCTYPE html>\n' + indexHtml
-        .replace(
-            '<div id="app"></div>',
-            `<div id="app"><style id="jss-server-side">${ssrCSS}</style>${appHtml}</div>`
-        )
-        .replace('<head>', '<head>' + opacityStyle)
+    const html =
+        '<!DOCTYPE html>\n' +
+        indexHtml
+            .replace(
+                '<div id="app"></div>',
+                `<div id="app"><style id="jss-server-side">${ssrCSS}</style>${appHtml}</div>`
+            )
+            .replace('<head>', '<head>' + opacityStyle)
 
     res.send(html)
 }
@@ -66,12 +68,15 @@ const render = (req, res, next) => {
 const renderPage = ({path, stores, context = {}}) => {
     // see https://github.com/mui-org/material-ui/blob/master/examples/ssr/server.js
     const generateClassName = createGenerateClassName()
-    const sheetsRegistry    = new SheetsRegistry()
+    const sheetsRegistry = new SheetsRegistry()
 
-    const appHtml           = renderToString(
+    const appHtml = renderToString(
         <Provider {...stores}>
             <StaticRouter location={path} context={context}>
-                <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+                <JssProvider
+                    registry={sheetsRegistry}
+                    generateClassName={generateClassName}
+                >
                     <App />
                 </JssProvider>
             </StaticRouter>

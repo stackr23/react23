@@ -1,16 +1,17 @@
-import fs               from 'fs'
-import path             from 'path'
-import stylus           from 'stylus'
+import fs from 'fs'
+import path from 'path'
+import stylus from 'stylus'
 
-import styleObjects     from '@stackr23/styleobjects'
+import styleObjects from '@stackr23/styleobjects'
 
-const {paths: {app: appPath}} = require('config').default
+const {
+    paths: {app: appPath}
+} = require('config').default
 
 const loadStyleObject = async () => {
-    const muiThemesPath     = path.join(appPath, 'style', 'muiThemes')
+    const muiThemesPath = path.join(appPath, 'style', 'muiThemes')
 
     console.log('styleObjects', typeof styleObjects, styleObjects) // styleObjects.convert('#app {color: 'red'; }')
-
 
     const react23CSSO = fs.readFileSync(
         path.join(appPath, 'style', 'muiThemes', 'react23.csso'),
@@ -31,9 +32,7 @@ const loadStyleObject = async () => {
     let stylusCSS
     const util = require('util')
     const stylusPromised = util.promisify(
-        stylus(react23CSSO)
-            .set('paths', [muiThemesPath])
-            .render
+        stylus(react23CSSO).set('paths', [muiThemesPath]).render
     )
 
     // const stylusCSS = await stylusPromised()

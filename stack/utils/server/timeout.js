@@ -1,20 +1,22 @@
-import Promise        from 'bluebird'
-import {TimeoutError} from './Exceptions.js'
+import {TimeoutError} from '../Exceptions/'
 
 const timeout = (ms = 5000, promise) =>
-    (new Promise((resolve, reject) => {
+    new Promise((resolve, reject) => {
         setTimeout(() => {
-            reject(new TimeoutError(
-                'Die Verbindung zum Server wurder leider unterbrochen'
-            +   ' (timeout after ' + (ms / 1000) + 's)'
-            ))
+            reject(
+                new TimeoutError(
+                    'Die Verbindung zum Server wurder leider unterbrochen' +
+                        ' (timeout after ' +
+                        ms / 1000 +
+                        's)'
+                )
+            )
         }, ms)
 
         promise
-            // TBD catch
-            // .catch() // other errors
             // Promise resolved before timeout - keep going...
             .then(resolve, reject)
-    }))
+            .catch((err) => throw new Error(err))
+    })
 
 export default timeout

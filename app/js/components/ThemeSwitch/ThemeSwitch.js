@@ -1,8 +1,8 @@
-import React                from 'react'
-import PropTypes            from 'prop-types'
-import {observer, inject}   from 'mobx-react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import {observer, inject} from 'mobx-react'
 
-import Switch               from '@material-ui/core/Switch'
+import Switch from '@material-ui/core/Switch'
 
 if (process.env.IS_BROWSER) {
     require('./ThemeSwitch.styl')
@@ -12,25 +12,29 @@ if (process.env.IS_BROWSER) {
 @observer
 class ThemeSwitch extends React.Component {
     static propTypes = {
-        viewStore:  PropTypes.object.isRequired
+        viewStore: PropTypes.object.isRequired
     }
 
     // TBD: add mobx-router to pass /page component to Layout
-    render () {
-        const {viewStore}       = this.props
+    render() {
+        const {viewStore} = this.props
         // TBD: read default theme from appConfig
-        const isDefaultTheme    = viewStore.theme === 'react23Theme'
+        const isDefaultTheme = viewStore.theme === 'react23Theme'
 
         return (
             <div id="ThemeSwitch" className="component">
-                <b>active theme: </b>{viewStore.theme}<br />
+                <b>active theme: </b>
+                {viewStore.theme}
+                <br />
                 <Switch
-                    onChange={e => viewStore.switchTheme()} checked={!isDefaultTheme}
+                    onChange={(e) => viewStore.switchTheme()}
+                    checked={!isDefaultTheme}
                     classes={{
-                        root:       'Switch',
-                        checked:    'checked'
+                        root: 'Switch',
+                        checked: 'checked'
                     }}
-                /> toggle Theme
+                />{' '}
+                toggle Theme
             </div>
         )
     }

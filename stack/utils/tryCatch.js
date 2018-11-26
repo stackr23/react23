@@ -1,4 +1,4 @@
-export default function tryCatch (tryFn, catchFn) {
+export default function tryCatch(tryFn, catchFn) {
     try {
         tryFn.call()
     } catch (err) {

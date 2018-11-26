@@ -1,11 +1,11 @@
-import chalk    from 'chalk'
+import chalk from 'chalk'
 
 const {isDebug} = require('config').default
 
 // no arrow function -> preserve context!
-const chalkExt = function (parts, ...substitutions) {
-    let rawResults      = [],
-        cookedResults   = [],
+const chalkExt = function(parts, ...substitutions) {
+    let rawResults = [],
+        cookedResults = [],
         chalkParts
 
     parts.forEach((v, i) => {
@@ -16,8 +16,8 @@ const chalkExt = function (parts, ...substitutions) {
             cookedResults.push(substitutions[i])
         }
     })
-    chalkParts      = [cookedResults.join('')]
-    chalkParts.raw  = [rawResults.join('')]
+    chalkParts = [cookedResults.join('')]
+    chalkParts.raw = [rawResults.join('')]
 
     return chalk(chalkParts)
 }

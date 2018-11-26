@@ -1,8 +1,10 @@
-import express          from 'express'
-import frontend         from './frontend'
+import express from 'express'
+import frontend from './frontend'
 
-const app               = express()
-const {ports: {portFE}} = require('config').default
+const app = express()
+const {
+    ports: {portFE}
+} = require('config').default
 
 // TBD: /api
 // app.use('/api', api)

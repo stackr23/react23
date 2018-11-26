@@ -1,19 +1,19 @@
-import React                from 'react'
-import PropTypes            from 'prop-types'
-import {observer, inject}   from 'mobx-react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import {observer, inject} from 'mobx-react'
 
-import ThemeSwitch          from '../components/ThemeSwitch/ThemeSwitch'
-import CowSay               from '../components/CowSay'
+import ThemeSwitch from '../components/ThemeSwitch/ThemeSwitch'
+import CowSay from '../components/CowSay'
 
 @inject('viewStore')
 @observer
 class Home extends React.Component {
     static propTypes = {
-        viewStore:  PropTypes.object.isRequired
+        viewStore: PropTypes.object.isRequired
     }
 
     // TBD: add mobx-router to pass /page component to Layout
-    render () {
+    render() {
         return (
             <div id="home" className="page">
                 <ThemeSwitch />
