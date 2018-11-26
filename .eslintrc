@@ -1,5 +1,8 @@
 {
   "root": true,
+  // eslint-config-stackr23
+  // standard variation of standard js coding style
+  // https://github.com/stackr23/eslint-config-stackr23
   "extends": ["stackr23/react"],
   "globals": {},
   "rules": {
