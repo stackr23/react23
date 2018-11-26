@@ -25,6 +25,7 @@ export default class ViewStore {
                 error: false,
                 _confirmationDialog: {...confirmationDialogDefaults},
                 sidenav: {
+                    headline: 'React23 Menu',
                     isOpen: false
                 },
                 navBar: {

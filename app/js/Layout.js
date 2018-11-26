@@ -9,7 +9,7 @@ import themes from '../style/muiThemes/index'
 import {Link} from 'react-router-dom'
 import ConfirmationDialog from './layout/ConfirmationDialog'
 
-import Sidenav from './layout/Sidenav/index.js'
+import Sidenav from './layout/Sidenav'
 import Header from './components/Header'
 
 if (process.env.IS_BROWSER) {
@@ -20,7 +20,7 @@ if (process.env.IS_BROWSER) {
 @observer
 class Layout extends React.Component {
     static propTypes = {
-        children: PropTypes.object.isRequired,
+        children: PropTypes.array.isRequired,
         router: PropTypes.object,
         viewStore: PropTypes.object.isRequired
     }
