@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom'
 import ConfirmationDialog from './layout/ConfirmationDialog'
 
 import Sidenav from './layout/Sidenav'
+import Sidemenu from './layout/Sidemenu'
 import Header from './components/Header'
 
 if (process.env.IS_BROWSER) {
@@ -42,34 +43,21 @@ class Layout extends React.Component {
             sheetsManager = {sheetsManager: new Map()}
         }
 
+        // TBD: shove theme(setup) into viewStore
+
         return (
             <MuiThemeProvider theme={theme} {...sheetsManager}>
                 <React.Fragment>
-                    <div
-                        id="main"
-                        className="cacdsdsdcdfnklnmBudsfdsgsdgsfmklmnkpjm"
-                    >
+                    <div id="main">
                         <Header
                             headline="React23"
                             subline="the perfect react stack to wrap your web app"
                         />
-                        <Sidenav />
-                        <div id="content">
-                            <nav
-                                id="nav"
-                                className="wrapper"
-                                style={{
-                                    marginBottom: '1rem',
-                                    paddingBottom: '1rem',
-                                    borderBottom: '1px solid #ccc'
-                                }}
-                            >
-                                <Link to={'/'}>Home</Link>&nbsp;|&nbsp;
-                                <Link to={'/test'}>TestPage</Link>
-                            </nav>
-                            {this.props.children}
-                        </div>
+                        <div id="content">{this.props.children}</div>
                     </div>
+                    {/* global UI Components */}
+                    <Sidenav />
+                    <Sidemenu />
                     <ConfirmationDialog />
                 </React.Fragment>
             </MuiThemeProvider>

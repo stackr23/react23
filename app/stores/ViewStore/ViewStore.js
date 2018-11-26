@@ -28,7 +28,8 @@ export default class ViewStore {
                     headline: 'React23 Menu',
                     isOpen: false
                 },
-                navBar: {
+                sidemenu: {
+                    headline: 'Settings',
                     isOpen: false
                 },
                 theme: 'react23Theme'
@@ -44,16 +45,12 @@ export default class ViewStore {
         }
 
         let input = which.toLowerCase()
-        console.log('sidenav input', input, input.indexOf('side') > -1)
-        console.log('sidenav before', this.sidenav.isOpen)
 
-        if (input === 'side' || input === 'sidenav') {
+        if (input === 'sidenav') {
             this.sidenav.isOpen = !this.sidenav.isOpen
-        } else if (input.indexOf('nav') > -1) {
-            this.navBar.isOpen = !this.navBar.isOpen
+        } else if (input === 'sidemenu') {
+            this.sidemenu.isOpen = !this.sidemenu.isOpen
         }
-
-        console.log('sidenav after', this.sidenav.isOpen)
 
         e.preventDefault()
         return true

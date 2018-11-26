@@ -115,10 +115,8 @@ class ConfirmationDialog extends React.Component {
                 overlayStyle={{zIndex: 999}}
                 title={title}
             >
-                <div
-                    id="ConfirmationDialog_content"
-                    style={{padding: '3rem', fontSize: '2rem'}}
-                >
+                <div id="ConfirmationDialog_content" style={{padding: '3rem'}}>
+                    <h1>Confirmation Dialog</h1>
                     {content}
                     <br />
                     <br />

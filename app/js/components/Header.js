@@ -6,6 +6,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
+import SettingsIcon from '@material-ui/icons/Settings'
 import Typography from '@material-ui/core/Typography'
 
 if (process.env.IS_BROWSER) {
@@ -24,6 +25,7 @@ class Header extends React.Component {
     render() {
         const {headline, subline, viewStore} = this.props
 
+        console.log('header props', this.props)
         return (
             <AppBar
                 position="static"
@@ -55,6 +57,30 @@ class Header extends React.Component {
                         {headline}
                         <span>{subline}</span>
                     </h1>
+                    <div style={{flexGrow: 1}} />
+                    <div className="header__right">
+                        <IconButton
+                            color="inherit"
+                            aria-label="Menu"
+                            style={{
+                                marginLeft: -12,
+                                marginRight: 20
+                            }}
+                            onClick={(e) => {
+                                viewStore.toggleSidebar('sidemenu', e)
+                            }}
+                        >
+                            <SettingsIcon
+                                fontSize="large"
+                                style={{
+                                    marginRight: 0
+                                }}
+                                classes={{
+                                    fontSizeLarge: 'muiIconLarge'
+                                }}
+                            />
+                        </IconButton>
+                    </div>
                 </Toolbar>
             </AppBar>
         )
