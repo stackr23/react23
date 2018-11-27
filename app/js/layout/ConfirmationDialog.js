@@ -44,7 +44,7 @@ class ConfirmationDialog extends React.Component {
 
         // refactor: canCancel
         // see also line 79
-        if (action === 'close' || action == null) {
+        if (action === 'close' || action === undefined) {
             myAction = this.closeConfirmationDialog
         } else {
             myAction =
@@ -83,7 +83,7 @@ class ConfirmationDialog extends React.Component {
                 color="primary"
                 onClick={this.getAction()}
             >
-                {labelConfirm != null ? labelConfirm : 'confirm'}
+                {labelConfirm !== undefined ? labelConfirm : 'confirm'}
             </Button>
         ]
 
@@ -98,7 +98,7 @@ class ConfirmationDialog extends React.Component {
                     hoverColor="#999"
                     onClick={this.closeConfirmationDialog}
                 >
-                    {labelCancel != null ? labelCancel : 'cancel'}
+                    {labelCancel !== undefined ? labelCancel : 'cancel'}
                 </Button>
             )
         }

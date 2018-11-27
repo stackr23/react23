@@ -36,7 +36,7 @@ const getBuildFilenames = () => {
 
 let buildFilenamesCached
 const getBuildFilenamesCached = () => {
-    if (buildFilenamesCached != null) {
+    if (buildFilenamesCached !== undefined) {
         return buildFilenamesCached
     }
 
