@@ -2,9 +2,37 @@ import React from 'react'
 import {Route} from 'react-router-dom'
 import Pages from '../js/pages/'
 
+let requireAuth = () => {}
+
+const _routes = [
+    {
+        meta: {
+            name: 'home',
+            linktext: 'Home',
+            title: 'Home'
+        },
+
+        // route props
+        path: '/',
+        exact: true,
+        component: Pages.Home,
+        onEnter: requireAuth
+    },
+    {
+        meta: {
+            name: 'test',
+            linktext: 'Test',
+            title: 'Test'
+        },
+        path: '/test',
+        exact: true,
+        component: Pages.TestPage
+    }
+]
+
 const createRoutes = (stores) => {
-    const requireAuth = (...args) => {
-        console.log('[React23] requireAuth - ...args', args)
+    requireAuth = (...args) => {
+        // console.log('[React23] requireAuth - ...args', args)
     }
 
     // TBD: loginCheck
@@ -16,23 +44,13 @@ const createRoutes = (stores) => {
     // }
 
     // TBD: use isomporphicRoutes.js
-    const routes = [
-        {
-            path: '/',
-            exact: true,
-            component: Pages.Home,
-            onEnter: requireAuth
-        },
-        {
-            path: '/test',
-            exact: true,
-            component: Pages.TestPage
-        }
-    ]
 
-    return routes.map((routeProps, i) => {
-        return <Route key={i} onEnter={requireAuth()} {...routeProps} />
+    return _routes.map((_routeProps, i) => {
+        let {meta, ...routeProps} = _routeProps
+        return <Route key={i} {...routeProps} />
     })
 }
+
+export const routes = _routes
 
 export default createRoutes

@@ -9,6 +9,8 @@ import themes from '../style/muiThemes/index'
 import {Link} from 'react-router-dom'
 import ConfirmationDialog from './layout/ConfirmationDialog'
 
+import Sidenav from './layout/Sidenav'
+import Sidemenu from './layout/Sidemenu'
 import Header from './components/Header'
 
 if (process.env.IS_BROWSER) {
@@ -19,20 +21,20 @@ if (process.env.IS_BROWSER) {
 @observer
 class Layout extends React.Component {
     static propTypes = {
-        children: PropTypes.object.isRequired,
+        children: PropTypes.array.isRequired,
         router: PropTypes.object,
         viewStore: PropTypes.object.isRequired
     }
 
     componentDidMount() {
-        if (this.props.children == null) {
+        if (this.props.children === null) {
             // this.props.router.push('/')
         }
     }
 
     render() {
         const {
-            viewStore: {theme: themeName}
+            viewStore: {theme: themeName, sideBar, sidenav}
         } = this.props
         const theme = themes[themeName]
 
@@ -41,31 +43,21 @@ class Layout extends React.Component {
             sheetsManager = {sheetsManager: new Map()}
         }
 
+        // TBD: shove theme(setup) into viewStore
+
         return (
             <MuiThemeProvider theme={theme} {...sheetsManager}>
                 <React.Fragment>
-                    <div
-                        id="main"
-                        className="cacdsdsdcdfnklnmBudsfdsgsdgsfmklmnkpjm"
-                    >
+                    <div id="main">
                         <Header
                             headline="React23"
                             subline="the perfect react stack to wrap your web app"
                         />
-                        <nav
-                            id="nav"
-                            className="wrapper"
-                            style={{
-                                marginBottom: '1rem',
-                                paddingBottom: '1rem',
-                                borderBottom: '1px solid #ccc'
-                            }}
-                        >
-                            <Link to={'/'}>Home</Link>&nbsp;|&nbsp;
-                            <Link to={'/test'}>TestPage</Link>
-                        </nav>
-                        {this.props.children}
+                        <div id="content">{this.props.children}</div>
                     </div>
+                    {/* global UI Components */}
+                    <Sidenav />
+                    <Sidemenu />
                     <ConfirmationDialog />
                 </React.Fragment>
             </MuiThemeProvider>

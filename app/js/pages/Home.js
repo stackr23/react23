@@ -16,7 +16,7 @@ class Home extends React.Component {
     render() {
         return (
             <div id="home" className="page">
-                <ThemeSwitch />
+                <h2>Home</h2>
                 <CowSay />
             </div>
         )

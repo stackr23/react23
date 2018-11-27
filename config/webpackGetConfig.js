@@ -26,7 +26,7 @@ let {
 const serverIp = ip.address()
 
 export default (_isDevelopment) => {
-    isDevelopment = _isDevelopment != null ? _isDevelopment : isDevelopment
+    isDevelopment = _isDevelopment !== null ? _isDevelopment : isDevelopment
 
     const webpackConfig = {
         mode: NODE_ENV || isDevelopment ? 'development' : 'production',

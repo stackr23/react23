@@ -23,9 +23,6 @@ class ThemeSwitch extends React.Component {
 
         return (
             <div id="ThemeSwitch" className="component">
-                <b>active theme: </b>
-                {viewStore.theme}
-                <br />
                 <Switch
                     onChange={(e) => viewStore.switchTheme()}
                     checked={!isDefaultTheme}
@@ -34,7 +31,7 @@ class ThemeSwitch extends React.Component {
                         checked: 'checked'
                     }}
                 />{' '}
-                toggle Theme
+                <strong>Theme:</strong> {viewStore.theme}
             </div>
         )
     }
