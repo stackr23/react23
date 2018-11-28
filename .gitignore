@@ -9,7 +9,8 @@
 node_modules/
 npm-debug.log
 package-lock.json
-yarn.lock
+# use yarn as default
+# yarn.lock
 
 # Wordpress
 wordpress/wp-config.php
