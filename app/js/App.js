@@ -1,23 +1,24 @@
 import React from 'react'
-
 import {Route} from 'react-router-dom'
+import Helmet from 'react-helmet'
+import PropTypes from 'prop-types'
 
+import {observer, inject} from 'mobx-react'
 import stores from '../stores'
 
 import Layout from './Layout'
 import createRoutes from '../routes/index'
 
-import Helmet from 'react-helmet'
-
+@inject('router')
 class App extends React.Component {
-    // <React.Fragment>
-    //     {routes.map((route, i)
-    //     => <Route {...route} key={i} />)}
-    // </React.Fragment>
+    static propTypes = {
+        children: PropTypes.array.isRequired,
+        viewStore: PropTypes.object.isRequired
+    }
 
     render() {
         return (
-            <div id="main">
+            <div id="app">
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>[StackR23/react]</title>

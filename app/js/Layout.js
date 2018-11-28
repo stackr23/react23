@@ -17,19 +17,11 @@ if (global.IS_BROWSER) {
     require('../style/layout.styl')
 }
 
-@inject('viewStore' /*, 'router' */)
-@observer
+@inject('viewStore')
 class Layout extends React.Component {
     static propTypes = {
         children: PropTypes.array.isRequired,
-        router: PropTypes.object,
         viewStore: PropTypes.object.isRequired
-    }
-
-    componentDidMount() {
-        if (this.props.children === null) {
-            // this.props.router.push('/')
-        }
     }
 
     render() {
@@ -37,24 +29,29 @@ class Layout extends React.Component {
             viewStore: {theme: themeName, sideBar, sidenav}
         } = this.props
         const theme = themes[themeName]
+        const themeClassName = themeName
 
         let sheetsManager = {}
         if (!global.IS_BROWSER) {
+            //  inject sheetsManager for SSR - see /stack/server/frontend/render.js
             sheetsManager = {sheetsManager: new Map()}
         }
 
-        // TBD: shove theme(setup) into viewStore
+        console.log('theme', theme)
 
         return (
             <MuiThemeProvider theme={theme} {...sheetsManager}>
                 <React.Fragment>
-                    <div id="main">
+                    <main id="main" className={themeName}>
                         <Header
                             headline="React23"
                             subline="the perfect react stack to wrap your web app"
                         />
-                        <div id="content">{this.props.children}</div>
-                    </div>
+                        <div id="content" className="container">
+                            {this.props.children}
+                        </div>
+                    </main>
+                    <footer id="footer" />
                     {/* global UI Components */}
                     <Sidenav />
                     <Sidemenu />

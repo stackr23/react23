@@ -1,7 +1,9 @@
-@import './lib/fonts'
-// import setup before stylus23!
-@import './setup.styl'
+// import setup (vars) before stylus23!
+@import './setup'
 @import 'stylus23'
+
+@import './lib/fonts'
+@import './lib/helpers'
 
 body
     font-family "Roboto", "Helvetica", "Arial", sans-serif
@@ -20,14 +22,19 @@ h1
 #loader
   display none
 
-#app
+#root
   // fade in after layout is loaded
   opacity 1 !important // overwrite inline style
   transition opacity 300ms ease-out
 
-.wrapper
-  padding 0 $layout__wrapper_padding
-  // transition padding 1s ease-out
+#main
+    min-height "calc(100vh - %s)" % $layout__footer_height
 
-.page
-  @extend .wrapper
+#content
+    @include .container
+
+#footer
+    min-height $layout__footer_height
+    &:after
+        display block
+        content 'FOOTER CONTENT'

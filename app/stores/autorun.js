@@ -5,6 +5,8 @@ const {isProduction, isDebug} = process.env.APP_CONFIG
 export default function(stores) {
     autorun(() => {
         if (stores) {
+            console.log('router', stores.router.location)
+
             // dev helper - expose stores to window
             if ((!isProduction || isDebug) && global.IS_BROWSER) {
                 window.stores = stores

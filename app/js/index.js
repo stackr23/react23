@@ -38,5 +38,5 @@ class Root extends React.Component {
 if (global.IS_BROWSER) {
     const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate || ReactDOM.render
 
-    renderMethod(<Root />, document.getElementById('app'))
+    renderMethod(<Root />, document.getElementById('root'))
 }
