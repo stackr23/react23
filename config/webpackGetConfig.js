@@ -65,7 +65,7 @@ export default (_isDevelopment) => {
             rules: [
                 ...urlLoaders,
                 styleLoader,
-                cssObjectsLoader,
+                styleobjectsLoader,
                 // BABEL LOADER
                 {
                     loader: 'babel-loader',
