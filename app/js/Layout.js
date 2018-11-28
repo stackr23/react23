@@ -13,7 +13,7 @@ import Sidenav from './layout/Sidenav'
 import Sidemenu from './layout/Sidemenu'
 import Header from './components/Header'
 
-if (process.env.IS_BROWSER) {
+if (global.IS_BROWSER) {
     require('../style/layout.styl')
 }
 
@@ -39,7 +39,7 @@ class Layout extends React.Component {
         const theme = themes[themeName]
 
         let sheetsManager = {}
-        if (!process.env.IS_BROWSER) {
+        if (!global.IS_BROWSER) {
             sheetsManager = {sheetsManager: new Map()}
         }
 

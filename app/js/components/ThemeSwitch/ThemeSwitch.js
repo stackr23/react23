@@ -4,7 +4,7 @@ import {observer, inject} from 'mobx-react'
 
 import Switch from '@material-ui/core/Switch'
 
-if (process.env.IS_BROWSER) {
+if (global.IS_BROWSER) {
     require('./ThemeSwitch.styl')
 }
 

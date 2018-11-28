@@ -18,7 +18,7 @@ mobxAutorun(stores)
 
 const {browserRoot} = process.env.APP_CONFIG
 
-let historyCreated = process.env.IS_BROWSER
+let historyCreated = global.IS_BROWSER
     ? createBrowserHistory({basename: browserRoot})
     : createMemoryHistory()
 const historySynced = syncHistoryWithStore(historyCreated, stores.router)
@@ -35,10 +35,8 @@ class Root extends React.Component {
     }
 }
 
-if (process.env.IS_BROWSER) {
-    const renderMethod = module.hot
-        ? ReactDOM.render
-        : ReactDOM.hydrate || ReactDOM.render
+if (global.IS_BROWSER) {
+    const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate || ReactDOM.render
 
     renderMethod(<Root />, document.getElementById('app'))
 }

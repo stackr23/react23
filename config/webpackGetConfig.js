@@ -81,7 +81,7 @@ export default (_isDevelopment) => {
                         env: {
                             production: {
                                 // use webpack optimization.minimize
-                                // '@babel/preset-minify'
+                                // instead of'@babel/preset-minify'
                             }
                         }
                     }
@@ -130,8 +130,10 @@ export default (_isDevelopment) => {
                     ]
                 }),
                 new webpack.DefinePlugin({
+                    global: {
+                        IS_BROWSER: true
+                    },
                     'process.env': {
-                        IS_BROWSER: true,
                         NODE_ENV: JSON.stringify(NODE_ENV),
                         APP_CONFIG: JSON.stringify(config),
                         GH_PAGES: JSON.stringify(process.env.GH_PAGES),

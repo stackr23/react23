@@ -14,7 +14,7 @@ import _react23Theme from './react23'
 import _muiTheme from './default'
 
 let styleObjects, stylus
-if (process.env.IS_BROWSER) {
+if (global.IS_BROWSER) {
 } else {
     // loadStyleObjects('./react23.css')
 }

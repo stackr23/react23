@@ -9,7 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import SettingsIcon from '@material-ui/icons/Settings'
 import Typography from '@material-ui/core/Typography'
 
-if (process.env.IS_BROWSER) {
+if (global.IS_BROWSER) {
     require('./Header.styl')
 }
 
@@ -27,12 +27,7 @@ class Header extends React.Component {
 
         console.log('header props', this.props)
         return (
-            <AppBar
-                position="static"
-                color="primary"
-                style={{marginBottom: '2rem'}}
-                className=""
-            >
+            <AppBar position="static" color="primary" style={{marginBottom: '2rem'}} className="">
                 <Toolbar>
                     <IconButton
                         color="inherit"

@@ -20,7 +20,7 @@ import {routes} from '../../../routes'
 // import MenuIcon from '@material-ui/icons/Menu'
 // import Typography from '@material-ui/core/Typography'
 
-if (process.env.IS_BROWSER) {
+if (global.IS_BROWSER) {
     require('./Sidenav.styl')
 }
 

@@ -1,5 +1,5 @@
 const getInitialState = () => {
-    const clientState = process.env.IS_BROWSER
+    const clientState = global.IS_BROWSER
         ? // refactor: localStorage engine + engineKey in appConfig
           localStorage.getItem('testLocalStorage')
         : // refactor: what to do on serverSide?
