@@ -1,11 +1,10 @@
-'use strict'
 // utils
-import path from 'path'
 import ip from 'ip'
+import path from 'path'
 // WEBPACK related
 import webpack from 'webpack'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import urlLoaders from './webpack/urlLoaders'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 // STYLE related
 import autoprefixer from 'autoprefixer'
 import cssMqPacker from 'css-mqpacker'
@@ -56,7 +55,7 @@ export default (_isDevelopment) => {
               }
             : {
                   path: paths.build,
-                  filename: 'app-[hash].js', // TBD: 'app-[hash].js'
+                  filename: 'app-[hash].js',
                   sourceMapFilename: 'app-[hash].js.map',
                   chunkFilename: 'app-[chunkhash].js'
               },
@@ -76,7 +75,7 @@ export default (_isDevelopment) => {
                         retainLines: true,
                         sourceMap: true,
                         babelrc: true,
-                        // cacheDirectory: path.join(paths.build, 'cache', 'babel-loader'),
+                        cacheDirectory: path.join(paths.build, 'cache', 'babel-loader'),
                         // presets and plugins defined in .babelrc
                         // enable env config if needed
                         env: {
@@ -139,10 +138,6 @@ export default (_isDevelopment) => {
                         APP_BUILD_STATIC: JSON.stringify(process.env.APP_BUILD_STATIC)
                     }
                 })
-
-                // new webpack.ProvidePlugin({
-                //     'Promise': 'bluebird'
-                // }) // not needed in babel7 ???
             ]
             if (!isProduction) {
                 plugins.push(
