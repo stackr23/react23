@@ -7,6 +7,8 @@
 //
 // change settings accoriding to your local environment
 
+// TBD: use global config object for static build
+// or pass it via yargs?
 const staticLocalhostRoot = '/'
 
 //     ____                  __ ___  _____
@@ -52,16 +54,15 @@ export default (function(APP_CONFIG) {
             isDebug: process.env.APP_DEBUG || yargs.debug,
             ports: {
                 portFE: 7000,
-                portHMR: 7070,
-                portBSProxy: 7001,
-                portBSUI: 3000
+                portHMR: 7070
+                //  ports for BrowserSync
+                //  portBSProxy: 7001,
+                //  portBSUI: 3000
             },
             paths,
             browserRoot: process.env.GH_PAGES
                 ? '/react23/'
-                : // TBD: refactor: for BUILD_STATIC
-                // BUILD_STATIC set AFTER load of config -> shove into App.js?
-                isProduction
+                : isProduction
                 ? '/'
                 : staticLocalhostRoot,
             globs: {

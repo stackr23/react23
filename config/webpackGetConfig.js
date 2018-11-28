@@ -9,7 +9,7 @@ import urlLoaders from './webpack/urlLoaders'
 // STYLE related
 import autoprefixer from 'autoprefixer'
 import cssMqPacker from 'css-mqpacker'
-import styleLoader, {cssObjectsLoader} from './webpack/styleLoader'
+import styleLoader, {styleobjectsLoader} from './webpack/styleLoader'
 
 const config = require('config').default
 
@@ -60,13 +60,7 @@ export default (_isDevelopment) => {
                   sourceMapFilename: 'app-[hash].js.map',
                   chunkFilename: 'app-[chunkhash].js'
               },
-        stats: verbose
-            ? 'verbose'
-            : isDebug
-            ? 'normal'
-            : isProduction
-            ? 'errors-only'
-            : 'minimal',
+        stats: verbose ? 'verbose' : isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',
         module: {
             rules: [
                 ...urlLoaders,
@@ -131,12 +125,7 @@ export default (_isDevelopment) => {
                     sourceMap: true,
                     postcss: () => [
                         autoprefixer({
-                            browsers: [
-                                'last 2 versions',
-                                'Safari > 6',
-                                'iOS >= 7',
-                                'ie >= 8'
-                            ]
+                            browsers: ['last 2 versions', 'Safari > 6', 'iOS >= 7', 'ie >= 8']
                         }),
                         cssMqPacker()
                     ]
@@ -147,9 +136,7 @@ export default (_isDevelopment) => {
                         NODE_ENV: JSON.stringify(NODE_ENV),
                         APP_CONFIG: JSON.stringify(config),
                         GH_PAGES: JSON.stringify(process.env.GH_PAGES),
-                        APP_BUILD_STATIC: JSON.stringify(
-                            process.env.APP_BUILD_STATIC
-                        )
+                        APP_BUILD_STATIC: JSON.stringify(process.env.APP_BUILD_STATIC)
                     }
                 })
 

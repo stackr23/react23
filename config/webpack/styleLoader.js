@@ -14,7 +14,19 @@
 //
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import {errorMsg} from '../../stack/utils/myLogger'
-
+/**
+ * Stylus23 - https://github.com/stackr23/stylus23/
+ * deprecated: will be moved to '@stackr23/stylus'
+ *
+ * features:
+ *     - +MQ mixin
+ *     - helpers like clearfix() and after/before()
+ *
+ * for actual usage see /app/style/layout.styl
+ * MQ breakpoints can be set via JS options
+ *     or in stylus files, before @import 'stylus23' via:
+ *     $stylus_mq_{name}   = 'only screen and (max-width: 320px)'
+ */
 import stylus23 from 'stylus23'
 
 const {isDevelopment, NODE_ENV, cssStyle} = require('config').default
@@ -63,13 +75,13 @@ styleLoaders.stylus = {
           })
 }
 
-//    ________________       ____  ____      _________________________
-//   / ____/ ___/ ___/      / __ \/ __ )    / / ____/ ____/_  __/ ___/
-//  / /    \__ \\__ \______/ / / / __  |_  / / __/ / /     / /  \__ \
-// / /___ ___/ /__/ /_____/ /_/ / /_/ / /_/ / /___/ /___  / /  ___/ /
-// \____//____/____/      \____/_____/\____/_____/\____/ /_/  /____/
+//    _____________  ____    ______   ____  ____      _________________________
+//   / ___/_  __/\ \/ / /   / ____/  / __ \/ __ )    / / ____/ ____/_  __/ ___/
+//   \__ \ / /    \  / /   / __/    / / / / __  |_  / / __/ / /     / /  \__ \
+//  ___/ // /     / / /___/ /___   / /_/ / /_/ / /_/ / /___/ /___  / /  ___/ /
+// /____//_/     /_/_____/_____/   \____/_____/\____/_____/\____/ /_/  /____/
 
-styleLoaders.cssObjects = {
+styleLoaders.styleobjects = {
     test: /\.(csso)$/,
     use: ['@stackr23/styleobjects-loader', 'stylus-loader']
 }
@@ -80,12 +92,12 @@ styleLoaders.cssObjects = {
 //  / __/ / /_/ / /___/ /___   / /_/ / /___/ __/ _/ // /|  // /  / / _/ // /_/ / /|  /
 // /_/    \____/_____/_____/  /_____/_____/_/   /___/_/ |_/___/ /_/ /___/\____/_/ |_/
 
-const customStyleLoader =
+const chosenPreprocessorLoader =
     styleLoaders[cssStyle] ||
     errorMsg(`
 styleLoaders[${cssStyle}] not defined yet.
 Go to /config/webpack/styleLoaders.js and add it.
 `)
 
-export const cssObjectsLoader = styleLoaders.cssObjects
-export default customStyleLoader
+export const styleobjectsLoader = styleLoaders.styleobjects
+export default chosenPreprocessorLoader
