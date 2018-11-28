@@ -1,7 +1,2 @@
-import Home from './Home'
-import TestPage from './TestPage'
-
-export default {
-    Home,
-    TestPage
-}
+export Home from './Home'
+export TestPage from './TestPage'
