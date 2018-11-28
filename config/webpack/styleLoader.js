@@ -12,22 +12,18 @@
 // cssStyle can be set via --cssStyle
 // for changing default, go to /config/appConfig.js (yarg definitions)
 //
-import ExtractTextPlugin        from 'extract-text-webpack-plugin'
-import {errorMsg}               from '../../stack/utils/myLogger'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import {errorMsg} from '../../stack/utils/myLogger'
 
-import stylus23                 from 'stylus23'
+import stylus23 from 'stylus23'
 
+const {isDevelopment, NODE_ENV, cssStyle} = require('config').default
 
-const {
-    isDevelopment, NODE_ENV,
-    cssStyle
-} = require('config').default
-
-const styleLoaders              = {}
-const preLoaders                = [
-    {loader: 'style-loader',   options: {sourceMap: true}},
-    {loader: 'css-loader',     options: {sourceMap: true}},
-    {loader: 'postcss-loader', options: {sourceMap: true}}
+const styleLoaders = {}
+const preLoaders = [
+    {loader: 'style-loader', options: {sourceMap: true}},
+    {loader: 'css-loader', options: {sourceMap: true}},
+    {loader: 'postcss-loader', options: {sourceMap: true, options: {}}}
 ]
 
 //    _____________  ____    __  _______
@@ -42,16 +38,18 @@ const stylusLoader = {
         stylus: {
             preferPathResolver: 'webpack'
         },
-        sourceMap:  true,
-        compress:   !isDevelopment,
-        use:        [stylus23({
-            envVars: {
-                NODE_ENV: NODE_ENV
-                // TBD: inject muiTheme
-                // THEME:
-            },
-            envPrefix:  '$ENV__'
-        })]
+        sourceMap: true,
+        compress: !isDevelopment,
+        use: [
+            stylus23({
+                envVars: {
+                    NODE_ENV: NODE_ENV
+                    // TBD: inject muiTheme
+                    // THEME:
+                },
+                envPrefix: '$ENV__'
+            })
+        ]
     }
 }
 
@@ -60,9 +58,9 @@ styleLoaders.stylus = {
     use: isDevelopment
         ? [...preLoaders, stylusLoader]
         : ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: ['css-loader', 'postcss-loader', stylusLoader]
-        })
+              fallback: 'style-loader',
+              use: ['css-loader', 'postcss-loader', stylusLoader]
+          })
 }
 
 //    ________________       ____  ____      _________________________
@@ -72,8 +70,8 @@ styleLoaders.stylus = {
 // \____//____/____/      \____/_____/\____/_____/\____/ /_/  /____/
 
 styleLoaders.cssObjects = {
-    test:   /\.(csso)$/,
-    use:    ['@stackr23/styleobjects-loader', 'stylus-loader']
+    test: /\.(csso)$/,
+    use: ['@stackr23/styleobjects-loader', 'stylus-loader']
 }
 
 //     ________  ____    __       ____  _________________   ____________________  _   __
@@ -82,8 +80,9 @@ styleLoaders.cssObjects = {
 //  / __/ / /_/ / /___/ /___   / /_/ / /___/ __/ _/ // /|  // /  / / _/ // /_/ / /|  /
 // /_/    \____/_____/_____/  /_____/_____/_/   /___/_/ |_/___/ /_/ /___/\____/_/ |_/
 
-const customStyleLoader     = styleLoaders[cssStyle]
-    || errorMsg(`
+const customStyleLoader =
+    styleLoaders[cssStyle] ||
+    errorMsg(`
 styleLoaders[${cssStyle}] not defined yet.
 Go to /config/webpack/styleLoaders.js and add it.
 `)
