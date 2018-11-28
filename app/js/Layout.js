@@ -9,9 +9,9 @@ import themes from '../style/muiThemes/index'
 import {Link} from 'react-router-dom'
 import ConfirmationDialog from './layout/ConfirmationDialog'
 
+import Header from './layout/Header'
 import Sidenav from './layout/Sidenav'
 import Sidemenu from './layout/Sidemenu'
-import Header from './components/Header'
 
 if (global.IS_BROWSER) {
     require('../style/layout.styl')

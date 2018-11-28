@@ -59,7 +59,7 @@ export default (_isDevelopment) => {
                   sourceMapFilename: 'app-[hash].js.map',
                   chunkFilename: 'app-[chunkhash].js'
               },
-        stats: verbose ? 'verbose' : isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',
+        stats: isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',
         module: {
             rules: [
                 ...urlLoaders,
@@ -75,15 +75,10 @@ export default (_isDevelopment) => {
                         retainLines: true,
                         sourceMap: true,
                         babelrc: true,
-                        cacheDirectory: path.join(paths.build, 'cache', 'babel-loader'),
+                        cacheDirectory: path.join(paths.build, 'cache', 'babel-loader')
                         // presets and plugins defined in .babelrc
                         // enable env config if needed
-                        env: {
-                            production: {
-                                // use webpack optimization.minimize
-                                // instead of'@babel/preset-minify'
-                            }
-                        }
+                        // env: {production: {plugins: []}}
                     }
                 }
             ]
