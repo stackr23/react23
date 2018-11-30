@@ -6,18 +6,17 @@ import {observer, inject} from 'mobx-react'
 import {MuiThemeProvider} from '@material-ui/core/styles'
 import themes from '../style/muiThemes/index'
 
-import {Link} from 'react-router-dom'
-import ConfirmationDialog from './layout/ConfirmationDialog'
-
 import Header from './layout/Header'
 import Sidenav from './layout/Sidenav'
 import Sidemenu from './layout/Sidemenu'
+import ConfirmationDialog from './layout/ConfirmationDialog'
 
 if (global.IS_BROWSER) {
     require('../style/layout.styl')
 }
 
-@inject('viewStore')
+@inject('viewStore', 'router')
+@observer
 class Layout extends React.Component {
     static propTypes = {
         children: PropTypes.array.isRequired,
@@ -26,7 +25,8 @@ class Layout extends React.Component {
 
     render() {
         const {
-            viewStore: {theme: themeName, sideBar, sidenav}
+            viewStore: {theme: themeName, sideBar, sidenav},
+            router
         } = this.props
         const theme = themes[themeName]
         const themeClassName = themeName
@@ -37,6 +37,7 @@ class Layout extends React.Component {
             sheetsManager = {sheetsManager: new Map()}
         }
 
+        console.log('router', router)
         console.log('theme', theme)
 
         return (

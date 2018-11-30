@@ -11,17 +11,19 @@ export default [
     {
         loader: 'url-loader',
         test: /\.(gif|jpg|png|svg)(\?.*)?$/,
-        exclude:  /\.(styl|dir)$/,
+        exclude: /\.(styl|dir)$/,
         options: {limit: 10000}
-    }, {
+    },
+    {
         loader: 'url-loader',
         test: /favicon\.ico$/,
-        exclude:  /\.(styl|dir)$/,
+        exclude: /\.(styl|dir)$/,
         options: {limit: 1}
-    }, {
+    },
+    {
         loader: 'url-loader',
         test: /\.(ttf|eot|woff|woff2)(\?.*)?$/,
-        exclude:  /\.(styl|dir)$/,
+        exclude: /\.(styl|dir)$/,
         options: {limit: 100000}
     }
 ]

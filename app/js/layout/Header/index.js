@@ -25,7 +25,6 @@ class Header extends React.Component {
     render() {
         const {headline, subline, viewStore} = this.props
 
-        console.log('header props', this.props)
         return (
             <AppBar position="static" color="primary" style={{marginBottom: '2rem'}} className="">
                 <Toolbar>

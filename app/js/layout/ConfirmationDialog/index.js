@@ -37,8 +37,7 @@ class ConfirmationDialog extends React.Component {
     }
 
     getAction() {
-        const confirmationDialogOptions = this.props.viewStore
-            .confirmationDialog
+        const confirmationDialogOptions = this.props.viewStore.confirmationDialog
         let {action, closeOnAction} = confirmationDialogOptions,
             myAction
 

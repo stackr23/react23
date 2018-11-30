@@ -54,10 +54,10 @@ export default (function(APP_CONFIG) {
             isDebug: process.env.APP_DEBUG || yargs.debug,
             ports: {
                 portFE: 7000,
-                portHMR: 7070
+                portHMR: 7070,
                 //  ports for BrowserSync
-                //  portBSProxy: 7001,
-                //  portBSUI: 3000
+                portBSProxy: 7001,
+                portBSUI: 3000
             },
             paths,
             browserRoot: process.env.GH_PAGES

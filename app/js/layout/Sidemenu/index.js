@@ -43,7 +43,7 @@ class Sidemenu extends React.Component {
             }
         } = this.props
 
-        console.log('primary', primary)
+        // console.log('primary', primary)
 
         return (
             <Drawer

@@ -9,11 +9,9 @@ import stores from '../stores'
 import Layout from './Layout'
 import createRoutes from '../routes/index'
 
-@inject('router')
 class App extends React.Component {
     static propTypes = {
-        children: PropTypes.array.isRequired,
-        viewStore: PropTypes.object.isRequired
+        children: PropTypes.array.isRequired
     }
 
     render() {

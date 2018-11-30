@@ -5,10 +5,10 @@ export default {
     },
     palette: {
         primary: {
-            main: '#FFB300'
+            main: '#f6ae2d' // #FFB300
         },
         secondary: {
-            main: '#1A237E'
+            main: '#390099'
         }
     },
     overrides: {

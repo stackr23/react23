@@ -1,7 +1,7 @@
 const getInitialState = () => {
     const clientState = global.IS_BROWSER
         ? // refactor: localStorage engine + engineKey in appConfig
-          localStorage.getItem('testLocalStorage')
+          window.localStorage.getItem('react23__clientState')
         : // refactor: what to do on serverSide?
           {}
 

@@ -31,9 +31,7 @@ const loadStyleObject = async () => {
 
     let stylusCSS
     const util = require('util')
-    const stylusPromised = util.promisify(
-        stylus(react23CSSO).set('paths', [muiThemesPath]).render
-    )
+    const stylusPromised = util.promisify(stylus(react23CSSO).set('paths', [muiThemesPath]).render)
 
     // const stylusCSS = await stylusPromised()
 
