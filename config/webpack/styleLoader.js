@@ -32,11 +32,11 @@ import stylus23 from 'stylus23'
 const {isDevelopment, NODE_ENV, cssStyle} = require('config').default
 
 const styleLoaders = {}
-const preLoaders = [
-    {loader: 'style-loader', options: {sourceMap: true}},
+const preLoadersProd = [
     {loader: 'css-loader', options: {sourceMap: true}},
     {loader: 'postcss-loader', options: {sourceMap: true, options: {}}}
 ]
+const preLoadersDev = [{loader: 'style-loader', options: {sourceMap: true}}, ...preLoadersProd]
 
 //    _____________  ____    __  _______
 //   / ___/_  __/\ \/ / /   / / / / ___/
@@ -68,10 +68,10 @@ const stylusLoader = {
 styleLoaders.stylus = {
     test: /\.(styl|less)$/,
     use: isDevelopment
-        ? [...preLoaders, stylusLoader]
+        ? [...preLoadersDev, stylusLoader]
         : ExtractTextPlugin.extract({
               fallback: 'style-loader',
-              use: ['css-loader', 'postcss-loader', stylusLoader]
+              use: [...preLoadersProd, stylusLoader]
           })
 }
 
