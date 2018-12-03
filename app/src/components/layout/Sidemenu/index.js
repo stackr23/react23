@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {observer, inject} from 'mobx-react'
 
 import {withTheme} from '@material-ui/core/styles'
-import ThemeSwitch from '../../components/ThemeSwitch/ThemeSwitch.js'
+import ThemeSwitch from '../../../components/ThemeSwitch'
 
 import Drawer from '@material-ui/core/Drawer'
 import Button from '@material-ui/core/Button'

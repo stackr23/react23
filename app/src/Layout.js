@@ -6,10 +6,10 @@ import {observer, inject} from 'mobx-react'
 import {MuiThemeProvider} from '@material-ui/core/styles'
 import themes from '../style/muiThemes/index'
 
-import Header from './layout/Header'
-import Sidenav from './layout/Sidenav'
-import Sidemenu from './layout/Sidemenu'
-import ConfirmationDialog from './layout/ConfirmationDialog'
+import Header from './components/layout/Header'
+import Sidenav from './components/layout/Sidenav'
+import Sidemenu from './components/layout/Sidemenu'
+import ConfirmationDialog from './components/layout/ConfirmationDialog'
 
 if (global.IS_BROWSER) {
     require('../style/layout.styl')
