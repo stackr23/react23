@@ -2,7 +2,7 @@
 
 import fs from 'fs'
 import gulp from 'gulp'
-import {debugMsg} from '../utils/myLogger'
+import logger from '@stackr23/logger'
 
 const config = require('config').default
 
@@ -12,7 +12,7 @@ if (typeof process.env.APP_CONFIG !== 'object') {
 }
 
 // log appConfig
-debugMsg('{bold [/stack/gulp/]} appConfig: ', config)
+logger.debug('{bold [/stack/gulp/]} appConfig: ', config)
 
 // get task filenames
 const taskFileNames = fs.readdirSync('./stack/gulp/gulp-tasks/')

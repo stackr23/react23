@@ -23,10 +23,11 @@
  * MQ breakpoints can be set via JS options
  *     or in stylus files, before @import 'stylus23' via:
  *     $stylus_mq_{name}   = 'only screen and (max-width: 320px)'
+ *     (see /app/style/setup.styl)
  */
 import stylus23 from 'stylus23'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import {errorMsg} from '../../stack/utils/myLogger'
+import logger from '@stackr23/logger'
 
 const {isDevelopment, NODE_ENV, cssStyle} = require('config').default
 
@@ -93,7 +94,7 @@ styleLoaders.styleobjects = {
 
 const chosenPreprocessorLoader =
     styleLoaders[cssStyle] ||
-    errorMsg(`
+    logger.error(`
 styleLoaders[${cssStyle}] not defined yet.
 Go to /config/webpack/styleLoaders.js and add it.
 `)

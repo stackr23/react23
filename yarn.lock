@@ -718,6 +718,12 @@
   dependencies:
     "@babel/runtime" "7.1.2"
 
+"@stackr23/logger@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@stackr23/logger/-/logger-2.3.1.tgz#53d53507bd7ff15a88f3da3bd56840ba30e95c6c"
+  dependencies:
+    chalk "^2.4.1"
+
 "@stackr23/styleobjects-loader@^0.8.1":
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@stackr23/styleobjects-loader/-/styleobjects-loader-0.8.1.tgz#a0186087e1098b4da3d368e1e36daf31121fcbb3"

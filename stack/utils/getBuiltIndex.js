@@ -1,7 +1,7 @@
 import fs from 'fs'
 import {join} from 'path'
 import getBuildFilenames from './getBuildFilenames'
-import {debugMsg} from './myLogger'
+import logger from '@stackr23/logger'
 
 const {
     paths: {app: appPath}
@@ -19,14 +19,11 @@ const getBuiltIndex = (fileNames) => {
             ? fileNames
             : getBuildFilenames()
     // pseudo cache
-    _indexHtml =
-        _indexHtml || fs.readFileSync(join(appPath, 'index.html'), 'utf8')
+    _indexHtml = _indexHtml || fs.readFileSync(join(appPath, 'index.html'), 'utf8')
 
-    const indexHtml = _indexHtml
-        .replace('{APP_JS}', appJS)
-        .replace('{APP_CSS}', appCSS)
+    const indexHtml = _indexHtml.replace('{APP_JS}', appJS).replace('{APP_CSS}', appCSS)
 
-    debugMsg('{bold [utils/getBuiltIndex]} indexHtml: ', indexHtml)
+    logger.debug('{bold [utils/getBuiltIndex]} indexHtml: ', indexHtml)
 
     return indexHtml
 }

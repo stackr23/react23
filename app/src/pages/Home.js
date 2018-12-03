@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {observer, inject} from 'mobx-react'
 
-import ThemeSwitch from '../components/ThemeSwitch/ThemeSwitch'
+import ThemeSwitch from '../components/ThemeSwitch'
 import CowSay from '../components/CowSay'
 
 @inject('viewStore')

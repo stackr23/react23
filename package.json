@@ -103,5 +103,7 @@
         "webpack-dev-middleware": "^3.4.0",
         "webpack-hot-middleware": "^2.24.3"
     },
-    "dependencies": {}
+    "dependencies": {
+        "@stackr23/logger": "^2.3.1"
+    }
 }
