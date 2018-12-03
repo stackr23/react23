@@ -126,7 +126,8 @@ export default (_isDevelopment) => {
                 }),
                 new webpack.DefinePlugin({
                     global: {
-                        IS_BROWSER: true
+                        IS_BROWSER: true,
+                        CONFIG: JSON.stringify(config)
                     },
                     'process.env': {
                         NODE_ENV: JSON.stringify(NODE_ENV),

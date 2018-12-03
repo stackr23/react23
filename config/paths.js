@@ -10,7 +10,7 @@ const paths = {
     // fixtures:       path.normalize(path.join(rootDir, 'stack', 'server', 'api', 'fixtures')),
     app: path.normalize(path.join(rootDir, 'app')),
     // data:           path.normalize(path.join(rootDir, 'app', 'data')),
-    src: path.normalize(path.join(rootDir, 'app', 'js')),
+    src: path.normalize(path.join(rootDir, 'app', 'src')),
     configs: path.normalize(path.join(rootDir, 'config')),
     build: path.normalize(path.join(rootDir, 'build')),
     // sass: path.normalize(path.join(rootDir, 'app', 'scss')),
