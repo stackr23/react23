@@ -11,9 +11,7 @@
 //
 // cssStyle can be set via --cssStyle
 // for changing default, go to /config/appConfig.js (yarg definitions)
-//
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import {errorMsg} from '../../stack/utils/myLogger'
+
 /**
  * Stylus23 - https://github.com/stackr23/stylus23/
  * deprecated: will be moved to '@stackr23/stylus'
@@ -22,12 +20,13 @@ import {errorMsg} from '../../stack/utils/myLogger'
  *     - +MQ mixin
  *     - helpers like clearfix() and after/before()
  *
- * for actual usage see /app/style/layout.styl
  * MQ breakpoints can be set via JS options
  *     or in stylus files, before @import 'stylus23' via:
  *     $stylus_mq_{name}   = 'only screen and (max-width: 320px)'
  */
 import stylus23 from 'stylus23'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import {errorMsg} from '../../stack/utils/myLogger'
 
 const {isDevelopment, NODE_ENV, cssStyle} = require('config').default
 
@@ -57,7 +56,7 @@ const stylusLoader = {
                 envVars: {
                     NODE_ENV: NODE_ENV
                     // TBD: inject muiTheme
-                    // THEME:
+                    // depends on https://github.com/stackr23/stylus23/issues/3
                 },
                 envPrefix: '$ENV__'
             })

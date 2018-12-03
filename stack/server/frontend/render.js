@@ -16,8 +16,8 @@ import {Provider} from 'mobx-react'
 import stores from '../../../app/stores/index.js'
 
 import createRoutes from '../../../app/routes/index.js'
-import App from '../../../app/js/App.js'
-import Layout from '../../../app/js/Layout.js'
+import App from '../../../app/src/App.js'
+import Layout from '../../../app/src/Layout.js'
 
 import {createGenerateClassName} from '@material-ui/core/styles'
 import {SheetsRegistry} from 'jss'
