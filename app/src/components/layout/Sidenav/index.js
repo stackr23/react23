@@ -48,7 +48,10 @@ class Sidenav extends React.Component {
                         <ListItemIcon>
                             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                         </ListItemIcon>
-                        <ListItemText primary={route.meta.linktext} />
+                        <ListItemText
+                            primary={route.meta.title}
+                            secondary={route.meta.description}
+                        />
                     </ListItem>
                 ))}
             </List>

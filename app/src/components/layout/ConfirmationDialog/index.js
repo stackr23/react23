@@ -79,7 +79,7 @@ class ConfirmationDialog extends React.Component {
             <Button // CONFIRM
                 key="confirm"
                 variant="contained"
-                color="primary"
+                color="secondary"
                 onClick={this.getAction()}
             >
                 {labelConfirm !== undefined ? labelConfirm : 'confirm'}
@@ -88,12 +88,12 @@ class ConfirmationDialog extends React.Component {
 
         if (canCancel) {
             // add CANCEL button (if action != cancel)
-            actions.push(
+            actions.unshift(
                 // .unshift(
                 <Button
                     key="cancel"
                     variant="contained"
-                    color="secondary"
+                    color="primary"
                     hoverColor="#999"
                     onClick={this.closeConfirmationDialog}
                 >

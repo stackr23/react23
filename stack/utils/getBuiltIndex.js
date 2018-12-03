@@ -18,6 +18,7 @@ const getBuiltIndex = (fileNames) => {
         typeof fileNames !== 'function'
             ? fileNames
             : getBuildFilenames()
+
     // pseudo cache
     _indexHtml = _indexHtml || fs.readFileSync(join(appPath, 'index.html'), 'utf8')
 

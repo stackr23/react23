@@ -17,6 +17,7 @@ import stores from '../../../app/stores/index.js'
 
 import createRoutes from '../../../app/routes/index.js'
 import App from '../../../app/src/App.js'
+import Root from '../../../app/src/index.js'
 import Layout from '../../../app/src/Layout.js'
 
 import {createGenerateClassName} from '@material-ui/core/styles'

@@ -48,11 +48,11 @@ class Layout extends React.Component {
                             headline="React23"
                             subline="the perfect react stack to wrap your web app"
                         />
-                        <div id="content" className="container">
-                            {this.props.children}
-                        </div>
+                        <div id="content">{this.props.children}</div>
                     </main>
-                    <footer id="footer" />
+                    <footer id="footer">
+                        made with 💕 by <a href="http://github.com/DoubleU23">DoubleU23</a>
+                    </footer>
                     {/* global UI Components */}
                     <Sidenav />
                     <Sidemenu />

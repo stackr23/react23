@@ -31,10 +31,11 @@ h1
     min-height "calc(100vh - %s)" % $layout__footer_height
 
 #content
-    @include .container
+    @extend .container
 
 #footer
     min-height $layout__footer_height
-    &:after
-        display block
-        content 'FOOTER CONTENT'
+    font-style italic
+    border-top 1px solid $color__grey_light
+    @extend .container
+    padding-top 1rem
