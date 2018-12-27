@@ -4534,10 +4534,10 @@ mobx-react@^5.3.6:
     hoist-non-react-statics "^3.0.0"
     react-lifecycles-compat "^3.0.2"
 
-mobx-router@0.0.16:
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/mobx-router/-/mobx-router-0.0.16.tgz#bbd1c8bd60825203454e00bb76e8d7115e1e01c6"
-  integrity sha512-Qz86B3g3Qm63jWQpXMCUdVJ9YudKa8Gd6J0fSa0snn0U9x0kYaYBRpDykO0OAq7Ri8PSsefhqzpMl13FcsojGQ==
+mobx-router@0.0.17:
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/mobx-router/-/mobx-router-0.0.17.tgz#63726ea7dbf4423ef49a80b4393aab74b0746b64"
+  integrity sha512-SOehO8l4Zp6WxBJo3MFHwD1uW1fbdy55nUNGFHhJt/R4q0++u9eSyJxKBApd15eE/fqMGDV+qyTx9KGsf8u3kg==
   dependencies:
     babel-runtime "^6.11.6"
     director "1.2.8"
