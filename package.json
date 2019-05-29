@@ -80,7 +80,7 @@
         "ip": "^1.1.5",
         "jss": "^9.8.7",
         "mobx": "^5.5.2",
-        "mobx-react": "^5.3.6",
+        "mobx-react": "^6.0.0",
         "mobx-react-router": "^4.0.5",
         "mobx-router": "0.0.16",
         "native-css": "^2.0.0",
