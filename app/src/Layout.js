@@ -19,6 +19,9 @@ if (global.IS_BROWSER) {
 @observer
 class Layout extends React.Component {
     static propTypes = {
+        router: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
         children: PropTypes.array.isRequired,
         viewStore: PropTypes.object.isRequired
     }
