@@ -10,7 +10,7 @@ class CowSay extends React.Component {
     }
 
     async componentDidMount() {
-        const {say} = await import(/* webpackChunkName: "cowsay" */ 'cowsay')
+        const {say} = await import(/* webpackChunkName: "cowsay-browser" */ 'cowsay-browser')
         this.say = say
         this.fillContent()
     }
