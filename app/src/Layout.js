@@ -40,9 +40,6 @@ class Layout extends React.Component {
             sheetsManager = {sheetsManager: new Map()}
         }
 
-        console.log('router', router)
-        console.log('theme', theme)
-
         return (
             <MuiThemeProvider theme={theme} {...sheetsManager}>
                 <React.Fragment>
