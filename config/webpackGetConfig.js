@@ -50,14 +50,15 @@ export default (_isDevelopment) => {
                   path: paths.build,
                   filename: 'app.js',
                   sourceMapFilename: 'app.js.map',
-                  chunkFilename: 'app-[chunkhash].js',
+                  chunkFilename: 'app-chunk-[name].js',
+                  hotUpdateChunkFilename: 'app-chunk-[name].hotUpdate.js',
                   publicPath: `http://${serverIp}:${portHMR}/build/`
               }
             : {
                   path: paths.build,
                   filename: 'app-[hash].js',
                   sourceMapFilename: 'app-[hash].js.map',
-                  chunkFilename: 'app-[chunkhash].js'
+                  chunkFilename: 'app-[name].js'
               },
         stats: isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',
         module: {
@@ -85,15 +86,42 @@ export default (_isDevelopment) => {
         },
         // TBD: refactor externals
         // externals: {
+        //     'fs': {}
         //     'jsdom':    'window',
         //     // 'cheerio':  'window',
         //     'react/addons': true,
         //     'react/lib/ExecutionEnvironment': true,
         //     'react/lib/ReactContext': true,
-        //     'fs': {}
         // },
+
         optimization: {
-            // minimize: false
+            splitChunks: {
+                // chunks: 'all',
+                cacheGroups: {
+                    // async: {
+                    //     name: 'async',
+                    //     chunks: 'async',
+                    //     enforce: true
+                    //     // minChunks: 2,
+                    //     // maxInitialRequests: 5, // The default limit is too small to showcase the effect
+                    //     // minSize: 0 // This is example is too small to create commons chunks
+                    // },
+                    // react: {
+                    //     chunks: chunk => {
+                    //         return ['react', 'react-dom'].includes(chunk.name)
+                    //     },
+                    //     test: /[\\/]node_modules[\\/]/,
+                    //     name: 'vendors',
+                    //     enforce: true
+                    // }
+                    commons: {
+                        chunks: 'all',
+                        test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+                        name: 'vendor'
+                    }
+                }
+            },
+            minimize: isProduction
             // minimize: (() => {
             //     if (isProduction) {
             //         return [

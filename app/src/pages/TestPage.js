@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {observer, inject} from 'mobx-react'
 
+// import DynamicImport from '../components/example/DynamicImport'
 import Button from '@material-ui/core/Button'
 
 @inject('viewStore')
@@ -29,6 +30,7 @@ class TestPage extends React.Component {
                 >
                     test ConfirmationDialog
                 </Button>
+                {/* <DynamicImport /> */}
             </div>
         )
     }
