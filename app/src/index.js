@@ -23,7 +23,7 @@ let historyCreated = global.IS_BROWSER
     : createMemoryHistory()
 const historySynced = syncHistoryWithStore(historyCreated, stores.router)
 
-class Root extends React.Component {
+export default class Root extends React.Component {
     render() {
         return (
             <Provider {...stores}>

@@ -2,7 +2,7 @@ import gulp from 'gulp'
 import gulpSass from 'gulp-sass'
 // import runSequence  from 'run-sequence'
 // import gulpRename   from 'gulp-rename'
-import {errorMsg} from '../../utils/myLogger'
+import logger from '@stackr23/logger'
 
 const {
     globs: {
@@ -18,7 +18,7 @@ const sassBuild = (src, dist) =>
                 outputStyle: 'compressed',
                 sourceMapEmbed: 'embed'
                 // sourceMapRoot:  './web'
-            }).on('error', (e) => gulpSass.logError(errorMsg(e)))
+            }).on('error', (e) => gulpSass.logError(logger.error(e)))
         )
         // .pipe(gulpRename('test.css'))
         .pipe(gulp.dest(dist))

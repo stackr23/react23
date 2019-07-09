@@ -15,8 +15,7 @@ export default function makeBuild(callback) {
         // import fs from 'fs'
         // fs.writeFileSync('./bundle-stats.json', JSON.stringify(jsonStats))
 
-        const buildError =
-            fatalError || jsonStats.errors[0] || jsonStats.warnings[0]
+        const buildError = fatalError || jsonStats.errors[0] || jsonStats.warnings[0]
 
         if (buildError) {
             throw new PluginError('webpack', buildError)

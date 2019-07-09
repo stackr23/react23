@@ -1,5 +1,5 @@
 import fs from 'fs'
-import {debugMsg} from './myLogger'
+import logger from '@stackr23/logger'
 
 const {isProduction, paths} = require('config').default
 
@@ -17,18 +17,11 @@ const getBuildFilenames = () => {
         const buildDirFiles = fs.readdirSync(paths.build)
 
         return {
-            appJS: buildDirFiles.find((filename) =>
-                APP_JS_PATTERN.test(filename)
-            ),
-            appCSS: buildDirFiles.find((filename) =>
-                APP_CSS_PATTERN.test(filename)
-            )
+            appJS: buildDirFiles.find((filename) => APP_JS_PATTERN.test(filename)),
+            appCSS: buildDirFiles.find((filename) => APP_CSS_PATTERN.test(filename))
         }
     } catch (err) {
-        debugMsg(
-            '{bold [gulp-tasks/copyIndex]} getStaticAssetFilenames.catch]}',
-            err
-        )
+        logger.debug('{bold [gulp-tasks/copyIndex]} getStaticAssetFilenames.catch]}', err)
 
         return DEVELOPMENT_FILES
     }

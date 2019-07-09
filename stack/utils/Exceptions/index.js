@@ -1,4 +1,3 @@
-// extension preset
 class ExtendableError extends Error {
     constructor(message) {
         super(message)
@@ -19,9 +18,9 @@ class ExtendableError extends Error {
 // TBD: APIError
 
 /**
- *  @class
+ *  @class @extends ExtendableError
  *  @name  TimeoutError
- *  @description gets throw TimeoutError to indicate ServerTimeout
+ *  @description throw TimeoutError to indicate ServerTimeout
  *  @param  {string} message - error message
  *  @example
  *  throw new TimeoutError('Server responded with an Timeout after 30s')

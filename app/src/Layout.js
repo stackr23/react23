@@ -6,10 +6,10 @@ import {observer, inject} from 'mobx-react'
 import {MuiThemeProvider} from '@material-ui/core/styles'
 import themes from '../style/muiThemes/index'
 
-import Header from './layout/Header'
-import Sidenav from './layout/Sidenav'
-import Sidemenu from './layout/Sidemenu'
-import ConfirmationDialog from './layout/ConfirmationDialog'
+import Header from './components/layout/Header'
+import Sidenav from './components/layout/Sidenav'
+import Sidemenu from './components/layout/Sidemenu'
+import ConfirmationDialog from './components/layout/ConfirmationDialog'
 
 if (global.IS_BROWSER) {
     require('../style/layout.styl')
@@ -19,6 +19,9 @@ if (global.IS_BROWSER) {
 @observer
 class Layout extends React.Component {
     static propTypes = {
+        router: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
         children: PropTypes.array.isRequired,
         viewStore: PropTypes.object.isRequired
     }
@@ -37,9 +40,6 @@ class Layout extends React.Component {
             sheetsManager = {sheetsManager: new Map()}
         }
 
-        console.log('router', router)
-        console.log('theme', theme)
-
         return (
             <MuiThemeProvider theme={theme} {...sheetsManager}>
                 <React.Fragment>
@@ -48,11 +48,11 @@ class Layout extends React.Component {
                             headline="React23"
                             subline="the perfect react stack to wrap your web app"
                         />
-                        <div id="content" className="container">
-                            {this.props.children}
-                        </div>
+                        <div id="content">{this.props.children}</div>
                     </main>
-                    <footer id="footer" />
+                    <footer id="footer">
+                        made with 💕 by <a href="http://github.com/DoubleU23">DoubleU23</a>
+                    </footer>
                     {/* global UI Components */}
                     <Sidenav />
                     <Sidemenu />

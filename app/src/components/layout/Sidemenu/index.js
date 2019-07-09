@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {observer, inject} from 'mobx-react'
 
 import {withTheme} from '@material-ui/core/styles'
-import ThemeSwitch from '../../components/ThemeSwitch/ThemeSwitch.js'
+import ThemeSwitch from '../../../components/ThemeSwitch'
 
 import Drawer from '@material-ui/core/Drawer'
 import Button from '@material-ui/core/Button'
@@ -14,12 +14,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
-
-// import AppBar from '@material-ui/core/AppBar'
-// import Toolbar from '@material-ui/core/Toolbar'
-// import IconButton from '@material-ui/core/IconButton'
-// import MenuIcon from '@material-ui/icons/Menu'
-// import Typography from '@material-ui/core/Typography'
 
 if (global.IS_BROWSER) {
     require('./Sidemenu.styl')
@@ -42,8 +36,6 @@ class Sidemenu extends React.Component {
                 palette: {primary}
             }
         } = this.props
-
-        // console.log('primary', primary)
 
         return (
             <Drawer
