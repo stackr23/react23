@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import {observer, inject} from 'mobx-react'
 
-import {MuiThemeProvider} from '@material-ui/core/styles'
+import {MuiThemeProvider} from '@material-ui/styles'
 import themes from '../style/muiThemes/index'
 
 import Header from './components/layout/Header'
@@ -34,14 +34,8 @@ class Layout extends React.Component {
         const theme = themes[themeName]
         const themeClassName = themeName
 
-        let sheetsManager = {}
-        if (!global.IS_BROWSER) {
-            //  inject sheetsManager for SSR - see /stack/server/frontend/render.js
-            sheetsManager = {sheetsManager: new Map()}
-        }
-
         return (
-            <MuiThemeProvider theme={theme} {...sheetsManager}>
+            <MuiThemeProvider theme={theme}>
                 <React.Fragment>
                     <main id="main" className={themeName}>
                         <Header

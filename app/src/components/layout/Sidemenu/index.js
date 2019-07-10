@@ -85,4 +85,4 @@ class Sidemenu extends React.Component {
     }
 }
 
-export default withTheme()(Sidemenu)
+export default withTheme(Sidemenu)

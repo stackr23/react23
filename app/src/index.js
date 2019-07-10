@@ -10,6 +10,7 @@ import {Router} from 'react-router-dom'
 import {syncHistoryWithStore} from 'mobx-react-router'
 
 import App from './App.js'
+import AppTestSSR from './AppTestSSR.js'
 
 if (module.hot) module.hot.accept()
 if (!global._babelPolyfill) require('@babel/polyfill')
@@ -28,7 +29,7 @@ export default class Root extends React.Component {
         return (
             <Provider {...stores}>
                 <Router history={historySynced}>
-                    <App />
+                    <AppTestSSR />
                 </Router>
             </Provider>
         )

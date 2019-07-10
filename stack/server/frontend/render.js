@@ -20,70 +20,84 @@ import App from '../../../app/src/App.js'
 import Root from '../../../app/src/index.js'
 import Layout from '../../../app/src/Layout.js'
 
-import {createGenerateClassName} from '@material-ui/core/styles'
-import {SheetsRegistry} from 'jss'
-import {JssProvider} from 'react-jss'
+import {ThemeProvider, ServerStyleSheets} from '@material-ui/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+
+
+import AppTestSSR from '../../../app/src/AppTestSSR.js'
+
 
 const {
     isProduction,
     ports: {portHMR}
 } = require('config').default
 
-// const routes            = createRoutes(stores)
+const routes   = createRoutes(stores)
 const serverIp = ip.address()
 
-const render = (req, res, next) => {
-    const {appHtml, ssrCSS} = renderPage({path: req.url, stores})
-
-    let appJS, appCSS // set per NODE_ENV
+const renderFullPage = ({appHtml, appCSS}) => {
+    let appJSPath, appCSSPath
     const {appJS: appJsFilename, appCSS: appCssFilename} = getBuildFilenames()
 
     if (isProduction) {
         // TBD: npm run start --production
-        appJS = `/build/${appJsFilename}`
-        appCSS = `/build/${appCssFilename}`
+        appJSPath = `/build/${appJsFilename}`
+        appCSSPath = `/build/${appCssFilename}`
     } else {
         // TBD: APP_BUILD_STATIC => add /build/
 
         // TBD: prevent getBuiltIndex() CSS tag if no src is given
-        appJS = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
+        appJSPath = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
     }
 
-    const indexHtml = getBuiltIndex({appCSS, appJS})
+    const indexHtml = getBuiltIndex({appJSPath, appCSSPath})
 
     //* hide app until layout stylesheet is loaded! */
     const opacityStyle = '<style type="text/css">#root {opacity: 0;}</style>'
 
-    const html =
+    const htmlOuter =
         '<!DOCTYPE html>\n' +
         indexHtml
             .replace(
                 '<div id="root"></div>',
-                `<div id="root"><style id="jss-server-side">${ssrCSS}</style>${appHtml}</div>`
+                `<div id="root"><style id="jss-server-side">${appCSS}</style>${appHtml}</div>`
             )
             .replace('<head>', '<head>' + opacityStyle)
 
-    res.send(html)
+    return htmlOuter
 }
 
-const renderPage = ({path, stores, context = {}}) => {
-    // see https://github.com/mui-org/material-ui/blob/master/examples/ssr/server.js
-    const generateClassName = createGenerateClassName()
-    const sheetsRegistry = new SheetsRegistry()
+const render = ({url: path}, res) => {
+  const sheets = new ServerStyleSheets();
+
+  // Render the component to a string.
+//   const html = renderToString(
+//     sheets.collect(
+//       <Provider {...stores}>
+//             <StaticRouter location={path} context={{}}>
+//                 <ThemeProvider theme={{}}>
+//                     <App />
+//                 </ThemeProvider>
+//             </StaticRouter>
+//         </Provider>
+//     )
+//   );
 
     const appHtml = renderToString(
-        <Provider {...stores}>
-            <StaticRouter location={path} context={context}>
-                <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-                    <App />
-                </JssProvider>
-            </StaticRouter>
-        </Provider>
-    )
+        sheets.collect(
+            <Provider {...stores}>
+                <StaticRouter location={path} context={{}}>
+                    <AppTestSSR />
+                </StaticRouter>
+            </Provider>
+        )
+    );
 
-    const ssrCSS = sheetsRegistry.toString()
+  // Grab the CSS from our sheets.
+  const appCSS = sheets.toString();
 
-    return {appHtml, ssrCSS}
+  // Send the rendered page back to the client.
+  res.send(renderFullPage({appHtml, appCSS}));
 }
 
 export default render
