@@ -1,0 +1,15 @@
+{
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "paths": {
+      "*": [
+        "*",
+        "app/src/*",
+        "node_modules/*"
+      ]
+    },
+    "experimentalDecorators": true
+  }
+}
