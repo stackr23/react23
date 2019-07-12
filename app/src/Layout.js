@@ -19,6 +19,9 @@ if (global.IS_BROWSER) {
 @observer
 class Layout extends React.Component {
     static propTypes = {
+        router: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
         children: PropTypes.array.isRequired,
         viewStore: PropTypes.object.isRequired
     }
@@ -36,9 +39,6 @@ class Layout extends React.Component {
             //  inject sheetsManager for SSR - see /stack/server/frontend/render.js
             sheetsManager = {sheetsManager: new Map()}
         }
-
-        console.log('router', router)
-        console.log('theme', theme)
 
         return (
             <MuiThemeProvider theme={theme} {...sheetsManager}>
