@@ -23,7 +23,7 @@ class App extends React.Component {
                 location: {pathname}
             }
         } = this.props
-        console.log('global config', global.CONFIG)
+        // console.log('global config', global.CONFIG)
 
         const route = routesCompiled.filter((r) => r.props.path === pathname)[0]
         const title = route.props.meta.title
