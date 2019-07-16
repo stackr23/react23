@@ -1,0 +1,14 @@
+{
+  "*rc.json": [
+    "prettier --write",
+    "git add"
+  ],
+  "*.{js,json}": [
+    "eslint --fix",
+    "git add"
+  ],
+  "*.scss": [
+    "prettier-stylelint --write -q",
+    "git add"
+  ]
+}
