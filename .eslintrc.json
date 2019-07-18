@@ -10,6 +10,10 @@
   "rules": {
     // change rules as you wish
     "eqeqeq": 2, // TBD - allow (!= null)
-    "no-undef": 2
+    "no-undef": 2,
+    "no-unused-vars": 2,
+    "semi": [2, "never"],
+    "no-multiple-empty-lines": "error",
+    "indent": ["error", 2]
   }
 }
