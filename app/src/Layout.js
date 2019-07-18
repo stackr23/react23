@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import {observer, inject} from 'mobx-react'
 
-import {MuiThemeProvider} from '@material-ui/styles'
+import {ThemeProvider} from '@material-ui/styles'
 import themes from '../style/muiThemes/index'
 
 import Header from './components/layout/Header'
@@ -35,7 +35,7 @@ class Layout extends React.Component {
         const themeClassName = themeName
 
         return (
-            <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
                 <React.Fragment>
                     <main id="main" className={themeName}>
                         <Header
@@ -52,7 +52,7 @@ class Layout extends React.Component {
                     <Sidemenu />
                     <ConfirmationDialog />
                 </React.Fragment>
-            </MuiThemeProvider>
+        </ThemeProvider>
         )
     }
 }
