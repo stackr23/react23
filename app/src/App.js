@@ -12,6 +12,7 @@ import Layout from './Layout'
 const routesCompiled = createRoutes(stores) */
 
 @inject('router')
+@observer
 class App extends React.Component {
     static propTypes = {
       router: PropTypes.object.isRequired
