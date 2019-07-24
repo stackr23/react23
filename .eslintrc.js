@@ -14,7 +14,7 @@ const config = {
         "no-unused-vars": 2,
         "semi": [2, "never"],
         "no-multiple-empty-lines": 2,
-        "indent": ["error", 2]
+        "indent": ["error", 4]
     }
 }
 

@@ -5,23 +5,23 @@ import gulpSass from 'gulp-sass'
 import logger from '@stackr23/logger'
 
 const {
-  globs: {
-    scss: {src, dist, watch}
-  }
+    globs: {
+        scss: {src, dist, watch}
+    }
 } = require('config').default
 
 const sassBuild = (src, dist) =>
-  gulp
-    .src(src)
-    .pipe(
-      gulpSass({
-        outputStyle: 'compressed',
-        sourceMapEmbed: 'embed'
-        // sourceMapRoot:  './web'
-      }).on('error', (e) => gulpSass.logError(logger.error(e)))
-    )
-  // .pipe(gulpRename('test.css'))
-    .pipe(gulp.dest(dist))
+    gulp
+        .src(src)
+        .pipe(
+            gulpSass({
+                outputStyle: 'compressed',
+                sourceMapEmbed: 'embed'
+                // sourceMapRoot:  './web'
+            }).on('error', (e) => gulpSass.logError(logger.error(e)))
+        )
+    // .pipe(gulpRename('test.css'))
+        .pipe(gulp.dest(dist))
 
 gulp.task('sass:build-mqs', () => sassBuild(src.mqs, dist.mqs || dist))
 

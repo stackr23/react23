@@ -8,7 +8,7 @@ const config = require('config').default
 
 // refactor: shove into ? config ?
 if (typeof process.env.APP_CONFIG !== 'object') {
-  process.env.APP_CONFIG = config
+    process.env.APP_CONFIG = config
 }
 
 // log appConfig
@@ -19,16 +19,16 @@ const taskFileNames = fs.readdirSync('./stack/gulp/gulp-tasks/')
 
 // IMPORT TASK FILES
 taskFileNames.forEach((fileName) => {
-  require('./gulp-tasks/' + fileName)
+    require('./gulp-tasks/' + fileName)
 })
 
 gulp.task(
-  'default',
-  gulp.series(
-    'clean',
-    gulp.parallel(
-      // gulp.series('sass-build', 'sass:watch'), // serie will be removed later
-      gulp.series('webpack', 'server:frontend')
+    'default',
+    gulp.series(
+        'clean',
+        gulp.parallel(
+            // gulp.series('sass-build', 'sass:watch'), // serie will be removed later
+            gulp.series('webpack', 'server:frontend')
+        )
     )
-  )
 )

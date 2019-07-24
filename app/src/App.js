@@ -15,34 +15,34 @@ const routesCompiled = createRoutes(stores) */
 @observer
 class App extends React.Component {
     static propTypes = {
-      router: PropTypes.object.isRequired
+        router: PropTypes.object.isRequired
     }
 
     render() {
-      /*       const {
+        /*       const {
         router: {
           location: {pathname}
         }
       } = this.props */
-      // console.log('global config', global.CONFIG)
+        // console.log('global config', global.CONFIG)
 
-      //   const route = routesCompiled.filter((r) => r.props.path === pathname)[0]
-      //   const title = route.props.meta.title
-      //   const description = route.props.meta.description || ''
+        //   const route = routesCompiled.filter((r) => r.props.path === pathname)[0]
+        //   const title = route.props.meta.title
+        //   const description = route.props.meta.description || ''
 
-      return (
-        <div id="app">
-          <Helmet>
-            <meta charSet="utf-8" />
-            <title>[React23] - {"title"}</title>
-            <meta name="description" content={"description"} />
-            <link rel="canonical" href="http://mysite.com/example" />
-          </Helmet>
-          <Layout />
+        return (
+            <div id="app">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>[React23] - {"title"}</title>
+                    <meta name="description" content={"description"} />
+                    <link rel="canonical" href="http://mysite.com/example" />
+                </Helmet>
+                <Layout />
 
-          {/* <Layout>{routesCompiled}</Layout> */}
-        </div>
-      )
+                {/* <Layout>{routesCompiled}</Layout> */}
+            </div>
+        )
     }
 }
 

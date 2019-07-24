@@ -16,72 +16,72 @@ import InboxIcon from '@material-ui/icons/MoveToInbox'
 // import MailIcon from '@material-ui/icons/Mail'
 
 if (global.IS_BROWSER) {
-  require('./Sidemenu.styl')
+    require('./Sidemenu.styl')
 }
 
 @inject('viewStore', 'router')
 @observer
 class Sidemenu extends React.Component {
     static propTypes = {
-      viewStore: PropTypes.object.isRequired,
-      router: PropTypes.object.isRequired,
-      theme: PropTypes.object.isRequired
+        viewStore: PropTypes.object.isRequired,
+        router: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired
     }
 
     render() {
-      const {
+        const {
         // router,
-        viewStore: {sidemenu},
-        theme: {
-        //   palette: {primary}
-        }
-      } = this.props
-
-      return (
-        <Drawer
-          id="sidemenu"
-          anchor="right"
-          open={sidemenu.isOpen}
-          onClose={(e) => {
-            sidemenu.isOpen = false
-            e.preventDefault()
-            return false
-          }}
-          classes={{
-            paper: 'sidemenu__content'
-          }}
-        >
-          <div
-            style={
-              {
-                // backgroundColor: primary.light
-              }
+            viewStore: {sidemenu},
+            theme: {
+                //   palette: {primary}
             }
-          >
-            <h2>{sidemenu.headline}</h2>
-            <Divider />
-            <ThemeSwitch />
-            <div className="sidemenu__list">
-              <Divider />
-              <List>
-                <ListItem
-                  button
-                  key={0}
-                  onClick={() => {
-                    // router.push(route.path)
-                    // sidemenu.isOpen = false
-                  }}
+        } = this.props
+
+        return (
+            <Drawer
+                id="sidemenu"
+                anchor="right"
+                open={sidemenu.isOpen}
+                onClose={(e) => {
+                    sidemenu.isOpen = false
+                    e.preventDefault()
+                    return false
+                }}
+                classes={{
+                    paper: 'sidemenu__content'
+                }}
+            >
+                <div
+                    style={
+                        {
+                            // backgroundColor: primary.light
+                        }
+                    }
                 >
-                  <ListItemIcon>
-                    <InboxIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={'Setting Button 1'} />
-                </ListItem>
-              </List>
-            </div>
-          </div>
-        </Drawer>
-      )
+                    <h2>{sidemenu.headline}</h2>
+                    <Divider />
+                    <ThemeSwitch />
+                    <div className="sidemenu__list">
+                        <Divider />
+                        <List>
+                            <ListItem
+                                button
+                                key={0}
+                                onClick={() => {
+                                    // router.push(route.path)
+                                    // sidemenu.isOpen = false
+                                }}
+                            >
+                                <ListItemIcon>
+                                    <InboxIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={'Setting Button 1'} />
+                            </ListItem>
+                        </List>
+                    </div>
+                </div>
+            </Drawer>
+        )
     }
 }
 

@@ -6,9 +6,9 @@ import render from './render'
 const app = express()
 
 app.get('/test/testTimeout', (req, res) => {
-  setTimeout(() => {
-    res.send('timeout response after 5000ms')
-  }, 10000)
+    setTimeout(() => {
+        res.send('timeout response after 5000ms')
+    }, 10000)
 })
 
 // app.use(favicon('assets/img/favicon.ico'))
@@ -37,7 +37,7 @@ app.use(device.capture())
 app.get('*', render)
 
 app.on('mount', () => {
-  console.log('App is available at %s', app.mountpath)
+    console.log('App is available at %s', app.mountpath)
 })
 
 export default app
