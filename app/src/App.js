@@ -1,10 +1,10 @@
 import React from 'react'
-import {Route} from 'react-router-dom'
+// import {Route} from 'react-router-dom'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 
 import {observer, inject} from 'mobx-react'
-import stores from '../stores'
+// import stores from '../stores'
 
 import Layout from './Layout'
 /* import createRoutes from '../routes/index'

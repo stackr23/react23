@@ -3,7 +3,7 @@ import frontend from './frontend'
 
 const app = express()
 const {
-    ports: {portFE}
+  ports: {portFE}
 } = require('config').default
 
 // TBD: /api
@@ -12,5 +12,5 @@ const {
 app.use(frontend)
 
 app.listen(portFE, () => {
-    console.log('Server started at port %d', portFE)
+  console.log('Server started at port %d', portFE)
 })

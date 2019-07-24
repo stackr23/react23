@@ -10,15 +10,15 @@ import copyIndex from './copyIndex'
 const {isProduction} = require('config').default
 
 gulp.task(
-    'webpack',
-    gulp.series(isProduction ? makeWebpackBuild : startWebpackDevServer)
+  'webpack',
+  gulp.series(isProduction ? makeWebpackBuild : startWebpackDevServer)
 )
 
 gulp.task(
-    'build-static',
-    (() => {
-        process.env.APP_BUILD_STATIC = true
+  'build-static',
+  (() => {
+    process.env.APP_BUILD_STATIC = true
 
-        return gulp.series('clean', 'webpack', copyIndex)
-    })()
+    return gulp.series('clean', 'webpack', copyIndex)
+  })()
 )

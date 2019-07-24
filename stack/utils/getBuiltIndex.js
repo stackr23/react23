@@ -4,7 +4,7 @@ import getBuildFilenames from './getBuildFilenames'
 import logger from '@stackr23/logger'
 
 const {
-    paths: {app: appPath}
+  paths: {app: appPath}
 } = require('config').default
 
 let _indexHtml // pseudo cache
@@ -16,9 +16,9 @@ let _indexHtml // pseudo cache
  * @param paths {object} - {appJSPath, appCSSPath = ''}
  */
 const getBuiltIndex = ({appJSPath, appCSSPath = ''}) => {
-    _indexHtml = _indexHtml || fs.readFileSync(join(appPath, 'index.html'), 'utf8')
+  _indexHtml = _indexHtml || fs.readFileSync(join(appPath, 'index.html'), 'utf8')
 
-    return _indexHtml.replace('{APP_JS}', appJSPath).replace('{APP_CSS}', appCSSPath)
+  return _indexHtml.replace('{APP_JS}', appJSPath).replace('{APP_CSS}', appCSSPath)
 }
 
 export default getBuiltIndex
