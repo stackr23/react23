@@ -59,7 +59,7 @@ export default (_isDevelopment) => {
         sourceMapFilename: 'app-[hash].js.map',
         chunkFilename: 'app-[chunkhash].js'
       },
-    stats: isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',
+    stats: isDebug || verbose ? 'normal' : isProduction ? 'errors-only' : 'minimal',
     module: {
       rules: [
         ...urlLoaders,

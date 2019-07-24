@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import stylus from 'stylus'
+// import stylus from 'stylus'
 
 import styleObjects from '@stackr23/styleobjects'
 
@@ -9,7 +9,7 @@ const {
 } = require('config').default
 
 const loadStyleObject = async () => {
-  const muiThemesPath = path.join(appPath, 'style', 'muiThemes')
+//   const muiThemesPath = path.join(appPath, 'style', 'muiThemes')
 
   console.log('styleObjects', typeof styleObjects, styleObjects) // styleObjects.convert('#app {color: 'red'; }')
 
@@ -29,14 +29,14 @@ const loadStyleObject = async () => {
   //         stylusCSS = css
   //     })
 
-  let stylusCSS
-  const util = require('util')
-  const stylusPromised = util.promisify(stylus(react23CSSO).set('paths', [muiThemesPath]).render)
+  //   let stylusCSS
+  //   const util = require('util')
+  //   const stylusPromised = util.promisify(stylus(react23CSSO).set('paths', [muiThemesPath]).render)
 
   // const stylusCSS = await stylusPromised()
 
-  const generatedTheme = styleObjects.convert(stylusCSS)
-  console.log('THEMEobj', generatedTheme)
+  //   const generatedTheme = styleObjects.convert(stylusCSS)
+//   console.log('THEMEobj', generatedTheme)
 }
 
 export default loadStyleObject

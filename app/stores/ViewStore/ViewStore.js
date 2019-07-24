@@ -1,5 +1,3 @@
-'use strict'
-
 import {extendObservable} from 'mobx'
 
 const confirmationDialogDefaults = {
@@ -57,7 +55,7 @@ export default class ViewStore {
   }
 
   switchTheme(theme = 'react23Theme') {
-    this.theme = this.theme === 'react23Theme' ? 'muiTheme' : 'react23Theme'
+    this.theme = this.theme === 'react23Theme' ? 'muiTheme' : theme
   }
 
   set confirmationDialog(confirmationDialog) {

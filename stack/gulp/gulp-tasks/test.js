@@ -2,7 +2,7 @@ import config from 'config'
 import gulp from 'gulp'
 import logger from '@stackr23/logger'
 
-gulp.task('test:config', (done) => {
+gulp.task('test:config', () => {
   console.dir(config)
 })
 

@@ -10,7 +10,7 @@ import {Provider} from 'mobx-react'
 import stores from '../../../app/stores/index.js'
 // import initialState                     from '../../../app/js/stores/initialState.js'
 
-import createRoutes from '../../../app/routes/index.js'
+// import createRoutes from '../../../app/routes/index.js'
 import App from '../../../app/src/App.js'
 // import Root from '../../../app/src/index.js'
 
@@ -22,7 +22,7 @@ const {
   ports: {portHMR}
 } = require('config').default
 
-const routes   = createRoutes(stores)
+// const routes   = createRoutes(stores)
 const serverIp = ip.address()
 
 const renderFullPage = ({appHtml, appCSS}) => {

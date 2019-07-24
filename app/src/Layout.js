@@ -28,11 +28,9 @@ class Layout extends React.Component {
 
     render() {
       const {
-        viewStore: {theme: themeName, sideBar, sidenav},
-        router
+        viewStore: {theme: themeName}
       } = this.props
       const theme = themes[themeName]
-      const themeClassName = themeName
 
       return (
         <ThemeProvider theme={theme}>
@@ -47,7 +45,6 @@ class Layout extends React.Component {
             <footer id="footer">
                         made with 💕 by <a href="http://github.com/DoubleU23">DoubleU23</a>
             </footer>
-            {/* global UI Components */}
             <Sidenav />
             <Sidemenu />
             <ConfirmationDialog />

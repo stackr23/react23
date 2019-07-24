@@ -108,8 +108,6 @@ class ConfirmationDialog extends React.Component {
           modal={true}
           onClose={canCancel ? this.closeConfirmationDialog : this.noop}
           repositionOnUpdate={false}
-          // ConfirmationDialog is always on top
-          // (in case of multiple Dialogs)
           style={{zIndex: 9999}}
           overlayStyle={{zIndex: 999}}
           title={title}

@@ -1,7 +1,7 @@
 import fs from 'fs'
 import {join} from 'path'
-import getBuildFilenames from './getBuildFilenames'
-import logger from '@stackr23/logger'
+// import getBuildFilenames from './getBuildFilenames'
+// import logger from '@stackr23/logger'
 
 const {
   paths: {app: appPath}
