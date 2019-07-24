@@ -16,7 +16,7 @@ let _indexHtml // pseudo cache
  * @param paths {object} - {appJSPath, appCSSPath = ''}
  */
 const getBuiltIndex = (files) => {
-    const {appJSPath, appCSSPath} = files
+    const {appJSPath, appCSSPath} = files || {}
     _indexHtml = _indexHtml || fs.readFileSync(join(appPath, 'index.html'), 'utf8')
 
     return _indexHtml.replace('{APP_JS}', appJSPath).replace('{APP_CSS}', appCSSPath)
