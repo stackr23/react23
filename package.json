@@ -99,7 +99,7 @@
         "stylus-loader": "^3.0.2",
         "stylus23": "git+https://github.com/stackr23/stylus23.git",
         "url-loader": "^2.1.0",
-        "webpack": "4.37.0",
+        "webpack": "4.38.0",
         "webpack-dev-middleware": "^3.4.0",
         "webpack-hot-middleware": "^2.24.3"
     },
