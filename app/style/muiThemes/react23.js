@@ -1,6 +1,6 @@
 export default {
     typography: {
-        // fontFamily: "'Federant', 'Helvetica', 'sans serif', 'Arial'",
+    // fontFamily: "'Federant', 'Helvetica', 'sans serif', 'Arial'",
         useNextVariants: true
     },
     palette: {

@@ -28,9 +28,9 @@ const _routes = [
     }
 ]
 
-const createRoutes = (stores) => {
-    requireAuth = (...args) => {
-        // console.log('[React23] requireAuth - ...args', args)
+const createRoutes = () => {
+    requireAuth = () => {
+    // console.log('[React23] requireAuth - ...args', args)
     }
 
     // TBD: loginCheck

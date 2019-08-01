@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import {observer, inject} from 'mobx-react'
 
-import {MuiThemeProvider} from '@material-ui/core/styles'
+import {ThemeProvider} from '@material-ui/styles'
 import themes from '../style/muiThemes/index'
 
 import Header from './components/layout/Header'
@@ -22,26 +22,18 @@ class Layout extends React.Component {
         router: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        children: PropTypes.array.isRequired,
+        children: PropTypes.array,
         viewStore: PropTypes.object.isRequired
     }
 
     render() {
         const {
-            viewStore: {theme: themeName, sideBar, sidenav},
-            router
+            viewStore: {theme: themeName}
         } = this.props
         const theme = themes[themeName]
-        const themeClassName = themeName
-
-        let sheetsManager = {}
-        if (!global.IS_BROWSER) {
-            //  inject sheetsManager for SSR - see /stack/server/frontend/render.js
-            sheetsManager = {sheetsManager: new Map()}
-        }
 
         return (
-            <MuiThemeProvider theme={theme} {...sheetsManager}>
+            <ThemeProvider theme={theme}>
                 <React.Fragment>
                     <main id="main" className={themeName}>
                         <Header
@@ -53,12 +45,11 @@ class Layout extends React.Component {
                     <footer id="footer">
                         made with 💕 by <a href="http://github.com/DoubleU23">DoubleU23</a>
                     </footer>
-                    {/* global UI Components */}
                     <Sidenav />
                     <Sidemenu />
                     <ConfirmationDialog />
                 </React.Fragment>
-            </MuiThemeProvider>
+            </ThemeProvider>
         )
     }
 }

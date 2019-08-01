@@ -50,7 +50,7 @@ class ConfirmationDialog extends React.Component {
                 typeof action === 'function'
                     ? action
                     : // TBD: show warning/throw error if function is not valid
-                      this.noop
+                    this.noop
         }
 
         return (e) => {
@@ -87,7 +87,7 @@ class ConfirmationDialog extends React.Component {
         ]
 
         if (canCancel) {
-            // add CANCEL button (if action != cancel)
+        // add CANCEL button (if action != cancel)
             actions.unshift(
                 // .unshift(
                 <Button
@@ -108,8 +108,6 @@ class ConfirmationDialog extends React.Component {
                 modal={true}
                 onClose={canCancel ? this.closeConfirmationDialog : this.noop}
                 repositionOnUpdate={false}
-                // ConfirmationDialog is always on top
-                // (in case of multiple Dialogs)
                 style={{zIndex: 9999}}
                 overlayStyle={{zIndex: 999}}
                 title={title}

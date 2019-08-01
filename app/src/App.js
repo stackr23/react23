@@ -1,5 +1,4 @@
 import React from 'react'
-import {Route} from 'react-router-dom'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 
@@ -12,6 +11,7 @@ import createRoutes from '../routes/index'
 const routesCompiled = createRoutes(stores)
 
 @inject('router')
+@observer
 class App extends React.Component {
     static propTypes = {
         router: PropTypes.object.isRequired
@@ -19,12 +19,10 @@ class App extends React.Component {
 
     render() {
         const {
-            router: {
-                location: {pathname}
-            }
+            router: {location: {pathname}}
         } = this.props
-        // console.log('global config', global.CONFIG)
 
+        // extract actual route's meta data
         const route = routesCompiled.filter((r) => r.props.path === pathname)[0]
         const title = route.props.meta.title
         const description = route.props.meta.description || ''

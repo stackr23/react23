@@ -63,8 +63,8 @@ export default (function(APP_CONFIG) {
             browserRoot: process.env.GH_PAGES
                 ? '/react23/'
                 : isProduction
-                ? '/'
-                : staticLocalhostRoot,
+                    ? '/'
+                    : staticLocalhostRoot,
             globs: {
                 clean: ['!**/.gitkeep', 'stack/__test__/**/*', 'build/**/*'],
                 scss: {

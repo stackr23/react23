@@ -22,9 +22,9 @@ const getBuildFilenames = () => {
         }
     } catch (err) {
         logger.debug('{bold [gulp-tasks/copyIndex]} getStaticAssetFilenames.catch]}', err)
-
-        return DEVELOPMENT_FILES
     }
+
+    return DEVELOPMENT_FILES
 }
 
 let buildFilenamesCached

@@ -20,7 +20,7 @@ const sassBuild = (src, dist) =>
                 // sourceMapRoot:  './web'
             }).on('error', (e) => gulpSass.logError(logger.error(e)))
         )
-        // .pipe(gulpRename('test.css'))
+    // .pipe(gulpRename('test.css'))
         .pipe(gulp.dest(dist))
 
 gulp.task('sass:build-mqs', () => sassBuild(src.mqs, dist.mqs || dist))

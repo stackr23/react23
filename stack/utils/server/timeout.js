@@ -14,7 +14,7 @@ const timeout = (ms = 5000, promise) =>
         }, ms)
 
         promise
-            // Promise resolved before timeout - keep going...
+        // Promise resolved before timeout - keep going...
             .then(resolve, reject)
             .catch((err) => throw new Error(err))
     })

@@ -12,14 +12,14 @@ const routes = {
             path: '/test',
             load: () => import(/* webpackChunkName: 'testPage' */ '../src/pages/TestPage')
         }
-        // {
-        //     path: '(.*)',
-        //     load: () => import( webpackChunkName: 'not-found'  './not-found')
-        // }
+    // {
+    //     path: '(.*)',
+    //     load: () => import( webpackChunkName: 'not-found'  './not-found')
+    // }
     ],
 
     async action({next}) {
-        // Execute each child route until one of them return the result
+    // Execute each child route until one of them return the result
         const route = await next()
 
         // Provide default values for title, description etc.

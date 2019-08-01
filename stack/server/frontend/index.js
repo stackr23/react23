@@ -5,7 +5,7 @@ import render from './render'
 
 const app = express()
 
-app.get('/test/testTimeout', (req, res, next) => {
+app.get('/test/testTimeout', (req, res) => {
     setTimeout(() => {
         res.send('timeout response after 5000ms')
     }, 10000)

@@ -17,8 +17,8 @@ export default function(error) {
         // Keep gulp from hanging on this task
         this.emit('end')
     } else {
-        // Log the error and stop the process
-        // to prevent broken code from building
+    // Log the error and stop the process
+    // to prevent broken code from building
         console.log(error)
         process.exit(1)
     }

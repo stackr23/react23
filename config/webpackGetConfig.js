@@ -34,32 +34,32 @@ export default (_isDevelopment) => {
         devtool: process.env.CONTINUOUS_INTEGRATION
             ? 'inline-source-map'
             : !isProduction
-            ? // 'eval-source-map' for dev - if you have performance troubles
-              'inline-source-map'
-            : 'cheap-source-map',
+                ? // 'eval-source-map' for dev - if you have performance troubles
+                'inline-source-map'
+                : 'cheap-source-map',
         entry: {
             app: isDevelopment
                 ? [
-                      `webpack-hot-middleware/client?path=http://${serverIp}:${portHMR}/__webpack_hmr`,
-                      path.join(paths.src, 'index.js')
-                  ]
+                    `webpack-hot-middleware/client?path=http://${serverIp}:${portHMR}/__webpack_hmr`,
+                    path.join(paths.src, 'index.js')
+                ]
                 : [path.join(paths.src, 'index.js')]
         },
         output: isDevelopment
             ? {
-                  path: paths.build,
-                  filename: 'app.js',
-                  sourceMapFilename: 'app.js.map',
-                  chunkFilename: 'app-[chunkhash].js',
-                  publicPath: `http://${serverIp}:${portHMR}/build/`
-              }
+                path: paths.build,
+                filename: 'app.js',
+                sourceMapFilename: 'app.js.map',
+                chunkFilename: 'app-[chunkhash].js',
+                publicPath: `http://${serverIp}:${portHMR}/build/`
+            }
             : {
-                  path: paths.build,
-                  filename: 'app-[hash].js',
-                  sourceMapFilename: 'app-[hash].js.map',
-                  chunkFilename: 'app-[chunkhash].js'
-              },
-        stats: isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',
+                path: paths.build,
+                filename: 'app-[hash].js',
+                sourceMapFilename: 'app-[hash].js.map',
+                chunkFilename: 'app-[chunkhash].js'
+            },
+        stats: isDebug || verbose ? 'normal' : isProduction ? 'errors-only' : 'minimal',
         module: {
             rules: [
                 ...urlLoaders,

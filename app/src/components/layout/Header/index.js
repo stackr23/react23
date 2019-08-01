@@ -7,7 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import SettingsIcon from '@material-ui/icons/Settings'
-import Typography from '@material-ui/core/Typography'
+// import Typography from '@material-ui/core/Typography'
 
 if (global.IS_BROWSER) {
     require('./Header.styl')

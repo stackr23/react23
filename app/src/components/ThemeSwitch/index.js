@@ -24,7 +24,7 @@ class ThemeSwitch extends React.Component {
         return (
             <div id="ThemeSwitch" className="component">
                 <Switch
-                    onChange={(e) => viewStore.switchTheme()}
+                    onChange={() => viewStore.switchTheme()}
                     checked={!isDefaultTheme}
                     classes={{
                         root: 'Switch',

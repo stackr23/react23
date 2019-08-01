@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {observer, inject} from 'mobx-react'
 
-import ThemeSwitch from '../components/ThemeSwitch'
-
 @inject('viewStore')
 @observer
 class Home extends React.Component {
