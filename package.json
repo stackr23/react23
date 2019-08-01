@@ -79,7 +79,7 @@
         "gulp-sass": "^4.0.1",
         "history": "^4.7.2",
         "ip": "^1.1.5",
-        "jss": "^9.8.7",
+        "jss": "^10.0.0-alpha.17",
         "mobx": "^5.5.2",
         "mobx-react": "^6.1.1",
         "mobx-react-router": "^4.0.5",

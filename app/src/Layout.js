@@ -22,7 +22,7 @@ class Layout extends React.Component {
         router: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        children: PropTypes.array.isRequired,
+        children: PropTypes.array,
         viewStore: PropTypes.object.isRequired
     }
 
