@@ -6,8 +6,8 @@ import mobxAutorun from '../stores/autorun'
 import stores from '../stores'
 
 import {createBrowserHistory, createMemoryHistory} from 'history'
-import {Router, BrowserRouter } from 'react-router-dom'
-import {syncHistoryWithStore} from 'mobx-react-router'
+import {BrowserRouter as Router} from 'react-router-dom'
+// import {syncHistoryWithStore} from 'mobx-react-router'
 
 import App from './App.js'
 
@@ -16,19 +16,18 @@ if (!global._babelPolyfill) require('@babel/polyfill')
 
 mobxAutorun(stores)
 
-// const {browserRoot} = process.env.APP_CONFIG
-// let historyCreated = global.IS_BROWSER
-//     ? createBrowserHistory({basename: browserRoot})
-//     : createMemoryHistory()
-const historySynced = syncHistoryWithStore(createBrowserHistory(), stores.router)
-
-// history={historySynced}
+let historyCreated = global.IS_BROWSER
+    ? createBrowserHistory()
+    // TODO: use memoryhistory on server
+    // <Router history={}><StaticRouter >...</StaticRouter></Router>
+    : createMemoryHistory()
+// const historySynced = syncHistoryWithStore(createBrowserHistory(), stores.router)
 
 export default class Root extends React.Component {
     render() {
         return (
             <Provider {...stores}>
-                <Router history={historySynced}>
+                <Router history={historyCreated}>
                     <App />
                 </Router>
             </Provider>
