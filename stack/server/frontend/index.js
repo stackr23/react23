@@ -14,7 +14,8 @@ app.get('/test/testTimeout', (req, res) => {
 
 app.use(cors())
 
-// app.use(favicon('assets/img/favicon.ico'))
+app.use('/favicon.ico', express.static('assets/img/favicon.ico', {maxAge: '200d'}))
+
 
 // serve static assets. We can cache them as they include hashes.
 // express.static is relative to your node process (gulp runs in project root)
