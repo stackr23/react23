@@ -1,12 +1,12 @@
-import fs from 'fs'
-import logger from '@stackr23/logger'
+import fs       from 'fs'
+import logger   from '@stackr23/logger'
 
 const {isProduction, paths} = require('config').default
 
 const getBuildFilenames = () => {
     const APP_JS_PATTERN = /^app-\w+\.js$/
     const APP_CSS_PATTERN = /^app-\w+\.css$/
-    // TBD: use app-hash from webpack-instance, for dev?
+    // TODO: use app-hash from webpack-instance, for dev?
     const DEVELOPMENT_FILES = {appCSS: 'app.css', appJS: 'app.js'}
 
     if (!isProduction) {

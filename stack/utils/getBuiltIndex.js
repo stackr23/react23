@@ -1,19 +1,15 @@
 import fs from 'fs'
 import {join} from 'path'
-// import getBuildFilenames from './getBuildFilenames'
-// import logger from '@stackr23/logger'
 
 const {
     paths: {app: appPath}
 } = require('config').default
 
-let _indexHtml // pseudo cache
-
-
-// appCSSPath is only needed in production
 /**
  * @function @name getBuiltIndex
- * @param paths {object} - {appJSPath, appCSSPath = ''}
+ * @param files {object} - {appJSPath, appCSSPath = ''}
+ *
+ * FYI: appCSSPath is only needed in production
  */
 const getBuiltIndex = (files) => {
     const {appJSPath, appCSSPath} = files || {}
@@ -21,5 +17,6 @@ const getBuiltIndex = (files) => {
 
     return _indexHtml.replace('{APP_JS}', appJSPath).replace('{APP_CSS}', appCSSPath)
 }
+let _indexHtml // pseudo cache
 
 export default getBuiltIndex
