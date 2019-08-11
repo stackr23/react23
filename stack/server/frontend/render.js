@@ -5,7 +5,7 @@ import ip from 'ip'
 import getBuiltIndex from '../../utils/getBuiltIndex.js'
 import getBuildFilenames from '../../utils/getBuildFilenames.js'
 
-import {StaticRouter, Router} from 'react-router'
+import {StaticRouter} from 'react-router'
 import {Provider} from 'mobx-react'
 import stores from '../../../app/stores/index.js'
 // import initialState                     from '../../../app/js/stores/initialState.js'
@@ -58,20 +58,26 @@ const renderFullPage = ({appHtml, appCSS}) => {
     return htmlOuter
 }
 
-const render = ({url: path}, res) => {
+const render = (req, res) => {
     const sheets = new ServerStyleSheets()
 
     const appHtml = renderToString(
         sheets.collect(
             <Provider {...stores}>
-                <StaticRouter location={path} context={{}}>
+                <StaticRouter location={req.url} context={{}}>
                     <App />
                 </StaticRouter>
             </Provider>
         )
     )
 
-    res.send(
+    // if (context.url) {
+    //     // Somewhere a `<Redirect>` was rendered
+    //     redirect(301, context.url);
+    // } else {
+    //     // we're good, send the response
+    // }
+    res.status(200).send(
         renderFullPage({ appHtml, appCSS: sheets.toString() })
     )
 }
