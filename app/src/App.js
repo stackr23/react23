@@ -10,29 +10,32 @@ import createRoutes from '../routes/index'
 
 const routesCompiled = createRoutes(stores)
 
-@inject('router')
 @observer
+@inject('router')
 class App extends React.Component {
     static propTypes = {
         router: PropTypes.object.isRequired
     }
 
     render() {
-        const {
-            router: {location: {pathname}}
-        } = this.props
+        console.log(this.props.router)
+        console.log('this.props.router.history :', this.props.router.history)
 
-        // extract actual route's meta data
-        const route = routesCompiled.filter((r) => r.props.path === pathname)[0]
-        const title = route.props.meta.title
-        const description = route.props.meta.description || ''
+        // const {
+        //     router: {history: {location}}
+        // } = this.props
+
+        // // extract actual route's meta data
+        // const route = routesCompiled.filter((r) => r.props.path === location.pathname)[0]
+        // const title = route.props.meta.title
+        // const description = route.props.meta.description || ''
 
         return (
             <div id="app">
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>[React23] - {title}</title>
-                    <meta name="description" content={description} />
+                    <title>[React23] - {'title'}</title>
+                    <meta name="description" content={'description'} />
                     <link rel="canonical" href="http://mysite.com/example" />
                 </Helmet>
                 <Layout>{routesCompiled}</Layout>

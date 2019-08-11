@@ -80,9 +80,9 @@
         "history": "^4.7.2",
         "ip": "^1.1.5",
         "jss": "^10.0.0-alpha.17",
-        "mobx": "^5.5.2",
+        "mobx": "^5.13.0",
         "mobx-react": "^6.1.1",
-        "mobx-react-router": "^4.0.5",
+        "mobx-react-router": "^4.0.7",
         "mobx-router": "0.0.20",
         "native-css": "^2.0.0",
         "node-sass": "^4.12.0",
@@ -90,8 +90,8 @@
         "postcss-loader": "^3.0.0",
         "prettier": "^1.15.2",
         "prop-types": "15.7.2",
-        "react": "^16.5.3",
-        "react-dom": "^16.5.2",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
         "react-helmet": "^5.2.1",
         "react-jss": "^8.6.1",
         "react-router-dom": "^5.0.1",
@@ -105,6 +105,7 @@
         "webpack-hot-middleware": "^2.24.3"
     },
     "dependencies": {
-        "@stackr23/logger": "^2.3.1"
+        "@stackr23/logger": "^2.3.1",
+        "cors": "^2.8.5"
     }
 }

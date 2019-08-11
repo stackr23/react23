@@ -5,7 +5,7 @@ import ip from 'ip'
 import getBuiltIndex from '../../utils/getBuiltIndex.js'
 import getBuildFilenames from '../../utils/getBuildFilenames.js'
 
-import {StaticRouter} from 'react-router'
+import {StaticRouter, Router} from 'react-router'
 import {Provider} from 'mobx-react'
 import stores from '../../../app/stores/index.js'
 // import initialState                     from '../../../app/js/stores/initialState.js'
@@ -14,8 +14,8 @@ import stores from '../../../app/stores/index.js'
 import App from '../../../app/src/App.js'
 // import Root from '../../../app/src/index.js'
 
-import {ThemeProvider, ServerStyleSheets} from '@material-ui/styles'
-import {react23Theme} from '../../../app/style/muiThemes/index'
+import {ServerStyleSheets} from '@material-ui/styles'
+// import {react23Theme} from '../../../app/style/muiThemes/index'
 
 const {
     isProduction,
@@ -65,9 +65,7 @@ const render = ({url: path}, res) => {
         sheets.collect(
             <Provider {...stores}>
                 <StaticRouter location={path} context={{}}>
-                    <ThemeProvider theme={react23Theme}>
-                        <App />
-                    </ThemeProvider>
+                    <App />
                 </StaticRouter>
             </Provider>
         )

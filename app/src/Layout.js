@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import {Switch} from 'react-router-dom'
+
 import {observer, inject} from 'mobx-react'
 
 import {ThemeProvider} from '@material-ui/styles'
@@ -40,7 +42,9 @@ class Layout extends React.Component {
                             headline="React23"
                             subline="the perfect react stack to wrap your web app"
                         />
-                        <div id="content">{this.props.children}</div>
+                        <div id="content">
+                            {this.props.children}
+                        </div>
                     </main>
                     <footer id="footer">
                         made with 💕 by <a href="http://github.com/DoubleU23">DoubleU23</a>
