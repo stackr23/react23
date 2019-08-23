@@ -10,16 +10,16 @@ jobs:
     steps:
       - checkout
       - run: build
-      - requires:
-        - prebuild
+    requires:
+      - prebuild
   test:
     docker:
       - image: circleci/<language>:<version TAG>
     steps:
       - checkout
       - run: test
-      - requires:
-        - prebuild
+    requires:
+      - prebuild
 
 workflows:
   version: 2
