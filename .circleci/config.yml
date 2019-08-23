@@ -8,10 +8,10 @@ jobs:
           name: Setup
           command: npm install gulp-cli && npm install
       - run:
-          name: build
+          name: Build
           command: npm run build
       - run:
-          name: test
+          name: Test
           command: npm run test
 
 workflows:
