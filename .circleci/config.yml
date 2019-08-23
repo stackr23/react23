@@ -1,27 +1,21 @@
 jobs:
-  prebuild:
-    docker:
-      - image: circleci/node:12.9.0
-    steps:
-      - run: npm install gulp-cli && npm install
-  build:
+  build_test:
     docker:
       - image: circleci/node:12.9.0
     steps:
       - checkout
-      - run: npm run build
-    requires:
-      - prebuild
-  test_full:
-    docker:
-      - image: circleci/node:12.9.0
-    steps:
-      - checkout
-      - run: npm install gulp-cli && npm install && npm run test-full
+      - run:
+          name: Setup
+          command: npm install gulp-cli && npm install
+      - run:
+          name: build
+          command: npm run build
+      - run:
+          name: test
+          command: npm run test
 
 workflows:
   version: 2
-  setup:
-  build_and_test:
+  build:
     jobs:
-      - test_full
+      - build_test
