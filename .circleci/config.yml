@@ -9,7 +9,7 @@ jobs:
       - image: circleci/node:12.9.0
     steps:
       - checkout
-      - run: build
+      - run: npm run build
     requires:
       - prebuild
   test:
@@ -17,7 +17,7 @@ jobs:
       - image: circleci/<language>:<version TAG>
     steps:
       - checkout
-      - run: test
+      - run: npm run test
     requires:
       - prebuild
 
