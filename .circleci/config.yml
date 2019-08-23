@@ -12,12 +12,12 @@ jobs:
       - run: npm run build
     requires:
       - prebuild
-  test:
+  test_full:
     docker:
-      - image: circleci/<language>:<version TAG>
+      - image: circlecinode:12.9.0
     steps:
       - checkout
-      - run: npm run test
+      - run: npm run test-full
     requires:
       - prebuild
 
@@ -25,5 +25,4 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
-      - test
+      - test_full
