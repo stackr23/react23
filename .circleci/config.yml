@@ -3,7 +3,7 @@ jobs:
     docker:
       - image: circleci/node:12.9.0
     steps:
-      - run: npm install -g gulp-cli && npm install -v
+      - run: npm install gulp-cli && npm install -v
   build:
     docker:
       - image: circleci/node:12.9.0
