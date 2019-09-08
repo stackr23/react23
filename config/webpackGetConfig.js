@@ -10,6 +10,7 @@ import autoprefixer from 'autoprefixer'
 import cssMqPacker from 'css-mqpacker'
 import styleLoader, {styleobjectsLoader} from './webpack/styleLoader'
 
+import resolveConfig from '../webpack.config.resolve'
 const config = require('config').default
 
 let {
@@ -180,9 +181,9 @@ export default (_isDevelopment) => {
         performance: {
             hints: !isProduction ? 'warning' : false
         },
-        resolve: {
-            extensions: ['.js', '.babel', '.styl'],
-            modules: [paths.nodeModules]
+    resolve: resolveConfig.resolve || resolveConfig || {
+      extensions: [ '.js', '.jsx', '.json', '*' ],
+      modules: [ paths.nodeModules, 'app', 'app/src' ]
         }
     }
 
