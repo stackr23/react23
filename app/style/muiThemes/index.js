@@ -9,15 +9,16 @@
 //  TBD: export * from './'
 //
 
-import {createMuiTheme} from '@material-ui/core/styles'
+import { createMuiTheme } from '@material-ui/core/styles'
+
 import _react23Theme from './react23'
 import _muiTheme from './default'
 
 // let styleObjects, stylus
-if (global.IS_BROWSER) {
-} else {
-    // loadStyleObjects('./react23.css')
-}
+// if (global.IS_BROWSER) {
+// } else {
+//   // loadStyleObjects('./react23.css')
+// }
 
 // default muiTheme without modifications
 export const muiTheme = createMuiTheme(_muiTheme)
@@ -28,6 +29,6 @@ export const muiTheme = createMuiTheme(_muiTheme)
 export const react23Theme = createMuiTheme(_react23Theme)
 
 export default {
-    muiTheme,
-    react23Theme
+  muiTheme,
+  react23Theme
 }
