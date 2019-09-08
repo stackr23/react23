@@ -1,13 +1,17 @@
 import React from 'react'
-import {renderToString} from 'react-dom/server' // {renderToString}
-
+import { renderToString } from 'react-dom/server' // {renderToString}
 import ip from 'ip'
+import { StaticRouter } from 'react-router'
+import { Provider } from 'mobx-react'
+import { ThemeProvider, ServerStyleSheets } from '@material-ui/styles'
+
+import stores from 'stores/index.js'
+import App from 'src/App.js'
+import { react23Theme } from 'style/muiThemes/index'
+
 import getBuiltIndex from '../../utils/getBuiltIndex.js'
 import getBuildFilenames from '../../utils/getBuildFilenames.js'
 
-import {StaticRouter} from 'react-router'
-import {Provider} from 'mobx-react'
-import stores from '../../../app/stores/index.js'
 // import initialState                     from '../../../app/js/stores/initialState.js'
 
 // import createRoutes from '../../../app/routes/index.js'
