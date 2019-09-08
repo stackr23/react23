@@ -36,6 +36,7 @@
   "babel": {
     "presets": [
       [
+        "babel-preset-react23",
         "@babel/preset-env",
         {
           "modules": "commonjs",
