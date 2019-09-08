@@ -6,7 +6,7 @@ jobs:
       - checkout
       - run:
           name: Setup
-          command: npm install gulp-cli && npm install
+          command: npm install gulp gulp-cli --save-dev && npm install
       - run:
           name: Build
           command: npm run build
