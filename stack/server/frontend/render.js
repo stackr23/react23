@@ -16,7 +16,6 @@ import getBuildFilenames from '../../utils/getBuildFilenames.js'
 // import createRoutes from '../../../app/routes/index.js'
 // import Root from '../../../app/src/index.js'
 
-
 const {
   isProduction,
   ports: { portHMR }

@@ -37,6 +37,20 @@
     "presets": [
       "babel-preset-react23",
       "@babel/preset-react"
+    ],
+    "plugins": [
+      [
+        "module-resolver",
+        {
+          "root": [
+            ".",
+            "./app"
+          ],
+          "alias": {
+            "*": "./app/*"
+          }
+        }
+      ]
     ]
   },
   "engines": {
@@ -120,6 +134,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.5.5",
+    "babel-plugin-module-resolver": "^3.2.0",
     "eslint-plugin-jsx": "^0.1.0"
   }
 }

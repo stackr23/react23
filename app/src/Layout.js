@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { observer, inject } from 'mobx-react'
 import { ThemeProvider } from '@material-ui/styles'
 
-import Header from 'components/layout/Header'
-import Sidenav from 'components/layout/Sidenav'
-import Sidemenu from 'components/layout/Sidemenu'
-import ConfirmationDialog from 'components/layout/ConfirmationDialog'
+import Header from 'src/components/layout/Header'
+import Sidenav from 'src/components/layout/Sidenav'
+import Sidemenu from 'src/components/layout/Sidemenu'
+import ConfirmationDialog from 'src/components/layout/ConfirmationDialog'
 import themes from 'style/muiThemes/index'
 
 if (global.IS_BROWSER) {
