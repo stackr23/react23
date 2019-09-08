@@ -5,9 +5,9 @@ import { createBrowserHistory, createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
 import { syncHistoryWithStore } from 'mobx-react-router'
 
-import stores from '../stores'
-import mobxAutorun from '../stores/autorun'
-import App from './App.js'
+import stores from 'stores/index.js'
+import mobxAutorun from 'stores/autorun'
+import App from 'src/App.js'
 
 if (module.hot) module.hot.accept()
 if (!global._babelPolyfill) require('@babel/polyfill')
