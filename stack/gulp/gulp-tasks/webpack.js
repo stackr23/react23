@@ -10,14 +10,7 @@ const { isProduction } = require('config').default
 
 gulp.task(
   'webpack',
-  gulp.series(isProduction ? makeWebpackBuild : startWebpackDevServer, () => {
-    if (process.env.NODE_ENV === 'test') {
-      setTimeout(() => {
-        // eslint-disable-next-line no-process-exit
-        process.exit(1)
-      }, 5000)
-    }
-  })
+  gulp.series(isProduction ? makeWebpackBuild : startWebpackDevServer)
 )
 
 gulp.task(

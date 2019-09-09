@@ -2,7 +2,6 @@
 
 import fs from 'fs'
 import logger from '@stackr23/logger'
-
 import gulp from 'gulp'
 
 const config = require('config').default
@@ -23,6 +22,16 @@ taskFileNames.forEach((fileName) => {
   require('./gulp-tasks/' + fileName)
 })
 
+const exitProcessIfCI = (done) => {
+  if (process.env.NODE_ENV === 'test') {
+    setTimeout(() => {
+      // eslint-disable-next-line no-process-exit
+      process.exit()
+    }, 5000)
+  }
+  done()
+}
+
 gulp.task(
   'default',
   gulp.series(
@@ -30,6 +39,7 @@ gulp.task(
     gulp.parallel(
       // gulp.series('sass-build', 'sass:watch'), // serie will be removed later
       gulp.series('webpack', 'server:frontend')
-    )
+    ),
+    exitProcessIfCI
   )
 )
