@@ -1,21 +1,24 @@
 jobs:
-  build_test:
+  test_build:
+    environment:
+      NODE_ENV: test
+      DEBUG: true
     docker:
       - image: circleci/node:12.9.0
     steps:
       - checkout
       - run:
           name: Setup
-          command: npm install gulp-cli && npm install
+          command: npm install gulp gulp-cli && npm install
       - run:
-          name: build
-          command: npm run build
+          name: Lint
+          command: npm run lint
       - run:
-          name: test
+          name: Test
           command: npm run test
 
 workflows:
-  version: 2
+  version: 3
   build:
     jobs:
-      - build_test
+      - test_build

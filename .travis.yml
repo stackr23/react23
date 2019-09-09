@@ -1,25 +1,25 @@
 language: node_js
 node_js:
-    - 10
-    - 9
-    - 8
+  - 10
+  - 9
+  - 8
+
+env:
+  NODE_ENV: test
 
 branches:
   only:
-  - master
-  - development
-  - /^greenkeeper/.*$/
+    - master
+    - development
 
 before_install:
-    - npm install -g gulp-cli
+  - npm install -g gulp-cli
 
 install: npm install
 
 script:
-- npm run lint
-- npm run test
-- npm run build
-
+  - npm run lint
+  - npm run test
 # before_deploy:
 #     - 'curl -u doubleu23:$GITHUB_TOKEN https://api.github.com/user'
 
