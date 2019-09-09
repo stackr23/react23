@@ -18,6 +18,6 @@ gulp.task(
   (() => {
     process.env.APP_BUILD_STATIC = true
 
-    return gulp.series('clean', 'webpack', copyIndex)
+    return gulp.series('clean', makeWebpackBuild, copyIndex)
   })()
 )
