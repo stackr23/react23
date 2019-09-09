@@ -1,7 +1,7 @@
 jobs:
-  test_start:
+  test_build:
     environment:
-      NODE_ENV: test
+      NODE_ENV: production
     docker:
       - image: circleci/node:12.9.0
     steps:
@@ -12,12 +12,9 @@ jobs:
       - run:
           name: Test
           command: npm run test
-      - run:
-          name: Start
-          command: npm run start
 
 workflows:
   version: 2
   build:
     jobs:
-      - test_start
+      - test_build

@@ -1,18 +1,19 @@
 import config from 'config'
-import logger from '@stackr23/logger'
-
 import gulp from 'gulp'
+// import logger from '@stackr23/logger'
 
 gulp.task('test:config', () => {
   console.dir(config)
 })
 
-gulp.task('test', (done) => {
-  let additionalStyledText = '{bgGreen.bold SUCCESS {bgBlack.white (!)}}'
-  console.log('You should see a colorful debugMsg:')
-  logger.debug(`it was an ${additionalStyledText} I {reset.bgWhite.red.bold love} it!`)
+gulp.task('test', gulp.series('build-static'))
 
-  gulp.series('test:config')
+// gulp.task('test', (done) => {
+//   let additionalStyledText = '{bgGreen.bold SUCCESS {bgBlack.white (!)}}'
+//   console.log('You should see a colorful debugMsg:')
+//   logger.debug(`it was an ${additionalStyledText} I {reset.bgWhite.red.bold love} it!`)
 
-  done()
-})
+//   gulp.series('test:config')
+
+//   done()
+// })
