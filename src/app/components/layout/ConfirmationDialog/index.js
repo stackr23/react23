@@ -8,12 +8,12 @@
 
 'use strict'
 
-import React from 'app/components/layout/ConfirmationDialog/react'
-import PropTypes from 'app/components/layout/ConfirmationDialog/prop-types'
-import { observer, inject } from 'app/components/layout/ConfirmationDialog/mobx-react'
-import Button from 'app/components/layout/ConfirmationDialog/@material-ui/core/Button'
-import Dialog from 'app/components/layout/ConfirmationDialog/@material-ui/core/Dialog'
-import DialogActions from 'app/components/layout/ConfirmationDialog/@material-ui/core/DialogActions'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { observer, inject } from 'mobx-react'
+import Button from '@material-ui/core/Button'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
 
 @inject('viewStore')
 @observer
@@ -38,7 +38,7 @@ class ConfirmationDialog extends React.Component {
     getAction () {
       const confirmationDialogOptions = this.props.viewStore.confirmationDialog
       let { action, closeOnAction } = confirmationDialogOptions,
-        myAction
+          myAction
 
       // refactor: canCancel
       // see also line 79

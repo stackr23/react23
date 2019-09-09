@@ -1,8 +1,9 @@
-import gulp from 'gulp'
 import gulpSass from 'gulp-sass'
 // import runSequence  from 'run-sequence'
 // import gulpRename   from 'gulp-rename'
 import logger from '@stackr23/logger'
+
+import gulp from 'gulp'
 
 const {
   globs: {

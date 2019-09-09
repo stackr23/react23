@@ -2,10 +2,11 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import { observer, inject } from 'mobx-react'
-import Layout from 'src/Layout'
 
-import stores from 'stores'
-import createRoutes from 'routes'
+import Layout from 'app/Layout'
+import createRoutes from 'routes/index.js'
+import stores from 'stores/index.js'
+console.log('true :', true)
 
 const routesCompiled = createRoutes(stores)
 

@@ -1,6 +1,7 @@
+import { spawn } from 'child_process'
+
 import gulp from 'gulp'
 // import gulpNodemon  from 'gulp-nodemon'
-import { spawn } from 'child_process'
 
 const { paths } = require('config').default
 

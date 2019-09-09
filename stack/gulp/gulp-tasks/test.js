@@ -1,6 +1,7 @@
 import config from 'config'
-import gulp from 'gulp'
 import logger from '@stackr23/logger'
+
+import gulp from 'gulp'
 
 gulp.task('test:config', () => {
   console.dir(config)

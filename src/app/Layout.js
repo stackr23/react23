@@ -2,14 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { observer, inject } from 'mobx-react'
 import { ThemeProvider } from '@material-ui/styles'
-import Header from 'src/components/layout/Header'
-import Sidenav from 'src/components/layout/Sidenav'
-import Sidemenu from 'src/components/layout/Sidemenu'
-import ConfirmationDialog from 'src/components/layout/ConfirmationDialog'
-import themes from 'style/muiThemes/index'
+
+import themes from 'app/muiThemes/index.js'
+import Header from 'app/components/layout/Header'
+import Sidenav from 'app/components/layout/Sidenav'
+import Sidemenu from 'app/components/layout/Sidemenu'
+import ConfirmationDialog from 'app/components/layout/ConfirmationDialog'
 
 if (global.IS_BROWSER) {
-  require('../style/layout.styl')
+  require('./layout.styl')
 }
 
 @inject('viewStore', 'router')

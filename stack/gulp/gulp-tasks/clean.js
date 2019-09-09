@@ -1,5 +1,6 @@
-import gulp from 'gulp'
 import del from 'del'
+
+import gulp from 'gulp'
 
 const {
   globs: { clean: cleanGlob }

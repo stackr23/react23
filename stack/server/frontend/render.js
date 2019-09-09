@@ -5,13 +5,12 @@ import { StaticRouter } from 'react-router'
 import { Provider } from 'mobx-react'
 import { ThemeProvider, ServerStyleSheets } from '@material-ui/styles'
 
-
 import stores from 'stores/index.js'
-import { react23Theme } from 'app/muiThemes/index'
 
-import App from '../../../src/App.js'
 import getBuiltIndex from '../../utils/getBuiltIndex.js'
 import getBuildFilenames from '../../utils/getBuildFilenames.js'
+import { react23Theme } from '../../../src/app/muiThemes/index'
+import App from '../../../src/app/App.js'
 
 // import initialState                     from '../../../app/js/stores/initialState.js'
 // import createRoutes from '../../../app/routes/index.js'
@@ -21,6 +20,9 @@ const {
   isProduction,
   ports: { portHMR }
 } = require('config').default
+const test2 = require('react')
+
+const test = require('stores/index.js')
 
 // const routes   = createRoutes(stores)
 const serverIp = ip.address()

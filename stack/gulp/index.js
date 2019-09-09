@@ -1,8 +1,9 @@
 'use strict'
 
 import fs from 'fs'
-import gulp from 'gulp'
 import logger from '@stackr23/logger'
+
+import gulp from 'gulp'
 
 const config = require('config').default
 
