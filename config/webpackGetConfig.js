@@ -184,7 +184,7 @@ export default (_isDevelopment) => {
     },
     resolve: resolveConfig.resolve || resolveConfig || {
       extensions: [ '.js', '.jsx', '.json', '*' ],
-      modules: [ paths.nodeModules, 'app', 'app/src' ]
+      modules: [ 'src', paths.nodeModules ]
     }
   }
 
