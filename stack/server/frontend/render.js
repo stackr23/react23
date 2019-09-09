@@ -5,10 +5,11 @@ import { StaticRouter } from 'react-router'
 import { Provider } from 'mobx-react'
 import { ThemeProvider, ServerStyleSheets } from '@material-ui/styles'
 
-import stores from 'stores/index.js'
-import App from 'src/App.js'
-import { react23Theme } from 'style/muiThemes/index'
 
+import stores from 'stores/index.js'
+import { react23Theme } from 'app/muiThemes/index'
+
+import App from '../../../src/App.js'
 import getBuiltIndex from '../../utils/getBuiltIndex.js'
 import getBuildFilenames from '../../utils/getBuildFilenames.js'
 

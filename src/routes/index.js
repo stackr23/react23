@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 
-import * as Pages from '../src/pages/'
+import * as Pages from '../app/pages/'
 
 let requireAuth = () => {}
 

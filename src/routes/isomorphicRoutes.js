@@ -6,11 +6,11 @@ const routes = {
   children: [
     {
       path: '/',
-      load: () => import(/* webpackChunkName: 'home' */ '../src/pages/Home')
+      load: () => import(/* webpackChunkName: 'home' */ 'app/pages/Home')
     },
     {
       path: '/test',
-      load: () => import(/* webpackChunkName: 'testPage' */ '../src/pages/TestPage')
+      load: () => import(/* webpackChunkName: 'testPage' */ 'app/pages/TestPage')
     }
     // {
     //     path: '(.*)',

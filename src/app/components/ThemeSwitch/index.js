@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { observer, inject } from 'mobx-react'
-import Switch from '@material-ui/core/Switch'
+import React from 'app/components/ThemeSwitch/react'
+import PropTypes from 'app/components/ThemeSwitch/prop-types'
+import { observer, inject } from 'app/components/ThemeSwitch/mobx-react'
+import Switch from 'app/components/ThemeSwitch/@material-ui/core/Switch'
 
 if (global.IS_BROWSER) {
   require('./ThemeSwitch.styl')
