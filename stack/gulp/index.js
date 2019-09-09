@@ -29,3 +29,9 @@ gulp.task(
     gulp.series('webpack', 'server:frontend')
   )
 )
+
+gulp.task('test:config', () => {
+  console.dir(config)
+})
+
+gulp.task('test', gulp.series('build-static'))
