@@ -1,5 +1,7 @@
 jobs:
   test_start:
+    environment:
+      NODE_ENV: test
     docker:
       - image: circleci/node:12.9.0
     steps:
