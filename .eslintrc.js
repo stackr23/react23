@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const config = {
   "root": true,
   "extends": ["viewar/env/react"], // "stackr23/node"],
@@ -6,8 +8,7 @@ const config = {
     semi: ['error', 'never'],
     'node-unpublished': 0,
     "jsx/mark-used-vars": 1,
-    'node/no-extraneous-import': 0,
-    'node/no-extraneous-require': 0
+    'import/default': 1,
   }
 }
 
