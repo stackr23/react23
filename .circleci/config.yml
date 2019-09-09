@@ -10,6 +10,9 @@ jobs:
           name: Setup
           command: npm install gulp gulp-cli --save-dev && npm install
       - run:
+          name: Lint
+          command: npm run lint
+      - run:
           name: Test
           command: npm run test
 
