@@ -4,7 +4,7 @@ import { join } from 'path'
 import getBuiltIndex from '../../utils/getBuiltIndex'
 
 const {
-  paths: { build: buildPath }
+  paths: { build: buildPath },
 } = require('config').default
 
 const copyIndex = (done) => {
@@ -14,7 +14,7 @@ const copyIndex = (done) => {
     join(buildPath, 'index.html'),
     '<!DOCTYPE html>\n' + indexHtml,
     'utf-8',
-    function (err) {
+    function(err) {
       if (err) throw err
 
       if (typeof done === 'function') {

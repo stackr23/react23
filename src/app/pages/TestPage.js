@@ -7,13 +7,13 @@ import Button from '@material-ui/core/Button'
 @observer
 class TestPage extends React.Component {
     static propTypes = {
-      viewStore: PropTypes.object.isRequired
+      viewStore: PropTypes.object.isRequired,
     }
 
     // TBD: add mobx-router to pass /page component to Layout
-    render () {
+    render() {
       const {
-        viewStore: { confirmationDialog }
+        viewStore: { confirmationDialog },
       } = this.props
 
       return (

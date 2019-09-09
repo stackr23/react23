@@ -4,7 +4,7 @@ import frontend from './frontend'
 
 const app = express()
 const {
-  ports: { portFE }
+  ports: { portFE },
 } = require('config').default
 
 // TBD: /api

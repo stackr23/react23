@@ -17,11 +17,11 @@ if (global.IS_BROWSER) {
 class Header extends React.Component {
     static propTypes = {
       viewStore: PropTypes.object.isRequired,
-      headline: PropTypes.string.isRequired,
-      subline: PropTypes.string
+      headline:  PropTypes.string.isRequired,
+      subline:   PropTypes.string,
     }
 
-    render () {
+    render() {
       const { headline, subline, viewStore } = this.props
 
       return (
@@ -31,8 +31,8 @@ class Header extends React.Component {
               color="inherit"
               aria-label="Menu"
               style={{
-                marginLeft: -12,
-                marginRight: 20
+                marginLeft:  -12,
+                marginRight: 20,
               }}
               onClick={(e) => {
                 viewStore.toggleSidebar('sidenav', e)
@@ -41,8 +41,8 @@ class Header extends React.Component {
               <MenuIcon
                 fontSize="large"
                 classes={{
-                  root: 'muiIcon',
-                  fontSizeLarge: 'muiIconLarge'
+                  root:          'muiIcon',
+                  fontSizeLarge: 'muiIconLarge',
                 }}
               />
             </IconButton>
@@ -56,8 +56,8 @@ class Header extends React.Component {
                 color="inherit"
                 aria-label="Menu"
                 style={{
-                  marginLeft: -12,
-                  marginRight: 20
+                  marginLeft:  -12,
+                  marginRight: 20,
                 }}
                 onClick={(e) => {
                   viewStore.toggleSidebar('sidemenu', e)
@@ -66,10 +66,10 @@ class Header extends React.Component {
                 <SettingsIcon
                   fontSize="large"
                   style={{
-                    marginRight: 0
+                    marginRight: 0,
                   }}
                   classes={{
-                    fontSizeLarge: 'muiIconLarge'
+                    fontSizeLarge: 'muiIconLarge',
                   }}
                 />
               </IconButton>

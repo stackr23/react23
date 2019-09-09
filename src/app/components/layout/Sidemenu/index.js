@@ -23,14 +23,14 @@ if (global.IS_BROWSER) {
 class Sidemenu extends React.Component {
     static propTypes = {
       viewStore: PropTypes.object.isRequired,
-      router: PropTypes.object.isRequired,
-      theme: PropTypes.object.isRequired
+      router:    PropTypes.object.isRequired,
+      theme:     PropTypes.object.isRequired,
     }
 
-    render () {
+    render() {
       const {
         // router,
-        viewStore: { sidemenu }
+        viewStore: { sidemenu },
         // theme: { palette: {primary} }
       } = this.props
 
@@ -45,7 +45,7 @@ class Sidemenu extends React.Component {
             return false
           }}
           classes={{
-            paper: 'sidemenu__content'
+            paper: 'sidemenu__content',
           }}
         >
           <div

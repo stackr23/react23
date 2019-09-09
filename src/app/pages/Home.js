@@ -6,11 +6,11 @@ import { observer, inject } from 'mobx-react'
 @observer
 class Home extends React.Component {
     static propTypes = {
-      viewStore: PropTypes.object.isRequired
+      viewStore: PropTypes.object.isRequired,
     }
 
     // TBD: add mobx-router to pass /page component to Layout
-    render () {
+    render() {
       return (
         <div id="home" className="page">
           <h2>Home</h2>

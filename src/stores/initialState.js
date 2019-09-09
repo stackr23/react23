@@ -8,7 +8,7 @@ const getInitialState = () => {
   // TBD: initial state!
   const initialState = {
     initVar1: 'foo',
-    initVar2: 'bar'
+    initVar2: 'bar',
   }
 
   return Object.assign({}, initialState, clientState)

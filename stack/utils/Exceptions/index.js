@@ -1,5 +1,5 @@
 class ExtendableError extends Error {
-  constructor (message) {
+  constructor(message) {
     super(message)
     this.name = this.constructor.name
     // This will print the custom error in the stack, and not the generic Error
@@ -9,7 +9,8 @@ class ExtendableError extends Error {
     if (typeof Error.captureStackTrace === 'function') {
       // keep it isomorphic
       Error.captureStackTrace(this, this.constructor.name)
-    } else {
+    }
+    else {
       this.stack = new Error(message).stack
     }
   }
@@ -26,7 +27,7 @@ class ExtendableError extends Error {
  *  throw new TimeoutError('Server responded with an Timeout after 30s')
  */
 export class TimeoutError extends ExtendableError {
-  constructor (message) {
+  constructor(message) {
     let msg = message || 'Request Timed out'
     super(msg)
     this.name = 'TimeoutError'

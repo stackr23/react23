@@ -7,26 +7,26 @@ let requireAuth = () => {}
 
 const _routes = [
   {
-    path: '/',
-    exact: true,
+    path:      '/',
+    exact:     true,
     component: Pages.Home,
-    onEnter: requireAuth,
-    meta: {
-      name: 'home',
-      title: 'Home',
-      description: 'Landingpage'
-    }
+    onEnter:   requireAuth,
+    meta:      {
+      name:        'home',
+      title:       'Home',
+      description: 'Landingpage',
+    },
   },
   {
     meta: {
-      name: 'test',
-      title: 'Test',
-      description: 'Page for testing some components'
+      name:        'test',
+      title:       'Test',
+      description: 'Page for testing some components',
     },
-    path: '/test',
-    exact: true,
-    component: Pages.TestPage
-  }
+    path:      '/test',
+    exact:     true,
+    component: Pages.TestPage,
+  },
 ]
 
 const createRoutes = () => {

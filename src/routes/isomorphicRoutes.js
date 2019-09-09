@@ -6,19 +6,19 @@ const routes = {
   children: [
     {
       path: '/',
-      load: () => import(/* webpackChunkName: 'home' */ 'app/pages/Home')
+      load: () => import(/* webpackChunkName: 'home' */ 'app/pages/Home'),
     },
     {
       path: '/test',
-      load: () => import(/* webpackChunkName: 'testPage' */ 'app/pages/TestPage')
-    }
+      load: () => import(/* webpackChunkName: 'testPage' */ 'app/pages/TestPage'),
+    },
     // {
     //     path: '(.*)',
     //     load: () => import( webpackChunkName: 'not-found'  './not-found')
     // }
   ],
 
-  async action ({ next }) {
+  async action({ next }) {
     // Execute each child route until one of them return the result
     const route = await next()
 
@@ -28,7 +28,7 @@ const routes = {
     route.description = route.description || ''
 
     return route
-  }
+  },
 }
 
 export default routes

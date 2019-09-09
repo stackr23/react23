@@ -21,7 +21,7 @@ let {
   NODE_ENV,
   verbose,
   paths,
-  ports: { portHMR }
+  ports: { portHMR },
 } = config
 
 const serverIp = ip.address()
@@ -30,9 +30,9 @@ export default (_isDevelopment) => {
   isDevelopment = _isDevelopment != null ? _isDevelopment : isDevelopment
 
   const webpackConfig = {
-    mode: NODE_ENV || isDevelopment ? 'development' : 'production',
-    target: 'web',
-    cache: !isDevelopment,
+    mode:    NODE_ENV || isDevelopment ? 'development' : 'production',
+    target:  'web',
+    cache:   !isDevelopment,
     devtool: process.env.CONTINUOUS_INTEGRATION
       ? 'inline-source-map'
       : !isProduction
@@ -43,25 +43,25 @@ export default (_isDevelopment) => {
       app: isDevelopment
         ? [
           `webpack-hot-middleware/client?path=http://${serverIp}:${portHMR}/__webpack_hmr`,
-          path.join(paths.src, 'index.js')
+          path.join(paths.src, 'index.js'),
         ]
-        : [ path.join(paths.src, 'index.js') ]
+        : [ path.join(paths.src, 'index.js') ],
     },
     output: isDevelopment
       ? {
-        path: paths.build,
-        filename: 'app.js',
+        path:              paths.build,
+        filename:          'app.js',
         sourceMapFilename: 'app.js.map',
-        chunkFilename: 'app-[chunkhash].js',
-        publicPath: `http://${serverIp}:${portHMR}/build/`
+        chunkFilename:     'app-[chunkhash].js',
+        publicPath:        `http://${serverIp}:${portHMR}/build/`,
       }
       : {
-        path: paths.build,
-        filename: 'app-[hash].js',
+        path:              paths.build,
+        filename:          'app-[hash].js',
         sourceMapFilename: 'app-[hash].js.map',
-        chunkFilename: 'app-[chunkhash].js'
+        chunkFilename:     'app-[chunkhash].js',
       },
-    stats: isDebug || verbose ? 'normal' : isProduction ? 'errors-only' : 'minimal',
+    stats:  isDebug || verbose ? 'normal' : isProduction ? 'errors-only' : 'minimal',
     module: {
       rules: [
         ...urlLoaders,
@@ -69,21 +69,21 @@ export default (_isDevelopment) => {
         styleobjectsLoader,
         // BABEL LOADER
         {
-          loader: 'babel-loader',
-          test: /\.js$/,
+          loader:  'babel-loader',
+          test:    /\.js$/,
           exclude: /(node_modules|bower_components|styles)/,
           options: {
-            minified: isProduction,
-            retainLines: true,
-            sourceMap: true,
-            babelrc: true,
-            cacheDirectory: path.join(paths.build, 'cache', 'babel-loader')
+            minified:       isProduction,
+            retainLines:    true,
+            sourceMap:      true,
+            babelrc:        true,
+            cacheDirectory: path.join(paths.build, 'cache', 'babel-loader'),
             // presets and plugins defined in .babelrc
             // enable env config if needed
             // env: {production: {plugins: []}}
-          }
-        }
-      ]
+          },
+        },
+      ],
     },
     // TBD: refactor externals
     // externals: {
@@ -115,41 +115,42 @@ export default (_isDevelopment) => {
     plugins: (() => {
       const plugins = [
         new webpack.LoaderOptionsPlugin({
-          minimize: false,
-          debug: isDevelopment,
-          hotPort: portHMR,
+          minimize:  false,
+          debug:     isDevelopment,
+          hotPort:   portHMR,
           sourceMap: true,
-          postcss: () => [
+          postcss:   () => [
             autoprefixer({
-              browsers: [ 'last 2 versions', 'Safari > 6', 'iOS >= 7', 'ie >= 8' ]
+              browsers: [ 'last 2 versions', 'Safari > 6', 'iOS >= 7', 'ie >= 8' ],
             }),
-            cssMqPacker()
-          ]
+            cssMqPacker(),
+          ],
         }),
         new webpack.DefinePlugin({
           global: {
             IS_BROWSER: true,
-            CONFIG: JSON.stringify(config)
+            CONFIG:     JSON.stringify(config),
           },
           'process.env': {
-            NODE_ENV: JSON.stringify(NODE_ENV),
-            APP_CONFIG: JSON.stringify(config),
-            GH_PAGES: JSON.stringify(process.env.GH_PAGES),
-            APP_BUILD_STATIC: JSON.stringify(process.env.APP_BUILD_STATIC)
-          }
-        })
+            NODE_ENV:         JSON.stringify(NODE_ENV),
+            APP_CONFIG:       JSON.stringify(config),
+            GH_PAGES:         JSON.stringify(process.env.GH_PAGES),
+            APP_BUILD_STATIC: JSON.stringify(process.env.APP_BUILD_STATIC),
+          },
+        }),
       ]
       if (!isProduction) {
         plugins.push(
           new webpack.HotModuleReplacementPlugin(),
           new webpack.NoEmitOnErrorsPlugin()
         )
-      } else {
+      }
+      else {
         plugins.push(
           // new webpack.LoaderOptionsPlugin({minimize: true}),
           new ExtractTextPlugin({
-            filename: 'app-[hash].css',
-            allChunks: true
+            filename:  'app-[hash].css',
+            allChunks: true,
           })
           // new webpack.optimize.OccurrenceOrderPlugin(),
           // new webpack.optimize.UglifyJsPlugin({
@@ -180,12 +181,12 @@ export default (_isDevelopment) => {
       return plugins
     })(),
     performance: {
-      hints: !isProduction ? 'warning' : false
+      hints: !isProduction ? 'warning' : false,
     },
     resolve: resolveConfig.resolve || resolveConfig || {
       extensions: [ '.js', '.jsx', '.json', '*' ],
-      modules: [ 'src', paths.nodeModules ]
-    }
+      modules:    [ 'src', paths.nodeModules ],
+    },
   }
 
   // Webpack Dev Server - Header Settings
@@ -196,7 +197,7 @@ export default (_isDevelopment) => {
   // for compatibility, we keep this code in config too
   if (isDevelopment) {
     const devServer = {
-      headers: { 'Access-Control-Allow-Origin': '*' }
+      headers: { 'Access-Control-Allow-Origin': '*' },
     }
     webpackConfig.devServer = devServer
   }

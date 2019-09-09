@@ -11,11 +11,11 @@ if (global.IS_BROWSER) {
 @observer
 class ThemeSwitch extends React.Component {
     static propTypes = {
-      viewStore: PropTypes.object.isRequired
+      viewStore: PropTypes.object.isRequired,
     }
 
     // TBD: add mobx-router to pass /page component to Layout
-    render () {
+    render() {
       const { viewStore } = this.props
       // TBD: read default theme from appConfig
       const isDefaultTheme = viewStore.theme === 'react23Theme'
@@ -26,8 +26,8 @@ class ThemeSwitch extends React.Component {
             onChange={() => viewStore.switchTheme()}
             checked={!isDefaultTheme}
             classes={{
-              root: 'Switch',
-              checked: 'checked'
+              root:    'Switch',
+              checked: 'checked',
             }}
           />{' '}
           <strong>Theme:</strong> {viewStore.theme}

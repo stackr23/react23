@@ -28,7 +28,7 @@ if (global.IS_BROWSER) {
 class Sidenav extends React.Component {
     static propTypes = {
       viewStore: PropTypes.object.isRequired,
-      router: PropTypes.object.isRequired
+      router:    PropTypes.object.isRequired,
     }
 
     SideList = ({ router, sidenav }) => (
@@ -57,10 +57,10 @@ class Sidenav extends React.Component {
       </div>
     )
 
-    render () {
+    render() {
       const {
         viewStore: { sidenav },
-        router
+        router,
       } = this.props
 
       return (
@@ -74,12 +74,13 @@ class Sidenav extends React.Component {
             return false
           }}
           classes={{
-            paper: 'sidenav__content'
+            paper: 'sidenav__content',
           }}
         >
           <h2>{sidenav.headline}</h2>
           {this.SideList({
-            router, sidenav
+            router,
+            sidenav,
           })}
         </Drawer>
       )

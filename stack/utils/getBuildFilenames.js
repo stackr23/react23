@@ -8,7 +8,8 @@ const getBuildFilenames = () => {
   const APP_CSS_PATTERN = /^app-\w+\.css$/
   // TBD: use app-hash from webpack-instance, for dev?
   const DEVELOPMENT_FILES = {
-    appCSS: 'app.css', appJS: 'app.js'
+    appCSS: 'app.css',
+    appJS:  'app.js',
   }
 
   if (!isProduction) {
@@ -19,10 +20,11 @@ const getBuildFilenames = () => {
     const buildDirFiles = fs.readdirSync(paths.build)
 
     return {
-      appJS: buildDirFiles.find((filename) => APP_JS_PATTERN.test(filename)),
-      appCSS: buildDirFiles.find((filename) => APP_CSS_PATTERN.test(filename))
+      appJS:  buildDirFiles.find((filename) => APP_JS_PATTERN.test(filename)),
+      appCSS: buildDirFiles.find((filename) => APP_CSS_PATTERN.test(filename)),
     }
-  } catch (err) {
+  }
+  catch (err) {
     logger.debug('{bold [gulp-tasks/copyIndex]} getStaticAssetFilenames.catch]}', err)
   }
 

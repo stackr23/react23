@@ -20,25 +20,25 @@ const staticLocalhostRoot = '/'
 
 const yargs = require('yargs')
   .option('cssStyle', {
-    alias: 's',
-    'default': 'stylus'
+    alias:     's',
+    'default': 'stylus',
   })
   .option('production', {
-    alias: 'p',
-    'default': false
+    alias:     'p',
+    'default': false,
   })
   .option('debug', {
-    alias: 'd',
-    'default': false
+    alias:     'd',
+    'default': false,
   })
   .option('verbose', {
-    alias: 'v',
-    'default': false
+    alias:     'v',
+    'default': false,
   }).argv
 
 const paths = require('./paths').default
 
-export default (function (APP_CONFIG) {
+export default (function(APP_CONFIG) {
   const NODE_ENV =
         process.env.NODE_ENV === 'production' || yargs.production === true
           ? 'production'
@@ -48,16 +48,16 @@ export default (function (APP_CONFIG) {
 
   const config = Object.assign(
     {
-      NODE_ENV: NODE_ENV,
-      isProduction: isProduction,
+      NODE_ENV:      NODE_ENV,
+      isProduction:  isProduction,
       isDevelopment: !isProduction,
-      isDebug: process.env.APP_DEBUG || yargs.debug,
-      ports: {
-        portFE: 7000,
-        portHMR: 7070,
+      isDebug:       process.env.APP_DEBUG || yargs.debug,
+      ports:         {
+        portFE:      7000,
+        portHMR:     7070,
         //  ports for BrowserSync
         portBSProxy: 7001,
-        portBSUI: 3000
+        portBSUI:    3000,
       },
       paths,
       browserRoot: process.env.GH_PAGES
@@ -67,16 +67,16 @@ export default (function (APP_CONFIG) {
           : staticLocalhostRoot,
       globs: {
         clean: [ '!**/.gitkeep', 'stack/__test__/**/*', 'build/**/*' ],
-        scss: {
+        scss:  {
           watch: paths.sass + '/**/*.scss',
-          src: {
+          src:   {
             main: paths.sass + '/full.scss',
-            mqs: paths.sass + '/mqs/*.scss'
+            mqs:  paths.sass + '/mqs/*.scss',
           },
-          dist: paths.build + '/'
-        }
+          dist: paths.build + '/',
+        },
       },
-      cssStyle: yargs.cssStyle
+      cssStyle: yargs.cssStyle,
     },
     APP_CONFIG
   )

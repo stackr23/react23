@@ -1,22 +1,22 @@
 export default {
   typography: {
     // fontFamily: "'Federant', 'Helvetica', 'sans serif', 'Arial'",
-    useNextVariants: true
+    useNextVariants: true,
   },
   palette: {
     primary: {
-      main: '#f6ae2d' // #FFB300
+      main: '#f6ae2d', // #FFB300
     },
     secondary: {
-      main: '#390099'
-    }
+      main: '#390099',
+    },
   },
   overrides: {
     MuiButton: {
       root: {
-        color: '#fff'
+        color: '#fff',
       },
-      label: {}
-    }
-  }
+      label: {},
+    },
+  },
 }

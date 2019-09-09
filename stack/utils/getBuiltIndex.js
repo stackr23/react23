@@ -4,7 +4,7 @@ import { join } from 'path'
 // import logger from '@stackr23/logger'
 
 const {
-  paths: { app: appPath }
+  paths: { app: appPath },
 } = require('config').default
 
 let _indexHtml // pseudo cache

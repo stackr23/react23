@@ -14,12 +14,12 @@ const routesCompiled = createRoutes(stores)
 @observer
 class App extends React.Component {
     static propTypes = {
-      router: PropTypes.object.isRequired
+      router: PropTypes.object.isRequired,
     }
 
-    render () {
+    render() {
       const {
-        router: { location: { pathname } }
+        router: { location: { pathname }},
       } = this.props
 
       // extract actual route's meta data

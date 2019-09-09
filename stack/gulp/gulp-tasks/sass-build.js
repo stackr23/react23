@@ -7,8 +7,8 @@ import gulp from 'gulp'
 
 const {
   globs: {
-    scss: { src, dist, watch }
-  }
+    scss: { src, dist, watch },
+  },
 } = require('config').default
 
 const sassBuild = (src, dist) =>
@@ -16,8 +16,8 @@ const sassBuild = (src, dist) =>
     .src(src)
     .pipe(
       gulpSass({
-        outputStyle: 'compressed',
-        sourceMapEmbed: 'embed'
+        outputStyle:    'compressed',
+        sourceMapEmbed: 'embed',
         // sourceMapRoot:  './web'
       }).on('error', (e) => gulpSass.logError(logger.error(e)))
     )

@@ -20,10 +20,10 @@ import DialogActions from '@material-ui/core/DialogActions'
 class ConfirmationDialog extends React.Component {
     // TBD: closeAction
     static propTypes = {
-      viewStore: PropTypes.object.isRequired
+      viewStore: PropTypes.object.isRequired,
     }
 
-    constructor (props) {
+    constructor(props) {
       super(props)
 
       this.noop = () => {}
@@ -31,11 +31,11 @@ class ConfirmationDialog extends React.Component {
       this.closeConfirmationDialog = this.closeConfirmationDialog.bind(this)
     }
 
-    closeConfirmationDialog () {
+    closeConfirmationDialog() {
       this.props.viewStore.confirmationDialog.open = false
     }
 
-    getAction () {
+    getAction() {
       const confirmationDialogOptions = this.props.viewStore.confirmationDialog
       let { action, closeOnAction } = confirmationDialogOptions,
           myAction
@@ -44,7 +44,8 @@ class ConfirmationDialog extends React.Component {
       // see also line 79
       if (action === 'close' || action === null) {
         myAction = this.closeConfirmationDialog
-      } else {
+      }
+      else {
         myAction =
             typeof action === 'function'
               ? action
@@ -58,7 +59,7 @@ class ConfirmationDialog extends React.Component {
       }
     }
 
-    render () {
+    render() {
       let {
         viewStore: {
           confirmationDialog: {
@@ -67,9 +68,9 @@ class ConfirmationDialog extends React.Component {
             title,
             content, // action: originalAction,
             // refactor: buttonLabels
-            buttonLabels: { confirm: labelConfirm, cancel: labelCancel }
-          }
-        }
+            buttonLabels: { confirm: labelConfirm, cancel: labelCancel },
+          },
+        },
       } = this.props
 
       // always schow confirm button!
@@ -81,7 +82,7 @@ class ConfirmationDialog extends React.Component {
           onClick={this.getAction()}
         >
           {labelConfirm != null ? labelConfirm : 'confirm'}
-        </Button>
+        </Button>,
       ]
 
       if (canCancel) {

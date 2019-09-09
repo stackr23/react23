@@ -16,7 +16,7 @@ const startFrontendServer = (done) => {
   // dont forget to pass argv's for appConfigs yargs parser
   const runner = spawn('node', [ paths.server, ...process.argv ], {
     cwd: process.cwd(),
-    env: process.env
+    env: process.env,
   })
 
   runner.stdout.setEncoding('utf8')

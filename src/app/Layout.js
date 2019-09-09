@@ -18,15 +18,15 @@ if (global.IS_BROWSER) {
 class Layout extends React.Component {
     static propTypes = {
       router: PropTypes.shape({
-        push: PropTypes.func.isRequired
+        push: PropTypes.func.isRequired,
       }).isRequired,
-      children: PropTypes.array,
-      viewStore: PropTypes.object.isRequired
+      children:  PropTypes.array,
+      viewStore: PropTypes.object.isRequired,
     }
 
-    render () {
+    render() {
       const {
-        viewStore: { theme: themeName }
+        viewStore: { theme: themeName },
       } = this.props
       const theme = themes[themeName]
 

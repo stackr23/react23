@@ -1,11 +1,11 @@
 import fs from 'fs'
 import path from 'path'
+import styleObjects from '@stackr23/styleobjects'
 // import stylus from 'stylus'
 
-import styleObjects from '@stackr23/styleobjects'
 
 const {
-  paths: { app: appPath }
+  paths: { app: appPath },
 } = require('config').default
 
 const loadStyleObject = async () => {

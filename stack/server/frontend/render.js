@@ -18,11 +18,8 @@ import App from '../../../src/app/App.js'
 
 const {
   isProduction,
-  ports: { portHMR }
+  ports: { portHMR },
 } = require('config').default
-const test2 = require('react')
-
-const test = require('stores/index.js')
 
 // const routes   = createRoutes(stores)
 const serverIp = ip.address()
@@ -35,7 +32,8 @@ const renderFullPage = ({ appHtml, appCSS }) => {
     // TODO: npm run start --production
     appJSPath = `/build/${appJsFilename}`
     appCSSPath = `/build/${appCssFilename}`
-  } else {
+  }
+  else {
     // TODO: APP_BUILD_STATIC => add /build/
 
     // TODO: prevent getBuiltIndex() CSS tag if no src is given
@@ -43,7 +41,8 @@ const renderFullPage = ({ appHtml, appCSS }) => {
   }
 
   const indexHtml = getBuiltIndex({
-    appJSPath, appCSSPath
+    appJSPath,
+    appCSSPath,
   })
 
   //* hide app until layout stylesheet is loaded! */
@@ -79,7 +78,8 @@ const render = ({ url: path }, res) => {
 
   res.send(
     renderFullPage({
-      appHtml, appCSS: sheets.toString()
+      appHtml,
+      appCSS: sheets.toString(),
     })
   )
 }
