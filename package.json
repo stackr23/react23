@@ -54,7 +54,7 @@
     "node": ">=10.0.0"
   },
   "dependencies": {
-    "@babel/core": "7.5.5",
+    "@babel/core": "7.6.0",
     "@babel/helper-plugin-utils": "7.0.0",
     "@babel/plugin-proposal-class-properties": "7.5.5",
     "@babel/plugin-proposal-decorators": "7.4.4",
