@@ -3,8 +3,8 @@ import webpack from 'webpack'
 import webpackGetConfig from '../../config/webpackGetConfig.js'
 
 export default function makeBuild(callback) {
-    // (false) = force production!
     const config = webpackGetConfig(false)
+
 
     webpack(config, (fatalError, stats) => {
         const jsonStats = stats.toJson()
