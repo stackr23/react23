@@ -1,0 +1,23 @@
+{
+  // FORMATATION and LINTING
+  "javascript.implicitProjectConfig.checkJs": true,
+  "javascript.validate.enable": false,
+  "javascript.format.enable": false,
+  "editor.defaultFormatter": "teeLang.vsprettier",
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false,
+    "editor.formatOnType": false,
+    "editor.formatOnSaveTimeout": 500
+  },
+  "eslint.autoFixOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.run": "onType",
+  "vsprettier.packageManager": "npm",
+  "vsprettier.useEsLint": false,
+  "vsprettier.useStyleLint": true,
+  "vsprettier.requireConfig": true,
+  "eslint.lintTask.enable": true,
+  "eslint.workingDirectories": [{ "directory": ".", "changeProcessCWD": true }]
+}

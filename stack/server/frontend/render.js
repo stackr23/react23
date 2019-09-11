@@ -1,81 +1,87 @@
 import React from 'react'
-import {renderToString} from 'react-dom/server' // {renderToString}
-
+import { renderToString } from 'react-dom/server' // {renderToString}
 import ip from 'ip'
+import { StaticRouter } from 'react-router'
+import { Provider } from 'mobx-react'
+import { ThemeProvider, ServerStyleSheets } from '@material-ui/styles'
+
+import stores from 'stores/index.js'
+
 import getBuiltIndex from '../../utils/getBuiltIndex.js'
 import getBuildFilenames from '../../utils/getBuildFilenames.js'
+import { react23Theme } from '../../../src/app/muiThemes/index'
+import App from '../../../src/app/App.js'
 
-import {StaticRouter} from 'react-router'
-import {Provider} from 'mobx-react'
-import stores from '../../../app/stores/index.js'
 // import initialState                     from '../../../app/js/stores/initialState.js'
-
 // import createRoutes from '../../../app/routes/index.js'
-import App from '../../../app/src/App.js'
 // import Root from '../../../app/src/index.js'
 
-import {ThemeProvider, ServerStyleSheets} from '@material-ui/styles'
-import {react23Theme} from '../../../app/style/muiThemes/index'
-
 const {
-    isProduction,
-    ports: {portHMR}
+  isProduction,
+  ports: { portHMR },
 } = require('config').default
 
 // const routes   = createRoutes(stores)
 const serverIp = ip.address()
 
-const renderFullPage = ({appHtml, appCSS}) => {
-    let appJSPath, appCSSPath
-    const {appJS: appJsFilename, appCSS: appCssFilename} = getBuildFilenames()
+const renderFullPage = ({ appHtml, appCSS }) => {
+  let appJSPath, appCSSPath
+  const { appJS: appJsFilename, appCSS: appCssFilename } = getBuildFilenames()
 
-    if (isProduction) {
+  if (isProduction) {
     // TODO: npm run start --production
-        appJSPath = `/build/${appJsFilename}`
-        appCSSPath = `/build/${appCssFilename}`
-    } else {
+    appJSPath = `/build/${appJsFilename}`
+    appCSSPath = `/build/${appCssFilename}`
+  }
+  else {
     // TODO: APP_BUILD_STATIC => add /build/
 
-        // TODO: prevent getBuiltIndex() CSS tag if no src is given
-        appJSPath = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
-    }
+    // TODO: prevent getBuiltIndex() CSS tag if no src is given
+    appJSPath = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
+  }
 
-    const indexHtml = getBuiltIndex({appJSPath, appCSSPath})
+  const indexHtml = getBuiltIndex({
+    appJSPath,
+    appCSSPath,
+  })
 
-    //* hide app until layout stylesheet is loaded! */
-    const opacityStyle = '<style type="text/css">#root {opacity: 0;}</style>'
+  //* hide app until layout stylesheet is loaded! */
+  const opacityStyle = '<style type="text/css">#root {opacity: 0;}</style>'
 
-    const htmlOuter =
+  const htmlOuter =
     '<!DOCTYPE html>\n' +
     indexHtml
-        .replace(
-            '<div id="root"></div>',
-            `<div id="root"><style id="ssr-styles">${appCSS}</style>${appHtml}</div>`
-        )
-        .replace('<head>', '<head>' + opacityStyle)
+      .replace(
+        '<div id="root"></div>',
+        `<div id="root"><style id="ssr-styles">${appCSS}</style>${appHtml}</div>`
+      )
+      .replace('<head>', '<head>' + opacityStyle)
 
 
-    return htmlOuter
+  return htmlOuter
 }
 
-const render = ({url: path}, res) => {
-    const sheets = new ServerStyleSheets()
+const render = ({ url: path }, res) => {
+  const sheets = new ServerStyleSheets()
 
-    const appHtml = renderToString(
-        sheets.collect(
-            <Provider {...stores}>
-                <StaticRouter location={path} context={{}}>
-                    <ThemeProvider theme={react23Theme}>
-                        <App />
-                    </ThemeProvider>
-                </StaticRouter>
-            </Provider>
-        )
+  const appHtml = renderToString(
+    sheets.collect(
+      <Provider {...stores}>
+        <StaticRouter location={path} context={{}}>
+          <ThemeProvider theme={react23Theme}>
+            <App />
+          </ThemeProvider>
+        </StaticRouter>
+      </Provider>
     )
+  )
 
-    res.send(
-        renderFullPage({ appHtml, appCSS: sheets.toString() })
-    )
+  res.send(
+    renderFullPage({
+      appHtml,
+      appCSS: sheets.toString(),
+    })
+  )
 }
 
 export default render
