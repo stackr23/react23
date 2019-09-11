@@ -2,7 +2,6 @@
 
 import fs from 'fs'
 import logger from '@stackr23/logger'
-
 import gulp from 'gulp'
 
 const config = require('config').default
@@ -35,4 +34,7 @@ gulp.task('test:config', () => {
   console.dir(config)
 })
 
-gulp.task('test', gulp.series('default'))
+gulp.task('test', gulp.series(
+  'clean',
+  'build-static',
+))
