@@ -28,9 +28,10 @@ const serverIp = ip.address()
 
 export default (_isDevelopment) => {
   isDevelopment = _isDevelopment != null ? _isDevelopment : isDevelopment
+  isProduction = !isDevelopment
 
   const webpackConfig = {
-    mode:    NODE_ENV || isDevelopment ? 'development' : 'production',
+    mode:    isDevelopment ? 'development' : 'production',
     target:  'web',
     cache:   !isDevelopment,
     devtool: process.env.CONTINUOUS_INTEGRATION
@@ -61,7 +62,7 @@ export default (_isDevelopment) => {
         sourceMapFilename: 'app-[hash].js.map',
         chunkFilename:     'app-[chunkhash].js',
       },
-    stats:  isDebug || verbose ? 'normal' : isProduction ? 'errors-only' : 'minimal',
+    stats:  verbose ? 'normal' : isProduction ? 'errors-only' : 'minimal',
     module: {
       rules: [
         ...urlLoaders,
@@ -78,9 +79,6 @@ export default (_isDevelopment) => {
             sourceMap:      true,
             babelrc:        true,
             cacheDirectory: path.join(paths.build, 'cache', 'babel-loader'),
-            // presets and plugins defined in .babelrc
-            // enable env config if needed
-            // env: {production: {plugins: []}}
           },
         },
       ],
@@ -97,20 +95,21 @@ export default (_isDevelopment) => {
     optimization: {
       // minimize: false
       // minimize: (() => {
-      //     if (isProduction) {
-      //         return [
-      //             new webpack.optimize.UglifyJsPlugin({
-      //                 sourceMap: true,
-      //                 compress: {
-      //                     screw_ie8:  true, // eslint-disable-line camelcase
-      //                     warnings:   false // Because uglify reports irrelevant warnings.
-      //                 }
-      //             })
-      //         ]
-      //     } else {
-      //         return []
-      //     }
-      // })()
+      //   if (isProduction) {
+      //     return [
+      //       new webpack.optimize.UglifyJsPlugin({
+      //         sourceMap: true,
+      //         compress:  {
+      //           screw_ie8:  true, // eslint-disable-line camelcase
+      //           warnings:   false, // Because uglify reports irrelevant warnings.
+      //         },
+      //       }),
+      //     ]
+      //   }
+      //   else {
+      //     return []
+      //   }
+      // })(),
     },
     plugins: (() => {
       const plugins = [
@@ -165,7 +164,7 @@ export default (_isDevelopment) => {
         if (!process.env.CONTINUOUS_INTEGRATION) {
           // enable scope hoisting
           // https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
-          // plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
+          plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
         }
       }
 
