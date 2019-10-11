@@ -54,7 +54,7 @@
     "node": ">=10.0.0"
   },
   "dependencies": {
-    "@babel/core": "7.6.0",
+    "@babel/core": "7.6.4",
     "@babel/helper-plugin-utils": "7.0.0",
     "@babel/plugin-proposal-class-properties": "7.5.5",
     "@babel/plugin-proposal-decorators": "7.6.0",
@@ -123,7 +123,7 @@
     "react-jss": "^10.0.0",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
-    "style-loader": "^0.23.1",
+    "style-loader": "^1.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "stylus23": "git+https://github.com/stackr23/stylus23.git",
