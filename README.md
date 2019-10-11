@@ -9,7 +9,6 @@
 <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="Standard - JavaScript Style Guide"></a>
 <a href="https://gitmoji.carloscuesta.me"><br />
 [![devDependencies Status](https://david-dm.org/stackr23/react23/dev-status.svg)](https://david-dm.org/stackr23/react23?type=dev)
-[![Known Vulnerabilities](https://snyk.io/test/github/stackr23/react23/badge.svg)](https://snyk.io/test/github/stackr23/react23)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=stackr23/react23)](https://dependabot.com)
 
 [maintenance-img]: https://img.shields.io/badge/Maintained%3F-yes-green.svg
