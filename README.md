@@ -83,14 +83,6 @@ _you can add custom loaders in `/config/webpack/styleLoader.js`_
 
 the **UI is based on** [material-ui](https://github.com/mui-org/material-ui)
 
-### styleobjects (deprecated due to SSR)
-
-to keep styling in its space and use stylus vars globally,  
-we use [@stackr23/styleobjects-loader](https://github.com/stackr23/styleobjects-loader) to "sync" material-ui with stylus
-
-imported files with **targeted extension `.csso`**,  
-will be **transformed from stylus to js-objects** via [@stackr23/styleobjects](https://github.com/stackr23/styleobjects)
-
 ### Themes
 
 the custom theme is located in `/app/style/muiThemes/react23Theme.js`,  
@@ -100,11 +92,3 @@ which uses the global stylus vars of `/app/style/setup.styl` (TBD: !stylus!style
 
 the layout is defined in `/app/style/layout.styl`  
 and is **focused on global styles like #body, #wrapper and #content**
-
-### Modular style
-
-component specific styles are defined directly in their directory - fe: `/app/components/Header.styl`  
-and are loaded via [@stackr23/style-loader](https://github.com/stackr23/style-loader) mixed with defined pre-processors  
-**in devevlopment**, the styles are **injected** directly **via style tags** per HMR  
-**in production**, they are extracted via `ExtractTextPlugin` and **bundled in `/build/app-[hash].css`**  
-**both environments** use `cssMqPacker` and `autoprefixer`
