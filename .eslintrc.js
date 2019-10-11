@@ -9,6 +9,7 @@ const config = {
     'node-unpublished': 0,
     "jsx/mark-used-vars": 1,
     'import/default': 1,
+    "react/jsx-filename-extension": 0
   }
 }
 
