@@ -12,9 +12,15 @@ import getBuildFilenames from '../../utils/getBuildFilenames.js'
 import { react23Theme } from '../../../src/app/muiThemes/index'
 import App from '../../../src/app/App.js'
 
+import {StaticRouter, Router} from 'react-router'
+import {Provider} from 'mobx-react'
+import stores from '../../../app/stores/index.js'
 // import initialState                     from '../../../app/js/stores/initialState.js'
 // import createRoutes from '../../../app/routes/index.js'
 // import Root from '../../../app/src/index.js'
+
+import {ServerStyleSheets} from '@material-ui/styles'
+// import {react23Theme} from '../../../app/style/muiThemes/index'
 
 const {
   isProduction,
@@ -61,18 +67,21 @@ const renderFullPage = ({ appHtml, appCSS }) => {
   return htmlOuter
 }
 
-const render = ({ url: path }, res) => {
-  const sheets = new ServerStyleSheets()
+const render = ({url: path}, res) => {
+    const sheets = new ServerStyleSheets()
 
-  const appHtml = renderToString(
-    sheets.collect(
-      <Provider {...stores}>
-        <StaticRouter location={path} context={{}}>
-          <ThemeProvider theme={react23Theme}>
-            <App />
-          </ThemeProvider>
-        </StaticRouter>
-      </Provider>
+    const appHtml = renderToString(
+        sheets.collect(
+            <Provider {...stores}>
+                <StaticRouter location={path} context={{}}>
+                    <App />
+                </StaticRouter>
+            </Provider>
+        )
+    )
+
+    res.send(
+        renderFullPage({ appHtml, appCSS: sheets.toString() })
     )
   )
 
