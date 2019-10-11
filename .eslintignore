@@ -4,6 +4,8 @@ webpack.ide.resolver.js
 webpack
 jest.config.js
 coverage
+test
 _example_spec.js
 report.html
 reports
+postcss.config.js
