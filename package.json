@@ -120,7 +120,7 @@
     "react": "^16.5.3",
     "react-dom": "^16.5.2",
     "react-helmet": "^5.2.1",
-    "react-jss": "^8.6.1",
+    "react-jss": "^10.0.0",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "style-loader": "^0.23.1",
