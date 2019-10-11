@@ -93,23 +93,33 @@ export default (_isDevelopment) => {
     //     'fs': {}
     // },
     optimization: {
-      // minimize: false
-      // minimize: (() => {
-      //   if (isProduction) {
-      //     return [
-      //       new webpack.optimize.UglifyJsPlugin({
-      //         sourceMap: true,
-      //         compress:  {
-      //           screw_ie8:  true, // eslint-disable-line camelcase
-      //           warnings:   false, // Because uglify reports irrelevant warnings.
-      //         },
-      //       }),
-      //     ]
-      //   }
-      //   else {
-      //     return []
-      //   }
-      // })(),
+      splitChunks: {
+        // chunks: 'all',
+        cacheGroups: {
+          // async: {
+          //     name: 'async',
+          //     chunks: 'async',
+          //     enforce: true
+          //     // minChunks: 2,
+          //     // maxInitialRequests: 5, // The default limit is too small to showcase the effect
+          //     // minSize: 0 // This is example is too small to create commons chunks
+          // },
+          // react: {
+          //     chunks: chunk => {
+          //         return ['react', 'react-dom'].includes(chunk.name)
+          //     },
+          //     test: /[\\/]node_modules[\\/]/,
+          //     name: 'vendors',
+          //     enforce: true
+          // }
+          commons: {
+            chunks: 'all',
+            test:   /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name:   'vendor',
+          },
+        },
+      },
+      minimize: isProduction,
     },
     plugins: (() => {
       const plugins = [
