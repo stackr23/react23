@@ -1,5 +1,0 @@
-{
-  "presets": ["babel-preset-react23"],
-  "plugins": [],
-  "comments": true
-}

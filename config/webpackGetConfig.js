@@ -3,29 +3,32 @@ import ip from 'ip'
 import path from 'path'
 // WEBPACK related
 import webpack from 'webpack'
-import urlLoaders from './webpack/urlLoaders'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 // STYLE related
 import autoprefixer from 'autoprefixer'
 import cssMqPacker from 'css-mqpacker'
-import styleLoader, {styleobjectsLoader} from './webpack/styleLoader'
+
+import resolveConfig from '../webpack.config.resolve'
+import urlLoaders from './webpack/urlLoaders'
+import styleLoader, { styleobjectsLoader } from './webpack/styleLoader'
 
 const config = require('config').default
 
 let {
-    isDebug,
-    isProduction,
-    isDevelopment,
-    NODE_ENV,
-    verbose,
-    paths,
-    ports: {portHMR}
+  // isDebug,
+  isProduction,
+  isDevelopment,
+  NODE_ENV,
+  verbose,
+  paths,
+  ports: { portHMR },
 } = config
 
 const serverIp = ip.address()
 
 export default (_isDevelopment) => {
-    isDevelopment = _isDevelopment !== null ? _isDevelopment : isDevelopment
+  isDevelopment = _isDevelopment != null ? _isDevelopment : isDevelopment
+  isProduction = !isDevelopment
 
     const webpackConfig = {
         mode: NODE_ENV || isDevelopment ? 'development' : 'production',
@@ -138,94 +141,125 @@ export default (_isDevelopment) => {
             //     }
             // })()
         },
-        plugins: (() => {
-            const plugins = [
-                new webpack.LoaderOptionsPlugin({
-                    minimize: false,
-                    debug: isDevelopment,
-                    hotPort: portHMR,
-                    sourceMap: true,
-                    postcss: () => [
-                        autoprefixer({
-                            browsers: ['last 2 versions', 'Safari > 6', 'iOS >= 7', 'ie >= 8']
-                        }),
-                        cssMqPacker()
-                    ]
-                }),
-                new webpack.DefinePlugin({
-                    global: {
-                        IS_BROWSER: true,
-                        CONFIG: JSON.stringify(config)
-                    },
-                    'process.env': {
-                        NODE_ENV: JSON.stringify(NODE_ENV),
-                        APP_CONFIG: JSON.stringify(config),
-                        GH_PAGES: JSON.stringify(process.env.GH_PAGES),
-                        APP_BUILD_STATIC: JSON.stringify(process.env.APP_BUILD_STATIC)
-                    }
-                })
-            ]
-            if (!isProduction) {
-                plugins.push(
-                    new webpack.HotModuleReplacementPlugin(),
-                    new webpack.NoEmitOnErrorsPlugin()
-                )
-            } else {
-                plugins.push(
-                    // new webpack.LoaderOptionsPlugin({minimize: true}),
-                    new ExtractTextPlugin({
-                        filename: 'app-[hash].css',
-                        allChunks: true
-                    })
-                    // new webpack.optimize.OccurrenceOrderPlugin(),
-                    // new webpack.optimize.UglifyJsPlugin({
-                    //     sourceMap: true,
-                    //     compress: {
-                    //         screw_ie8:  true, // eslint-disable-line camelcase
-                    //         warnings:   false // Because uglify reports irrelevant warnings.
-                    //     }
-                    // })
-                )
+      ],
+    },
+    // TBD: refactor externals
+    // externals: {
+    //     'jsdom':    'window',
+    //     // 'cheerio':  'window',
+    //     'react/addons': true,
+    //     'react/lib/ExecutionEnvironment': true,
+    //     'react/lib/ReactContext': true,
+    //     'fs': {}
+    // },
+    optimization: {
+      // minimize: false
+      // minimize: (() => {
+      //   if (isProduction) {
+      //     return [
+      //       new webpack.optimize.UglifyJsPlugin({
+      //         sourceMap: true,
+      //         compress:  {
+      //           screw_ie8:  true, // eslint-disable-line camelcase
+      //           warnings:   false, // Because uglify reports irrelevant warnings.
+      //         },
+      //       }),
+      //     ]
+      //   }
+      //   else {
+      //     return []
+      //   }
+      // })(),
+    },
+    plugins: (() => {
+      const plugins = [
+        new webpack.LoaderOptionsPlugin({
+          minimize:  false,
+          debug:     isDevelopment,
+          hotPort:   portHMR,
+          sourceMap: true,
+          postcss:   () => [
+            autoprefixer({
+              browsers: [ 'last 2 versions', 'Safari > 6', 'iOS >= 7', 'ie >= 8' ],
+            }),
+            cssMqPacker(),
+          ],
+        }),
+        new webpack.DefinePlugin({
+          global: {
+            IS_BROWSER: true,
+            CONFIG:     JSON.stringify(config),
+          },
+          'process.env': {
+            NODE_ENV:         JSON.stringify(NODE_ENV),
+            APP_CONFIG:       JSON.stringify(config),
+            GH_PAGES:         JSON.stringify(process.env.GH_PAGES),
+            APP_BUILD_STATIC: JSON.stringify(process.env.APP_BUILD_STATIC),
+          },
+        }),
+      ]
+      if (!isProduction) {
+        plugins.push(
+          new webpack.HotModuleReplacementPlugin(),
+          new webpack.NoEmitOnErrorsPlugin()
+        )
+      }
+      else {
+        plugins.push(
+          // new webpack.LoaderOptionsPlugin({minimize: true}),
+          new ExtractTextPlugin({
+            filename:  'app-[hash].css',
+            allChunks: true,
+          })
+          // new webpack.optimize.OccurrenceOrderPlugin(),
+          // new webpack.optimize.UglifyJsPlugin({
+          //     sourceMap: true,
+          //     compress: {
+          //         screw_ie8:  true, // eslint-disable-line camelcase
+          //         warnings:   false // Because uglify reports irrelevant warnings.
+          //     }
+          // })
+        )
 
-                if (!process.env.CONTINUOUS_INTEGRATION) {
-                    // enable scope hoisting
-                    // https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
-                    // plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
-                }
-            }
-
-            // handled by config.devtool + config.output.sourceMapFilename
-            //
-            // plugins.push(new webpack.SourceMapDevToolPlugin({
-            //     // filename: 'app.js.SourceMapDevToolPlugin.map'
-            //     filename: isDevelopment
-            //         ? 'app.js.map'
-            //         : 'app-[chunk].js.map'
-            // }))
-
-            return plugins
-        })(),
-        performance: {
-            hints: !isProduction ? 'warning' : false
-        },
-        resolve: {
-            extensions: ['.js', '.babel', '.styl'],
-            modules: [paths.nodeModules]
+        if (!process.env.CONTINUOUS_INTEGRATION) {
+          // enable scope hoisting
+          // https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
+          plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
         }
-    }
+      }
 
-    // Webpack Dev Server - Header Settings
-    //
-    // not needed here, because we handle the dev-server per 'webpack-dev-middleware'
-    // and set the headers in /stack/weboack/devServer/start.js
-    //
-    // for compatibility, we keep this code in config too
-    if (isDevelopment) {
-        const devServer = {
-            headers: {'Access-Control-Allow-Origin': '*'}
-        }
-        webpackConfig.devServer = devServer
-    }
+      // handled by config.devtool + config.output.sourceMapFilename
+      //
+      // plugins.push(new webpack.SourceMapDevToolPlugin({
+      //     // filename: 'app.js.SourceMapDevToolPlugin.map'
+      //     filename: isDevelopment
+      //         ? 'app.js.map'
+      //         : 'app-[chunk].js.map'
+      // }))
 
-    return webpackConfig
+      return plugins
+    })(),
+    performance: {
+      hints: !isProduction ? 'warning' : false,
+    },
+    resolve: resolveConfig.resolve || resolveConfig || {
+      extensions: [ '.js', '.jsx', '.json', '*' ],
+      modules:    [ 'src', paths.nodeModules ],
+    },
+  }
+
+  // Webpack Dev Server - Header Settings
+  //
+  // not needed here, because we handle the dev-server per 'webpack-dev-middleware'
+  // and set the headers in /stack/weboack/devServer/start.js
+  //
+  // for compatibility, we keep this code in config too
+  if (isDevelopment) {
+    const devServer = {
+      headers: { 'Access-Control-Allow-Origin': '*' },
+    }
+    webpackConfig.devServer = devServer
+  }
+
+  return webpackConfig
 }

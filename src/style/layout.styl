@@ -1,0 +1,41 @@
+// import setup (vars) before stylus23!
+@import './setup'
+@import 'stylus23'
+
+@import './lib/fonts'
+@import './lib/helpers'
+
+body
+    font-family "Roboto", "Helvetica", "Arial", sans-serif
+    height 100%
+    width 100%
+    margin 0
+    padding 0
+    // rem base
+    font-size 14px
+    +MQ('m')
+        font-size 16px
+
+h1
+    font-family 'Federant', 'Helvetica', 'sans serif', 'Arial'
+
+#loader
+  display none
+
+#root
+  // fade in after layout is loaded
+  opacity 1 !important // overwrite inline style
+  transition opacity 300ms ease-out
+
+#main
+    min-height "calc(100vh - %s)" % $layout__footer_height
+
+#content
+    @extend .container
+
+#footer
+    min-height $layout__footer_height
+    font-style italic
+    border-top 1px solid $color__grey_light
+    @extend .container
+    padding-top 1rem
