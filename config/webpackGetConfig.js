@@ -30,116 +30,56 @@ export default (_isDevelopment) => {
   isDevelopment = _isDevelopment != null ? _isDevelopment : isDevelopment
   isProduction = !isDevelopment
 
-    const webpackConfig = {
-        mode: NODE_ENV || isDevelopment ? 'development' : 'production',
-        target: 'web',
-        cache: !isDevelopment,
-        devtool: process.env.CONTINUOUS_INTEGRATION
-            ? 'inline-source-map'
-            : !isProduction
-            ? // 'eval-source-map' for dev - if you have performance troubles
-              'inline-source-map'
-            : 'cheap-source-map',
-        entry: {
-            app: isDevelopment
-                ? [
-                      `webpack-hot-middleware/client?path=http://${serverIp}:${portHMR}/__webpack_hmr`,
-                      path.join(paths.src, 'index.js')
-                  ]
-                : [path.join(paths.src, 'index.js')]
-        },
-        output: isDevelopment
-            ? {
-                  path: paths.build,
-                  filename: 'app.js',
-                  sourceMapFilename: 'app.js.map',
-                  chunkFilename: 'app-chunk-[name].js',
-                  hotUpdateChunkFilename: 'app-chunk-[name].hotUpdate.js',
-                  publicPath: `http://${serverIp}:${portHMR}/build/`
-              }
-            : {
-                  path: paths.build,
-                  filename: 'app-[hash].js',
-                  sourceMapFilename: 'app-[hash].js.map',
-                  chunkFilename: 'app-[name].js'
-              },
-        stats: isDebug ? 'normal' : isProduction ? 'errors-only' : 'minimal',
-        module: {
-            rules: [
-                ...urlLoaders,
-                styleLoader,
-                styleobjectsLoader,
-                // BABEL LOADER
-                {
-                    loader: 'babel-loader',
-                    test: /\.js$/,
-                    exclude: /(node_modules|bower_components|styles)/,
-                    options: {
-                        minified: isProduction,
-                        retainLines: true,
-                        sourceMap: true,
-                        babelrc: true,
-                        cacheDirectory: path.join(paths.build, 'cache', 'babel-loader')
-                        // presets and plugins defined in .babelrc
-                        // enable env config if needed
-                        // env: {production: {plugins: []}}
-                    }
-                }
-            ]
-        },
-        // TBD: refactor externals
-        // externals: {
-        //     'fs': {}
-        //     'jsdom':    'window',
-        //     // 'cheerio':  'window',
-        //     'react/addons': true,
-        //     'react/lib/ExecutionEnvironment': true,
-        //     'react/lib/ReactContext': true,
-        // },
-
-        optimization: {
-            splitChunks: {
-                // chunks: 'all',
-                cacheGroups: {
-                    // async: {
-                    //     name: 'async',
-                    //     chunks: 'async',
-                    //     enforce: true
-                    //     // minChunks: 2,
-                    //     // maxInitialRequests: 5, // The default limit is too small to showcase the effect
-                    //     // minSize: 0 // This is example is too small to create commons chunks
-                    // },
-                    // react: {
-                    //     chunks: chunk => {
-                    //         return ['react', 'react-dom'].includes(chunk.name)
-                    //     },
-                    //     test: /[\\/]node_modules[\\/]/,
-                    //     name: 'vendors',
-                    //     enforce: true
-                    // }
-                    commons: {
-                        chunks: 'all',
-                        test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-                        name: 'vendor'
-                    }
-                }
-            },
-            minimize: isProduction
-            // minimize: (() => {
-            //     if (isProduction) {
-            //         return [
-            //             new webpack.optimize.UglifyJsPlugin({
-            //                 sourceMap: true,
-            //                 compress: {
-            //                     screw_ie8:  true, // eslint-disable-line camelcase
-            //                     warnings:   false // Because uglify reports irrelevant warnings.
-            //                 }
-            //             })
-            //         ]
-            //     } else {
-            //         return []
-            //     }
-            // })()
+  const webpackConfig = {
+    mode:    isDevelopment ? 'development' : 'production',
+    target:  'web',
+    cache:   !isDevelopment,
+    devtool: process.env.CONTINUOUS_INTEGRATION
+      ? 'inline-source-map'
+      : !isProduction
+        // 'eval-source-map' for dev - if you have performance troubles
+        ? 'inline-source-map'
+        : 'cheap-source-map',
+    entry: {
+      app: isDevelopment
+        ? [
+          `webpack-hot-middleware/client?path=http://${serverIp}:${portHMR}/__webpack_hmr`,
+          path.join(paths.src, 'index.js'),
+        ]
+        : [ path.join(paths.src, 'index.js') ],
+    },
+    output: isDevelopment
+      ? {
+        path:              paths.build,
+        filename:          'app.js',
+        sourceMapFilename: 'app.js.map',
+        chunkFilename:     'app-[chunkhash].js',
+        publicPath:        `http://${serverIp}:${portHMR}/build/`,
+      }
+      : {
+        path:              paths.build,
+        filename:          'app-[hash].js',
+        sourceMapFilename: 'app-[hash].js.map',
+        chunkFilename:     'app-[chunkhash].js',
+      },
+    stats:  verbose ? 'normal' : isProduction ? 'errors-only' : 'minimal',
+    module: {
+      rules: [
+        ...urlLoaders,
+        styleLoader,
+        styleobjectsLoader,
+        // BABEL LOADER
+        {
+          loader:  'babel-loader',
+          test:    /\.js$/,
+          exclude: /(node_modules|bower_components|styles)/,
+          options: {
+            minified:       isProduction,
+            retainLines:    true,
+            sourceMap:      true,
+            babelrc:        true,
+            cacheDirectory: path.join(paths.build, 'cache', 'babel-loader'),
+          },
         },
       ],
     },
@@ -153,23 +93,33 @@ export default (_isDevelopment) => {
     //     'fs': {}
     // },
     optimization: {
-      // minimize: false
-      // minimize: (() => {
-      //   if (isProduction) {
-      //     return [
-      //       new webpack.optimize.UglifyJsPlugin({
-      //         sourceMap: true,
-      //         compress:  {
-      //           screw_ie8:  true, // eslint-disable-line camelcase
-      //           warnings:   false, // Because uglify reports irrelevant warnings.
-      //         },
-      //       }),
-      //     ]
-      //   }
-      //   else {
-      //     return []
-      //   }
-      // })(),
+      splitChunks: {
+        // chunks: 'all',
+        cacheGroups: {
+          // async: {
+          //     name: 'async',
+          //     chunks: 'async',
+          //     enforce: true
+          //     // minChunks: 2,
+          //     // maxInitialRequests: 5, // The default limit is too small to showcase the effect
+          //     // minSize: 0 // This is example is too small to create commons chunks
+          // },
+          // react: {
+          //     chunks: chunk => {
+          //         return ['react', 'react-dom'].includes(chunk.name)
+          //     },
+          //     test: /[\\/]node_modules[\\/]/,
+          //     name: 'vendors',
+          //     enforce: true
+          // }
+          commons: {
+            chunks: 'all',
+            test:   /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name:   'vendor',
+          },
+        },
+      },
+      minimize: isProduction,
     },
     plugins: (() => {
       const plugins = [
