@@ -33,10 +33,10 @@ const {isDevelopment, NODE_ENV, cssStyle} = require('config').default
 
 const styleLoaders = {}
 const preLoadersProd = [
-    {loader: 'css-loader' },
+    {loader: 'css-loader', options: {sourceMap: true}},
     {loader: 'postcss-loader', options: {sourceMap: true, options: {}}}
 ]
-const preLoadersDev = [{loader: 'style-loader', options: {sourceMap: true}}, ...preLoadersProd]
+const preLoadersDev = [{loader: 'style-loader'}, ...preLoadersProd]
 
 //    _____________  ____    __  _______
 //   / ___/_  __/\ \/ / /   / / / / ___/
