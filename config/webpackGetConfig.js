@@ -15,7 +15,7 @@ import styleLoader, { styleobjectsLoader } from './webpack/styleLoader'
 const config = require('config').default
 
 let {
-  isDebug,
+  // isDebug,
   isProduction,
   isDevelopment,
   NODE_ENV,
