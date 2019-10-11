@@ -1,0 +1,15 @@
+@import '../setup'
+
+.typography
+    useNextVariants true
+
+.palette
+    .primary
+        main $palette_primary
+    .secondary
+        main $palette_secondary
+
+.overrides
+    .MuiButton
+        .root
+            color white
