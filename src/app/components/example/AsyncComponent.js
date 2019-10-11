@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class AsyncComponent extends Component {
-    render() {
-        return (
-            <h2>
+  render() {
+    return (
+      <h2>
                 ASYNC COMPONENT
-            </h2>
-        );
-    }
+      </h2>
+    )
+  }
 }
 
-export default AsyncComponent;
+export default AsyncComponent
