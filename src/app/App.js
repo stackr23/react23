@@ -14,30 +14,40 @@ const routesCompiled = createRoutes(stores)
 @observer
 class App extends React.Component {
     static propTypes = {
-      router: PropTypes.object.isRequired,
+        router: PropTypes.object.isRequired,
+    }
+
+    getRouteProps = () => {
+        let title = '', description = ''
+
+        if(process.env.IS_BROWSER) {
+            const {
+                router: { location: { pathname }},
+            } = this.props
+
+            // extract actual route's meta data
+            const route = routesCompiled.filter((r) => r.props.path === pathname)[0]
+            title = route.props.meta.title
+            description = route.props.meta.description || ''
+        }
+
+        return { title, description }
     }
 
     render() {
-      const {
-        router: { location: { pathname }},
-      } = this.props
+        const { title, description } = this.getRouteProps()
 
-      // extract actual route's meta data
-      const route = routesCompiled.filter((r) => r.props.path === pathname)[0]
-      const title = route.props.meta.title
-      const description = route.props.meta.description || ''
-
-      return (
-        <div id="app">
-          <Helmet>
-            <meta charSet="utf-8" />
-            <title>[React23] - {title}</title>
-            <meta name="description" content={description} />
-            <link rel="canonical" href="http://mysite.com/example" />
-          </Helmet>
-          <Layout>{routesCompiled}</Layout>
-        </div>
-      )
+        return (
+            <div id="app">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>[React23] - {title}</title>
+                    <meta name="description" content={description} />
+                    <link rel="canonical" href="http://mysite.com/example" />
+                </Helmet>
+                <Layout>{routesCompiled}</Layout>
+            </div>
+        )
     }
 }
 
