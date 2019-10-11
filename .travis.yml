@@ -24,7 +24,8 @@ before_install:
 install: npm install
 
 script:
-  - npm run lint
+  # - npm run lint
+  - npm run build
   - npm run test
 # before_deploy:
 #     - 'curl -u doubleu23:$GITHUB_TOKEN https://api.github.com/user'
