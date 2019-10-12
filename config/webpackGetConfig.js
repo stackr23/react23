@@ -60,7 +60,7 @@ const webpackGetConfig =  (_isDevelopment) => {
         path:              paths.build,
         filename:          'app-[hash].js',
         sourceMapFilename: 'app-[hash].js.map',
-        chunkFilename:     'app-[name].js',
+        chunkFilename:     'app-[name]-[hash].js',
       },
     stats:  verbose ? 'normal' : isProduction ? 'errors-only' : 'minimal',
     module: {

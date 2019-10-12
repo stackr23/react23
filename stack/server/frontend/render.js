@@ -27,12 +27,13 @@ const {
 const serverIp = ip.address()
 
 const getFullMarkup = ({ appHtml, appCSS }) => {
-  let appJSPath, appCSSPath
-  const { appJS: appJsFilename, appCSS: appCssFilename } = getBuildFilenames()
+  let appJSPath, appVendorPath, appCSSPath
+  const { appJS: appJsFilename, appVendor: appVendorFilename, appCSS: appCssFilename } = getBuildFilenames()
 
   if (isProduction) {
     // TODO: npm run start --production
     appJSPath = `/build/${appJsFilename}`
+    appVendorPath = `/build/${appVendorFilename}`
     appCSSPath = `/build/${appCssFilename}`
   }
   else {
@@ -40,11 +41,12 @@ const getFullMarkup = ({ appHtml, appCSS }) => {
 
     // TODO: prevent getBuiltIndex() CSS tag if no src is given
     appJSPath = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
-    // appJsVendorPath = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
+    appVendorPath = `http://${serverIp}:${portHMR}/build/${appVendorFilename}`
   }
 
   const indexHtml = getBuiltIndex({
     appJSPath,
+    appVendorPath,
     appCSSPath,
   })
 
