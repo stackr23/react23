@@ -104,7 +104,7 @@ class ConfirmationDialog extends React.Component {
       return (
         <Dialog
           open={open}
-          modal={true}
+          modal
           onClose={canCancel ? this.closeConfirmationDialog : this.noop}
           repositionOnUpdate={false}
           style={{ zIndex: 9999 }}

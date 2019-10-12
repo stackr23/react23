@@ -41,6 +41,21 @@
       "@babel/preset-react"
     ],
     "plugins": [
+      "@babel/plugin-proposal-export-default-from",
+      "@babel/plugin-proposal-export-namespace-from",
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ],
+      "@babel/plugin-transform-react-constant-elements",
       [
         "module-resolver",
         {
@@ -58,11 +73,6 @@
   "dependencies": {
     "@babel/core": "7.6.4",
     "@babel/helper-plugin-utils": "7.0.0",
-    "@babel/plugin-proposal-class-properties": "7.5.5",
-    "@babel/plugin-proposal-decorators": "7.6.0",
-    "@babel/plugin-proposal-export-default-from": "^7.0.0",
-    "@babel/plugin-syntax-dynamic-import": "7.2.0",
-    "@babel/plugin-transform-react-constant-elements": "7.6.3",
     "@babel/plugin-transform-runtime": "7.6.2",
     "@babel/polyfill": "7.6.0",
     "@babel/preset-env": "^7.5.5",
@@ -136,8 +146,14 @@
     "snyk": "^1.234.2"
   },
   "devDependencies": {
-    "eslint-import-resolver-node": "^0.3.2",
-    "@stackr23/logger": "^2.3.1"
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.6.0",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
+    "@babel/plugin-proposal-export-namespace-from": "^7.5.2",
+    "@babel/plugin-transform-react-constant-elements": "^7.6.3",
+    "@stackr23/logger": "^2.3.1",
+    "cors": "^2.8.5",
+    "eslint-import-resolver-node": "^0.3.2"
   },
   "snyk": true
 }

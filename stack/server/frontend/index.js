@@ -1,6 +1,7 @@
 import device from 'express-device'
 import express from 'express'
 import cors from 'cors'
+
 // import favicon from 'serve-favicon'
 import render from './render'
 
