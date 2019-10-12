@@ -26,7 +26,7 @@ let {
 
 const serverIp = ip.address()
 
-export default (_isDevelopment) => {
+const webpackGetConfig =  (_isDevelopment) => {
   isDevelopment = _isDevelopment != null ? _isDevelopment : isDevelopment
   isProduction = !isDevelopment
 
@@ -39,28 +39,28 @@ export default (_isDevelopment) => {
       : !isProduction
         // 'eval-source-map' for dev - if you have performance troubles
         ? 'inline-source-map'
-        : 'cheap-source-map',
+        : 'inline-source-map',
     entry: {
       app: isDevelopment
         ? [
           `webpack-hot-middleware/client?path=http://${serverIp}:${portHMR}/__webpack_hmr`,
-          path.join(paths.src, 'index.js'),
+          path.join(paths.app, 'index.js'),
         ]
-        : [ path.join(paths.src, 'index.js') ],
+        : [ path.join(paths.app, 'index.js') ],
     },
     output: isDevelopment
       ? {
         path:              paths.build,
         filename:          'app.js',
         sourceMapFilename: 'app.js.map',
-        chunkFilename:     'app-[chunkhash].js',
+        chunkFilename:     'app-[name].js',
         publicPath:        `http://${serverIp}:${portHMR}/build/`,
       }
       : {
         path:              paths.build,
         filename:          'app-[hash].js',
         sourceMapFilename: 'app-[hash].js.map',
-        chunkFilename:     'app-[chunkhash].js',
+        chunkFilename:     'app-[name].js',
       },
     stats:  verbose ? 'normal' : isProduction ? 'errors-only' : 'minimal',
     module: {
@@ -141,6 +141,7 @@ export default (_isDevelopment) => {
             CONFIG:     JSON.stringify(config),
           },
           'process.env': {
+            IS_BROWSER:       true,
             NODE_ENV:         JSON.stringify(NODE_ENV),
             APP_CONFIG:       JSON.stringify(config),
             GH_PAGES:         JSON.stringify(process.env.GH_PAGES),
@@ -151,24 +152,16 @@ export default (_isDevelopment) => {
       if (!isProduction) {
         plugins.push(
           new webpack.HotModuleReplacementPlugin(),
-          new webpack.NoEmitOnErrorsPlugin()
         )
       }
       else {
         plugins.push(
-          // new webpack.LoaderOptionsPlugin({minimize: true}),
+          new webpack.LoaderOptionsPlugin({ minimize: true }),
           new ExtractTextPlugin({
             filename:  'app-[hash].css',
             allChunks: true,
           })
-          // new webpack.optimize.OccurrenceOrderPlugin(),
-          // new webpack.optimize.UglifyJsPlugin({
-          //     sourceMap: true,
-          //     compress: {
-          //         screw_ie8:  true, // eslint-disable-line camelcase
-          //         warnings:   false // Because uglify reports irrelevant warnings.
-          //     }
-          // })
+
         )
 
         if (!process.env.CONTINUOUS_INTEGRATION) {
@@ -213,3 +206,5 @@ export default (_isDevelopment) => {
 
   return webpackConfig
 }
+
+export default webpackGetConfig

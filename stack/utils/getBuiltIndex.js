@@ -4,7 +4,7 @@ import { join } from 'path'
 // import logger from '@stackr23/logger'
 
 const {
-  paths: { app: appPath },
+  paths
 } = require('config').default
 
 let _indexHtml // pseudo cache
@@ -17,7 +17,7 @@ let _indexHtml // pseudo cache
  */
 const getBuiltIndex = (files) => {
   const { appJSPath, appCSSPath } = files || {}
-  _indexHtml = _indexHtml || fs.readFileSync(join(appPath, 'index.html'), 'utf8')
+  _indexHtml = _indexHtml || fs.readFileSync(join(paths.src, 'index.html'), 'utf8')
 
   return _indexHtml.replace('{APP_JS}', appJSPath).replace('{APP_CSS}', appCSSPath)
 }
