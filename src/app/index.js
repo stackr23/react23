@@ -9,7 +9,7 @@ import stores from 'stores/index.js'
 import mobxAutorun from 'stores/autorun'
 import App from 'app/App.js'
 
-// if (!global._babelPolyfill) require('@babel/polyfill')
+if (!global._babelPolyfill) require('@babel/polyfill')
 
 mobxAutorun(stores)
 
@@ -37,11 +37,11 @@ console.log('MOUNTING ??? process.env.IS_BROWSER', process.env.IS_BROWSER)
 if (process.env.IS_BROWSER) {
   const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate
   console.log('module.hot', module.hot)
-  ReactDOM.render(<Root />, document.getElementById('root'))
+  ReactDOM.hydrate(<Root />, document.getElementById('root'))
 
   if (module.hot) {
     module.hot.accept(() => {
-      renderMethod(<Root />, document.getElementById('root'))
+      ReactDOM.render(<Root />, document.getElementById('root'))
     })
   }
 }

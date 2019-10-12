@@ -26,7 +26,7 @@ let {
 
 const serverIp = ip.address()
 
-export default (_isDevelopment) => {
+const webpackGetConfig =  (_isDevelopment) => {
   isDevelopment = _isDevelopment != null ? _isDevelopment : isDevelopment
   isProduction = !isDevelopment
 
@@ -43,6 +43,7 @@ export default (_isDevelopment) => {
     entry: {
       app: isDevelopment
         ? [
+          `webpack-hot-middleware/client?path=http://${serverIp}:${portHMR}/__webpack_hmr`,
           path.join(paths.app, 'index.js'),
         ]
         : [ path.join(paths.app, 'index.js') ],
@@ -151,7 +152,6 @@ export default (_isDevelopment) => {
       if (!isProduction) {
         plugins.push(
           new webpack.HotModuleReplacementPlugin(),
-          new webpack.NoEmitOnErrorsPlugin()
         )
       }
       else {
@@ -161,14 +161,7 @@ export default (_isDevelopment) => {
             filename:  'app-[hash].css',
             allChunks: true,
           })
-          // new webpack.optimize.OccurrenceOrderPlugin(),
-          // new webpack.optimize.UglifyJsPlugin({
-          //     sourceMap: true,
-          //     compress: {
-          //         screw_ie8:  true, // eslint-disable-line camelcase
-          //         warnings:   false // Because uglify reports irrelevant warnings.
-          //     }
-          // })
+
         )
 
         if (!process.env.CONTINUOUS_INTEGRATION) {
@@ -213,3 +206,5 @@ export default (_isDevelopment) => {
 
   return webpackConfig
 }
+
+export default webpackGetConfig
