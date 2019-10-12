@@ -13,12 +13,16 @@ if (global.IS_BROWSER) {
 }
 
 @inject('viewStore')
-@observer
 class Header extends React.Component {
     static propTypes = {
       viewStore: PropTypes.object.isRequired,
       headline:  PropTypes.string.isRequired,
       subline:   PropTypes.string,
+    }
+
+    handleToggle = (e) => {
+      const { toggleSidebar } = this.props.viewStore
+      toggleSidebar('sidenav', e)
     }
 
     render() {
@@ -34,9 +38,8 @@ class Header extends React.Component {
                 marginLeft:  -12,
                 marginRight: 20,
               }}
-              onClick={(e) => {
-                viewStore.toggleSidebar('sidenav', e)
-              }}
+              // eslint-disable-next-line react/jsx-no-bind
+              onClick={this.handleToggle('sidenav')}
             >
               <MenuIcon
                 fontSize="large"

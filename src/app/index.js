@@ -9,8 +9,7 @@ import stores from 'stores/index.js'
 import mobxAutorun from 'stores/autorun'
 import App from 'app/App.js'
 
-if (module.hot) module.hot.accept()
-if (!global._babelPolyfill) require('@babel/polyfill')
+// if (!global._babelPolyfill) require('@babel/polyfill')
 
 mobxAutorun(stores)
 
@@ -21,7 +20,7 @@ let historyCreated = global.IS_BROWSER
   : createMemoryHistory()
 const historySynced = syncHistoryWithStore(historyCreated, stores.router)
 
-export default class Root extends React.Component {
+class Root extends React.PureComponent {
   render() {
     return (
       <Provider {...stores}>
@@ -33,8 +32,18 @@ export default class Root extends React.Component {
   }
 }
 
-if (global.IS_BROWSER) {
-  const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate || ReactDOM.render
+console.log('MOUNTING ??? process.env.IS_BROWSER', process.env.IS_BROWSER)
 
-  renderMethod(<Root />, document.getElementById('root'))
+if (process.env.IS_BROWSER) {
+  const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate
+  console.log('module.hot', module.hot)
+  ReactDOM.render(<Root />, document.getElementById('root'))
+
+  if (module.hot) {
+    module.hot.accept(() => {
+      renderMethod(<Root />, document.getElementById('root'))
+    })
+  }
 }
+
+// export default Root

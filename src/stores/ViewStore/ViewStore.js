@@ -1,4 +1,4 @@
-import { extendObservable } from 'mobx'
+import { extendObservable, action } from 'mobx'
 
 const confirmationDialogDefaults = {
   closeOnAction: true,
@@ -36,7 +36,7 @@ export default class ViewStore {
     )
   }
 
-  toggleSidebar(which, e) {
+  toggleSidebar = action((which = '', e) => {
     if (typeof wich === 'undefined' || typeof which !== 'string') {
       // TBD - logger.debug
       return false
@@ -45,6 +45,7 @@ export default class ViewStore {
     let input = which.toLowerCase()
 
     if (input === 'sidenav') {
+      console.log('toggleSidebar() :', which)
       this.sidenav.isOpen = !this.sidenav.isOpen
     }
     else if (input === 'sidemenu') {
@@ -53,7 +54,7 @@ export default class ViewStore {
 
     e.preventDefault()
     return true
-  }
+  })
 
   switchTheme(theme = 'react23Theme') {
     this.theme = this.theme === 'react23Theme' ? 'muiTheme' : theme

@@ -26,7 +26,7 @@ const {
 // const routes   = createRoutes(stores)
 const serverIp = ip.address()
 
-const renderFullPage = ({ appHtml, appCSS }) => {
+const getFullMarkup = ({ appHtml, appCSS }) => {
   let appJSPath, appCSSPath
   const { appJS: appJsFilename, appCSS: appCssFilename } = getBuildFilenames()
 
@@ -40,6 +40,7 @@ const renderFullPage = ({ appHtml, appCSS }) => {
 
     // TODO: prevent getBuiltIndex() CSS tag if no src is given
     appJSPath = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
+    // appJsVendorPath = `http://${serverIp}:${portHMR}/build/${appJsFilename}`
   }
 
   const indexHtml = getBuiltIndex({
@@ -77,14 +78,7 @@ const render = ({ url: path }, res) => {
   )
 
   res.send(
-    renderFullPage({
-      appHtml,
-      appCSS: sheets.toString(),
-    })
-  )
-
-  res.send(
-    renderFullPage({
+    getFullMarkup({
       appHtml,
       appCSS: sheets.toString(),
     })
