@@ -36,9 +36,11 @@ export default class ViewStore {
     )
   }
 
+  @action
   toggleSidebar = action((which = '', e) => {
-    if (typeof wich === 'undefined' || typeof which !== 'string') {
-      // TBD - logger.debug
+    console.log('viewStore.toggleSidebar() - which :', typeof which, [ which ])
+
+    if (typeof which === 'undefined' || typeof which !== 'string') {
       return false
     }
 

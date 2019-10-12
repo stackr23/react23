@@ -41,7 +41,7 @@ class Layout extends React.Component {
               <div id="content">{this.props.children}</div>
             </main>
             <footer id="footer">
-                        made with 💕 by <a href="http://github.com/DoubleU23">DoubleU23</a>
+              made with 💕 by <a href="http://github.com/DoubleU23">DoubleU23</a>
             </footer>
             <Sidenav />
             <Sidemenu />

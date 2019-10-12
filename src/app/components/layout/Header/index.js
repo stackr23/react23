@@ -20,9 +20,10 @@ class Header extends React.Component {
       subline:   PropTypes.string,
     }
 
-    handleToggle = (e) => {
+    handleSidebarToggle = (wich) => (e) => {
       const { toggleSidebar } = this.props.viewStore
-      toggleSidebar('sidenav', e)
+
+      toggleSidebar(wich, e)
     }
 
     render() {
@@ -39,7 +40,7 @@ class Header extends React.Component {
                 marginRight: 20,
               }}
               // eslint-disable-next-line react/jsx-no-bind
-              onClick={this.handleToggle('sidenav')}
+              onClick={this.handleSidebarToggle('sidenav')}
             >
               <MenuIcon
                 fontSize="large"
@@ -62,9 +63,7 @@ class Header extends React.Component {
                   marginLeft:  -12,
                   marginRight: 20,
                 }}
-                onClick={(e) => {
-                  viewStore.toggleSidebar('sidemenu', e)
-                }}
+                onClick={this.handleSidebarToggle('sidemenu')}
               >
                 <SettingsIcon
                   fontSize="large"
