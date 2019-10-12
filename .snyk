@@ -90,3 +90,7 @@ patch:
         patched: '2019-10-11T21:47:01.449Z'
     - eslint-config-viewar > semantic-release-cli > npm > libnpm > libnpmsearch > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
         patched: '2019-10-11T21:47:01.449Z'
+    - snyk > proxy-agent > https-proxy-agent:
+        patched: '2019-10-12T15:48:02.830Z'
+    - snyk > proxy-agent > pac-proxy-agent > https-proxy-agent:
+        patched: '2019-10-12T15:48:02.830Z'
