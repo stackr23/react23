@@ -88,7 +88,7 @@
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.4",
     "babel-plugin-dynamic-import-node": "^2.2.0",
-    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "babel-preset-react23": "git+https://github.com/stackr23/babel-preset-react23.git",
     "chalk": "^3.0.0",
     "config": "^3.2.0",
